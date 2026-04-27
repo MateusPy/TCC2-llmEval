@@ -75,6 +75,7 @@ class BaseProvider(ABC):
         Returns:
             ProviderResponse: Standardized provider response.
         """
+        raise NotImplementedError
 
     def send_batch(self, prompts: list[str]) -> list[ProviderResponse]:
         """Send multiple prompts sequentially using the default implementation.
