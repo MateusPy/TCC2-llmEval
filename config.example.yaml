@@ -1,0 +1,63 @@
+# ============================================================
+# llm-eval — Exemplo de configuração
+# ============================================================
+# Copie este arquivo para "config.yaml" e ajuste os valores.
+# Variáveis no formato ${VAR_NAME} são resolvidas a partir
+# de variáveis de ambiente.
+# ============================================================
+
+# Chatbot a ser avaliado
+provider:
+  type: gemini
+  api_key: "${GEMINI_API_KEY}"
+  model: gemini-2.0-flash
+  temperature: 0.0
+  max_tokens: 1024
+
+# LLM usado como juiz (avaliador)
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.0-flash
+    temperature: 0.0
+    max_tokens: 2048
+
+# Dimensões de confiabilidade a avaliar
+# Valores válidos: factual, consistency, robustness
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+# Caminho para cenários customizados (null = usar banco embutido)
+scenarios_path: null
+
+# Quantas vezes repetir cada prompt (para medir variabilidade)
+repetitions: 3
+
+# Diretório de saída dos resultados
+output_dir: ./results
+
+# Formatos de relatório
+output_format:
+  - json
+  - markdown
+
+# ============================================================
+# Exemplo de provider customizado (qualquer endpoint HTTP)
+# ============================================================
+# provider:
+#   type: custom
+#   url: "https://meu-chatbot.com/api/chat"
+#   method: POST
+#   headers:
+#     Authorization: "Bearer ${CUSTOM_API_KEY}"
+#   model: meu-modelo
+#   request_template:
+#     messages:
+#       - role: "user"
+#         content: "{prompt}"
+#     temperature: 0.0
+#   response_path: "choices.0.message.content"

@@ -2,8 +2,15 @@
 
 __version__ = "0.1.0"
 
-from llm_eval.config import Config
+from llm_eval.config import Config, JudgeSettings, ProviderSettings
 from llm_eval.report import ReportGenerator
 from llm_eval.runner import Runner
 
-__all__ = ["Config", "Runner", "ReportGenerator", "__version__"]
+__all__ = [
+    "Config",
+    "JudgeSettings",
+    "ProviderSettings",
+    "Runner",
+    "ReportGenerator",
+    "__version__",
+]
