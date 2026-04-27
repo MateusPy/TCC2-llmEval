@@ -84,9 +84,7 @@ def test_judge_settings_disabled():
 def _make_config(**overrides) -> Config:
     defaults = {
         "provider": ProviderSettings(type="gemini", model="gemini-2.0-flash"),
-        "judge": JudgeSettings(
-            provider=ProviderSettings(type="gemini", model="gemini-2.0-flash")
-        ),
+        "judge": JudgeSettings(provider=ProviderSettings(type="gemini", model="gemini-2.0-flash")),
     }
     defaults.update(overrides)
     return Config(**defaults)

@@ -3,6 +3,7 @@
 import os
 import re
 from pathlib import Path
+from typing import Any
 
 import yaml
 from pydantic import BaseModel, Field, field_validator
@@ -85,9 +86,7 @@ class Config(BaseModel):
         allowed = {"factual", "consistency", "robustness"}
         invalid = [d for d in v if d not in allowed]
         if invalid:
-            raise ValueError(
-                f"Invalid dimensions: {invalid}. Allowed values: {sorted(allowed)}"
-            )
+            raise ValueError(f"Invalid dimensions: {invalid}. Allowed values: {sorted(allowed)}")
         return v
 
     @classmethod
@@ -109,8 +108,7 @@ class Config(BaseModel):
             raise ValueError("Empty configuration file")
         if not isinstance(data, dict):
             raise ValueError(
-                "Configuration file must contain a top-level mapping, "
-                f"got {type(data).__name__}"
+                f"Configuration file must contain a top-level mapping, got {type(data).__name__}"
             )
         data = cls._resolve_env_vars(data)
         return cls(**data)
@@ -129,16 +127,14 @@ class Config(BaseModel):
             ValueError: If a referenced environment variable is not set.
         """
 
-        def _resolve(value):  # noqa: ANN001, ANN202
+        def _resolve(value: Any) -> Any:
             if isinstance(value, str):
 
                 def _replacer(match: re.Match) -> str:
                     var_name = match.group(1)
                     env_value = os.environ.get(var_name)
                     if env_value is None:
-                        raise ValueError(
-                            f"Environment variable '{var_name}' is not set"
-                        )
+                        raise ValueError(f"Environment variable '{var_name}' is not set")
                     return env_value
 
                 return re.sub(r"\$\{([^}]+)\}", _replacer, value)
@@ -148,4 +144,5 @@ class Config(BaseModel):
                 return [_resolve(item) for item in value]
             return value
 
-        return _resolve(data)
+        result: dict = _resolve(data)
+        return result
