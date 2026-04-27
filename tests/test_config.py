@@ -211,6 +211,24 @@ def test_from_yaml_valid(tmp_path, monkeypatch):
     assert cfg.repetitions == 3
 
 
+def test_from_yaml_config_example(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+    cfg = Config.from_yaml("config.example.yaml")
+    assert cfg.provider.type == "gemini"
+    assert cfg.provider.api_key == "test-key"
+    assert cfg.provider.model == "gemini-2.0-flash"
+    assert cfg.judge.enabled is True
+    assert cfg.dimensions == ["factual", "consistency", "robustness"]
+    assert cfg.repetitions == 3
+
+
+def test_from_yaml_invalid_toplevel(tmp_path):
+    yaml_path = tmp_path / "bad.yaml"
+    yaml_path.write_text("just a string", encoding="utf-8")
+    with pytest.raises(ValueError, match="top-level mapping"):
+        Config.from_yaml(yaml_path)
+
+
 def test_from_yaml_file_not_found():
     with pytest.raises(FileNotFoundError):
         Config.from_yaml("/nonexistent/config.yaml")

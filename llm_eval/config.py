@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 
 
 class ProviderSettings(BaseModel):
@@ -36,7 +36,7 @@ class ProviderSettings(BaseModel):
     max_tokens: int = 1024
     url: str | None = None
     method: str = "POST"
-    headers: dict[str, str] = {}
+    headers: dict[str, str] = Field(default_factory=dict)
     request_template: dict | None = None
     response_path: str | None = None
 
@@ -72,11 +72,11 @@ class Config(BaseModel):
 
     provider: ProviderSettings
     judge: JudgeSettings
-    dimensions: list[str] = ["factual", "consistency", "robustness"]
+    dimensions: list[str] = Field(default_factory=lambda: ["factual", "consistency", "robustness"])
     scenarios_path: str | None = None
     repetitions: int = 1
     output_dir: str = "./results"
-    output_format: list[str] = ["json", "markdown"]
+    output_format: list[str] = Field(default_factory=lambda: ["json", "markdown"])
 
     @field_validator("dimensions")
     @classmethod
@@ -107,6 +107,11 @@ class Config(BaseModel):
         data = yaml.safe_load(raw)
         if data is None:
             raise ValueError("Empty configuration file")
+        if not isinstance(data, dict):
+            raise ValueError(
+                "Configuration file must contain a top-level mapping, "
+                f"got {type(data).__name__}"
+            )
         data = cls._resolve_env_vars(data)
         return cls(**data)
 
