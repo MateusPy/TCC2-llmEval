@@ -6,13 +6,13 @@ Comandos disponíveis:
 - ``llm-eval validate --config CFG``: apenas valida o YAML
 - ``llm-eval scenarios --list``: lista as dimensões disponíveis no banco
 - ``llm-eval scenarios --dimension D``: lista cenários da dimensão ``D``
-
-O comando ``report`` previsto na issue #15 será adicionado quando o módulo
-:mod:`llm_eval.report` (issue #14) estiver implementado.
+- ``llm-eval report --input R --format F --output O``: gera relatório a partir
+  de um ``run_result.json`` previamente salvo
 """
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -20,12 +20,15 @@ import click
 from pydantic import ValidationError
 
 from llm_eval.config import Config
-from llm_eval.runner import Runner
+from llm_eval.report import ReportGenerator
+from llm_eval.runner import RunResult, Runner
 from llm_eval.scenarios.loader import (
     ALLOWED_DIMENSIONS,
     ScenarioLoader,
     ScenarioLoadError,
 )
+
+REPORT_FORMATS = ("json", "markdown")
 
 
 def _build_runner(cfg: Config) -> Runner:
@@ -88,6 +91,32 @@ def run(config_path: Path) -> None:
         f"Avaliação concluída. {total} cenários executados "
         f"({failed} com erro). Resultado salvo em: {final_path}"
     )
+
+    written_reports = _write_reports_from_result(result, cfg.output_dir, cfg.output_format)
+    for fmt, path in written_reports:
+        click.echo(f"Relatório {fmt} salvo em: {path}")
+
+
+def _write_reports_from_result(
+    result: RunResult,
+    output_dir: str,
+    formats: list[str],
+) -> list[tuple[str, Path]]:
+    """Render the configured ``output_format`` reports next to ``run_result.json``."""
+    if not formats:
+        return []
+    generator = ReportGenerator(result)
+    written: list[tuple[str, Path]] = []
+    base = Path(output_dir)
+    for fmt in formats:
+        normalized = fmt.lower()
+        if normalized == "json":
+            written.append(("JSON", generator.to_json(base / "report.json")))
+        elif normalized == "markdown":
+            written.append(("Markdown", generator.to_markdown(base / "report.md")))
+        # Unknown formats are silently ignored — config validation already
+        # restricts the values, so this is just defensive.
+    return written
 
 
 @main.command()
@@ -158,6 +187,53 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
     for scenario in bank.scenarios:
         prompt_preview = _truncate(scenario.prompt, 60)
         click.echo(f"  [{scenario.id}] {scenario.category}: {prompt_preview}")
+
+
+@main.command()
+@click.option(
+    "--input",
+    "-i",
+    "input_path",
+    required=True,
+    type=click.Path(exists=True, dir_okay=False, readable=True, path_type=Path),
+    help="Arquivo run_result.json produzido por 'llm-eval run'.",
+)
+@click.option(
+    "--format",
+    "-f",
+    "fmt",
+    required=True,
+    type=click.Choice(list(REPORT_FORMATS), case_sensitive=False),
+    help="Formato de saída.",
+)
+@click.option(
+    "--output",
+    "-o",
+    "output_path",
+    required=True,
+    type=click.Path(dir_okay=False, writable=True, path_type=Path),
+    help="Caminho do arquivo de saída.",
+)
+def report(input_path: Path, fmt: str, output_path: Path) -> None:
+    """Gera um relatório a partir de um run_result.json salvo previamente."""
+    try:
+        payload = json.loads(input_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        click.echo(f"Arquivo de entrada não é JSON válido: {exc}", err=True)
+        raise SystemExit(1) from exc
+    try:
+        result = RunResult.model_validate(payload)
+    except ValidationError as exc:
+        click.echo(f"Conteúdo de {input_path} não é um RunResult válido:\n{exc}", err=True)
+        raise SystemExit(1) from exc
+
+    generator = ReportGenerator(result)
+    fmt_normalized = fmt.lower()
+    if fmt_normalized == "json":
+        written = generator.to_json(output_path)
+    else:
+        written = generator.to_markdown(output_path)
+    click.echo(f"Relatório {fmt_normalized} gerado em: {written}")
 
 
 def _load_config_or_exit(path: Path) -> Config:

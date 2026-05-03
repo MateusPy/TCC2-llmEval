@@ -47,7 +47,13 @@ repetitions: 3
 # Diretório de saída dos resultados
 output_dir: ./results
 
-# Formatos de relatório
+# Formatos de relatório gerados automaticamente após cada `llm-eval run`.
+# Cada formato listado aqui produz um arquivo no `output_dir`:
+#   - json     → report.json (consumo programático/pipelines)
+#   - markdown → report.md   (leitura humana)
+# Use `output_format: []` para desabilitar a geração automática (apenas o
+# `run_result.json` cru é salvo). Você pode gerar relatórios sob demanda
+# depois com `llm-eval report -i run_result.json -f <fmt> -o <out>`.
 output_format:
   - json
   - markdown

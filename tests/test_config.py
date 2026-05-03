@@ -219,6 +219,49 @@ def test_config_all_valid_dimensions_individually():
 
 
 # ---------------------------------------------------------------------------
+# Config — output_format validator
+# ---------------------------------------------------------------------------
+
+
+def test_config_output_format_default():
+    cfg = _make_config()
+    assert cfg.output_format == ["json", "markdown"]
+
+
+def test_config_output_format_accepts_subset():
+    cfg = _make_config(output_format=["json"])
+    assert cfg.output_format == ["json"]
+
+
+def test_config_output_format_accepts_empty_list():
+    """Empty list disables auto report generation."""
+    cfg = _make_config(output_format=[])
+    assert cfg.output_format == []
+
+
+def test_config_output_format_normalizes_case():
+    cfg = _make_config(output_format=["JSON", "Markdown"])
+    assert cfg.output_format == ["json", "markdown"]
+
+
+def test_config_output_format_rejects_unknown_format():
+    with pytest.raises(ValidationError, match="Invalid output formats"):
+        _make_config(output_format=["pdf"])
+
+
+def test_config_output_format_rejects_typo():
+    """Catches the silent-success bug from PR #37 review: 'jsno' must fail."""
+    with pytest.raises(ValidationError, match="Invalid output formats"):
+        _make_config(output_format=["jsno"])
+
+
+def test_config_output_format_rejects_mixed():
+    """Even one bad format in a list of good ones must fail."""
+    with pytest.raises(ValidationError, match="Invalid output formats"):
+        _make_config(output_format=["json", "pdf"])
+
+
+# ---------------------------------------------------------------------------
 # _resolve_env_vars
 # ---------------------------------------------------------------------------
 

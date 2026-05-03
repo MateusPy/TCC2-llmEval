@@ -145,6 +145,25 @@ class Config(BaseModel):
             raise ValueError(f"Invalid dimensions: {invalid}. Allowed values: {sorted(allowed)}")
         return v
 
+    @field_validator("output_format")
+    @classmethod
+    def validate_output_format(cls, v: list[str]) -> list[str]:
+        """Ensure each requested output format is supported.
+
+        Without this validator, typos like ``[jsno]`` or unsupported formats
+        like ``[pdf]`` would silently produce no report at all (the runner
+        skips unknown values), violating the project's "fail loudly on bad
+        config" convention.
+        """
+        allowed = {"json", "markdown"}
+        normalized = [fmt.lower() for fmt in v]
+        invalid = [fmt for fmt in normalized if fmt not in allowed]
+        if invalid:
+            raise ValueError(
+                f"Invalid output formats: {invalid}. Allowed values: {sorted(allowed)}"
+            )
+        return normalized
+
     @classmethod
     def from_yaml(cls, path: str | Path) -> "Config":
         """Load configuration from a YAML file.

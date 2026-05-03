@@ -49,10 +49,6 @@ python_files = ["test_*.py"]
 [tool.coverage.run]
 source = ["llm_eval"]
 branch = true
-omit = [
-    # report generation is a stub until issue #14 lands
-    "llm_eval/report.py",
-]
 
 [tool.coverage.report]
 exclude_lines = [
