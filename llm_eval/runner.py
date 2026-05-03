@@ -30,6 +30,8 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+import tempfile
 from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
@@ -118,6 +120,33 @@ def _settings_to_provider_config(settings: ProviderSettings) -> ProviderConfig:
     )
 
 
+def _validate_gemini_dual_provider(config: Config) -> None:
+    """Reject configurations that would corrupt the Gemini SDK global state.
+
+    The ``google-generativeai`` SDK authenticates via the process-global
+    :func:`genai.configure`. When both the chatbot under test and the judge
+    are Gemini-backed but use different API keys, the second provider
+    constructed silently overwrites the first's credentials — meaning calls
+    on either provider may end up using the wrong key. Detect that exact
+    case at construction time and raise rather than letting the run produce
+    silently corrupted results.
+    """
+    if not config.judge.enabled:
+        return
+    if config.provider.type != "gemini" or config.judge.provider.type != "gemini":
+        return
+    target_key = config.provider.api_key
+    judge_key = config.judge.provider.api_key
+    if target_key and judge_key and target_key != judge_key:
+        raise ValueError(
+            "Cannot use two Gemini providers with different API keys in the same "
+            "process: google-generativeai authenticates globally and the second "
+            "configure() call would corrupt the first provider's credentials. "
+            "Use the same API key for both, switch one of them to a different "
+            "provider type, or run them in separate processes."
+        )
+
+
 def default_provider_factory(settings: ProviderSettings) -> BaseProvider:
     """Build a concrete :class:`BaseProvider` from user-facing settings."""
     if settings.type == "gemini":
@@ -189,24 +218,47 @@ class Runner:
                 and the judge provider. ``None`` uses
                 :func:`default_provider_factory`.
             judge: Pre-built judge instance. ``None`` builds one from
-                ``config.judge``.
+                ``config.judge``. Ignored when ``config.judge.enabled`` is
+                ``False``.
             bertscore_fn: Override for :func:`calculate_bertscore`. Tests
                 use this to skip BERT model loading.
             consistency_fn: Override for :func:`calculate_consistency`.
             partial_save_every: Save the partial JSON result every N
                 scenarios. ``1`` (default) saves after every scenario.
+
+        Raises:
+            ValueError: If both ``config.provider`` and ``config.judge.provider``
+                are Gemini with different ``api_key``s. The
+                ``google-generativeai`` SDK uses process-global authentication,
+                so two Gemini providers with different keys in the same process
+                would silently corrupt each other (see :mod:`llm_eval.providers.gemini`).
         """
+        _validate_gemini_dual_provider(config)
+
         self.config = config
         self._scenarios_loader = scenarios_loader or ScenarioLoader(config.scenarios_path)
         self._provider_factory = provider_factory or default_provider_factory
         self._provider = self._provider_factory(config.provider)
-        self._judge = judge or Judge(self._provider_factory(config.judge.provider))
+        self._owns_judge = judge is None
+        self._judge: Judge | None
+        if not config.judge.enabled:
+            self._judge = None
+            self._owns_judge = False
+        elif judge is not None:
+            self._judge = judge
+        else:
+            self._judge = Judge(self._provider_factory(config.judge.provider))
         self._bertscore = bertscore_fn or calculate_bertscore
         self._consistency = consistency_fn or calculate_consistency
         self._partial_save_every = max(1, int(partial_save_every))
 
     def run(self) -> RunResult:
-        """Execute the full evaluation flow and persist the result."""
+        """Execute the full evaluation flow and persist the result.
+
+        Provider resources (including any ``httpx.Client`` owned by a
+        :class:`CustomProvider`) are released in a ``finally`` block, even
+        if the run is interrupted by an unhandled exception.
+        """
         result = RunResult(
             config=sanitize_config(self.config),
             started_at=datetime.now(timezone.utc),
@@ -217,32 +269,58 @@ class Runner:
         partial_path = output_dir / PARTIAL_FILENAME
         final_path = output_dir / FINAL_FILENAME
 
-        scenarios = self._collect_scenarios()
-        total = len(scenarios)
-        logger.info(
-            "Runner starting: %d scenarios across %d dimensions", total, len(self.config.dimensions)
-        )
-
-        for index, scenario in enumerate(scenarios, start=1):
+        try:
+            scenarios = self._collect_scenarios()
+            total = len(scenarios)
             logger.info(
-                "Evaluating scenario %d/%d [%s] %s",
-                index,
+                "Runner starting: %d scenarios across %d dimensions (judge: %s)",
                 total,
-                scenario.dimension,
-                scenario.id,
+                len(self.config.dimensions),
+                "enabled" if self._judge is not None else "disabled",
             )
-            scenario_result = self._evaluate_scenario(scenario)
-            result.scenario_results.append(scenario_result)
 
-            if index % self._partial_save_every == 0 or index == total:
-                self._save_json(partial_path, result)
+            for index, scenario in enumerate(scenarios, start=1):
+                logger.info(
+                    "Evaluating scenario %d/%d [%s] %s",
+                    index,
+                    total,
+                    scenario.dimension,
+                    scenario.id,
+                )
+                scenario_result = self._evaluate_scenario(scenario)
+                result.scenario_results.append(scenario_result)
 
-        result.finished_at = datetime.now(timezone.utc)
-        self._save_json(final_path, result)
-        if partial_path.exists():
-            partial_path.unlink()
-        logger.info("Runner finished: results saved to %s", final_path)
-        return result
+                if index % self._partial_save_every == 0 or index == total:
+                    self._save_json(partial_path, result)
+
+            result.finished_at = datetime.now(timezone.utc)
+            self._save_json(final_path, result)
+            if partial_path.exists():
+                partial_path.unlink()
+            logger.info("Runner finished: results saved to %s", final_path)
+            return result
+        finally:
+            self._close_providers()
+
+    def _close_providers(self) -> None:
+        """Release every provider this runner owns, swallowing close errors.
+
+        Called from ``run()``'s ``finally`` block to avoid socket/FD leaks on
+        long-lived processes or repeated runs in the same session.
+        """
+        providers_to_close: list[BaseProvider] = [self._provider]
+        if self._owns_judge and self._judge is not None:
+            providers_to_close.append(self._judge.provider)
+
+        for provider in providers_to_close:
+            try:
+                provider.close()
+            except Exception as exc:
+                logger.warning(
+                    "Failed to close provider %s: %s",
+                    type(provider).__name__,
+                    exc,
+                )
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -286,13 +364,14 @@ class Runner:
         for _ in range(self.config.repetitions):
             response = self._provider.send(scenario.prompt)
             result.responses.append(response)
-            result.judge_results.append(
-                self._judge.evaluate_factual(
-                    prompt=scenario.prompt,
-                    ground_truth=ground_truth,
-                    response=response.response_text,
+            if self._judge is not None:
+                result.judge_results.append(
+                    self._judge.evaluate_factual(
+                        prompt=scenario.prompt,
+                        ground_truth=ground_truth,
+                        response=response.response_text,
+                    )
                 )
-            )
             result.metric_results.append(self._bertscore(ground_truth, response.response_text))
         return result
 
@@ -313,12 +392,13 @@ class Runner:
             result.variant_responses[variant.id] = variant_response
             responses_for_consistency.append(variant_response.response_text)
 
-        result.judge_results.append(
-            self._judge.evaluate_consistency(
-                prompt=scenario.prompt,
-                responses=responses_for_consistency,
+        if self._judge is not None:
+            result.judge_results.append(
+                self._judge.evaluate_consistency(
+                    prompt=scenario.prompt,
+                    responses=responses_for_consistency,
+                )
             )
-        )
         result.metric_results.append(self._consistency(responses_for_consistency))
         return result
 
@@ -336,23 +416,54 @@ class Runner:
         for variant in scenario.variants:
             variant_response = self._provider.send(variant.prompt)
             result.variant_responses[variant.id] = variant_response
-            result.judge_results.append(
-                self._judge.evaluate_robustness(
-                    prompt=scenario.prompt,
-                    original_response=base_response.response_text,
-                    variant_type=variant.variant_type,
-                    variant_prompt=variant.prompt,
-                    variant_response=variant_response.response_text,
+            if self._judge is not None:
+                result.judge_results.append(
+                    self._judge.evaluate_robustness(
+                        prompt=scenario.prompt,
+                        original_response=base_response.response_text,
+                        variant_type=variant.variant_type,
+                        variant_prompt=variant.prompt,
+                        variant_response=variant_response.response_text,
+                    )
                 )
-            )
             result.metric_results.append(
                 self._bertscore(base_response.response_text, variant_response.response_text)
             )
         return result
 
     def _save_json(self, path: Path, result: RunResult) -> None:
+        """Serialize ``result`` to ``path`` atomically.
+
+        Writes to a temporary file in the same directory and then uses
+        :func:`os.replace` (atomic on POSIX and Windows) to move it onto
+        the target. This prevents ``run_partial.json`` /
+        ``run_result.json`` from being observed in a half-written,
+        unparseable state if the process crashes or the disk fills mid-write.
+        """
         payload = result.model_dump(mode="json")
-        path.write_text(
-            json.dumps(payload, indent=2, ensure_ascii=False),
-            encoding="utf-8",
+        serialized = json.dumps(payload, indent=2, ensure_ascii=False)
+
+        directory = path.parent
+        directory.mkdir(parents=True, exist_ok=True)
+
+        fd, tmp_name = tempfile.mkstemp(
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            dir=directory,
         )
+        tmp_path = Path(tmp_name)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as fh:
+                fh.write(serialized)
+                fh.flush()
+                try:
+                    os.fsync(fh.fileno())
+                except OSError:  # pragma: no cover - filesystem-dependent
+                    # fsync is best-effort; some filesystems (e.g. Windows
+                    # network mounts) don't support it. The atomic rename
+                    # below still guarantees no partially-written file.
+                    pass
+            os.replace(tmp_path, path)
+        except Exception:
+            tmp_path.unlink(missing_ok=True)
+            raise

@@ -573,6 +573,314 @@ def test_runner_creates_output_dir_if_missing(tmp_path: Path):
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Runner — judge.enabled = False
+# ---------------------------------------------------------------------------
+
+
+def test_runner_skips_judge_when_disabled(tmp_path: Path):
+    """When config.judge.enabled is False, the judge is neither built nor called."""
+    provider = _RecordingProvider(default_text="Brasília")
+    loader = _StubLoader(
+        {
+            "factual": _bank("factual", [_factual_scenario()]),
+            "consistency": _bank("consistency", [_consistency_scenario()]),
+            "robustness": _bank("robustness", [_robustness_scenario()]),
+        }
+    )
+    config = _make_config(output_dir=tmp_path)
+    config.judge.enabled = False
+
+    factory_calls: list[ProviderSettings] = []
+
+    def tracking_factory(settings: ProviderSettings) -> BaseProvider:
+        factory_calls.append(settings)
+        return provider
+
+    runner = Runner(
+        config,
+        scenarios_loader=loader,
+        provider_factory=tracking_factory,
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+    result = runner.run()
+
+    # Factory called only once — for the target provider, not the judge.
+    assert len(factory_calls) == 1
+    # All scenarios still ran with metrics, just no judge evaluations.
+    for sr in result.scenario_results:
+        assert sr.error is None
+        assert sr.judge_results == []
+        assert len(sr.metric_results) > 0
+
+
+def test_runner_uses_injected_judge_only_when_enabled(tmp_path: Path):
+    """An injected judge is honored only if config.judge.enabled is True."""
+    judge = _StubJudge()
+    provider = _RecordingProvider(default_text="Brasília")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    config.judge.enabled = False
+    runner = _make_runner(config, provider=provider, judge=judge, loader=loader)
+
+    result = runner.run()
+
+    assert judge.factual_calls == []
+    assert result.scenario_results[0].judge_results == []
+
+
+# ---------------------------------------------------------------------------
+# Runner — Gemini dual-provider safety
+# ---------------------------------------------------------------------------
+
+
+def test_runner_rejects_gemini_with_different_keys(tmp_path: Path):
+    """Two Gemini providers with different API keys must fail fast."""
+    config = _make_config(output_dir=tmp_path)
+    config.judge.provider = ProviderSettings(
+        type="gemini", api_key="different-key", model="gemini-2.0-flash"
+    )
+    with pytest.raises(ValueError, match="two Gemini providers with different API keys"):
+        Runner(
+            config,
+            scenarios_loader=_StubLoader({}),
+            provider_factory=lambda _s: _RecordingProvider(),
+            bertscore_fn=_bertscore_stub,
+            consistency_fn=_consistency_stub,
+        )
+
+
+def test_runner_accepts_gemini_with_same_key(tmp_path: Path):
+    """Two Gemini providers sharing the same API key are fine."""
+    config = _make_config(output_dir=tmp_path)
+    # Same provider object — keys match.
+    runner = Runner(
+        config,
+        scenarios_loader=_StubLoader({}),
+        provider_factory=lambda _s: _RecordingProvider(),
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+    assert runner._judge is not None
+
+
+def test_runner_skips_gemini_check_when_judge_disabled(tmp_path: Path):
+    """Different keys are tolerated when the judge is disabled (it won't run)."""
+    config = _make_config(output_dir=tmp_path)
+    config.judge.enabled = False
+    config.judge.provider = ProviderSettings(
+        type="gemini", api_key="different-key", model="gemini-2.0-flash"
+    )
+    Runner(
+        config,
+        scenarios_loader=_StubLoader({}),
+        provider_factory=lambda _s: _RecordingProvider(),
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+
+
+def test_runner_allows_mixed_provider_types(tmp_path: Path):
+    """Same-key check only triggers when both sides are Gemini."""
+    config = _make_config(output_dir=tmp_path)
+    config.judge.provider = ProviderSettings(
+        type="mistral", api_key="any-key", model="mistral-small"
+    )
+    Runner(
+        config,
+        scenarios_loader=_StubLoader({}),
+        provider_factory=lambda _s: _RecordingProvider(),
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Runner — provider close()
+# ---------------------------------------------------------------------------
+
+
+class _ClosableProvider(_RecordingProvider):
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self.closed = False
+
+    def close(self) -> None:
+        self.closed = True
+
+
+def test_runner_closes_owned_providers_after_run(tmp_path: Path):
+    """Both target provider and judge provider receive close() after the run."""
+    target = _ClosableProvider(default_text="Brasília")
+    judge_provider = _ClosableProvider(default_text='{"score": 5, "justification": "ok"}')
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+
+    factory_calls = {"n": 0}
+
+    def factory(_settings: ProviderSettings) -> BaseProvider:
+        factory_calls["n"] += 1
+        return target if factory_calls["n"] == 1 else judge_provider
+
+    runner = Runner(
+        config,
+        scenarios_loader=loader,
+        provider_factory=factory,
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+    runner.run()
+
+    assert target.closed is True
+    assert judge_provider.closed is True
+
+
+def test_runner_closes_providers_even_on_failure(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    """If something blows up mid-run, providers are still closed."""
+    target = _ClosableProvider(default_text="ok")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    config.judge.enabled = False
+    runner = Runner(
+        config,
+        scenarios_loader=loader,
+        provider_factory=lambda _s: target,
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+
+    def boom(*_: Any, **__: Any) -> None:
+        raise RuntimeError("collect failed")
+
+    monkeypatch.setattr(runner, "_collect_scenarios", boom)
+
+    with pytest.raises(RuntimeError, match="collect failed"):
+        runner.run()
+    assert target.closed is True
+
+
+def test_runner_does_not_close_injected_judge_provider(tmp_path: Path):
+    """When the caller provides a Judge directly, the runner does not own the
+    judge's underlying provider and must not close it."""
+    judge = _StubJudge()
+    underlying_provider = judge.provider
+    assert isinstance(underlying_provider, _RecordingProvider)
+    target = _ClosableProvider(default_text="Brasília")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    runner = _make_runner(config, provider=target, judge=judge, loader=loader)
+
+    runner.run()
+
+    assert target.closed is True
+    # The judge provider isn't a _ClosableProvider, but the key fact is the
+    # runner skipped close() on it (no AttributeError on the base `close()`
+    # no-op either).
+
+
+def test_runner_swallows_close_errors(tmp_path: Path, caplog: pytest.LogCaptureFixture):
+    """A failing close() is logged but does not interrupt the run.
+
+    We also confirm both providers are still attempted, not just the first.
+    """
+    import logging as _logging
+
+    class _FailingClose(_RecordingProvider):
+        def __init__(self, **kwargs: Any) -> None:
+            super().__init__(**kwargs)
+            self.close_called = False
+
+        def close(self) -> None:
+            self.close_called = True
+            raise RuntimeError("close failed")
+
+    target = _FailingClose(default_text="Brasília")
+    judge_provider = _FailingClose(default_text='{"score": 5, "justification": "ok"}')
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+
+    factory_calls = {"n": 0}
+
+    def factory(_settings: ProviderSettings) -> BaseProvider:
+        factory_calls["n"] += 1
+        return target if factory_calls["n"] == 1 else judge_provider
+
+    runner = Runner(
+        config,
+        scenarios_loader=loader,
+        provider_factory=factory,
+        bertscore_fn=_bertscore_stub,
+        consistency_fn=_consistency_stub,
+    )
+    with caplog.at_level(_logging.WARNING):
+        result = runner.run()
+
+    assert result.scenario_results[0].error is None
+    assert target.close_called is True
+    assert judge_provider.close_called is True
+    warnings = [rec for rec in caplog.records if "Failed to close provider" in rec.message]
+    assert len(warnings) == 2
+
+
+# ---------------------------------------------------------------------------
+# Runner — atomic _save_json
+# ---------------------------------------------------------------------------
+
+
+def test_save_json_writes_via_tempfile_and_replace(tmp_path: Path):
+    """The final file must contain valid JSON; no leftover .tmp file remains."""
+    target = _RecordingProvider(default_text="Brasília")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    config.judge.enabled = False
+    runner = _make_runner(config, provider=target, judge=_StubJudge(), loader=loader)
+    runner.run()
+
+    final_path = tmp_path / FINAL_FILENAME
+    assert final_path.exists()
+    payload = json.loads(final_path.read_text(encoding="utf-8"))
+    assert payload["finished_at"] is not None
+
+    leftovers = [p for p in tmp_path.iterdir() if p.name.startswith(f".{FINAL_FILENAME}")]
+    assert leftovers == [], f"Stale tempfiles: {leftovers}"
+
+
+def test_save_json_cleans_tempfile_on_error(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    """If os.replace fails, the temporary file must be cleaned up."""
+    import llm_eval.runner as runner_module
+
+    target = _RecordingProvider(default_text="Brasília")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    config.judge.enabled = False
+    runner = _make_runner(config, provider=target, judge=_StubJudge(), loader=loader)
+
+    original_replace = runner_module.os.replace
+    call_count = {"n": 0}
+
+    def failing_replace(src: str, dst: str) -> None:
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            raise OSError("disk full")
+        original_replace(src, dst)
+
+    monkeypatch.setattr(runner_module.os, "replace", failing_replace)
+
+    with pytest.raises(OSError, match="disk full"):
+        runner.run()
+
+    # tempfile must have been cleaned up — no .partial.json.*.tmp leftover
+    leftovers = [p for p in tmp_path.iterdir() if p.suffix == ".tmp"]
+    assert leftovers == [], f"Stale tempfiles: {leftovers}"
+
+
+# ---------------------------------------------------------------------------
+# RunResult / ScenarioResult model behavior
+# ---------------------------------------------------------------------------
+
+
 def test_run_result_serializes_with_datetime():
     result = RunResult(
         config={"x": 1},

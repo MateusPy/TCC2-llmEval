@@ -92,3 +92,14 @@ class BaseProvider(ABC):
         """
 
         return [self.send(prompt) for prompt in prompts]
+
+    def close(self) -> None:
+        """Release any resources held by the provider.
+
+        Default implementation is a no-op. Subclasses that own external
+        resources (HTTP clients, sockets, etc.) should override this and
+        ensure idempotent cleanup. The :class:`~llm_eval.runner.Runner`
+        calls ``close()`` on every provider it built, in a ``finally``
+        block, so a missing override here means socket/FD leaks across
+        repeated runs.
+        """
