@@ -4,7 +4,7 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-from llm_eval.config import Config, JudgeSettings, ProviderSettings, _is_pinned_model
+from llm_eval.config import Config, JudgeSettings, ProviderSettings, is_pinned_model
 
 
 # ---------------------------------------------------------------------------
@@ -63,7 +63,25 @@ def test_provider_settings_seed_none_default():
     ],
 )
 def test_is_pinned_model_classification(model: str, expected: bool):
-    assert _is_pinned_model(model) is expected
+    assert is_pinned_model(model) is expected
+
+
+def test_pinned_regex_does_not_match_floating_aliases():
+    """Regression test for the regex/early-return defense in depth.
+
+    The pinning regex must NOT include ``latest`` or ``stable`` in its
+    alternation — those are floating aliases and are rejected by an explicit
+    early return. If a future refactor removes the early return trusting
+    that "the regex already covers it", this test fails immediately rather
+    than silently classifying ``-latest``/``-stable`` as pinned.
+    """
+    from llm_eval.config import _PINNED_MODEL_RE
+
+    assert _PINNED_MODEL_RE.search("model-latest") is None
+    assert _PINNED_MODEL_RE.search("model-stable") is None
+    # And the actual pinned forms still match at the regex level.
+    assert _PINNED_MODEL_RE.search("model-001") is not None
+    assert _PINNED_MODEL_RE.search("model-2503") is not None
 
 
 def test_provider_settings_rejects_unpinned_gemini():

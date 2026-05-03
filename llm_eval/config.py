@@ -59,7 +59,7 @@ class ProviderSettings(BaseModel):
         the model identifier may be opaque (proprietary chatbot, internal
         deployment, etc.).
         """
-        if self.type in ("gemini", "mistral") and not _is_pinned_model(self.model):
+        if self.type in ("gemini", "mistral") and not is_pinned_model(self.model):
             raise ValueError(
                 f"model '{self.model}' is not pinned to an explicit version. "
                 f"Use a versioned identifier (e.g. 'gemini-2.0-flash-001', "
@@ -70,10 +70,17 @@ class ProviderSettings(BaseModel):
         return self
 
 
-_PINNED_MODEL_RE = re.compile(r"-(?:\d{3,}|\d{4}-\d{2}|\d{2}-\d{2}|latest|stable)$")
+# Regex describes ONLY pinned suffixes. Floating aliases such as
+# ``-latest``/``-stable`` are intentionally NOT in the alternation — they are
+# rejected up-front by ``is_pinned_model`` before the regex runs. Keeping them
+# out of the pattern preserves the "regex describes what is pinned" semantics
+# and prevents a future refactor from silently classifying them as valid.
+_PINNED_MODEL_RE = re.compile(r"-(?:\d{3,}|\d{4}-\d{2}|\d{2}-\d{2})$")
+
+_FLOATING_ALIAS_SUFFIXES = ("-latest", "-stable")
 
 
-def _is_pinned_model(model: str) -> bool:
+def is_pinned_model(model: str) -> bool:
     """Return True when ``model`` carries an explicit version suffix.
 
     Accepted patterns (suffix on the model name):
@@ -81,12 +88,12 @@ def _is_pinned_model(model: str) -> bool:
     - ``-<YYYY>-<MM>`` (e.g. ``-2024-09``)
     - ``-<MM>-<DD>`` (e.g. ``-09-15``)
 
-    The strings ``latest`` and ``stable`` are explicitly rejected as floating
-    aliases (vendors mutate them silently).
+    The strings ``-latest`` and ``-stable`` are explicitly rejected as
+    floating aliases (vendors mutate them silently).
     """
     if not model:
         return False
-    if model.endswith(("-latest", "-stable")):
+    if model.endswith(_FLOATING_ALIAS_SUFFIXES):
         return False
     return bool(_PINNED_MODEL_RE.search(model))
 
