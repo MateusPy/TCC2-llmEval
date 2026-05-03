@@ -381,6 +381,190 @@ def test_mistral_send_no_choices_returns_empty():
     assert result.response_text == ""
 
 
+def test_mistral_send_message_none_returns_empty():
+    """choices[0].message is None — produce empty text rather than crash."""
+
+    class _Choice:
+        message = None
+
+    class _Response:
+        choices = [_Choice()]
+        usage = None
+
+    class _Chat:
+        def complete(self, **_: Any) -> Any:
+            return _Response()
+
+    class _Client:
+        chat = _Chat()
+
+    provider = MistralProvider(_mistral_config(), client_factory=lambda _: _Client())
+    result = provider.send("oi")
+    assert result.response_text == ""
+
+
+def test_mistral_send_content_none_returns_empty():
+    """message.content is None — empty string instead of 'None'."""
+
+    class _Message:
+        content = None
+
+    class _Choice:
+        message = _Message()
+
+    class _Response:
+        choices = [_Choice()]
+        usage = None
+
+    class _Chat:
+        def complete(self, **_: Any) -> Any:
+            return _Response()
+
+    class _Client:
+        chat = _Chat()
+
+    provider = MistralProvider(_mistral_config(), client_factory=lambda _: _Client())
+    result = provider.send("oi")
+    assert result.response_text == ""
+
+
+def test_mistral_send_usage_all_none_returns_no_usage():
+    """When prompt/completion/total are all None on usage, omit it from parameters."""
+
+    class _Usage:
+        prompt_tokens = None
+        completion_tokens = None
+        total_tokens = None
+
+    class _Message:
+        content = "ok"
+
+    class _Choice:
+        message = _Message()
+
+    class _Response:
+        choices = [_Choice()]
+        usage = _Usage()
+
+    class _Chat:
+        def complete(self, **_: Any) -> Any:
+            return _Response()
+
+    class _Client:
+        chat = _Chat()
+
+    provider = MistralProvider(_mistral_config(), client_factory=lambda _: _Client())
+    result = provider.send("oi")
+    assert "usage" not in result.parameters
+
+
+def test_mistral_send_translates_timeout():
+    class ReadTimeout(Exception):
+        pass
+
+    stub = _MistralClientStub(raise_on_call=ReadTimeout("read timed out after 30s"))
+    provider = MistralProvider(_mistral_config(), client_factory=lambda _: stub, max_attempts=1)
+    with pytest.raises(TimeoutError):
+        provider.send("oi")
+
+
+# ---------------------------------------------------------------------------
+# BaseProvider — send_batch default behavior
+# ---------------------------------------------------------------------------
+
+
+def test_base_provider_send_batch_calls_send_per_prompt():
+    """Default send_batch should iterate and accumulate responses in order."""
+    from llm_eval.providers.base import BaseProvider, ProviderConfig, ProviderResponse
+    from datetime import datetime, timezone
+
+    class _CountingProvider(BaseProvider):
+        def __init__(self) -> None:
+            super().__init__(ProviderConfig(api_key="x", model="m"))
+            self.calls: list[str] = []
+
+        def send(self, prompt: str) -> ProviderResponse:
+            self.calls.append(prompt)
+            return ProviderResponse(
+                response_text=f"reply-{prompt}",
+                model=self.config.model,
+                timestamp=datetime.now(timezone.utc),
+                response_time_ms=1.0,
+                parameters={},
+            )
+
+    provider = _CountingProvider()
+    results = provider.send_batch(["a", "b", "c"])
+
+    assert provider.calls == ["a", "b", "c"]
+    assert [r.response_text for r in results] == ["reply-a", "reply-b", "reply-c"]
+
+
+def test_base_provider_send_is_abstract():
+    """BaseProvider.send() must raise when called on the abstract class itself."""
+    from llm_eval.providers.base import BaseProvider, ProviderConfig
+
+    class _MinimalConcrete(BaseProvider):
+        # Inherit `send` but call up to the ABC body to exercise NotImplementedError
+        def send(self, prompt: str):  # noqa: ANN201
+            return BaseProvider.send(self, prompt)
+
+    with pytest.raises(NotImplementedError):
+        _MinimalConcrete(ProviderConfig(api_key="x", model="m")).send("x")
+
+
+# ---------------------------------------------------------------------------
+# Gemini — fallback _extract_text path (no `.text` property)
+# ---------------------------------------------------------------------------
+
+
+def test_gemini_extract_text_falls_back_to_candidates():
+    """When the response has no `.text` but has candidates+content+parts, join part texts."""
+    from llm_eval.providers.gemini import _extract_text
+
+    class _Part:
+        def __init__(self, text: str) -> None:
+            self.text = text
+
+    class _Content:
+        def __init__(self, parts: list[_Part]) -> None:
+            self.parts = parts
+
+    class _Candidate:
+        def __init__(self, content: _Content) -> None:
+            self.content = content
+
+    class _Response:
+        candidates = [_Candidate(_Content([_Part("Hello "), _Part("world")]))]
+
+    assert _extract_text(_Response()) == "Hello world"
+
+
+def test_gemini_extract_text_no_text_no_candidates_returns_empty():
+    class _Response:
+        text = None
+        candidates: list[Any] = []
+
+    from llm_eval.providers.gemini import _extract_text
+
+    assert _extract_text(_Response()) == ""
+
+
+def test_gemini_extract_usage_all_none_returns_none():
+    """When prompt/completion/total are all None, _extract_usage returns None."""
+    from llm_eval.providers.gemini import _extract_usage
+
+    class _Usage:
+        prompt_token_count = None
+        candidates_token_count = None
+        total_token_count = None
+
+    class _Response:
+        usage_metadata = _Usage()
+
+    assert _extract_usage(_Response()) is None
+
+
 # ---------------------------------------------------------------------------
 # Custom HTTP provider — helpers
 # ---------------------------------------------------------------------------
@@ -419,6 +603,17 @@ def test_extract_by_path_index_out_of_range():
 def test_extract_by_path_descend_into_scalar():
     with pytest.raises(FatalError, match="Cannot descend"):
         _extract_by_path({"a": "leaf"}, "a.subkey")
+
+
+def test_extract_by_path_non_int_segment_in_list():
+    """When cursor is a list, segments must be integer-valued."""
+    with pytest.raises(FatalError, match="not an int but cursor is a list"):
+        _extract_by_path({"items": ["a", "b"]}, "items.first")
+
+
+def test_extract_by_path_returns_empty_string_for_none_leaf():
+    """A None leaf should be normalized to an empty string."""
+    assert _extract_by_path({"answer": None}, "answer") == ""
 
 
 # ---------------------------------------------------------------------------
@@ -550,6 +745,61 @@ def test_custom_send_substitutes_prompt_in_template():
 def test_custom_provider_requires_url():
     with pytest.raises(ValueError, match="non-empty 'url'"):
         CustomProvider(_custom_config(), url="", response_path="x")
+
+
+def test_custom_send_translates_generic_http_error_as_transient():
+    """Non-timeout httpx.HTTPError (e.g., connect error) should map to TransientError."""
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        raise httpx.ConnectError("connection refused")
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    provider = CustomProvider(
+        _custom_config(),
+        url="https://example.com",
+        response_path="x",
+        http_client=client,
+        max_attempts=1,
+    )
+    with pytest.raises(TransientError, match="HTTP error"):
+        provider.send("p")
+
+
+def test_custom_close_owned_client():
+    """When the provider built its own client, close() releases it."""
+    provider = CustomProvider(
+        _custom_config(),
+        url="https://example.com",
+        response_path="x",
+        timeout=1.0,
+    )
+    assert provider._owns_client is True
+    provider.close()  # should not raise
+
+
+def test_custom_close_does_not_close_injected_client():
+    """An injected client outlives the provider — close() must not touch it."""
+    closed = {"v": False}
+    inner = httpx.Client(
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, json={"x": 1}))
+    )
+    original_close = inner.close
+
+    def tracker() -> None:
+        closed["v"] = True
+        original_close()
+
+    inner.close = tracker  # type: ignore[method-assign]
+    provider = CustomProvider(
+        _custom_config(),
+        url="https://example.com",
+        response_path="x",
+        http_client=inner,
+    )
+    provider.close()
+    assert closed["v"] is False
+    inner.close = original_close  # type: ignore[method-assign]
+    inner.close()
 
 
 # ---------------------------------------------------------------------------

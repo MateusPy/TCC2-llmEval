@@ -273,6 +273,82 @@ def test_default_provider_factory_unknown_type_raises():
         )
 
 
+def test_default_provider_factory_builds_gemini(monkeypatch: pytest.MonkeyPatch):
+    """Gemini branch should call the SDK factory; we intercept the SDK import."""
+    import sys
+
+    class _FakeGenAI:
+        @staticmethod
+        def configure(api_key: str) -> None:  # noqa: ARG004
+            pass
+
+        @staticmethod
+        def GenerativeModel(model: str) -> object:  # noqa: ARG004, N802
+            return object()
+
+    monkeypatch.setitem(sys.modules, "google.generativeai", _FakeGenAI)
+    settings = ProviderSettings(type="gemini", api_key="k", model="gemini-2.0-flash")
+
+    from llm_eval.providers.gemini import GeminiProvider
+
+    provider = default_provider_factory(settings)
+    assert isinstance(provider, GeminiProvider)
+
+
+def test_default_provider_factory_builds_mistral(monkeypatch: pytest.MonkeyPatch):
+    """Mistral branch should call the SDK factory; we intercept the SDK import."""
+    import sys
+    import types
+
+    class _FakeMistralClient:
+        def __init__(self, api_key: str) -> None:  # noqa: ARG002
+            self.chat = object()
+
+    fake_module = types.ModuleType("mistralai")
+    fake_module.Mistral = _FakeMistralClient  # type: ignore[attr-defined]
+    monkeypatch.setitem(sys.modules, "mistralai", fake_module)
+
+    settings = ProviderSettings(type="mistral", api_key="k", model="mistral-small")
+
+    from llm_eval.providers.mistral import MistralProvider
+
+    provider = default_provider_factory(settings)
+    assert isinstance(provider, MistralProvider)
+
+
+def test_default_provider_factory_builds_custom():
+    """Custom branch goes through build_from_settings; no SDK to patch."""
+    settings = ProviderSettings(
+        type="custom",
+        api_key=None,
+        model="m",
+        url="https://example.com",
+        method="POST",
+        headers={"X-Auth": "abc"},
+        request_template={"q": "{prompt}"},
+        response_path="answer",
+    )
+
+    from llm_eval.providers.custom import CustomProvider
+
+    provider = default_provider_factory(settings)
+    assert isinstance(provider, CustomProvider)
+    assert provider.url == "https://example.com"
+
+
+def test_settings_to_provider_config_uses_empty_string_for_missing_key():
+    """_settings_to_provider_config substitutes None api_key with empty string."""
+    from llm_eval.runner import _settings_to_provider_config
+
+    settings = ProviderSettings(
+        type="gemini", api_key=None, model="gemini-2.0-flash", temperature=0.5, max_tokens=128
+    )
+    cfg = _settings_to_provider_config(settings)
+    assert cfg.api_key == ""
+    assert cfg.temperature == 0.5
+    assert cfg.max_tokens == 128
+
+
 # ---------------------------------------------------------------------------
 # Runner — factual
 # ---------------------------------------------------------------------------
@@ -389,6 +465,32 @@ def test_runner_iterates_over_all_dimensions(tmp_path: Path):
     dimensions_seen = [sr.dimension for sr in result.scenario_results]
     assert dimensions_seen == ["factual", "consistency", "robustness"]
     assert all(sr.error is None for sr in result.scenario_results)
+
+
+def test_runner_handles_unsupported_dimension_at_scenario_level(tmp_path: Path):
+    """If a Scenario somehow carries a non-standard dimension, the run continues."""
+    judge = _StubJudge()
+    provider = _RecordingProvider(default_text="ok")
+    bogus_scenario = Scenario.model_construct(
+        id="bogus-001",
+        dimension="unsupported",
+        category="knowledge",
+        prompt="p",
+        ground_truth="gt",
+        variants=[],
+    )
+    bogus_bank = ScenarioBank.model_construct(
+        dimension="factual", version="0.1.0", scenarios=[bogus_scenario]
+    )
+    loader = _StubLoader({"factual": bogus_bank})
+    config = _make_config(output_dir=tmp_path, dimensions=["factual"])
+    runner = _make_runner(config, provider=provider, judge=judge, loader=loader)
+
+    result = runner.run()
+
+    assert len(result.scenario_results) == 1
+    assert result.scenario_results[0].error is not None
+    assert "Unsupported dimension" in result.scenario_results[0].error
 
 
 def test_runner_continues_after_failed_scenario(tmp_path: Path):
