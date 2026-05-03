@@ -331,3 +331,83 @@ def test_parse_response_handles_non_dict_json():
     judge = Judge(provider)
     result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
     assert result.metadata["parse_method"] == "default"
+
+
+# ---------------------------------------------------------------------------
+# Empty/missing justification handling
+# ---------------------------------------------------------------------------
+
+
+def test_parse_response_json_with_missing_justification_uses_fallback():
+    provider = _StubProvider('{"score": 4}')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 4
+    assert result.justification == "Não foi possível parsear a resposta do juiz."
+    assert result.metadata["parse_method"] == "json"
+    assert result.metadata["justification_fallback"] is True
+
+
+def test_parse_response_json_with_empty_justification_uses_fallback():
+    provider = _StubProvider('{"score": 2, "justification": ""}')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 2
+    assert result.justification == "Não foi possível parsear a resposta do juiz."
+    assert result.metadata["justification_fallback"] is True
+
+
+def test_parse_response_json_with_whitespace_justification_uses_fallback():
+    provider = _StubProvider('{"score": 5, "justification": "   "}')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 5
+    assert result.metadata["justification_fallback"] is True
+
+
+def test_parse_response_embedded_json_with_missing_justification_uses_fallback():
+    provider = _StubProvider('Após análise: {"score": 3} foi minha avaliação.')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 3
+    assert result.metadata["parse_method"] == "json_embedded"
+    assert result.metadata["justification_fallback"] is True
+
+
+def test_parse_response_no_justification_fallback_flag_when_present():
+    """metadata['justification_fallback'] should not appear when the judge gave a real one."""
+    provider = _StubProvider('{"score": 4, "justification": "boa resposta"}')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert "justification_fallback" not in result.metadata
+
+
+# ---------------------------------------------------------------------------
+# Regex fallback — negative scores must clamp, not drop to default
+# ---------------------------------------------------------------------------
+
+
+def test_regex_fallback_clamps_negative_score():
+    provider = _StubProvider('score: -1 com justification: "score absurdo"')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 1
+    assert result.metadata["parse_method"] == "regex"
+    assert result.justification == "score absurdo"
+
+
+def test_regex_fallback_clamps_huge_negative_score():
+    provider = _StubProvider("score: -999")
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 1
+    assert result.metadata["parse_method"] == "regex"
+
+
+def test_regex_fallback_with_negative_no_justification_uses_fallback():
+    provider = _StubProvider("score: -3, sem mais nada")
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.score == 1
+    assert result.metadata["parse_method"] == "regex"
+    assert result.metadata["justification_fallback"] is True

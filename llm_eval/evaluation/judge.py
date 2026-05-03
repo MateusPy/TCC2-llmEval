@@ -204,6 +204,8 @@ class Judge:
             "judge_model": provider_response.model,
             "parse_method": parsed["parse_method"],
         }
+        if parsed["justification_fallback"]:
+            metadata["justification_fallback"] = True
         if parsed["parse_method"] != "json":
             metadata["raw_response"] = provider_response.response_text
 
@@ -215,7 +217,7 @@ class Judge:
         )
 
     def _parse_response(self, text: str) -> dict[str, Any]:
-        """Parse the judge response into ``{score, justification, parse_method}``.
+        """Parse the judge response into ``{score, justification, parse_method, justification_fallback}``.
 
         Tries strategies in order:
 
@@ -223,21 +225,24 @@ class Judge:
         2. Substring scan for the first balanced ``{...}`` block of valid JSON
         3. Regex fallback extracting ``score`` and ``justification`` directly
 
-        When none of the above produces a usable score, returns a neutral
-        default and logs a warning. The chosen strategy is reported via
-        ``parse_method`` for observability and is propagated into
-        ``JudgeResult.metadata``.
+        Whenever a score is recovered but the justification is missing or
+        empty, the score is kept (it carries signal even without explanation)
+        and the justification is replaced by :data:`DEFAULT_FALLBACK_JUSTIFICATION`.
+        The flag ``justification_fallback=True`` is reported in the result
+        and propagated into ``JudgeResult.metadata`` so downstream consumers
+        (notably the human-validation sampling for issue #20) can prioritize
+        these cases.
+
+        When no usable score can be recovered, returns a neutral default
+        (``DEFAULT_FALLBACK_SCORE``) and logs a warning. The chosen strategy
+        is always reported via ``parse_method``.
         """
         cleaned = _strip_code_fences(text)
 
         try:
             data = json.loads(cleaned)
             if isinstance(data, dict) and "score" in data:
-                return {
-                    "score": data["score"],
-                    "justification": str(data.get("justification", "")).strip(),
-                    "parse_method": "json",
-                }
+                return _build_parsed(data.get("justification"), data["score"], "json")
         except json.JSONDecodeError:
             pass
 
@@ -246,28 +251,22 @@ class Judge:
             try:
                 data = json.loads(embedded)
                 if isinstance(data, dict) and "score" in data:
-                    return {
-                        "score": data["score"],
-                        "justification": str(data.get("justification", "")).strip(),
-                        "parse_method": "json_embedded",
-                    }
+                    return _build_parsed(data.get("justification"), data["score"], "json_embedded")
             except json.JSONDecodeError:
                 pass
 
-        score_match = re.search(r'"?score"?\s*[:=]\s*(\d+)', text)
+        score_match = re.search(r'"?score"?\s*[:=]\s*(-?\d+)', text)
         just_match = re.search(
             r'"?justification"?\s*[:=]\s*"((?:[^"\\]|\\.)*)"',
             text,
         )
         if score_match:
             logger.warning("Judge response parsed via regex fallback: %r", text[:200])
-            return {
-                "score": int(score_match.group(1)),
-                "justification": (
-                    just_match.group(1) if just_match else DEFAULT_FALLBACK_JUSTIFICATION
-                ),
-                "parse_method": "regex",
-            }
+            return _build_parsed(
+                just_match.group(1) if just_match else None,
+                int(score_match.group(1)),
+                "regex",
+            )
 
         logger.warning(
             "Judge response could not be parsed; using neutral default: %r",
@@ -277,7 +276,36 @@ class Judge:
             "score": DEFAULT_FALLBACK_SCORE,
             "justification": DEFAULT_FALLBACK_JUSTIFICATION,
             "parse_method": "default",
+            "justification_fallback": True,
         }
+
+
+def _build_parsed(
+    raw_justification: Any,
+    score: Any,
+    parse_method: str,
+) -> dict[str, Any]:
+    """Build a parsed-result dict, substituting fallback when justification is empty.
+
+    The judge's contract requires a non-empty explanation. When the model
+    returned a score but no usable justification, we keep the score (it is
+    the primary signal) and substitute the default message, flagging the
+    substitution so downstream consumers can filter or resample these cases.
+    """
+    justification = str(raw_justification).strip() if raw_justification is not None else ""
+    if not justification:
+        return {
+            "score": score,
+            "justification": DEFAULT_FALLBACK_JUSTIFICATION,
+            "parse_method": parse_method,
+            "justification_fallback": True,
+        }
+    return {
+        "score": score,
+        "justification": justification,
+        "parse_method": parse_method,
+        "justification_fallback": False,
+    }
 
 
 def _strip_code_fences(text: str) -> str:
