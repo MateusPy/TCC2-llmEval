@@ -339,9 +339,7 @@ def test_parse_response_embedded_json_with_decode_error_falls_through():
     # Balanced braces but trailing comma + missing value → JSONDecodeError on the
     # embedded path. The fields inside the broken JSON do not name `score`/
     # `justification`, so the regex must extract them from the surrounding prose.
-    provider = _StubProvider(
-        'header {"foo": 1,} actual data: score: 2 justification: "via regex"'
-    )
+    provider = _StubProvider('header {"foo": 1,} actual data: score: 2 justification: "via regex"')
     judge = Judge(provider)
     result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
     assert result.metadata["parse_method"] == "regex"
