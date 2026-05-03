@@ -50,8 +50,7 @@ python_files = ["test_*.py"]
 source = ["llm_eval"]
 branch = true
 omit = [
-    # CLI is a stub until issue #15 lands; report generation is a stub until #14
-    "llm_eval/cli.py",
+    # report generation is a stub until issue #14 lands
     "llm_eval/report.py",
 ]
 
