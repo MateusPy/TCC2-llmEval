@@ -1,5 +1,6 @@
 """Módulos de avaliação: LLM-as-a-Judge e métricas computacionais."""
 
+from llm_eval.evaluation.judge import Judge, JudgeResult
 from llm_eval.evaluation.metrics import (
     MetricResult,
     calculate_bertscore,
@@ -9,6 +10,8 @@ from llm_eval.evaluation.metrics import (
 )
 
 __all__ = [
+    "Judge",
+    "JudgeResult",
     "MetricResult",
     "calculate_bertscore",
     "calculate_bertscore_batch",
