@@ -23,6 +23,7 @@ dependencies = [
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
+    "pytest-cov>=5.0.0",
     "ruff>=0.4.0",
     "mypy>=1.10.0",
     "types-PyYAML>=6.0.0",
@@ -44,6 +45,30 @@ include = ["llm_eval*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+
+[tool.coverage.run]
+source = ["llm_eval"]
+branch = true
+omit = [
+    # CLI is a stub until issue #15 lands; report generation is a stub until #14
+    "llm_eval/cli.py",
+    "llm_eval/report.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    # Defensive raise after a loop that always returns/raises
+    "raise last_error if last_error is not None",
+    # Lazy SDK imports — tested via injection, not the default factory
+    "from bert_score import score as bert_score_fn",
+    "from mistralai import Mistral",
+    # Built-in scenario bank only fails if the package install is corrupt
+    "raise ScenarioLoadError\\(\\s*$",
+]
+show_missing = true
+skip_covered = false
 
 [tool.mypy]
 python_version = "3.11"

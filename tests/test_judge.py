@@ -333,6 +333,20 @@ def test_parse_response_handles_non_dict_json():
     assert result.metadata["parse_method"] == "default"
 
 
+def test_parse_response_embedded_json_with_decode_error_falls_through():
+    """A balanced {...} substring that fails json.loads must not crash; the parser
+    falls through to the regex strategy on the surrounding text."""
+    # Balanced braces but trailing comma + missing value → JSONDecodeError on the
+    # embedded path. The fields inside the broken JSON do not name `score`/
+    # `justification`, so the regex must extract them from the surrounding prose.
+    provider = _StubProvider('header {"foo": 1,} actual data: score: 2 justification: "via regex"')
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.metadata["parse_method"] == "regex"
+    assert result.score == 2
+    assert result.justification == "via regex"
+
+
 # ---------------------------------------------------------------------------
 # Empty/missing justification handling
 # ---------------------------------------------------------------------------
