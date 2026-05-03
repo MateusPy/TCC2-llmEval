@@ -23,6 +23,17 @@ from llm_eval.scenarios.loader import (
 # ---------------------------------------------------------------------------
 
 
+def _variant(
+    variant_id: str,
+    variant_type: str = "paraphrase",
+    prompt: str = "Em qual cidade fica a capital brasileira?",
+    **extras: object,
+) -> dict:
+    payload: dict = {"id": variant_id, "variant_type": variant_type, "prompt": prompt}
+    payload.update(extras)
+    return payload
+
+
 def _factual_scenario(scenario_id: str = "factual-001") -> dict:
     return {
         "id": scenario_id,
@@ -42,8 +53,8 @@ def _consistency_scenario(scenario_id: str = "consistency-001") -> dict:
         "prompt": "Qual é a capital do Brasil?",
         "ground_truth": "Brasília",
         "variants": [
-            {"text": "Em qual cidade fica a capital brasileira?", "type": "paraphrase"},
-            {"text": "Onde fica a sede do governo brasileiro?", "type": "paraphrase"},
+            _variant(f"{scenario_id}-v1", prompt="Em qual cidade fica a capital brasileira?"),
+            _variant(f"{scenario_id}-v2", prompt="Onde fica a sede do governo brasileiro?"),
         ],
     }
 
@@ -56,7 +67,13 @@ def _robustness_scenario(scenario_id: str = "robustness-001") -> dict:
         "prompt": "Qual é a capital do Brasil?",
         "ground_truth": "Brasília",
         "variants": [
-            {"text": "Qaul é a capital do Brasl?", "level": "character", "type": "typo"},
+            _variant(
+                f"{scenario_id}-v1",
+                variant_type="typo",
+                prompt="Qaul é a capital do Brasl?",
+                level="character",
+                description="Inversão de letras",
+            ),
         ],
     }
 
@@ -72,15 +89,70 @@ def _write_bank(directory: Path, dimension: str, payload: dict) -> Path:
 
 
 # ---------------------------------------------------------------------------
-# Pydantic models
+# ScenarioVariant
 # ---------------------------------------------------------------------------
 
 
-def test_scenario_minimal_valid():
+def test_variant_minimal_valid():
+    v = ScenarioVariant(id="v1", variant_type="paraphrase", prompt="abc")
+    assert v.id == "v1"
+    assert v.variant_type == "paraphrase"
+    assert v.prompt == "abc"
+    assert v.description is None
+    assert v.level is None
+
+
+def test_variant_with_level_and_description():
+    v = ScenarioVariant(
+        id="v1",
+        variant_type="typo",
+        prompt="captial",
+        level="character",
+        description="Typo intencional em 'capital'",
+    )
+    assert v.level == "character"
+    assert v.description == "Typo intencional em 'capital'"
+
+
+def test_variant_missing_required_fields():
+    with pytest.raises(ValidationError):
+        ScenarioVariant(id="v1", prompt="abc")  # type: ignore[call-arg]
+
+
+def test_variant_preserves_extra_metadata():
+    v = ScenarioVariant(
+        id="v1",
+        variant_type="paraphrase",
+        prompt="abc",
+        source="manual",  # type: ignore[call-arg]
+    )
+    assert getattr(v, "source") == "manual"
+
+
+# ---------------------------------------------------------------------------
+# Scenario — happy paths and dimension-specific constraints
+# ---------------------------------------------------------------------------
+
+
+def test_scenario_factual_minimal_valid():
     scenario = Scenario(**_factual_scenario())
     assert scenario.id == "factual-001"
     assert scenario.dimension == "factual"
     assert scenario.variants == []
+
+
+def test_scenario_consistency_with_variants_valid():
+    scenario = Scenario(**_consistency_scenario())
+    assert scenario.dimension == "consistency"
+    assert len(scenario.variants) == 2
+    assert scenario.variants[0].variant_type == "paraphrase"
+
+
+def test_scenario_robustness_with_variant_metadata():
+    scenario = Scenario(**_robustness_scenario())
+    variant = scenario.variants[0]
+    assert variant.variant_type == "typo"
+    assert variant.level == "character"
 
 
 def test_scenario_invalid_dimension():
@@ -95,6 +167,41 @@ def test_scenario_missing_required_fields():
         Scenario(id="x", dimension="factual")  # type: ignore[call-arg]
 
 
+def test_scenario_factual_requires_ground_truth():
+    bad = _factual_scenario()
+    bad["ground_truth"] = None
+    with pytest.raises(ValidationError, match="no ground_truth"):
+        Scenario(**bad)
+
+
+def test_scenario_factual_rejects_missing_ground_truth_field():
+    bad = _factual_scenario()
+    del bad["ground_truth"]
+    with pytest.raises(ValidationError, match="no ground_truth"):
+        Scenario(**bad)
+
+
+def test_scenario_consistency_requires_at_least_one_variant():
+    bad = _consistency_scenario()
+    bad["variants"] = []
+    with pytest.raises(ValidationError, match="must declare at least one variant"):
+        Scenario(**bad)
+
+
+def test_scenario_robustness_requires_at_least_one_variant():
+    bad = _robustness_scenario()
+    bad["variants"] = []
+    with pytest.raises(ValidationError, match="must declare at least one variant"):
+        Scenario(**bad)
+
+
+def test_scenario_consistency_allows_missing_ground_truth():
+    payload = _consistency_scenario()
+    payload["ground_truth"] = None
+    scenario = Scenario(**payload)
+    assert scenario.ground_truth is None
+
+
 def test_scenario_preserves_extra_metadata():
     payload = _factual_scenario()
     payload["source"] = {"benchmark": "TruthfulQA", "original_id": "tqa_142"}
@@ -107,11 +214,9 @@ def test_scenario_preserves_extra_metadata():
     assert getattr(scenario, "derivation_method") == "tradução supervisionada"
 
 
-def test_scenario_variant_preserves_extra_metadata():
-    variant = ScenarioVariant(text="abc", level="character", type="typo")  # type: ignore[call-arg]
-    assert variant.text == "abc"
-    assert getattr(variant, "level") == "character"
-    assert getattr(variant, "type") == "typo"
+# ---------------------------------------------------------------------------
+# ScenarioBank
+# ---------------------------------------------------------------------------
 
 
 def test_scenario_bank_valid():
@@ -188,7 +293,7 @@ def test_loader_load_consistency_with_variants(tmp_path: Path):
     loader = ScenarioLoader(base_path=tmp_path)
     bank = loader.load("consistency")
     assert len(bank.scenarios[0].variants) == 2
-    assert bank.scenarios[0].variants[0].text.startswith("Em qual cidade")
+    assert bank.scenarios[0].variants[0].prompt.startswith("Em qual cidade")
 
 
 def test_loader_load_robustness_preserves_variant_metadata(tmp_path: Path):
@@ -196,8 +301,8 @@ def test_loader_load_robustness_preserves_variant_metadata(tmp_path: Path):
     loader = ScenarioLoader(base_path=tmp_path)
     bank = loader.load("robustness")
     variant = bank.scenarios[0].variants[0]
-    assert getattr(variant, "level") == "character"
-    assert getattr(variant, "type") == "typo"
+    assert variant.level == "character"
+    assert variant.variant_type == "typo"
 
 
 # ---------------------------------------------------------------------------
@@ -231,7 +336,17 @@ def test_loader_top_level_not_object(tmp_path: Path):
         loader.load("factual")
 
 
-def test_loader_schema_validation_error(tmp_path: Path):
+def test_loader_schema_validation_error_missing_field(tmp_path: Path):
+    bad_scenario = _factual_scenario()
+    del bad_scenario["prompt"]
+    _write_bank(tmp_path, "factual", _bank("factual", [bad_scenario]))
+    loader = ScenarioLoader(base_path=tmp_path)
+    with pytest.raises(ScenarioLoadError, match="Schema validation failed"):
+        loader.load("factual")
+
+
+def test_loader_schema_validation_error_factual_without_ground_truth(tmp_path: Path):
+    """Cross-field validation surfaces as ScenarioLoadError, not raw ValueError."""
     bad_scenario = _factual_scenario()
     del bad_scenario["ground_truth"]
     _write_bank(tmp_path, "factual", _bank("factual", [bad_scenario]))
@@ -240,11 +355,32 @@ def test_loader_schema_validation_error(tmp_path: Path):
         loader.load("factual")
 
 
+def test_loader_schema_validation_error_consistency_without_variants(tmp_path: Path):
+    bad_scenario = _consistency_scenario()
+    bad_scenario["variants"] = []
+    _write_bank(tmp_path, "consistency", _bank("consistency", [bad_scenario]))
+    loader = ScenarioLoader(base_path=tmp_path)
+    with pytest.raises(ScenarioLoadError, match="Schema validation failed"):
+        loader.load("consistency")
+
+
 def test_loader_dimension_header_mismatch(tmp_path: Path):
     payload = _bank("consistency", [_consistency_scenario()])
     (tmp_path / "factual.json").write_text(json.dumps(payload), encoding="utf-8")
     loader = ScenarioLoader(base_path=tmp_path)
     with pytest.raises(ScenarioLoadError, match="does not match requested dimension"):
+        loader.load("factual")
+
+
+def test_loader_bank_cross_field_errors_surface_as_load_error(tmp_path: Path):
+    """ScenarioBank cross-field validation must produce ScenarioLoadError."""
+    payload = _bank(
+        "factual",
+        [_factual_scenario("dup"), _factual_scenario("dup")],
+    )
+    _write_bank(tmp_path, "factual", payload)
+    loader = ScenarioLoader(base_path=tmp_path)
+    with pytest.raises(ScenarioLoadError, match="Schema validation failed"):
         loader.load("factual")
 
 

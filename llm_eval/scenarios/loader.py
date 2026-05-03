@@ -33,11 +33,11 @@ from __future__ import annotations
 import json
 from importlib import resources
 from pathlib import Path
-from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator, model_validator
 
 ALLOWED_DIMENSIONS = ("factual", "consistency", "robustness")
+DIMENSIONS_REQUIRING_VARIANTS = frozenset({"consistency", "robustness"})
 DEFAULT_BANK_PACKAGE = "llm_eval.scenarios.bank"
 DEFAULT_BANK_FILES = {
     "factual": "factual.json",
@@ -54,16 +54,32 @@ class ScenarioVariant(BaseModel):
     """Variant of a scenario prompt.
 
     Used by the ``consistency`` and ``robustness`` dimensions to express
-    paraphrases or perturbations of the base prompt. Extra metadata fields
-    (e.g. ``level``, ``type``) are preserved to support traceability.
+    paraphrases or perturbations of the base prompt. Field names follow the
+    spec defined in issue #7. Additional metadata (e.g. ``level`` from the
+    PromptBench taxonomy used in the methodology document) is preserved via
+    ``extra="allow"``.
 
     Attributes:
-        text: Variant text sent to the chatbot.
+        id: Unique identifier of the variant within its parent scenario.
+        variant_type: Kind of perturbation/paraphrase applied. Recommended
+            values include ``"synonym"``, ``"reorder"``, ``"typo"``,
+            ``"noise"``, ``"contradiction"``, ``"adversarial"`` and
+            ``"paraphrase"``, but the field is intentionally open to allow
+            new perturbation strategies introduced by the methodology.
+        prompt: Variant prompt text sent to the chatbot.
+        description: Optional human-readable description of what was altered.
+        level: Optional PromptBench taxonomy level (``"character"``,
+            ``"word"``, ``"sentence"`` or ``"semantic"``) for robustness
+            variants.
     """
 
     model_config = ConfigDict(extra="allow")
 
-    text: str
+    id: str
+    variant_type: str
+    prompt: str
+    description: str | None = None
+    level: str | None = None
 
 
 class Scenario(BaseModel):
@@ -74,9 +90,14 @@ class Scenario(BaseModel):
         dimension: Reliability dimension this scenario belongs to.
         category: Topical category of the scenario (free-form, see README).
         prompt: Base prompt sent to the chatbot.
-        ground_truth: Expected reference answer used for evaluation.
-        variants: Variants derived from the base prompt (paraphrases or
-            perturbations). Empty list for purely factual scenarios.
+        ground_truth: Expected reference answer. Required for ``factual``
+            scenarios; optional for ``consistency``/``robustness`` (they may
+            still provide it for BERTScore comparison, but its absence does
+            not invalidate the scenario).
+        variants: Variants derived from the base prompt. Required (non-empty)
+            for ``consistency`` and ``robustness``; must be empty list for
+            purely factual scenarios is *not* enforced — extra variants are
+            allowed but ignored.
     """
 
     model_config = ConfigDict(extra="allow")
@@ -85,7 +106,7 @@ class Scenario(BaseModel):
     dimension: str
     category: str
     prompt: str
-    ground_truth: str
+    ground_truth: str | None = None
     variants: list[ScenarioVariant] = Field(default_factory=list)
 
     @field_validator("dimension")
@@ -94,6 +115,17 @@ class Scenario(BaseModel):
         if v not in ALLOWED_DIMENSIONS:
             raise ValueError(f"Invalid dimension '{v}'. Allowed values: {list(ALLOWED_DIMENSIONS)}")
         return v
+
+    @model_validator(mode="after")
+    def _validate_dimension_constraints(self) -> "Scenario":
+        if self.dimension == "factual" and not self.ground_truth:
+            raise ValueError(f"Scenario '{self.id}' has dimension 'factual' but no ground_truth")
+        if self.dimension in DIMENSIONS_REQUIRING_VARIANTS and not self.variants:
+            raise ValueError(
+                f"Scenario '{self.id}' has dimension '{self.dimension}' "
+                f"and must declare at least one variant"
+            )
+        return self
 
 
 class ScenarioBank(BaseModel):
@@ -121,8 +153,8 @@ class ScenarioBank(BaseModel):
             raise ValueError(f"Invalid dimension '{v}'. Allowed values: {list(ALLOWED_DIMENSIONS)}")
         return v
 
-    def model_post_init(self, __context: Any) -> None:
-        """Ensure every scenario matches the bank's declared dimension."""
+    @model_validator(mode="after")
+    def _validate_scenarios_consistency(self) -> "ScenarioBank":
         mismatched = [s.id for s in self.scenarios if s.dimension != self.dimension]
         if mismatched:
             raise ValueError(
@@ -137,6 +169,7 @@ class ScenarioBank(BaseModel):
             seen.add(scenario.id)
         if duplicates:
             raise ValueError(f"Duplicate scenario ids in bank: {sorted(set(duplicates))}")
+        return self
 
 
 class ScenarioLoader:
