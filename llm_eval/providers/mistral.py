@@ -37,6 +37,7 @@ class MistralProvider(BaseProvider):
         client_factory: Callable[[ProviderConfig], Any] | None = None,
         max_attempts: int = 3,
         initial_delay: float = 1.0,
+        sleep: Callable[[float], None] | None = None,
     ) -> None:
         """Initialize the Mistral provider.
 
@@ -47,11 +48,14 @@ class MistralProvider(BaseProvider):
                 inject a stub exposing ``chat.complete``.
             max_attempts: Maximum retry attempts for transient errors.
             initial_delay: Seconds to wait before the second attempt.
+            sleep: Sleep function passed to :func:`retry_with_backoff`.
+                ``None`` defaults to :func:`time.sleep`.
         """
         super().__init__(config)
         self._client_factory = client_factory or _default_client_factory
         self._max_attempts = max_attempts
         self._initial_delay = initial_delay
+        self._sleep = sleep
         self._client = self._client_factory(config)
 
     def send(self, prompt: str) -> ProviderResponse:
@@ -93,6 +97,7 @@ class MistralProvider(BaseProvider):
             _call,
             max_attempts=self._max_attempts,
             initial_delay=self._initial_delay,
+            sleep=self._sleep,
         )
 
 

@@ -7,6 +7,19 @@ the other providers.
 
 The SDK client is injected via ``client_factory`` to keep the import side
 effects out of unit tests and to allow stubbing in :mod:`tests.test_providers`.
+
+.. warning::
+
+    The ``google-generativeai`` SDK uses **process-global authentication**
+    via :func:`genai.configure`. As a consequence, instantiating multiple
+    :class:`GeminiProvider` objects with different API keys in the same
+    process will cause the most-recently-built client to overwrite the
+    credentials of any earlier ones — and subsequent calls on the older
+    instances will route through the new key. The default factory logs a
+    warning when this happens. If your deployment needs concurrent
+    Gemini-backed providers with different keys (e.g. a chatbot under
+    test plus a judge), use the same key for both or move one of them
+    to a different process.
 """
 
 from __future__ import annotations
@@ -45,6 +58,7 @@ class GeminiProvider(BaseProvider):
         client_factory: Callable[[ProviderConfig], Any] | None = None,
         max_attempts: int = 3,
         initial_delay: float = 1.0,
+        sleep: Callable[[float], None] | None = None,
     ) -> None:
         """Initialize the Gemini provider.
 
@@ -55,11 +69,15 @@ class GeminiProvider(BaseProvider):
                 inject a stub returning an object with ``generate_content``.
             max_attempts: Maximum retry attempts for transient errors.
             initial_delay: Seconds to wait before the second attempt.
+            sleep: Sleep function passed to :func:`retry_with_backoff`.
+                ``None`` defaults to :func:`time.sleep`. Tests should pass a
+                no-op to avoid real waits during retry exercises.
         """
         super().__init__(config)
         self._client_factory = client_factory or _default_client_factory
         self._max_attempts = max_attempts
         self._initial_delay = initial_delay
+        self._sleep = sleep
         self._client = self._client_factory(config)
 
     def send(self, prompt: str) -> ProviderResponse:
@@ -102,14 +120,32 @@ class GeminiProvider(BaseProvider):
             _call,
             max_attempts=self._max_attempts,
             initial_delay=self._initial_delay,
+            sleep=self._sleep,
         )
 
 
+_last_configured_key: str | None = None
+
+
 def _default_client_factory(config: ProviderConfig) -> Any:
-    """Default Gemini client builder. Imported lazily to avoid SDK import on tests."""
+    """Default Gemini client builder. Imported lazily to avoid SDK import on tests.
+
+    Calls :func:`genai.configure` which mutates process-global SDK state. When
+    a different API key is provided to a subsequent invocation, a warning is
+    logged because earlier providers will silently start routing through the
+    new key. See module docstring for the recommended workaround.
+    """
+    global _last_configured_key
     import google.generativeai as genai
 
+    if _last_configured_key is not None and _last_configured_key != config.api_key:
+        logger.warning(
+            "Reconfiguring google-generativeai with a different API key; "
+            "previously built GeminiProvider instances will start using the new key. "
+            "Use a single API key per process or isolate providers across processes."
+        )
     genai.configure(api_key=config.api_key)
+    _last_configured_key = config.api_key
     return genai.GenerativeModel(config.model)
 
 

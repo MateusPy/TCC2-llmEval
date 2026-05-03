@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 import httpx
@@ -261,20 +262,60 @@ def test_gemini_send_unknown_error_becomes_fatal():
         provider.send("oi")
 
 
-def test_gemini_send_retries_on_rate_limit_then_succeeds(monkeypatch: pytest.MonkeyPatch):
-    monkeypatch.setattr("time.sleep", lambda _: None)
-
+def test_gemini_send_retries_on_rate_limit_then_succeeds():
     class ResourceExhausted(Exception):
         pass
 
     stub = _GeminiClientStub(
         text="depois deu certo", raise_on_call=ResourceExhausted("quota"), raise_then_succeed=True
     )
+    sleeps: list[float] = []
     provider = GeminiProvider(
-        _gemini_config(), client_factory=lambda _: stub, max_attempts=3, initial_delay=0.01
+        _gemini_config(),
+        client_factory=lambda _: stub,
+        max_attempts=3,
+        initial_delay=0.01,
+        sleep=sleeps.append,
     )
     result = provider.send("oi")
     assert result.response_text == "depois deu certo"
+    assert sleeps == [0.01]
+
+
+def test_gemini_default_factory_warns_on_api_key_change(
+    monkeypatch: pytest.MonkeyPatch,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    """The default factory mutates global SDK state; warn when key actually changes."""
+    import logging as _logging
+
+    from llm_eval.providers import gemini as gemini_module
+
+    configure_calls: list[str] = []
+
+    class _FakeGenAI:
+        @staticmethod
+        def configure(api_key: str) -> None:
+            configure_calls.append(api_key)
+
+        @staticmethod
+        def GenerativeModel(model: str) -> object:  # noqa: N802 - matches SDK API
+            return object()
+
+    monkeypatch.setitem(__import__("sys").modules, "google.generativeai", _FakeGenAI)
+    monkeypatch.setattr(gemini_module, "_last_configured_key", None, raising=False)
+
+    cfg_a = ProviderConfig(api_key="key-a", model="gemini-2.0-flash")
+    cfg_b = ProviderConfig(api_key="key-b", model="gemini-2.0-flash")
+
+    with caplog.at_level(_logging.WARNING):
+        gemini_module._default_client_factory(cfg_a)
+        gemini_module._default_client_factory(cfg_a)  # same key — no warning
+        gemini_module._default_client_factory(cfg_b)  # different key — warns
+
+    assert configure_calls == ["key-a", "key-a", "key-b"]
+    warnings = [rec for rec in caplog.records if "different API key" in rec.message]
+    assert len(warnings) == 1
 
 
 # ---------------------------------------------------------------------------
@@ -502,7 +543,8 @@ def test_custom_send_substitutes_prompt_in_template():
         http_client=client,
     )
     provider.send("Hello?")
-    assert captured[0].read().decode("utf-8") == '{"messages":[{"content":"Q: Hello?"}]}'
+    body = json.loads(captured[0].read().decode("utf-8"))
+    assert body == {"messages": [{"content": "Q: Hello?"}]}
 
 
 def test_custom_provider_requires_url():

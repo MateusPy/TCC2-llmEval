@@ -47,7 +47,7 @@ def retry_with_backoff(
     max_attempts: int = 3,
     initial_delay: float = 1.0,
     backoff_factor: float = 2.0,
-    sleep: Callable[[float], None] = time.sleep,
+    sleep: Callable[[float], None] | None = None,
 ) -> T:
     """Run ``fn`` retrying on retryable provider errors.
 
@@ -56,7 +56,9 @@ def retry_with_backoff(
         max_attempts: Total attempts including the first call. Must be >= 1.
         initial_delay: Seconds to wait before the second attempt.
         backoff_factor: Multiplicative growth applied between retries.
-        sleep: Sleep function. Injected to allow tests to skip real waits.
+        sleep: Sleep function. ``None`` resolves to :func:`time.sleep` at
+            call time (so monkeypatching ``time.sleep`` is respected). Tests
+            should pass an explicit no-op such as ``lambda _: None``.
 
     Returns:
         Whatever ``fn`` returned on the first successful attempt.
@@ -67,6 +69,8 @@ def retry_with_backoff(
     """
     if max_attempts < 1:
         raise ValueError(f"max_attempts must be >= 1, got {max_attempts}")
+
+    sleep_fn: Callable[[float], None] = sleep if sleep is not None else time.sleep
 
     last_error: ProviderError | None = None
     delay = initial_delay
@@ -89,7 +93,7 @@ def retry_with_backoff(
                 delay,
                 exc,
             )
-            sleep(delay)
+            sleep_fn(delay)
             delay *= backoff_factor
 
     # Defensive: loop above either returns or raises. This line keeps mypy happy.

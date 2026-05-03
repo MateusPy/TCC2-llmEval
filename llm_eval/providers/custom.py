@@ -12,7 +12,7 @@ from __future__ import annotations
 import copy
 import logging
 import time
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from datetime import datetime, timezone
 from typing import Any
 
@@ -63,6 +63,7 @@ class CustomProvider(BaseProvider):
         timeout: float = DEFAULT_TIMEOUT_SECONDS,
         max_attempts: int = 3,
         initial_delay: float = 1.0,
+        sleep: Callable[[float], None] | None = None,
     ) -> None:
         """Initialize the custom HTTP provider.
 
@@ -95,6 +96,7 @@ class CustomProvider(BaseProvider):
         self._client = http_client or httpx.Client(timeout=timeout)
         self._max_attempts = max_attempts
         self._initial_delay = initial_delay
+        self._sleep = sleep
 
     def send(self, prompt: str) -> ProviderResponse:
         """Send the prompt to the configured endpoint and return the answer."""
@@ -153,6 +155,7 @@ class CustomProvider(BaseProvider):
             _call,
             max_attempts=self._max_attempts,
             initial_delay=self._initial_delay,
+            sleep=self._sleep,
         )
 
     def close(self) -> None:
