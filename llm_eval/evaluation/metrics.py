@@ -18,12 +18,9 @@ from __future__ import annotations
 
 import statistics
 from itertools import combinations
-from typing import TYPE_CHECKING, Any, Protocol
+from typing import Any, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field
-
-if TYPE_CHECKING:
-    pass
 
 
 class _BertScoreFn(Protocol):
@@ -245,6 +242,9 @@ def calculate_response_variance(responses: list[str]) -> MetricResult:
         )
 
     lengths = [len(r.split()) for r in responses]
+    # Length statistics are rounded to 2 decimals (vs 4 for BERTScore-derived
+    # metrics): they are summaries of integer token counts, so additional
+    # precision is meaningless. Matches the spec in issue #11.
     length_mean = _round(statistics.mean(lengths), 2)
     length_stdev = _round(statistics.stdev(lengths), 2) if len(lengths) > 1 else 0.0
 
@@ -282,6 +282,4 @@ def _jaccard_tokens(a: str, b: str) -> float:
     if not set_a and not set_b:
         return 1.0
     union = set_a | set_b
-    if not union:
-        return 1.0
     return len(set_a & set_b) / len(union)
