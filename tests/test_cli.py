@@ -190,11 +190,12 @@ def test_validate_empty_yaml(runner: CliRunner, tmp_path: Path):
     path.write_text("", encoding="utf-8")
     result = runner.invoke(main, ["validate", "-c", str(path)])
     assert result.exit_code == 1
-    assert (
-        "inválida" in result.output.lower()
-        or "vazia" in result.output.lower()
-        or "empty" in result.output.lower()
-    )
+    # Tighter assertions: confirm the framework's specific message ("Empty
+    # configuration file" raised by Config.from_yaml) propagated through the
+    # CLI's "Configuração inválida" wrapper. A defensive triple-or would let
+    # an unrelated error path pass silently.
+    assert "configuração inválida" in result.output.lower()
+    assert "empty configuration file" in result.output.lower()
 
 
 # ---------------------------------------------------------------------------
@@ -282,6 +283,14 @@ def test_scenarios_requires_list_or_dimension(runner: CliRunner):
     result = runner.invoke(main, ["scenarios"])
     assert result.exit_code != 0
     assert "Informe --list" in result.output
+
+
+def test_scenarios_rejects_list_and_dimension_together(runner: CliRunner):
+    """--list and --dimension are mutually exclusive — fail loudly instead of
+    silently ignoring one of them."""
+    result = runner.invoke(main, ["scenarios", "--list", "--dimension", "factual"])
+    assert result.exit_code != 0
+    assert "Use --list OU --dimension" in result.output
 
 
 def test_scenarios_list_prints_all_dimensions(runner: CliRunner):

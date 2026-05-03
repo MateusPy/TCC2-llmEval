@@ -33,7 +33,7 @@ def _build_runner(cfg: Config) -> Runner:
     return Runner(cfg)
 
 
-def _build_loader(scenarios_path: str | None) -> ScenarioLoader:
+def _build_loader(scenarios_path: str | Path | None) -> ScenarioLoader:
     """Indirection used by tests to inject a stub loader without touching the package data."""
     return ScenarioLoader(scenarios_path)
 
@@ -127,10 +127,8 @@ def validate(config_path: Path) -> None:
 )
 def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None) -> None:
     """Inspeciona o banco de cenários disponível."""
-    if not list_all and dimension is None:
-        raise click.UsageError(
-            "Informe --list para ver as dimensões ou --dimension <nome> para listar cenários."
-        )
+    if list_all and dimension is not None:
+        raise click.UsageError("Use --list OU --dimension <nome>, não ambos.")
 
     if list_all:
         click.echo("Dimensões disponíveis:")
@@ -138,9 +136,15 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
             click.echo(f"  - {dim}")
         return
 
-    assert dimension is not None  # narrowed by the early return above
+    if dimension is None:
+        raise click.UsageError(
+            "Informe --list para ver as dimensões ou --dimension <nome> para listar cenários."
+        )
+
+    # ``dimension`` is narrowed to str here — no need for an assert (asserts are
+    # stripped under ``python -O``, so they can't be relied on for control flow).
     try:
-        loader = _build_loader(str(scenarios_path) if scenarios_path else None)
+        loader = _build_loader(scenarios_path)
         bank = loader.load(dimension)
     except ScenarioLoadError as exc:
         click.echo(f"Erro ao carregar cenários da dimensão '{dimension}': {exc}", err=True)
