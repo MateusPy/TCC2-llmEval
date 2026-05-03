@@ -63,13 +63,16 @@ class MistralProvider(BaseProvider):
 
         def _call() -> ProviderResponse:
             start = time.perf_counter()
+            kwargs: dict[str, Any] = {
+                "model": self.config.model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": self.config.temperature,
+                "max_tokens": self.config.max_tokens,
+            }
+            if self.config.seed is not None:
+                kwargs["random_seed"] = self.config.seed
             try:
-                response = self._client.chat.complete(
-                    model=self.config.model,
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=self.config.temperature,
-                    max_tokens=self.config.max_tokens,
-                )
+                response = self._client.chat.complete(**kwargs)
             except Exception as exc:
                 _translate_sdk_error(exc)
                 raise FatalError(f"Mistral call failed: {exc}") from exc
@@ -82,6 +85,8 @@ class MistralProvider(BaseProvider):
                 "temperature": self.config.temperature,
                 "max_tokens": self.config.max_tokens,
             }
+            if self.config.seed is not None:
+                parameters["seed"] = self.config.seed
             if usage:
                 parameters["usage"] = usage
 

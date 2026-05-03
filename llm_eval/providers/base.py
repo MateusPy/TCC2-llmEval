@@ -40,12 +40,16 @@ class ProviderConfig(BaseModel):
         model: Name of the target model.
         temperature: Sampling temperature used for generation.
         max_tokens: Maximum number of tokens to request in the response.
+        seed: Optional integer seed forwarded to providers that support
+            deterministic sampling. ``None`` (default) leaves seed handling
+            up to the underlying API.
     """
 
     api_key: str
     model: str
     temperature: float = 0.0
     max_tokens: int = 1024
+    seed: int | None = None
 
 
 class BaseProvider(ABC):

@@ -117,6 +117,7 @@ def _settings_to_provider_config(settings: ProviderSettings) -> ProviderConfig:
         model=settings.model,
         temperature=settings.temperature,
         max_tokens=settings.max_tokens,
+        seed=settings.seed,
     )
 
 
@@ -160,6 +161,7 @@ def default_provider_factory(settings: ProviderSettings) -> BaseProvider:
             model=settings.model,
             temperature=settings.temperature,
             max_tokens=settings.max_tokens,
+            seed=settings.seed,
             url=settings.url,
             method=settings.method,
             headers=settings.headers,
