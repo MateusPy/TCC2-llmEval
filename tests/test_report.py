@@ -263,19 +263,66 @@ def test_summary_unfinished_run_has_no_duration():
     assert payload["metadata"]["duration_seconds"] is None
 
 
-def test_summary_handles_unknown_dimension():
-    """Future dimensions should appear in details and trailing in by_dimension."""
-    custom = ScenarioResult(
-        scenario_id="x-001",
-        dimension="factual",  # type-validated; we only test the ordering helper indirectly
-        category="knowledge",
-        prompt="p",
-        judge_results=[_judge(5)],
+def test_ordered_dimensions_keeps_canonical_order_and_appends_extras():
+    """Direct test of the ordering helper: canonical dims come first, extras
+    sort alphabetically. The previous version of this test created a
+    ``factual`` scenario and asserted something trivially true — replaced
+    here with a real exercise of the helper."""
+    from llm_eval.report import _ordered_dimensions
+
+    summaries = [
+        {"dimension": "robustness"},
+        {"dimension": "zeta"},
+        {"dimension": "factual"},
+        {"dimension": "alpha"},
+        {"dimension": "consistency"},
+    ]
+    assert _ordered_dimensions(summaries) == [
+        "factual",
+        "consistency",
+        "robustness",
+        "alpha",
+        "zeta",
+    ]
+
+
+def test_ordered_dimensions_only_canonical():
+    from llm_eval.report import _ordered_dimensions
+
+    summaries = [{"dimension": "consistency"}, {"dimension": "factual"}]
+    assert _ordered_dimensions(summaries) == ["factual", "consistency"]
+
+
+def test_summary_is_cached_across_exporters(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    """to_json + to_markdown on the same generator must compute the summary
+    exactly once. Calling generator.summary() multiple times must also reuse
+    the cached value."""
+    from llm_eval import report as report_module
+
+    result = _run_result(
+        [
+            _factual_scenario("fact-001", score=5),
+            _factual_scenario("fact-002", score=3),
+            _consistency_scenario("cons-001"),
+        ]
     )
-    result = _run_result([custom])
-    payload = ReportGenerator(result).summary()
-    # Factual is canonical, just confirm it shows up.
-    assert "factual" in payload["summary"]["by_dimension"]
+    call_count = {"n": 0}
+    real_scenario_summary = report_module._scenario_summary
+
+    def counting_summary(scenario: ScenarioResult) -> dict[str, Any]:
+        call_count["n"] += 1
+        return real_scenario_summary(scenario)
+
+    monkeypatch.setattr(report_module, "_scenario_summary", counting_summary)
+
+    generator = ReportGenerator(result)
+    generator.to_json(tmp_path / "report.json")
+    generator.to_markdown(tmp_path / "report.md")
+    generator.summary()
+
+    # 3 scenarios x 1 pass = 3 calls. If the cache were missing it would be
+    # 9 (3 scenarios x 3 entry points: to_json, to_markdown, summary).
+    assert call_count["n"] == 3
 
 
 def test_summary_exposes_min_max_per_dimension():

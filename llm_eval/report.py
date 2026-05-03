@@ -20,6 +20,7 @@ import os
 import statistics
 import tempfile
 from datetime import datetime
+from functools import cached_property
 from pathlib import Path
 from typing import Any
 
@@ -56,7 +57,16 @@ class ReportGenerator:
         The structure is stable and documented as part of the public API:
         downstream consumers (notably the CLI ``report`` command) rely on
         the keys present here.
+
+        The result is cached on the instance via :class:`functools.cached_property`,
+        so calling :meth:`to_json` and :meth:`to_markdown` on the same generator
+        only computes the aggregations once.
         """
+        return self._cached_summary
+
+    @cached_property
+    def _cached_summary(self) -> dict[str, Any]:
+        """Compute the report payload exactly once per generator instance."""
         scenario_summaries = [_scenario_summary(s) for s in self.result.scenario_results]
 
         by_dimension: dict[str, dict[str, Any]] = {}
