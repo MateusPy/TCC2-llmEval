@@ -85,13 +85,16 @@ class GeminiProvider(BaseProvider):
 
         def _call() -> ProviderResponse:
             start = time.perf_counter()
+            generation_config: dict[str, Any] = {
+                "temperature": self.config.temperature,
+                "max_output_tokens": self.config.max_tokens,
+            }
+            if self.config.seed is not None:
+                generation_config["seed"] = self.config.seed
             try:
                 response = self._client.generate_content(
                     prompt,
-                    generation_config={
-                        "temperature": self.config.temperature,
-                        "max_output_tokens": self.config.max_tokens,
-                    },
+                    generation_config=generation_config,
                 )
             except Exception as exc:
                 _translate_sdk_error(exc)
@@ -105,6 +108,8 @@ class GeminiProvider(BaseProvider):
                 "temperature": self.config.temperature,
                 "max_tokens": self.config.max_tokens,
             }
+            if self.config.seed is not None:
+                parameters["seed"] = self.config.seed
             if usage:
                 parameters["usage"] = usage
 

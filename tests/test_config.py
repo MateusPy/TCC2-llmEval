@@ -4,7 +4,7 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-from llm_eval.config import Config, JudgeSettings, ProviderSettings
+from llm_eval.config import Config, JudgeSettings, ProviderSettings, is_pinned_model
 
 
 # ---------------------------------------------------------------------------
@@ -13,12 +13,13 @@ from llm_eval.config import Config, JudgeSettings, ProviderSettings
 
 
 def test_provider_settings_minimal():
-    ps = ProviderSettings(type="gemini", model="gemini-2.0-flash")
+    ps = ProviderSettings(type="gemini", model="gemini-2.0-flash-001")
     assert ps.type == "gemini"
-    assert ps.model == "gemini-2.0-flash"
+    assert ps.model == "gemini-2.0-flash-001"
     assert ps.api_key is None
     assert ps.temperature == 0.0
     assert ps.max_tokens == 1024
+    assert ps.seed is None
     assert ps.url is None
     assert ps.method == "POST"
     assert ps.headers == {}
@@ -26,11 +27,105 @@ def test_provider_settings_minimal():
     assert ps.response_path is None
 
 
+# ---------------------------------------------------------------------------
+# Reproducibility — seed and model pinning
+# ---------------------------------------------------------------------------
+
+
+def test_provider_settings_accepts_seed():
+    ps = ProviderSettings(type="gemini", model="gemini-2.0-flash-001", seed=42)
+    assert ps.seed == 42
+
+
+def test_provider_settings_seed_none_default():
+    ps = ProviderSettings(type="mistral", model="mistral-small-2503")
+    assert ps.seed is None
+
+
+@pytest.mark.parametrize(
+    "model,expected",
+    [
+        # Pinned identifiers (accepted)
+        ("gemini-2.0-flash-001", True),
+        ("gemini-1.5-pro-002", True),
+        ("mistral-small-2503", True),
+        ("mistral-large-2411", True),
+        ("model-2024-09", True),
+        ("model-09-15", True),
+        # Unpinned identifiers (rejected)
+        ("gemini-2.0-flash", False),
+        ("gemini-1.5-pro", False),
+        ("mistral-small", False),
+        ("gemini-pro", False),
+        ("gemini-1.5-pro-latest", False),
+        ("gemini-1.5-pro-stable", False),
+        ("", False),
+    ],
+)
+def test_is_pinned_model_classification(model: str, expected: bool):
+    assert is_pinned_model(model) is expected
+
+
+def test_pinned_regex_does_not_match_floating_aliases():
+    """Regression test for the regex/early-return defense in depth.
+
+    The pinning regex must NOT include ``latest`` or ``stable`` in its
+    alternation — those are floating aliases and are rejected by an explicit
+    early return. If a future refactor removes the early return trusting
+    that "the regex already covers it", this test fails immediately rather
+    than silently classifying ``-latest``/``-stable`` as pinned.
+    """
+    from llm_eval.config import _PINNED_MODEL_RE
+
+    assert _PINNED_MODEL_RE.search("model-latest") is None
+    assert _PINNED_MODEL_RE.search("model-stable") is None
+    # And the actual pinned forms still match at the regex level.
+    assert _PINNED_MODEL_RE.search("model-001") is not None
+    assert _PINNED_MODEL_RE.search("model-2503") is not None
+
+
+def test_provider_settings_rejects_unpinned_gemini():
+    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
+        ProviderSettings(type="gemini", model="gemini-2.0-flash")
+
+
+def test_provider_settings_rejects_unpinned_mistral():
+    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
+        ProviderSettings(type="mistral", model="mistral-small")
+
+
+def test_provider_settings_rejects_latest_alias():
+    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
+        ProviderSettings(type="gemini", model="gemini-1.5-pro-latest")
+
+
+def test_provider_settings_custom_provider_skips_pin_validation():
+    """Custom providers may use opaque or proprietary model identifiers."""
+    ps = ProviderSettings(
+        type="custom",
+        model="my-internal-bot",
+        url="https://example.com/api",
+        request_template={"prompt": "{prompt}"},
+        response_path="answer",
+    )
+    assert ps.model == "my-internal-bot"
+
+
+def test_provider_settings_pin_error_message_is_actionable():
+    """The error message must guide the user to fix the config quickly."""
+    try:
+        ProviderSettings(type="gemini", model="gemini-2.0-flash")
+    except ValidationError as exc:
+        message = str(exc)
+        assert "gemini-2.0-flash-001" in message  # suggests pinned form
+        assert "reproducible" in message.lower()
+
+
 def test_provider_settings_all_fields():
     ps = ProviderSettings(
         type="mistral",
         api_key="key-123",
-        model="mistral-small",
+        model="mistral-small-2503",
         temperature=0.5,
         max_tokens=2048,
     )
@@ -65,13 +160,13 @@ def test_provider_settings_missing_required():
 
 
 def test_judge_settings_defaults():
-    provider = ProviderSettings(type="gemini", model="gemini-2.0-flash")
+    provider = ProviderSettings(type="gemini", model="gemini-2.0-flash-001")
     judge = JudgeSettings(provider=provider)
     assert judge.enabled is True
 
 
 def test_judge_settings_disabled():
-    provider = ProviderSettings(type="gemini", model="gemini-2.0-flash")
+    provider = ProviderSettings(type="gemini", model="gemini-2.0-flash-001")
     judge = JudgeSettings(provider=provider, enabled=False)
     assert judge.enabled is False
 
@@ -83,8 +178,10 @@ def test_judge_settings_disabled():
 
 def _make_config(**overrides) -> Config:
     defaults = {
-        "provider": ProviderSettings(type="gemini", model="gemini-2.0-flash"),
-        "judge": JudgeSettings(provider=ProviderSettings(type="gemini", model="gemini-2.0-flash")),
+        "provider": ProviderSettings(type="gemini", model="gemini-2.0-flash-001"),
+        "judge": JudgeSettings(
+            provider=ProviderSettings(type="gemini", model="gemini-2.0-flash-001")
+        ),
     }
     defaults.update(overrides)
     return Config(**defaults)
@@ -187,13 +284,13 @@ def test_from_yaml_valid(tmp_path, monkeypatch):
         "provider": {
             "type": "gemini",
             "api_key": "${TEST_API_KEY}",
-            "model": "gemini-2.0-flash",
+            "model": "gemini-2.0-flash-001",
         },
         "judge": {
             "provider": {
                 "type": "gemini",
                 "api_key": "${TEST_API_KEY}",
-                "model": "gemini-2.0-flash",
+                "model": "gemini-2.0-flash-001",
             },
         },
         "dimensions": ["factual"],
@@ -204,7 +301,7 @@ def test_from_yaml_valid(tmp_path, monkeypatch):
 
     cfg = Config.from_yaml(yaml_path)
     assert cfg.provider.api_key == "key-123"
-    assert cfg.provider.model == "gemini-2.0-flash"
+    assert cfg.provider.model == "gemini-2.0-flash-001"
     assert cfg.dimensions == ["factual"]
     assert cfg.repetitions == 3
 
@@ -214,7 +311,7 @@ def test_from_yaml_config_example(monkeypatch):
     cfg = Config.from_yaml("config.example.yaml")
     assert cfg.provider.type == "gemini"
     assert cfg.provider.api_key == "test-key"
-    assert cfg.provider.model == "gemini-2.0-flash"
+    assert cfg.provider.model == "gemini-2.0-flash-001"
     assert cfg.judge.enabled is True
     assert cfg.dimensions == ["factual", "consistency", "robustness"]
     assert cfg.repetitions == 3

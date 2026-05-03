@@ -184,7 +184,7 @@ def _make_config(
     provider = ProviderSettings(
         type="gemini",
         api_key="real-key-should-be-redacted",
-        model="gemini-2.0-flash",
+        model="gemini-2.0-flash-001",
     )
     return Config(
         provider=provider,
@@ -250,7 +250,7 @@ def test_sanitize_config_preserves_other_fields(tmp_path: Path):
     config = _make_config(output_dir=tmp_path, repetitions=4)
     data = sanitize_config(config)
     assert data["repetitions"] == 4
-    assert data["provider"]["model"] == "gemini-2.0-flash"
+    assert data["provider"]["model"] == "gemini-2.0-flash-001"
 
 
 def test_sanitize_config_does_not_redact_empty_api_key(tmp_path: Path):
@@ -287,7 +287,7 @@ def test_default_provider_factory_builds_gemini(monkeypatch: pytest.MonkeyPatch)
             return object()
 
     monkeypatch.setitem(sys.modules, "google.generativeai", _FakeGenAI)
-    settings = ProviderSettings(type="gemini", api_key="k", model="gemini-2.0-flash")
+    settings = ProviderSettings(type="gemini", api_key="k", model="gemini-2.0-flash-001")
 
     from llm_eval.providers.gemini import GeminiProvider
 
@@ -308,7 +308,7 @@ def test_default_provider_factory_builds_mistral(monkeypatch: pytest.MonkeyPatch
     fake_module.Mistral = _FakeMistralClient  # type: ignore[attr-defined]
     monkeypatch.setitem(sys.modules, "mistralai", fake_module)
 
-    settings = ProviderSettings(type="mistral", api_key="k", model="mistral-small")
+    settings = ProviderSettings(type="mistral", api_key="k", model="mistral-small-2503")
 
     from llm_eval.providers.mistral import MistralProvider
 
@@ -341,12 +341,46 @@ def test_settings_to_provider_config_uses_empty_string_for_missing_key():
     from llm_eval.runner import _settings_to_provider_config
 
     settings = ProviderSettings(
-        type="gemini", api_key=None, model="gemini-2.0-flash", temperature=0.5, max_tokens=128
+        type="gemini", api_key=None, model="gemini-2.0-flash-001", temperature=0.5, max_tokens=128
     )
     cfg = _settings_to_provider_config(settings)
     assert cfg.api_key == ""
     assert cfg.temperature == 0.5
     assert cfg.max_tokens == 128
+    assert cfg.seed is None
+
+
+def test_settings_to_provider_config_propagates_seed():
+    """seed must flow from ProviderSettings into ProviderConfig."""
+    from llm_eval.runner import _settings_to_provider_config
+
+    settings = ProviderSettings(type="gemini", api_key="x", model="gemini-2.0-flash-001", seed=1234)
+    cfg = _settings_to_provider_config(settings)
+    assert cfg.seed == 1234
+
+
+def test_run_result_records_seed_in_config(tmp_path: Path):
+    """The serialized config inside RunResult must include the configured seed."""
+    judge = _StubJudge()
+    provider = _RecordingProvider(default_text="Brasília")
+    loader = _StubLoader({"factual": _bank("factual", [_factual_scenario()])})
+    target_settings = ProviderSettings(
+        type="gemini", api_key="k", model="gemini-2.0-flash-001", seed=42
+    )
+    judge_settings = ProviderSettings(
+        type="gemini", api_key="k", model="gemini-2.0-flash-001", seed=7
+    )
+    config = Config(
+        provider=target_settings,
+        judge=JudgeSettings(provider=judge_settings),
+        dimensions=["factual"],
+        output_dir=str(tmp_path),
+    )
+    runner = _make_runner(config, provider=provider, judge=judge, loader=loader)
+    result = runner.run()
+
+    assert result.config["provider"]["seed"] == 42
+    assert result.config["judge"]["provider"]["seed"] == 7
 
 
 # ---------------------------------------------------------------------------
@@ -639,7 +673,7 @@ def test_runner_rejects_gemini_with_different_keys(tmp_path: Path):
     """Two Gemini providers with different API keys must fail fast."""
     config = _make_config(output_dir=tmp_path)
     config.judge.provider = ProviderSettings(
-        type="gemini", api_key="different-key", model="gemini-2.0-flash"
+        type="gemini", api_key="different-key", model="gemini-2.0-flash-001"
     )
     with pytest.raises(ValueError, match="two Gemini providers with different API keys"):
         Runner(
@@ -670,7 +704,7 @@ def test_runner_skips_gemini_check_when_judge_disabled(tmp_path: Path):
     config = _make_config(output_dir=tmp_path)
     config.judge.enabled = False
     config.judge.provider = ProviderSettings(
-        type="gemini", api_key="different-key", model="gemini-2.0-flash"
+        type="gemini", api_key="different-key", model="gemini-2.0-flash-001"
     )
     Runner(
         config,
@@ -685,7 +719,7 @@ def test_runner_allows_mixed_provider_types(tmp_path: Path):
     """Same-key check only triggers when both sides are Gemini."""
     config = _make_config(output_dir=tmp_path)
     config.judge.provider = ProviderSettings(
-        type="mistral", api_key="any-key", model="mistral-small"
+        type="mistral", api_key="any-key", model="mistral-small-2503"
     )
     Runner(
         config,

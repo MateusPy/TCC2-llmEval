@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class ProviderSettings(BaseModel):
@@ -19,9 +19,14 @@ class ProviderSettings(BaseModel):
         type: Provider identifier (``"gemini"``, ``"mistral"`` or ``"custom"``).
         api_key: Authentication token. May be ``None`` when the custom provider
             relies on headers for authentication.
-        model: Target model name.
+        model: Target model name. **Must be pinned to an explicit version**
+            for built-in providers (e.g. ``gemini-2.0-flash-001``, not
+            ``gemini-1.5-pro``) so results are reproducible. The validator
+            rejects unpinned identifiers — see :meth:`validate_model_pin`.
         temperature: Sampling temperature for generation.
         max_tokens: Maximum number of tokens to request.
+        seed: Optional integer seed forwarded to providers that support
+            deterministic sampling.
         url: Endpoint URL (custom provider only).
         method: HTTP method (custom provider only).
         headers: Extra HTTP headers (custom provider only).
@@ -35,11 +40,62 @@ class ProviderSettings(BaseModel):
     model: str
     temperature: float = 0.0
     max_tokens: int = 1024
+    seed: int | None = None
     url: str | None = None
     method: str = "POST"
     headers: dict[str, str] = Field(default_factory=dict)
     request_template: dict | None = None
     response_path: str | None = None
+
+    @model_validator(mode="after")
+    def validate_model_pin(self) -> "ProviderSettings":
+        """Enforce explicit model versioning for built-in providers.
+
+        Reproducibility requires pinning the exact model snapshot — vendors
+        update floating identifiers (e.g. ``gemini-1.5-pro``) silently, which
+        makes a TCC's empirical results impossible to replicate later. This
+        validator rejects unpinned model strings for the SDK-backed providers.
+        Custom HTTP providers are exempt: the user controls the endpoint and
+        the model identifier may be opaque (proprietary chatbot, internal
+        deployment, etc.).
+        """
+        if self.type in ("gemini", "mistral") and not is_pinned_model(self.model):
+            raise ValueError(
+                f"model '{self.model}' is not pinned to an explicit version. "
+                f"Use a versioned identifier (e.g. 'gemini-2.0-flash-001', "
+                f"'mistral-small-2503') so results are reproducible. "
+                f"Floating aliases like '{self.model}' are updated by vendors "
+                f"without notice and break reproducibility of the study."
+            )
+        return self
+
+
+# Regex describes ONLY pinned suffixes. Floating aliases such as
+# ``-latest``/``-stable`` are intentionally NOT in the alternation — they are
+# rejected up-front by ``is_pinned_model`` before the regex runs. Keeping them
+# out of the pattern preserves the "regex describes what is pinned" semantics
+# and prevents a future refactor from silently classifying them as valid.
+_PINNED_MODEL_RE = re.compile(r"-(?:\d{3,}|\d{4}-\d{2}|\d{2}-\d{2})$")
+
+_FLOATING_ALIAS_SUFFIXES = ("-latest", "-stable")
+
+
+def is_pinned_model(model: str) -> bool:
+    """Return True when ``model`` carries an explicit version suffix.
+
+    Accepted patterns (suffix on the model name):
+    - ``-<digits>`` of length >= 3 (e.g. ``-001``, ``-2503``)
+    - ``-<YYYY>-<MM>`` (e.g. ``-2024-09``)
+    - ``-<MM>-<DD>`` (e.g. ``-09-15``)
+
+    The strings ``-latest`` and ``-stable`` are explicitly rejected as
+    floating aliases (vendors mutate them silently).
+    """
+    if not model:
+        return False
+    if model.endswith(_FLOATING_ALIAS_SUFFIXES):
+        return False
+    return bool(_PINNED_MODEL_RE.search(model))
 
 
 class JudgeSettings(BaseModel):

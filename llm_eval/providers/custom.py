@@ -137,17 +137,20 @@ class CustomProvider(BaseProvider):
                 ) from exc
 
             text = _extract_by_path(payload, self.response_path)
+            parameters: dict[str, Any] = {
+                "temperature": self.config.temperature,
+                "max_tokens": self.config.max_tokens,
+                "url": self.url,
+                "method": self.method,
+            }
+            if self.config.seed is not None:
+                parameters["seed"] = self.config.seed
             return ProviderResponse(
                 response_text=text,
                 model=self.config.model,
                 timestamp=datetime.now(timezone.utc),
                 response_time_ms=elapsed_ms,
-                parameters={
-                    "temperature": self.config.temperature,
-                    "max_tokens": self.config.max_tokens,
-                    "url": self.url,
-                    "method": self.method,
-                },
+                parameters=parameters,
                 raw_response=payload if isinstance(payload, dict) else {"value": payload},
             )
 
@@ -171,6 +174,7 @@ def build_from_settings(
     model: str,
     temperature: float,
     max_tokens: int,
+    seed: int | None = None,
     url: str | None,
     method: str,
     headers: Mapping[str, str],
@@ -197,6 +201,7 @@ def build_from_settings(
             model=model,
             temperature=temperature,
             max_tokens=max_tokens,
+            seed=seed,
         ),
         url=url,
         request_template=request_template,

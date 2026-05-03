@@ -202,7 +202,7 @@ def test_retry_invalid_max_attempts():
 
 def _gemini_config() -> ProviderConfig:
     return ProviderConfig(
-        api_key="test-key", model="gemini-2.0-flash", temperature=0.0, max_tokens=512
+        api_key="test-key", model="gemini-2.0-flash-001", temperature=0.0, max_tokens=512
     )
 
 
@@ -213,7 +213,7 @@ def test_gemini_send_happy_path():
     provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub)
     result = provider.send("oi")
     assert result.response_text == "resposta"
-    assert result.model == "gemini-2.0-flash"
+    assert result.model == "gemini-2.0-flash-001"
     assert result.parameters["temperature"] == 0.0
     assert result.parameters["usage"]["total_tokens"] == 15
     assert result.response_time_ms >= 0
@@ -226,6 +226,27 @@ def test_gemini_send_omits_usage_when_absent():
     provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub)
     result = provider.send("oi")
     assert "usage" not in result.parameters
+
+
+def test_gemini_send_forwards_seed_when_set():
+    """seed must appear in generation_config and parameters when configured."""
+    stub = _GeminiClientStub(text="ok")
+    config = ProviderConfig(
+        api_key="k", model="gemini-2.0-flash-001", temperature=0.0, max_tokens=128, seed=42
+    )
+    provider = GeminiProvider(config, client_factory=lambda _: stub)
+    result = provider.send("oi")
+    assert stub.calls[0]["generation_config"]["seed"] == 42
+    assert result.parameters["seed"] == 42
+
+
+def test_gemini_send_omits_seed_when_none():
+    stub = _GeminiClientStub(text="ok")
+    config = ProviderConfig(api_key="k", model="gemini-2.0-flash-001")
+    provider = GeminiProvider(config, client_factory=lambda _: stub)
+    result = provider.send("oi")
+    assert "seed" not in stub.calls[0]["generation_config"]
+    assert "seed" not in result.parameters
 
 
 def test_gemini_send_translates_rate_limit():
@@ -305,8 +326,8 @@ def test_gemini_default_factory_warns_on_api_key_change(
     monkeypatch.setitem(__import__("sys").modules, "google.generativeai", _FakeGenAI)
     monkeypatch.setattr(gemini_module, "_last_configured_key", None, raising=False)
 
-    cfg_a = ProviderConfig(api_key="key-a", model="gemini-2.0-flash")
-    cfg_b = ProviderConfig(api_key="key-b", model="gemini-2.0-flash")
+    cfg_a = ProviderConfig(api_key="key-a", model="gemini-2.0-flash-001")
+    cfg_b = ProviderConfig(api_key="key-b", model="gemini-2.0-flash-001")
 
     with caplog.at_level(_logging.WARNING):
         gemini_module._default_client_factory(cfg_a)
@@ -324,7 +345,9 @@ def test_gemini_default_factory_warns_on_api_key_change(
 
 
 def _mistral_config() -> ProviderConfig:
-    return ProviderConfig(api_key="test", model="mistral-small", temperature=0.2, max_tokens=256)
+    return ProviderConfig(
+        api_key="test", model="mistral-small-2503", temperature=0.2, max_tokens=256
+    )
 
 
 def test_mistral_send_happy_path():
@@ -334,13 +357,27 @@ def test_mistral_send_happy_path():
     provider = MistralProvider(_mistral_config(), client_factory=lambda _: stub)
     result = provider.send("ola")
     assert result.response_text == "oi"
-    assert result.model == "mistral-small"
+    assert result.model == "mistral-small-2503"
     assert result.parameters["usage"]["prompt_tokens"] == 7
     call = stub.calls[0]
-    assert call["model"] == "mistral-small"
+    assert call["model"] == "mistral-small-2503"
     assert call["messages"] == [{"role": "user", "content": "ola"}]
     assert call["temperature"] == 0.2
     assert call["max_tokens"] == 256
+    # Seed not configured here — must not be sent to the SDK.
+    assert "random_seed" not in call
+
+
+def test_mistral_send_forwards_seed_as_random_seed():
+    """Mistral's SDK uses random_seed; the provider must rename the field."""
+    stub = _MistralClientStub(text="ok")
+    config = ProviderConfig(
+        api_key="k", model="mistral-small-2503", temperature=0.0, max_tokens=64, seed=42
+    )
+    provider = MistralProvider(config, client_factory=lambda _: stub)
+    result = provider.send("oi")
+    assert stub.calls[0]["random_seed"] == 42
+    assert result.parameters["seed"] == 42
 
 
 def test_mistral_send_translates_429_status_code():
@@ -652,6 +689,25 @@ def test_custom_send_happy_path():
     assert result.response_text == "Brasília"
     assert result.parameters["url"] == "https://example.com/api"
     assert result.raw_response == payload
+    # Seed defaults to None — must not appear in parameters.
+    assert "seed" not in result.parameters
+
+
+def test_custom_send_includes_seed_in_parameters_when_set():
+    """Custom providers don't auto-inject the seed in the body — that is up to
+    the user's request_template — but the seed must still be recorded in the
+    response parameters for reproducibility metadata."""
+    client = _stub_transport(httpx.Response(200, json={"answer": "ok"}))
+    config = ProviderConfig(api_key="", model="my-model", temperature=0.0, max_tokens=128, seed=42)
+    provider = CustomProvider(
+        config,
+        url="https://example.com",
+        request_template={"prompt": "{prompt}"},
+        response_path="answer",
+        http_client=client,
+    )
+    result = provider.send("hi")
+    assert result.parameters["seed"] == 42
 
 
 def test_custom_send_treats_429_as_rate_limit():

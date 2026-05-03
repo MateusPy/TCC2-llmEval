@@ -4,15 +4,21 @@
 # Copie este arquivo para "config.yaml" e ajuste os valores.
 # Variáveis no formato ${VAR_NAME} são resolvidas a partir
 # de variáveis de ambiente.
+#
+# Reprodutibilidade: o framework rejeita identificadores de
+# modelo flutuantes (ex: "gemini-1.5-pro") para providers
+# nativos. Use sempre uma versão pinada (ex: "-001", "-2503")
+# de modo que execuções futuras possam ser replicadas.
 # ============================================================
 
 # Chatbot a ser avaliado
 provider:
   type: gemini
   api_key: "${GEMINI_API_KEY}"
-  model: gemini-2.0-flash
+  model: gemini-2.0-flash-001     # versão pinada (não use "gemini-1.5-pro")
   temperature: 0.0
   max_tokens: 1024
+  seed: 42                        # opcional; passado ao SDK quando suportado
 
 # LLM usado como juiz (avaliador)
 judge:
@@ -20,9 +26,10 @@ judge:
   provider:
     type: gemini
     api_key: "${GEMINI_API_KEY}"
-    model: gemini-2.0-flash
+    model: gemini-2.0-flash-001
     temperature: 0.0
     max_tokens: 2048
+    seed: 42
 
 # Dimensões de confiabilidade a avaliar
 # Valores válidos: factual, consistency, robustness
@@ -48,13 +55,18 @@ output_format:
 # ============================================================
 # Exemplo de provider customizado (qualquer endpoint HTTP)
 # ============================================================
+# Custom providers ficam isentos da validação de pin de modelo —
+# o usuário controla o endpoint e o identificador pode ser opaco.
+# Mesmo assim, recomenda-se pinar quando possível.
+#
 # provider:
 #   type: custom
 #   url: "https://meu-chatbot.com/api/chat"
 #   method: POST
 #   headers:
 #     Authorization: "Bearer ${CUSTOM_API_KEY}"
-#   model: meu-modelo
+#   model: meu-modelo-v3
+#   seed: 42
 #   request_template:
 #     messages:
 #       - role: "user"
