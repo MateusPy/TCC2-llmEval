@@ -274,6 +274,47 @@ def test_run_writes_run_result_path_in_message(
     assert "run_result.json" in result.output
 
 
+def test_run_emits_reports_in_configured_formats(
+    runner: CliRunner,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    """When config.output_format includes json/markdown, the CLI also generates
+    report.json/report.md alongside run_result.json."""
+    config = dict(VALID_CONFIG)
+    output_dir = tmp_path / "out"
+    config["output_dir"] = str(output_dir)
+    config["output_format"] = ["json", "markdown"]
+    config_path = _write_yaml(tmp_path / "config.yaml", config)
+
+    _patch_runner_factory(monkeypatch)
+    result = runner.invoke(main, ["run", "-c", str(config_path)])
+
+    assert result.exit_code == 0
+    assert "Relatório JSON salvo em" in result.output
+    assert "Relatório Markdown salvo em" in result.output
+    assert (output_dir / "report.json").exists()
+    assert (output_dir / "report.md").exists()
+
+
+def test_run_skips_reports_when_output_format_empty(
+    runner: CliRunner,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    config = dict(VALID_CONFIG)
+    output_dir = tmp_path / "out"
+    config["output_dir"] = str(output_dir)
+    config["output_format"] = []
+    config_path = _write_yaml(tmp_path / "config.yaml", config)
+
+    _patch_runner_factory(monkeypatch)
+    result = runner.invoke(main, ["run", "-c", str(config_path)])
+
+    assert result.exit_code == 0
+    assert "Relatório" not in result.output
+
+
 # ---------------------------------------------------------------------------
 # scenarios command
 # ---------------------------------------------------------------------------
@@ -375,6 +416,102 @@ def test_scenarios_uses_builtin_bank_when_no_path(
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+
+def _write_run_result_json(tmp_path: Path) -> Path:
+    """Create a minimal run_result.json on disk for the ``report`` command."""
+    payload = {
+        "config": {"provider": {"type": "gemini", "model": "gemini-2.0-flash-001"}},
+        "started_at": "2026-05-01T10:00:00+00:00",
+        "finished_at": "2026-05-01T10:15:00+00:00",
+        "scenario_results": [
+            {
+                "scenario_id": "fact-001",
+                "dimension": "factual",
+                "category": "knowledge",
+                "prompt": "p",
+                "responses": [],
+                "variant_responses": {},
+                "judge_results": [
+                    {
+                        "dimension": "factual",
+                        "score": 5,
+                        "justification": "ok",
+                        "metadata": {"parse_method": "json"},
+                    }
+                ],
+                "metric_results": [
+                    {
+                        "metric_name": "bertscore",
+                        "value": 0.9,
+                        "details": {"f1": 0.9},
+                    }
+                ],
+                "error": None,
+            }
+        ],
+    }
+    target = tmp_path / "run_result.json"
+    target.write_text(json.dumps(payload), encoding="utf-8")
+    return target
+
+
+def test_report_generates_json(runner: CliRunner, tmp_path: Path):
+    input_path = _write_run_result_json(tmp_path)
+    output_path = tmp_path / "report.json"
+    result = runner.invoke(
+        main,
+        ["report", "-i", str(input_path), "-f", "json", "-o", str(output_path)],
+    )
+    assert result.exit_code == 0
+    assert output_path.exists()
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["details"][0]["scenario_id"] == "fact-001"
+
+
+def test_report_generates_markdown(runner: CliRunner, tmp_path: Path):
+    input_path = _write_run_result_json(tmp_path)
+    output_path = tmp_path / "report.md"
+    result = runner.invoke(
+        main,
+        ["report", "-i", str(input_path), "-f", "markdown", "-o", str(output_path)],
+    )
+    assert result.exit_code == 0
+    assert output_path.exists()
+    content = output_path.read_text(encoding="utf-8")
+    assert content.startswith("# Relatório de Avaliação")
+
+
+def test_report_rejects_invalid_json(runner: CliRunner, tmp_path: Path):
+    input_path = tmp_path / "broken.json"
+    input_path.write_text("{not valid", encoding="utf-8")
+    result = runner.invoke(
+        main,
+        ["report", "-i", str(input_path), "-f", "json", "-o", str(tmp_path / "r.json")],
+    )
+    assert result.exit_code == 1
+    assert "não é JSON válido" in result.output
+
+
+def test_report_rejects_payload_that_is_not_runresult(runner: CliRunner, tmp_path: Path):
+    input_path = tmp_path / "wrong.json"
+    input_path.write_text(json.dumps({"foo": "bar"}), encoding="utf-8")
+    result = runner.invoke(
+        main,
+        ["report", "-i", str(input_path), "-f", "markdown", "-o", str(tmp_path / "r.md")],
+    )
+    assert result.exit_code == 1
+    assert "RunResult válido" in result.output
+
+
+def test_report_unknown_format_rejected_by_click(runner: CliRunner, tmp_path: Path):
+    input_path = _write_run_result_json(tmp_path)
+    result = runner.invoke(
+        main,
+        ["report", "-i", str(input_path), "-f", "csv", "-o", str(tmp_path / "r.csv")],
+    )
+    assert result.exit_code != 0
+    assert "Invalid value" in result.output or "csv" in result.output
 
 
 def test_truncate_short_string_unchanged():
