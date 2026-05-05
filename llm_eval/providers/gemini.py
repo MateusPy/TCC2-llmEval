@@ -25,9 +25,11 @@ effects out of unit tests and to allow stubbing in :mod:`tests.test_providers`.
 from __future__ import annotations
 
 import logging
+import sys
 import time
 from collections.abc import Callable
 from datetime import datetime, timezone
+from importlib import import_module
 from typing import Any
 
 from llm_eval.providers._retry import (
@@ -141,7 +143,9 @@ def _default_client_factory(config: ProviderConfig) -> Any:
     new key. See module docstring for the recommended workaround.
     """
     global _last_configured_key
-    import google.generativeai as genai
+    genai = sys.modules.get("google.generativeai")
+    if genai is None:
+        genai = import_module("google.generativeai")
 
     if _last_configured_key is not None and _last_configured_key != config.api_key:
         logger.warning(
