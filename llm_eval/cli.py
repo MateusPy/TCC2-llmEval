@@ -1,27 +1,24 @@
-"""Interface de linha de comando do llm-eval.
-
-Comandos disponíveis:
-
-- ``llm-eval run --config CFG``: executa o pipeline completo de avaliação
-- ``llm-eval validate --config CFG``: apenas valida o YAML
-- ``llm-eval scenarios --list``: lista as dimensões disponíveis no banco
-- ``llm-eval scenarios --dimension D``: lista cenários da dimensão ``D``
-- ``llm-eval report --input R --format F --output O``: gera relatório a partir
-  de um ``run_result.json`` previamente salvo
-"""
+"""Command-line interface for llm-eval."""
 
 from __future__ import annotations
 
 import json
 import logging
+import os
 from pathlib import Path
 
 import click
 from pydantic import ValidationError
 
-from llm_eval.config import Config
+from llm_eval.config import Config, ProviderSettings
+from llm_eval.evaluation.judge import Judge
+from llm_eval.evaluation.validation import (
+    JudgeValidationError,
+    JudgeValidator,
+    ValidationReport,
+)
 from llm_eval.report import ReportGenerator
-from llm_eval.runner import RunResult, Runner
+from llm_eval.runner import RunResult, Runner, default_provider_factory
 from llm_eval.scenarios.loader import (
     ALLOWED_DIMENSIONS,
     ScenarioLoader,
@@ -29,6 +26,16 @@ from llm_eval.scenarios.loader import (
 )
 
 REPORT_FORMATS = ("json", "markdown")
+VALIDATION_PROVIDER_DEFAULTS = {
+    "gemini": {
+        "model": "gemini-2.0-flash-001",
+        "api_env": "GEMINI_API_KEY",
+    },
+    "mistral": {
+        "model": "mistral-small-2503",
+        "api_env": "MISTRAL_API_KEY",
+    },
+}
 
 
 def _build_runner(cfg: Config) -> Runner:
@@ -37,8 +44,50 @@ def _build_runner(cfg: Config) -> Runner:
 
 
 def _build_loader(scenarios_path: str | Path | None) -> ScenarioLoader:
-    """Indirection used by tests to inject a stub loader without touching the package data."""
+    """Indirection used by tests to inject a stub loader without touching package data."""
     return ScenarioLoader(scenarios_path)
+
+
+def _build_validation_judge(
+    provider_name: str,
+    *,
+    model: str | None,
+    api_key: str | None,
+    temperature: float,
+    max_tokens: int,
+    seed: int | None,
+) -> Judge:
+    """Build the judge used by ``validate-judge`` from CLI parameters."""
+    normalized_provider = provider_name.lower()
+    if normalized_provider not in VALIDATION_PROVIDER_DEFAULTS:
+        raise ValueError(f"Unsupported validation provider: {provider_name}")
+
+    resolved_model = model or VALIDATION_PROVIDER_DEFAULTS[normalized_provider]["model"]
+    resolved_api_key = _resolve_validation_api_key(normalized_provider, api_key)
+
+    settings = ProviderSettings(
+        type=normalized_provider,
+        api_key=resolved_api_key,
+        model=resolved_model,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        seed=seed,
+    )
+    return Judge(default_provider_factory(settings))
+
+
+def _resolve_validation_api_key(provider_name: str, explicit_api_key: str | None) -> str:
+    """Resolve the API key for ``validate-judge`` from CLI or environment."""
+    if explicit_api_key:
+        return explicit_api_key
+
+    env_var = VALIDATION_PROVIDER_DEFAULTS[provider_name]["api_env"]
+    env_value = os.environ.get(env_var)
+    if env_value:
+        return env_value
+    raise ValueError(
+        f"API key not provided. Use --api-key or define the environment variable {env_var}."
+    )
 
 
 @click.group()
@@ -86,7 +135,7 @@ def run(config_path: Path) -> None:
 
     final_path = Path(cfg.output_dir) / "run_result.json"
     total = len(result.scenario_results)
-    failed = sum(1 for s in result.scenario_results if s.error is not None)
+    failed = sum(1 for scenario in result.scenario_results if scenario.error is not None)
     click.echo(
         f"Avaliação concluída. {total} cenários executados "
         f"({failed} com erro). Resultado salvo em: {final_path}"
@@ -114,8 +163,6 @@ def _write_reports_from_result(
             written.append(("JSON", generator.to_json(base / "report.json")))
         elif normalized == "markdown":
             written.append(("Markdown", generator.to_markdown(base / "report.md")))
-        # Unknown formats are silently ignored — config validation already
-        # restricts the values, so this is just defensive.
     return written
 
 
@@ -170,8 +217,6 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
             "Informe --list para ver as dimensões ou --dimension <nome> para listar cenários."
         )
 
-    # ``dimension`` is narrowed to str here — no need for an assert (asserts are
-    # stripped under ``python -O``, so they can't be relied on for control flow).
     try:
         loader = _build_loader(scenarios_path)
         bank = loader.load(dimension)
@@ -187,6 +232,132 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
     for scenario in bank.scenarios:
         prompt_preview = _truncate(scenario.prompt, 60)
         click.echo(f"  [{scenario.id}] {scenario.category}: {prompt_preview}")
+
+
+@main.command("validate-judge")
+@click.option(
+    "--provider",
+    "provider_name",
+    required=True,
+    type=click.Choice(list(VALIDATION_PROVIDER_DEFAULTS), case_sensitive=False),
+    help="Provider do LLM usado como juiz (gemini ou mistral).",
+)
+@click.option(
+    "--model",
+    default=None,
+    help="Modelo do juiz. Se omitido, usa um default pinado por provider.",
+)
+@click.option(
+    "--api-key",
+    "api_key",
+    default=None,
+    help="API key do provider. Se omitida, usa a variável de ambiente padrão do provider.",
+)
+@click.option(
+    "--golden-set",
+    "golden_set_path",
+    default=None,
+    type=click.Path(exists=True, dir_okay=False, readable=True, path_type=Path),
+    help="Arquivo JSON do golden set. Se omitido, usa o dataset embutido no pacote.",
+)
+@click.option(
+    "--output",
+    "-o",
+    "output_path",
+    default=Path("results/validation_report.json"),
+    show_default=True,
+    type=click.Path(dir_okay=False, writable=True, path_type=Path),
+    help="Caminho do relatório JSON gerado.",
+)
+@click.option(
+    "--temperature",
+    default=0.0,
+    show_default=True,
+    type=float,
+    help="Temperature usada no juiz.",
+)
+@click.option(
+    "--max-tokens",
+    default=2048,
+    show_default=True,
+    type=int,
+    help="Máximo de tokens para a resposta do juiz.",
+)
+@click.option(
+    "--seed",
+    default=42,
+    show_default=True,
+    type=int,
+    help="Seed encaminhada ao provider quando suportada.",
+)
+def validate_judge(
+    provider_name: str,
+    model: str | None,
+    api_key: str | None,
+    golden_set_path: Path | None,
+    output_path: Path,
+    temperature: float,
+    max_tokens: int,
+    seed: int,
+) -> None:
+    """Valida a concordância do LLM-as-a-Judge contra um golden set."""
+    judge: Judge | None = None
+    try:
+        judge = _build_validation_judge(
+            provider_name,
+            model=model,
+            api_key=api_key,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            seed=seed,
+        )
+        report = JudgeValidator(judge, golden_set_path).run()
+        _write_validation_report(output_path, report)
+    except (JudgeValidationError, ValueError) as exc:
+        click.echo(f"Falha na validação do juiz: {exc}", err=True)
+        raise SystemExit(1) from exc
+    except Exception as exc:
+        click.echo(f"Erro inesperado durante validate-judge: {exc}", err=True)
+        raise SystemExit(1) from exc
+    finally:
+        if judge is not None:
+            try:
+                judge.provider.close()
+            except Exception:
+                logging.getLogger(__name__).warning("Falha ao fechar o provider do juiz.")
+
+    click.echo(
+        f"Cohen's Kappa: {report.cohen_kappa:.2f} ({report.agreement_label})"
+    )
+    click.echo(f"Pearson correlation: {report.pearson_correlation:.2f}")
+    click.echo(f"MAE: {report.mae:.2f}")
+    click.echo(
+        f"Cenários avaliados: {report.evaluated_scenarios}/{report.total_scenarios}"
+    )
+    for dimension, summary in report.by_dimension.items():
+        click.echo(
+            f"  - {dimension}: kappa={summary.kappa:.2f}, "
+            f"pearson={summary.pearson_correlation:.2f}, mae={summary.mae:.2f}"
+        )
+    if report.high_disagreements:
+        click.echo(
+            f"Divergências >=2 pontos: {len(report.high_disagreements)}"
+        )
+        for row in report.high_disagreements:
+            click.echo(
+                f"  - {row.scenario_id} ({row.dimension}): "
+                f"humano={row.human_consensus_score}, juiz={row.judge_score}"
+            )
+    click.echo(f"Relatório salvo em: {output_path}")
+
+
+def _write_validation_report(output_path: Path, report: ValidationReport) -> None:
+    """Persist ``ValidationReport`` as JSON."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(
+        json.dumps(report.model_dump(mode="json"), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
 
 @main.command()

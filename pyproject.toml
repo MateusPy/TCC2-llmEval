@@ -41,6 +41,7 @@ include = ["llm_eval*"]
 
 [tool.setuptools.package-data]
 "llm_eval.scenarios.bank" = ["*.json"]
+"llm_eval.scenarios.golden" = ["*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
