@@ -266,7 +266,7 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
     "output_path",
     default=Path("results/validation_report.json"),
     show_default=True,
-    type=click.Path(dir_okay=False, writable=True, path_type=Path),
+    type=click.Path(dir_okay=False, path_type=Path),
     help="Caminho do relatório JSON gerado.",
 )
 @click.option(
