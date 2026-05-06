@@ -147,37 +147,31 @@ result = Runner(config).run()
 
 ### GitHub Actions
 
+Há um exemplo completo, comentado linha a linha e pronto para copiar em [`docs/ci/github-actions-example.yml`](docs/ci/github-actions-example.yml). Versão resumida:
+
 ```yaml
 # .github/workflows/llm-eval.yml
-name: Avaliação de Confiabilidade
-
+name: llm-eval
 on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 6 * * 1'  # toda segunda às 6h
+    - cron: "0 6 * * 1"  # toda segunda às 06:00 UTC
 
 jobs:
   evaluate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
-      - name: Instalar llm-eval
-        run: pip install llm-eval
-
-      - name: Executar avaliação
-        run: llm-eval run --config config.yaml
+          python-version: "3.11"
+      - run: pip install llm-eval
+      - run: llm-eval run --config config.yaml
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
-      - name: Upload relatório
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: llm-eval-report
           path: results/

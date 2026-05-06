@@ -249,6 +249,13 @@ class JudgeValidator:
     """
 
     def __init__(self, judge: Judge, golden_set_path: str | Path | None = None) -> None:
+        """Initialize the validator with a judge and an optional golden set path.
+
+        Args:
+            judge: Judge implementation that will score the golden set.
+            golden_set_path: Optional path to a JSON golden-set file. When
+                ``None``, the built-in packaged dataset is used.
+        """
         self.judge = judge
         self.golden_set_path = Path(golden_set_path) if golden_set_path is not None else None
 
