@@ -414,13 +414,15 @@ def _summarize_metrics(results: list[ValidationScenarioResult]) -> ValidationMet
 
 
 def _median_score(scores: Any) -> int:
+    """Return the consensus score as an integer median.
+
+    For an even number of annotations, use the lower of the two middle scores
+    so the consensus remains an unambiguous member of the 1-5 ordinal scale.
+    """
     numeric_scores = sorted(int(score) for score in scores)
     if not numeric_scores:
         raise ValueError("Cannot compute consensus for an empty annotation list")
-    midpoint = len(numeric_scores) // 2
-    if len(numeric_scores) % 2 == 1:
-        return numeric_scores[midpoint]
-    return int((numeric_scores[midpoint - 1] + numeric_scores[midpoint]) / 2)
+    return int(statistics.median_low(numeric_scores))
 
 
 def _cohen_kappa_linear(human_scores: list[int], judge_scores: list[int]) -> float:
