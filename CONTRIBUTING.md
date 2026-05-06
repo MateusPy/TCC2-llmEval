@@ -71,7 +71,7 @@ A CI executa três checagens automáticas em cada PR (`.github/workflows/ci.yml`
 | Lint | `ruff check .` | Erros, imports não usados, complexidade |
 | Format | `ruff format --check .` | Formatação consistente |
 | Type-check | `mypy llm_eval/` | Anotações de tipo |
-| Testes | `pytest --cov-fail-under=95` | Comportamento e cobertura |
+| Testes | `pytest --cov=llm_eval --cov-report=term-missing --cov-fail-under=95` | Comportamento e cobertura |
 | Secret scan | (gitleaks rodando na CI) | Tokens vazados em commits |
 
 Antes de abrir o PR, rode tudo localmente:
@@ -85,7 +85,7 @@ pytest --cov=llm_eval --cov-fail-under=95
 
 Convenções gerais:
 
-- **Docstrings** em todas as classes e métodos públicos. Estilo Google/NumPy (`Args:`, `Returns:`, `Raises:`), em inglês.
+- **Docstrings** em todas as classes e métodos públicos. Estilo Google/NumPy (`Args:`, `Returns:`, `Raises:`). O idioma pode ser inglês ou português — mantenha consistência com o módulo onde está editando (a maior parte do pacote usa inglês, mas alguns módulos como `evaluation/judge.py` usam português).
 - **Type hints** em todas as funções públicas; `from __future__ import annotations` permitido.
 - **Pydantic v2** para modelos e validação de configuração — não use `dataclass` para schemas que precisam de validação.
 - **Config-driven**: comportamento novo deve ser configurável via `Config`/YAML quando apropriado, não hard-coded.
