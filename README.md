@@ -252,16 +252,16 @@ O campo `{prompt}` no `request_template` é substituído pelo prompt do cenário
 
 ## Banco de Cenários
 
-O `llm-eval` vem com um banco de cenarios embutido em `llm_eval/scenarios/bank/`, organizado por dimensao e validado pelo `ScenarioLoader`.
+O `llm-eval` vem com um banco de cenários embutido em `llm_eval/scenarios/bank/`, organizado por dimensão e validado pelo `ScenarioLoader`.
 
 Contagem atual do banco embutido:
 
-- `factual.json`: 35 cenarios com `ground_truth` verificavel e `source`
-- `consistency.json`: 20 cenarios-base com 3 a 4 parafrases cada
-- `robustness.json`: 20 cenarios-base com variacoes `typo`, `noise` e `adversarial`
-- Total: **75 cenarios-base** distribuidos nas tres dimensoes
+- `factual.json`: 35 cenários com `ground_truth` verificável e `source`
+- `consistency.json`: 20 cenários-base com 3 a 4 paráfrases cada
+- `robustness.json`: 20 cenários-base com variações `typo`, `noise` e `adversarial`
+- Total: **75 cenários-base** distribuídos nas três dimensões
 
-Para listar os cenarios disponiveis:
+Para listar os cenários disponíveis:
 
 ```bash
 # Listar dimensões
