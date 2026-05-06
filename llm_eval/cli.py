@@ -227,7 +227,7 @@ def scenarios(list_all: bool, dimension: str | None, scenarios_path: Path | None
     click.echo(f"Dimensão: {bank.dimension} (versão {bank.version})")
     click.echo(f"Total de cenários: {len(bank.scenarios)}")
     if not bank.scenarios:
-        click.echo("  (banco vazio — popular via issue #27)")
+        click.echo("  (banco vazio — adicione cenarios ao arquivo JSON correspondente)")
         return
     for scenario in bank.scenarios:
         prompt_preview = _truncate(scenario.prompt, 60)

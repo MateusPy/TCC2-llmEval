@@ -408,10 +408,10 @@ def test_scenarios_uses_builtin_bank_when_no_path(
     runner: CliRunner, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
     """Without --path, the loader falls back to the package's built-in bank."""
-    # The shipped bank is empty by default; just confirm we don't crash.
     result = runner.invoke(main, ["scenarios", "--dimension", "factual"])
     assert result.exit_code == 0
     assert "Dimensão: factual" in result.output
+    assert "Total de cenários: 35" in result.output
 
 
 # ---------------------------------------------------------------------------
