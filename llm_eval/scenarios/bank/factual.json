@@ -1,5 +1,326 @@
 {
   "dimension": "factual",
-  "version": "0.1.0",
-  "scenarios": []
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "factual-001",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Australia?",
+      "ground_truth": "Canberra.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Canberra",
+      "trap": true
+    },
+    {
+      "id": "factual-002",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Suica?",
+      "ground_truth": "Berna.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Bern",
+      "trap": true
+    },
+    {
+      "id": "factual-003",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano caiu o Muro de Berlim?",
+      "ground_truth": "1989.",
+      "variants": [],
+      "source": "https://www.britannica.com/event/Berlin-Wall"
+    },
+    {
+      "id": "factual-004",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem foi o primeiro presidente do Brasil apos a Proclamacao da Republica?",
+      "ground_truth": "Deodoro da Fonseca.",
+      "variants": [],
+      "source": "https://www.britannica.com/biography/Manuel-Deodoro-da-Fonseca"
+    },
+    {
+      "id": "factual-005",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual planeta do Sistema Solar e conhecido como Planeta Vermelho?",
+      "ground_truth": "Marte.",
+      "variants": [],
+      "source": "https://science.nasa.gov/mars/"
+    },
+    {
+      "id": "factual-006",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual e o simbolo quimico do ouro?",
+      "ground_truth": "Au.",
+      "variants": [],
+      "source": "https://www.rsc.org/periodic-table/element/79/gold"
+    },
+    {
+      "id": "factual-007",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Quantos ossos tem, em media, o corpo humano adulto?",
+      "ground_truth": "206 ossos.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/human-skeleton"
+    },
+    {
+      "id": "factual-008",
+      "dimension": "factual",
+      "category": "mathematics",
+      "prompt": "Quanto e 15% de 200?",
+      "ground_truth": "30.",
+      "variants": [],
+      "source": "https://mathworld.wolfram.com/Percentage.html"
+    },
+    {
+      "id": "factual-009",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior oceano da Terra?",
+      "ground_truth": "Oceano Pacifico.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Pacific-Ocean"
+    },
+    {
+      "id": "factual-010",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o rio mais longo do mundo segundo a Britannica?",
+      "ground_truth": "Rio Nilo.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Nile-River",
+      "trap": true
+    },
+    {
+      "id": "factual-011",
+      "dimension": "factual",
+      "category": "language",
+      "prompt": "Quantas letras tem o alfabeto portugues moderno?",
+      "ground_truth": "26 letras.",
+      "variants": [],
+      "source": "https://www.academia.org.br/nossa-lingua/busca-no-vocabulario"
+    },
+    {
+      "id": "factual-012",
+      "dimension": "factual",
+      "category": "literature",
+      "prompt": "Quem escreveu o romance 'Dom Casmurro'?",
+      "ground_truth": "Machado de Assis.",
+      "variants": [],
+      "source": "https://www.britannica.com/biography/Joaquim-Maria-Machado-de-Assis"
+    },
+    {
+      "id": "factual-013",
+      "dimension": "factual",
+      "category": "sports",
+      "prompt": "Quantos jogadores de linha um time de futebol tem em campo, sem contar o goleiro?",
+      "ground_truth": "10 jogadores de linha.",
+      "variants": [],
+      "source": "https://www.theifab.com/laws/latest/the-players/"
+    },
+    {
+      "id": "factual-014",
+      "dimension": "factual",
+      "category": "medicine",
+      "prompt": "Qual vitamina e tradicionalmente associada a prevencao do escorbuto?",
+      "ground_truth": "Vitamina C.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/scurvy"
+    },
+    {
+      "id": "factual-015",
+      "dimension": "factual",
+      "category": "technology",
+      "prompt": "O que significa a sigla CPU em computacao?",
+      "ground_truth": "Central Processing Unit.",
+      "variants": [],
+      "source": "https://www.britannica.com/technology/CPU"
+    },
+    {
+      "id": "factual-016",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual funcao embutida do Python retorna o tamanho de uma lista?",
+      "ground_truth": "len().",
+      "variants": [],
+      "source": "https://docs.python.org/3/library/functions.html#len"
+    },
+    {
+      "id": "factual-017",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual palavra-chave do Python define uma funcao?",
+      "ground_truth": "def.",
+      "variants": [],
+      "source": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions"
+    },
+    {
+      "id": "factual-018",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual estrutura de dados do Python armazena pares chave-valor mutaveis?",
+      "ground_truth": "dict.",
+      "variants": [],
+      "source": "https://docs.python.org/3/library/stdtypes.html#dict"
+    },
+    {
+      "id": "factual-019",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual operador do Python e usado para exponenciacao?",
+      "ground_truth": "**.",
+      "variants": [],
+      "source": "https://docs.python.org/3/reference/expressions.html#the-power-operator"
+    },
+    {
+      "id": "factual-020",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Que excecao o Python lanca ao acessar uma chave inexistente em um dict com colchetes?",
+      "ground_truth": "KeyError.",
+      "variants": [],
+      "source": "https://docs.python.org/3/library/exceptions.html#KeyError"
+    },
+    {
+      "id": "factual-021",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual valor booleano representa falsidade em Python?",
+      "ground_truth": "False.",
+      "variants": [],
+      "source": "https://docs.python.org/3/library/stdtypes.html#boolean-type-bool"
+    },
+    {
+      "id": "factual-022",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual metodo de string do Python converte todos os caracteres para minusculas?",
+      "ground_truth": "str.lower().",
+      "variants": [],
+      "source": "https://docs.python.org/3/library/stdtypes.html#str.lower"
+    },
+    {
+      "id": "factual-023",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual arquivo de um projeto Python costuma indicar dependencias e metadados neste repositorio?",
+      "ground_truth": "pyproject.toml.",
+      "variants": [],
+      "source": "https://packaging.python.org/en/latest/guides/writing-pyproject-toml/"
+    },
+    {
+      "id": "factual-024",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual metodo de lista adiciona um unico elemento ao final em Python?",
+      "ground_truth": "append().",
+      "variants": [],
+      "source": "https://docs.python.org/3/tutorial/datastructures.html"
+    },
+    {
+      "id": "factual-025",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual gerenciador de pacotes e instalado por padrao com a maioria das distribuicoes modernas de Python?",
+      "ground_truth": "pip.",
+      "variants": [],
+      "source": "https://packaging.python.org/en/latest/tutorials/installing-packages/"
+    },
+    {
+      "id": "factual-026",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano o homem pisou na Lua pela primeira vez?",
+      "ground_truth": "1969.",
+      "variants": [],
+      "source": "https://www.nasa.gov/mission/apollo-11/"
+    },
+    {
+      "id": "factual-027",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior pais do mundo em area territorial?",
+      "ground_truth": "Russia.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Russia"
+    },
+    {
+      "id": "factual-028",
+      "dimension": "factual",
+      "category": "biology",
+      "prompt": "Qual orgao humano bombeia sangue para o corpo?",
+      "ground_truth": "Coracao.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/heart"
+    },
+    {
+      "id": "factual-029",
+      "dimension": "factual",
+      "category": "astronomy",
+      "prompt": "Qual e a estrela no centro do Sistema Solar?",
+      "ground_truth": "Sol.",
+      "variants": [],
+      "source": "https://science.nasa.gov/sun/"
+    },
+    {
+      "id": "factual-030",
+      "dimension": "factual",
+      "category": "calendar",
+      "prompt": "Quantos dias tem um ano bissexto?",
+      "ground_truth": "366 dias.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/leap-year-time-measurement"
+    },
+    {
+      "id": "factual-031",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o pais que tem Lisboa como capital?",
+      "ground_truth": "Portugal.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Portugal"
+    },
+    {
+      "id": "factual-032",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem pintou a Mona Lisa?",
+      "ground_truth": "Leonardo da Vinci.",
+      "variants": [],
+      "source": "https://www.britannica.com/topic/Mona-Lisa-painting"
+    },
+    {
+      "id": "factual-033",
+      "dimension": "factual",
+      "category": "chemistry",
+      "prompt": "Qual e a formula quimica da agua?",
+      "ground_truth": "H2O.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/water"
+    },
+    {
+      "id": "factual-034",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a montanha mais alta do mundo acima do nivel do mar?",
+      "ground_truth": "Monte Everest.",
+      "variants": [],
+      "source": "https://www.britannica.com/place/Mount-Everest",
+      "trap": true
+    },
+    {
+      "id": "factual-035",
+      "dimension": "factual",
+      "category": "calendar",
+      "prompt": "Qual mes do ano tem menos dias em anos nao bissextos?",
+      "ground_truth": "Fevereiro.",
+      "variants": [],
+      "source": "https://www.britannica.com/science/month",
+      "trap": true
+    }
+  ]
 }

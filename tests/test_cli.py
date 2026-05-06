@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -408,10 +409,12 @@ def test_scenarios_uses_builtin_bank_when_no_path(
     runner: CliRunner, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
     """Without --path, the loader falls back to the package's built-in bank."""
-    # The shipped bank is empty by default; just confirm we don't crash.
     result = runner.invoke(main, ["scenarios", "--dimension", "factual"])
     assert result.exit_code == 0
     assert "Dimensão: factual" in result.output
+    match = re.search(r"Total de cenários: (\d+)", result.output)
+    assert match is not None, "Output should contain 'Total de cenários: <n>'"
+    assert int(match.group(1)) >= 30
 
 
 # ---------------------------------------------------------------------------
