@@ -630,9 +630,9 @@ ruff check .
 
 - [x] Arquitetura e estrutura do pacote
 - [x] Providers (Gemini, Mistral, Custom)
-- [x] Banco de cenarios embutido
-- [x] Modulo de avaliacao (LLM-as-a-Judge + BERTScore)
-- [x] Runner e relatorios
+- [x] Banco de cenários embutido
+- [x] Módulo de avaliação (LLM-as-a-Judge + BERTScore)
+- [x] Runner e relatórios
 - [x] CLI
 - [ ] Publicação no PyPI
 - [ ] Suporte a mais dimensões (imparcialidade, segurança)
