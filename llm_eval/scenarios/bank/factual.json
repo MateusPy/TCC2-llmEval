@@ -7,7 +7,7 @@
       "dimension": "factual",
       "category": "geography",
       "prompt": "Qual e a capital da Australia?",
-      "ground_truth": "Camberra.",
+      "ground_truth": "Canberra.",
       "variants": [],
       "source": "https://www.britannica.com/place/Canberra",
       "trap": true
