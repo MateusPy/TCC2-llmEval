@@ -149,6 +149,11 @@ class Judge:
     """
 
     def __init__(self, provider: BaseProvider) -> None:
+        """Inicializa o juiz com o provider que executará as chamadas ao LLM avaliador.
+
+        Args:
+            provider: Provider responsável pelas chamadas ao LLM avaliador.
+        """
         self.provider = provider
 
     def evaluate_factual(self, prompt: str, ground_truth: str, response: str) -> JudgeResult:

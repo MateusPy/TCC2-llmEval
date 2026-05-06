@@ -1,0 +1,77 @@
+# =============================================================================
+# llm-eval — Exemplo de workflow do GitHub Actions
+# =============================================================================
+# Este workflow roda a avaliação de confiabilidade automaticamente em pushes
+# para `main`, em pull requests e uma vez por semana. Os relatórios gerados
+# são publicados como artifact do job.
+#
+# Como usar:
+#   1. Copie este arquivo para `.github/workflows/llm-eval.yml` no seu repo.
+#   2. Configure os secrets em "Settings > Secrets and variables > Actions":
+#        - GEMINI_API_KEY  (ou MISTRAL_API_KEY, conforme o seu provider)
+#   3. Coloque um `config.yaml` (baseado em `config.example.yaml`) na raiz.
+#   4. Ajuste o `cron` da seção `schedule` para a janela que você quer.
+# =============================================================================
+
+name: llm-eval
+
+# Quando rodar este workflow.
+on:
+  # Em todo push para a branch principal — útil para acompanhar regressões.
+  push:
+    branches: [main]
+  # Em todo PR contra `main` — barra mudanças que degradem a confiabilidade.
+  pull_request:
+    branches: [main]
+  # Cron agendado: toda segunda-feira às 06:00 UTC. Ajuste à vontade.
+  schedule:
+    - cron: "0 6 * * 1"
+  # Permite disparo manual a partir da aba "Actions".
+  workflow_dispatch:
+
+# Cancela execuções anteriores do mesmo branch quando uma nova começa,
+# evitando filas de jobs redundantes em pushes consecutivos.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    name: Avaliar confiabilidade
+    runs-on: ubuntu-latest
+
+    # Tempo-limite duro. Aumenta proteção contra travamentos em chamadas a APIs externas.
+    timeout-minutes: 30
+
+    steps:
+      # Baixa o código do repositório.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Instala o Python na versão mínima suportada (3.11).
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          # Cache automático do pip para builds mais rápidas.
+          cache: "pip"
+
+      # Instala o llm-eval. Em produção use uma versão pinada (ex.: ==0.1.0).
+      - name: Instalar llm-eval
+        run: pip install llm-eval
+
+      # Executa a avaliação. A API key vem do secret configurado no repositório.
+      - name: Executar avaliação
+        run: llm-eval run --config config.yaml
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      # Publica o diretório `results/` como artifact, sempre — inclusive
+      # quando a avaliação falha (`if: always()`), para facilitar o debug.
+      - name: Upload do relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: llm-eval-report-${{ github.run_id }}
+          path: results/
+          retention-days: 30

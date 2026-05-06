@@ -44,6 +44,14 @@ class ReportGenerator:
     """
 
     def __init__(self, result: RunResult, *, worst_n: int = 5) -> None:
+        """Initialize the generator with a completed run result.
+
+        Args:
+            result: The :class:`RunResult` produced by :class:`~llm_eval.runner.Runner`.
+            worst_n: Number of lowest-scoring scenarios to highlight per
+                dimension in the Markdown report. Negative values are clamped
+                to zero.
+        """
         self.result = result
         self.worst_n = max(0, int(worst_n))
 
