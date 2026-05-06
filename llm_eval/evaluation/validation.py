@@ -100,7 +100,9 @@ class GoldenScenario(BaseModel):
     @classmethod
     def _validate_dimension(cls, value: str) -> str:
         if value not in ALLOWED_DIMENSIONS:
-            raise ValueError(f"Invalid dimension '{value}'. Allowed values: {list(ALLOWED_DIMENSIONS)}")
+            raise ValueError(
+                f"Invalid dimension '{value}'. Allowed values: {list(ALLOWED_DIMENSIONS)}"
+            )
         return value
 
     @model_validator(mode="after")
@@ -455,10 +457,7 @@ def _cohen_kappa_linear(human_scores: list[int], judge_scores: list[int]) -> flo
     if size == 1:
         return 0.0
 
-    weights = [
-        [abs(i - j) / (size - 1) for j in range(size)]
-        for i in range(size)
-    ]
+    weights = [[abs(i - j) / (size - 1) for j in range(size)] for i in range(size)]
     observed_disagreement = sum(
         weights[i][j] * observed[i][j] for i in range(size) for j in range(size)
     )

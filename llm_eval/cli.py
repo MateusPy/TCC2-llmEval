@@ -326,23 +326,17 @@ def validate_judge(
             except Exception:
                 logging.getLogger(__name__).warning("Falha ao fechar o provider do juiz.")
 
-    click.echo(
-        f"Cohen's Kappa: {report.cohen_kappa:.2f} ({report.agreement_label})"
-    )
+    click.echo(f"Cohen's Kappa: {report.cohen_kappa:.2f} ({report.agreement_label})")
     click.echo(f"Pearson correlation: {report.pearson_correlation:.2f}")
     click.echo(f"MAE: {report.mae:.2f}")
-    click.echo(
-        f"Cenários avaliados: {report.evaluated_scenarios}/{report.total_scenarios}"
-    )
+    click.echo(f"Cenários avaliados: {report.evaluated_scenarios}/{report.total_scenarios}")
     for dimension, summary in report.by_dimension.items():
         click.echo(
             f"  - {dimension}: kappa={summary.kappa:.2f}, "
             f"pearson={summary.pearson_correlation:.2f}, mae={summary.mae:.2f}"
         )
     if report.high_disagreements:
-        click.echo(
-            f"Divergências >=2 pontos: {len(report.high_disagreements)}"
-        )
+        click.echo(f"Divergências >=2 pontos: {len(report.high_disagreements)}")
         for row in report.high_disagreements:
             click.echo(
                 f"  - {row.scenario_id} ({row.dimension}): "
