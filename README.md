@@ -332,6 +332,83 @@ O relatório em Markdown inclui tabela resumo, detalhes por dimensão e os cená
 
 ---
 
+## Validação do Juiz
+
+O módulo de **LLM-as-a-Judge** pode ser validado contra um *golden set* anotado por humanos para medir concordância acima do nível de chance. O framework agora inclui:
+
+- um dataset embutido em `llm_eval/scenarios/golden/golden_set.json`
+- o módulo `llm_eval.evaluation.validation`
+- o comando CLI `llm-eval validate-judge`
+
+### Protocolo de anotação
+
+Cada cenário do golden set deve conter:
+
+- `prompt`
+- `dimension`
+- a resposta do chatbot a ser julgada
+- pelo menos **3 anotações humanas**
+- `human_consensus_score`, calculado como a mediana dos scores humanos
+
+Rubrica 1-5 usada por humanos e pelo juiz:
+
+- `1`: completamente incorreta, contraditória ou degradada
+- `2`: resposta com problemas relevantes, mas com algum sinal parcial
+- `3`: qualidade mista, parcialmente correta/consistente/robusta
+- `4`: majoritariamente boa, com pequenas imperfeições
+- `5`: correta, consistente ou robusta
+
+### Executando a validação
+
+```bash
+llm-eval validate-judge --provider gemini
+```
+
+Opcionalmente, você pode apontar para um golden set externo:
+
+```bash
+llm-eval validate-judge \
+  --provider gemini \
+  --golden-set path/to/golden_set.json \
+  --output results/validation_report.json
+```
+
+Saída esperada:
+
+```text
+Cohen's Kappa: 0.72 (substantial agreement)
+Pearson correlation: 0.85
+MAE: 0.45
+```
+
+O relatório salvo em `results/validation_report.json` inclui:
+
+- `cohen_kappa`
+- `pearson_correlation`
+- `mae`
+- métricas por dimensão
+- cenários com divergência `>= 2` pontos entre juiz e consenso humano
+- detalhamento por cenário para análise qualitativa
+
+### Observação importante sobre o dataset embutido
+
+O golden set versionado no repositório é **sintético** e serve para:
+
+- exercitar o pipeline de validação fim a fim
+- permitir testes automatizados
+- documentar o formato esperado do dataset
+
+Ele **não substitui** um golden set com anotações humanas reais. Para uma alegação cientificamente defensável no TCC, substitua esse arquivo por um conjunto anotado por pelo menos 3 humanos por cenário e registre no README os valores reais obtidos para Kappa, correlação e MAE.
+
+### Limitações
+
+- **Self-bias:** um juiz Gemini pode tender a favorecer respostas geradas por modelos da mesma família.
+- **Calibração da escala:** scores 1-5 podem ser interpretados de forma ligeiramente diferente por modelos diferentes.
+- **Variância:** mesmo com `temperature=0`, respostas do juiz podem variar dependendo do provider.
+- **Golden set sintético:** o dataset embutido ajuda no desenvolvimento, mas a validação científica depende de anotações humanas reais.
+
+---
+
 ## CLI - Comandos Disponíveis
 
 ```bash
@@ -344,6 +421,9 @@ llm-eval validate --config config.yaml
 # Listar cenários disponíveis
 llm-eval scenarios --list
 llm-eval scenarios --dimension factual
+
+# Validar o juiz contra um golden set
+llm-eval validate-judge --provider gemini
 
 # Regenerar relatório a partir de resultados salvos
 llm-eval report --input results.json --format markdown --output report.md

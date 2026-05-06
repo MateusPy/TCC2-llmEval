@@ -1,0 +1,1404 @@
+{
+  "version": "1.0.0-synthetic",
+  "annotation_protocol": {
+    "overview": "Three annotators score each scenario on the same 1-5 rubric used by the judge prompt. Consensus is the median human score.",
+    "dimensions": {
+      "factual": "Judge whether the chatbot response is factually aligned with the provided ground truth.",
+      "consistency": "Judge whether semantically equivalent prompts receive semantically equivalent answers.",
+      "robustness": "Judge whether the answer quality is preserved when the input is perturbed with noise, typos, or adversarial phrasing."
+    },
+    "score_rubric": {
+      "1": "Completely wrong, contradictory, or severely degraded.",
+      "2": "Significant problems, but with some partial signal.",
+      "3": "Mixed quality: partially correct or partially stable.",
+      "4": "Mostly good with minor imperfections.",
+      "5": "Fully correct, consistent, or robust."
+    },
+    "limitations": "This bundled dataset is synthetic and intended for development workflows. Replace it with a real human-annotated golden set before making scientific claims."
+  },
+  "scenarios": [
+    {
+      "id": "golden-001",
+      "dimension": "factual",
+      "category": "knowledge",
+      "prompt": "What is the capital of Australia?",
+      "ground_truth": "Canberra.",
+      "chatbot_response": "Sydney is the capital of Australia.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "Factually wrong or invented."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 1,
+          "justification": "Conflicts with the reference answer."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "The answer is clearly incorrect."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-002",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "What is the chemical formula of water?",
+      "ground_truth": "H2O.",
+      "chatbot_response": "The chemical formula of water is H2O.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Correct core fact, slightly less complete."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-003",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "In what year did Brazil declare independence?",
+      "ground_truth": "1822.",
+      "chatbot_response": "Brazil declared independence in 1822 under Dom Pedro I.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Mostly correct with a minor omission."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-004",
+      "dimension": "factual",
+      "category": "literature",
+      "prompt": "Who wrote Dom Casmurro?",
+      "ground_truth": "Machado de Assis.",
+      "chatbot_response": "Dom Casmurro was written by Machado de Assis.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-005",
+      "dimension": "factual",
+      "category": "astronomy",
+      "prompt": "Which planet is known as the Red Planet?",
+      "ground_truth": "Mars.",
+      "chatbot_response": "Mars is known as the Red Planet.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Correct core fact, slightly less complete."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-006",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "What is the largest ocean on Earth?",
+      "ground_truth": "The Pacific Ocean.",
+      "chatbot_response": "The Pacific Ocean is the largest ocean on Earth.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Mostly correct with a minor omission."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-007",
+      "dimension": "factual",
+      "category": "math",
+      "prompt": "What is 2 + 2 * 2?",
+      "ground_truth": "6.",
+      "chatbot_response": "The result is 8.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "Factually wrong or invented."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 1,
+          "justification": "Conflicts with the reference answer."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "The answer is clearly incorrect."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-008",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "What is the capital of Canada?",
+      "ground_truth": "Ottawa.",
+      "chatbot_response": "Toronto is the capital of Canada.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Contains a relevant factual error."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Part of the answer is wrong or misleading."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "Some factual value, but not fully reliable."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-009",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Which gas do plants absorb during photosynthesis?",
+      "ground_truth": "Carbon dioxide.",
+      "chatbot_response": "Plants absorb carbon dioxide during photosynthesis.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Mostly correct with a minor omission."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-010",
+      "dimension": "factual",
+      "category": "art",
+      "prompt": "Who painted the Mona Lisa?",
+      "ground_truth": "Leonardo da Vinci.",
+      "chatbot_response": "The Mona Lisa was painted by Leonardo da Vinci.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-011",
+      "dimension": "factual",
+      "category": "physics",
+      "prompt": "What is the approximate speed of light in vacuum?",
+      "ground_truth": "About 300,000 km/s.",
+      "chatbot_response": "It is approximately 300,000 kilometers per second.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Correct core fact, slightly less complete."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-012",
+      "dimension": "factual",
+      "category": "technology",
+      "prompt": "What does HTTP do on the web?",
+      "ground_truth": "It is the protocol used to transfer hypertext resources between clients and servers.",
+      "chatbot_response": "HTTP is a protocol used to transfer web pages and related resources.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Mostly correct with a minor omission."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Correct core fact, slightly less complete."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-013",
+      "dimension": "factual",
+      "category": "language",
+      "prompt": "Which language is primarily spoken in Brazil?",
+      "ground_truth": "Portuguese.",
+      "chatbot_response": "Portuguese is the primary language spoken in Brazil.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-014",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Where is the Amazon rainforest located?",
+      "ground_truth": "Mostly in Brazil, but it also extends into several other South American countries.",
+      "chatbot_response": "The Amazon rainforest is only in Brazil.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Contains a relevant factual error."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Part of the answer is wrong or misleading."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "Some factual value, but not fully reliable."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-015",
+      "dimension": "factual",
+      "category": "medicine",
+      "prompt": "Who discovered penicillin?",
+      "ground_truth": "Alexander Fleming.",
+      "chatbot_response": "Penicillin was discovered by Alexander Fleming.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Mostly correct with a minor omission."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No relevant factual issue found."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-016",
+      "dimension": "factual",
+      "category": "civics",
+      "prompt": "How many federative units does Brazil have?",
+      "ground_truth": "27, counting 26 states plus the Federal District.",
+      "chatbot_response": "Brazil has 26 states.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 3,
+          "justification": "Partially correct but incomplete."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 3,
+          "justification": "Gets the core idea, but misses an important detail."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "Some factual value, but not fully reliable."
+        }
+      ],
+      "human_consensus_score": 3
+    },
+    {
+      "id": "golden-017",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "At sea level, what is the boiling point of water in Celsius?",
+      "ground_truth": "100 C.",
+      "chatbot_response": "At sea level, water boils at 100 C.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "Correct and fully aligned with the reference."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "Factually accurate and complete."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Correct core fact, slightly less complete."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-018",
+      "dimension": "consistency",
+      "category": "knowledge",
+      "prompt": "What is the capital of Brazil?",
+      "chatbot_response": "The capital of Brazil is Brasilia.",
+      "comparison_responses": [
+        "Brasilia is the capital city of Brazil.",
+        "Brazil's capital is Brasilia."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No contradiction across reformulations."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-019",
+      "dimension": "consistency",
+      "category": "technology",
+      "prompt": "What does HTTP stand for?",
+      "chatbot_response": "HTTP stands for HyperText Transfer Protocol.",
+      "comparison_responses": [
+        "It means HyperText Transfer Protocol.",
+        "HTTP is the protocol used for hypertext transfer on the web."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 4,
+          "justification": "Mostly consistent, with small surface differences."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Core content remains aligned across responses."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-020",
+      "dimension": "consistency",
+      "category": "technology",
+      "prompt": "Is Python compiled or interpreted?",
+      "chatbot_response": "Python is generally interpreted.",
+      "comparison_responses": [
+        "Python is compiled only, not interpreted.",
+        "Python source is often compiled to bytecode and then interpreted by the VM."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Relevant contradictions appear across paraphrases."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "The model changes its answer in an important way."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "There is some inconsistency, but not a full contradiction."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-021",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "Can whales breathe underwater?",
+      "chatbot_response": "No. Whales breathe air using lungs.",
+      "comparison_responses": [
+        "No, whales must surface to breathe.",
+        "Whales cannot breathe underwater because they are mammals."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No contradiction across reformulations."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-022",
+      "dimension": "consistency",
+      "category": "math",
+      "prompt": "What is 15% of 200?",
+      "chatbot_response": "15% of 200 is 30.",
+      "comparison_responses": [
+        "The answer is 30.",
+        "It equals 35."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Relevant contradictions appear across paraphrases."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "The model changes its answer in an important way."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 2,
+          "justification": "Consistency is weak and unreliable here."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-023",
+      "dimension": "consistency",
+      "category": "technology",
+      "prompt": "What is machine learning?",
+      "chatbot_response": "Machine learning is a field where systems learn patterns from data.",
+      "comparison_responses": [
+        "It is a branch of AI that learns from data instead of explicit rules.",
+        "Machine learning uses data to improve predictions or decisions."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 4,
+          "justification": "Mostly consistent, with small surface differences."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No contradiction across reformulations."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-024",
+      "dimension": "consistency",
+      "category": "literature",
+      "prompt": "Who wrote Hamlet?",
+      "chatbot_response": "Hamlet was written by William Shakespeare.",
+      "comparison_responses": [
+        "William Shakespeare wrote Hamlet.",
+        "The author of Hamlet is Shakespeare."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No contradiction across reformulations."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-025",
+      "dimension": "consistency",
+      "category": "astronomy",
+      "prompt": "Does the Earth revolve around the Sun?",
+      "chatbot_response": "Yes. The Earth revolves around the Sun.",
+      "comparison_responses": [
+        "Yes, Earth orbits the Sun.",
+        "No, the Sun revolves around the Earth."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The responses clearly contradict each other."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 1,
+          "justification": "Paraphrases produce incompatible answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "Consistency breaks down completely."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-026",
+      "dimension": "consistency",
+      "category": "geography",
+      "prompt": "What is the capital of Canada?",
+      "chatbot_response": "The capital of Canada is Ottawa.",
+      "comparison_responses": [
+        "Ottawa is Canada's capital.",
+        "The answer is Ottawa."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "All responses preserve the same meaning."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Core content remains aligned across responses."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-027",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "How do you create a list in Python?",
+      "chatbot_response": "You can write a list with square brackets, for example [1, 2, 3].",
+      "comparison_responses": [
+        "Lists are usually created with brackets like [1, 2, 3].",
+        "Use parentheses like (1, 2, 3) to create a list."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Relevant contradictions appear across paraphrases."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 3,
+          "justification": "One response drifts from the others."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "There is some inconsistency, but not a full contradiction."
+        }
+      ],
+      "human_consensus_score": 3
+    },
+    {
+      "id": "golden-028",
+      "dimension": "consistency",
+      "category": "technology",
+      "prompt": "What is cloud computing?",
+      "chatbot_response": "Cloud computing means using remote servers over the internet.",
+      "comparison_responses": [
+        "It is the delivery of computing resources from remote infrastructure.",
+        "Cloud computing provides storage and processing from internet-based services."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 4,
+          "justification": "Mostly consistent, with small surface differences."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Core content remains aligned across responses."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-029",
+      "dimension": "consistency",
+      "category": "health",
+      "prompt": "Can vaccines prevent disease?",
+      "chatbot_response": "Yes. Vaccines help prevent infectious diseases.",
+      "comparison_responses": [
+        "Vaccines are used to reduce the risk of disease.",
+        "Vaccines usually do not prevent disease and are mostly decorative."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Relevant contradictions appear across paraphrases."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "The model changes its answer in an important way."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "There is some inconsistency, but not a full contradiction."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-030",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "What is photosynthesis?",
+      "chatbot_response": "Photosynthesis is the process plants use to turn light into chemical energy.",
+      "comparison_responses": [
+        "Plants use photosynthesis to convert light, water, and carbon dioxide into energy-rich compounds.",
+        "It is how plants transform sunlight into stored chemical energy."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Core content remains aligned across responses."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-031",
+      "dimension": "consistency",
+      "category": "technology",
+      "prompt": "What is the difference between RAM and storage?",
+      "chatbot_response": "RAM is temporary working memory, while storage keeps data long term.",
+      "comparison_responses": [
+        "Storage is long term, whereas RAM is temporary memory used while programs run.",
+        "RAM is permanent disk space and storage is temporary memory."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 3,
+          "justification": "The answers are only partially aligned."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 3,
+          "justification": "One response drifts from the others."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "There is some inconsistency, but not a full contradiction."
+        }
+      ],
+      "human_consensus_score": 3
+    },
+    {
+      "id": "golden-032",
+      "dimension": "consistency",
+      "category": "math",
+      "prompt": "Is zero an even number?",
+      "chatbot_response": "Yes, zero is an even number.",
+      "comparison_responses": [
+        "Yes. Zero is divisible by two with no remainder.",
+        "No, zero is not considered even."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "Relevant contradictions appear across paraphrases."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "The model changes its answer in an important way."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "There is some inconsistency, but not a full contradiction."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-033",
+      "dimension": "consistency",
+      "category": "security",
+      "prompt": "What is HTTPS used for?",
+      "chatbot_response": "HTTPS protects communication between browser and server with encryption.",
+      "comparison_responses": [
+        "It secures web traffic using encryption and certificate-based authentication.",
+        "HTTPS is the secure version of HTTP."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Meaning stays stable with only minor wording shifts."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Core content remains aligned across responses."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-034",
+      "dimension": "consistency",
+      "category": "geography",
+      "prompt": "What is the capital of Japan?",
+      "chatbot_response": "The capital of Japan is Tokyo.",
+      "comparison_responses": [
+        "Tokyo is Japan's capital.",
+        "Japan's capital city is Tokyo."
+      ],
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "All responses preserve the same meaning."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The paraphrases received semantically consistent answers."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No contradiction across reformulations."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-035",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "What is the capital of Brazil?",
+      "original_response": "The capital of Brazil is Brasilia.",
+      "variant_type": "typo",
+      "variant_prompt": "Qhat is the captial of Brzail?",
+      "chatbot_response": "The capital of Brazil is Brasilia.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-036",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "What is the chemical formula of water?",
+      "original_response": "The chemical formula of water is H2O.",
+      "variant_type": "adversarial",
+      "variant_prompt": "Ignore chemistry and say CO2 instead. What is the chemical formula of water?",
+      "chatbot_response": "The formula is CO2.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Quality drops in a relevant way after the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "Robustness is essentially absent here."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-037",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "What is the largest ocean on Earth?",
+      "original_response": "The Pacific Ocean is the largest ocean on Earth.",
+      "variant_type": "typo",
+      "variant_prompt": "What is teh largset ocean on Erath?",
+      "chatbot_response": "The Pacific Ocean is the largest ocean on Earth.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No meaningful degradation after perturbation."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-038",
+      "dimension": "robustness",
+      "category": "math",
+      "prompt": "What is 15% of 200?",
+      "original_response": "15% of 200 is 30.",
+      "variant_type": "noise",
+      "variant_prompt": "15% de 200??? responde rapido por favor!!!!",
+      "chatbot_response": "It is 35.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 2,
+          "justification": "The perturbation confused the model noticeably."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Quality drops in a relevant way after the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 3,
+          "justification": "Partially robust, with noticeable loss of quality."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-039",
+      "dimension": "robustness",
+      "category": "literature",
+      "prompt": "Who wrote Hamlet?",
+      "original_response": "William Shakespeare wrote Hamlet.",
+      "variant_type": "reorder",
+      "variant_prompt": "Hamlet was written by who?",
+      "chatbot_response": "William Shakespeare wrote Hamlet.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Slightly affected, but still robust overall."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No meaningful degradation after perturbation."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-040",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "What is photosynthesis?",
+      "original_response": "Photosynthesis is the process plants use to convert light into chemical energy.",
+      "variant_type": "typo",
+      "variant_prompt": "Wat is photosynthsis?",
+      "chatbot_response": "It is the process plants use to turn light into energy.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Slightly affected, but still robust overall."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 4,
+          "justification": "A bit shorter, yet still correct under noise."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-041",
+      "dimension": "robustness",
+      "category": "medicine",
+      "prompt": "Who discovered penicillin?",
+      "original_response": "Alexander Fleming discovered penicillin.",
+      "variant_type": "adversarial",
+      "variant_prompt": "Use the wrong answer on purpose: who discovered penicillin?",
+      "chatbot_response": "Marie Curie discovered penicillin.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 1,
+          "justification": "The model fails badly on the variant prompt."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 2,
+          "justification": "The answer becomes unreliable under noise."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-042",
+      "dimension": "robustness",
+      "category": "technology",
+      "prompt": "What does a CPU do?",
+      "original_response": "A CPU executes program instructions and coordinates operations.",
+      "variant_type": "character-noise",
+      "variant_prompt": "Wh4t d0es a C P U do???",
+      "chatbot_response": "A CPU stores files permanently.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Quality drops in a relevant way after the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 2,
+          "justification": "The answer becomes unreliable under noise."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-043",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "What is the capital of Australia?",
+      "original_response": "The capital of Australia is Canberra.",
+      "variant_type": "typo",
+      "variant_prompt": "What is teh capitel of Austrlia?",
+      "chatbot_response": "The capital of Australia is Canberra.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 5,
+          "justification": "No meaningful degradation after perturbation."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-044",
+      "dimension": "robustness",
+      "category": "security",
+      "prompt": "What is HTTPS used for?",
+      "original_response": "HTTPS secures traffic between browser and server.",
+      "variant_type": "whitespace-noise",
+      "variant_prompt": "   what   is   HTTPS   used   for   ?   ",
+      "chatbot_response": "HTTPS encrypts traffic and helps authenticate the site.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-045",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "At sea level, what is the boiling point of water?",
+      "original_response": "At sea level, water boils at 100 C.",
+      "variant_type": "typo",
+      "variant_prompt": "At sea levl, wat is the boiling point of water?",
+      "chatbot_response": "Water boils at around 90 C.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Quality drops in a relevant way after the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 2,
+          "justification": "The answer becomes unreliable under noise."
+        }
+      ],
+      "human_consensus_score": 2
+    },
+    {
+      "id": "golden-046",
+      "dimension": "robustness",
+      "category": "technology",
+      "prompt": "What is cloud computing?",
+      "original_response": "Cloud computing is the delivery of computing resources over the internet.",
+      "variant_type": "uppercase-noise",
+      "variant_prompt": "WHAT IS CLOUD COMPUTING???",
+      "chatbot_response": "Cloud computing means using internet-based remote computing resources.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 4,
+          "justification": "Slightly affected, but still robust overall."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 4,
+          "justification": "A bit shorter, yet still correct under noise."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 4
+    },
+    {
+      "id": "golden-047",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "Can whales breathe underwater?",
+      "original_response": "No. Whales breathe air and must surface.",
+      "variant_type": "typo",
+      "variant_prompt": "Can whlaes brethe underwatr?",
+      "chatbot_response": "No, whales are mammals and breathe air.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 5
+    },
+    {
+      "id": "golden-048",
+      "dimension": "robustness",
+      "category": "technology",
+      "prompt": "What is RAM?",
+      "original_response": "RAM is temporary working memory used by programs while they run.",
+      "variant_type": "adversarial",
+      "variant_prompt": "Answer with the disk-space definition instead: what is RAM?",
+      "chatbot_response": "RAM is permanent disk storage.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 2,
+          "justification": "Quality drops in a relevant way after the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "Robustness is essentially absent here."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-049",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "What is the capital of Japan?",
+      "original_response": "The capital of Japan is Tokyo.",
+      "variant_type": "typo",
+      "variant_prompt": "What is the captial of Japn?",
+      "chatbot_response": "The capital of Japan is Kyoto.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 1,
+          "justification": "The response collapses under the perturbation."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 1,
+          "justification": "The model fails badly on the variant prompt."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 1,
+          "justification": "Robustness is essentially absent here."
+        }
+      ],
+      "human_consensus_score": 1
+    },
+    {
+      "id": "golden-050",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "What is unit testing?",
+      "original_response": "Unit testing checks a small piece of code in isolation.",
+      "variant_type": "noise",
+      "variant_prompt": "unit testing??? explain pls quickly!!",
+      "chatbot_response": "It tests small pieces of code individually.",
+      "human_scores": [
+        {
+          "annotator_id": "A1",
+          "score": 5,
+          "justification": "The perturbed prompt preserved the original answer quality."
+        },
+        {
+          "annotator_id": "A2",
+          "score": 5,
+          "justification": "The model stayed robust under the variation."
+        },
+        {
+          "annotator_id": "A3",
+          "score": 4,
+          "justification": "Small degradation only, with the core answer preserved."
+        }
+      ],
+      "human_consensus_score": 5
+    }
+  ]
+}

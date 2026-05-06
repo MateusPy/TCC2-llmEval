@@ -13,6 +13,7 @@ from click.testing import CliRunner
 
 from llm_eval import cli
 from llm_eval.cli import _truncate, main
+from llm_eval.evaluation.validation import ValidationReport
 from llm_eval.runner import RunResult, ScenarioResult
 
 
@@ -126,7 +127,7 @@ def _patch_runner_factory(
 def test_main_help_lists_all_commands(runner: CliRunner):
     result = runner.invoke(main, ["--help"])
     assert result.exit_code == 0
-    for command in ("run", "validate", "scenarios"):
+    for command in ("run", "validate", "scenarios", "report", "validate-judge"):
         assert command in result.output
 
 
@@ -526,3 +527,84 @@ def test_truncate_long_string_appends_ellipsis():
 
 def test_truncate_strips_newlines():
     assert _truncate("line1\nline2", 100) == "line1 line2"
+
+
+def test_validate_judge_runs_and_writes_report(
+    runner: CliRunner,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    class _StubProvider:
+        def __init__(self) -> None:
+            self.closed = False
+
+        def close(self) -> None:
+            self.closed = True
+
+    class _StubJudge:
+        def __init__(self) -> None:
+            self.provider = _StubProvider()
+
+    class _StubValidator:
+        def __init__(self, judge: Any, golden_set_path: Path | None) -> None:
+            self.judge = judge
+            self.golden_set_path = golden_set_path
+
+        def run(self) -> ValidationReport:
+            return ValidationReport(
+                cohen_kappa=0.72,
+                pearson_correlation=0.85,
+                mae=0.45,
+                agreement_label="substantial agreement",
+                by_dimension={
+                    "factual": {
+                        "kappa": 0.8,
+                        "pearson_correlation": 0.9,
+                        "mae": 0.2,
+                        "agreement_label": "substantial agreement",
+                        "total_scenarios": 10,
+                        "evaluated_scenarios": 10,
+                    }
+                },
+                high_disagreements=[],
+                per_scenario=[],
+                total_scenarios=10,
+                evaluated_scenarios=10,
+                golden_set_version="test-1",
+                judge_provider="StubProvider",
+                judge_model="stub-model",
+            )
+
+    stub_judge = _StubJudge()
+    monkeypatch.setattr(cli, "_build_validation_judge", lambda *args, **kwargs: stub_judge)
+    monkeypatch.setattr(cli, "JudgeValidator", _StubValidator)
+
+    output_path = tmp_path / "validation_report.json"
+    result = runner.invoke(
+        main,
+        ["validate-judge", "--provider", "gemini", "--output", str(output_path)],
+    )
+
+    assert result.exit_code == 0
+    assert "Cohen's Kappa: 0.72 (substantial agreement)" in result.output
+    assert "Relatório salvo em" in result.output
+    assert output_path.exists()
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["cohen_kappa"] == 0.72
+    assert stub_judge.provider.closed is True
+
+
+def test_validate_judge_surfaces_builder_error(
+    runner: CliRunner,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    monkeypatch.setattr(
+        cli,
+        "_build_validation_judge",
+        lambda *args, **kwargs: (_ for _ in ()).throw(ValueError("missing API key")),
+    )
+
+    result = runner.invoke(main, ["validate-judge", "--provider", "gemini"])
+
+    assert result.exit_code == 1
+    assert "Falha na validação do juiz" in result.output
