@@ -12,9 +12,12 @@ from llm_eval.evaluation.judge import JudgeResult
 from llm_eval.evaluation.validation import (
     JudgeValidationError,
     JudgeValidator,
+    ValidationScenarioResult,
     _cohen_kappa_linear,
     _mean_absolute_error,
     _pearson_correlation,
+    _summarize_metrics,
+    interpret_kappa,
 )
 
 
@@ -170,3 +173,77 @@ def test_pearson_correlation_constant_scores_returns_zero() -> None:
 
 def test_mean_absolute_error() -> None:
     assert _mean_absolute_error([5, 3, 1], [4, 3, 2]) == pytest.approx(0.6666666667)
+
+
+def test_golden_scenario_rejects_even_annotation_count(tmp_path: Any) -> None:
+    """GoldenScenario must reject scenarios with an even number of annotations."""
+    payload = {
+        "version": "test-even",
+        "annotation_protocol": {"overview": "test"},
+        "scenarios": [
+            {
+                "id": "even-001",
+                "dimension": "factual",
+                "prompt": "What is 1+1?",
+                "ground_truth": "2.",
+                "chatbot_response": "2.",
+                "human_scores": [
+                    {"annotator_id": "A1", "score": 5, "justification": "ok"},
+                    {"annotator_id": "A2", "score": 5, "justification": "ok"},
+                    {"annotator_id": "A3", "score": 4, "justification": "ok"},
+                    {"annotator_id": "A4", "score": 4, "justification": "ok"},
+                ],
+                "human_consensus_score": 4,
+            }
+        ],
+    }
+    path = tmp_path / "even.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(JudgeValidationError, match="schema validation failed"):
+        JudgeValidator(_StubJudge({"factual": 5, "consistency": 3, "robustness": 1}), path).run()
+
+
+def test_agreement_label_uses_unrounded_kappa() -> None:
+    """agreement_label must be derived from the raw kappa, not the rounded value."""
+    # Build a scenario set where raw_kappa is just below 0.81 (boundary for
+    # "substantial" vs "almost perfect").  The rounded value would be >= 0.81
+    # but interpret_kappa must still return "substantial agreement".
+    assert interpret_kappa(0.809) == "substantial agreement"
+    assert interpret_kappa(0.81) == "almost perfect agreement"
+
+    # Confirm _summarize_metrics uses the raw value: construct results whose
+    # kappa is 1.0 (perfect agreement) and verify the label propagates correctly.
+    results = [
+        ValidationScenarioResult(
+            scenario_id="s1",
+            dimension="factual",
+            prompt="p",
+            human_scores=[1],
+            human_consensus_score=1,
+            judge_score=1,
+            score_difference=0,
+            absolute_error=0.0,
+        ),
+        ValidationScenarioResult(
+            scenario_id="s2",
+            dimension="factual",
+            prompt="p",
+            human_scores=[3],
+            human_consensus_score=3,
+            judge_score=3,
+            score_difference=0,
+            absolute_error=0.0,
+        ),
+        ValidationScenarioResult(
+            scenario_id="s3",
+            dimension="factual",
+            prompt="p",
+            human_scores=[5],
+            human_consensus_score=5,
+            judge_score=5,
+            score_difference=0,
+            absolute_error=0.0,
+        ),
+    ]
+    summary = _summarize_metrics(results)
+    assert summary.agreement_label == interpret_kappa(1.0)

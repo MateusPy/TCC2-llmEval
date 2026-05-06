@@ -107,8 +107,14 @@ class GoldenScenario(BaseModel):
 
     @model_validator(mode="after")
     def _validate_structure(self) -> "GoldenScenario":
-        if len(self.human_scores) < 3:
+        n = len(self.human_scores)
+        if n < 3:
             raise ValueError(f"Golden scenario '{self.id}' must have at least 3 human annotations")
+        if n % 2 == 0:
+            raise ValueError(
+                f"Golden scenario '{self.id}' must have an odd number of annotations so "
+                f"the median consensus is unambiguous (got {n})"
+            )
 
         expected_consensus = _median_score(annotation.score for annotation in self.human_scores)
         if self.human_consensus_score != expected_consensus:
@@ -395,19 +401,22 @@ def _summarize_metrics(results: list[ValidationScenarioResult]) -> ValidationMet
     judge_scores = [row.judge_score for row in scored if row.judge_score is not None]
 
     if scored:
-        kappa = _round(_cohen_kappa_linear(human_scores, judge_scores))
+        raw_kappa = _cohen_kappa_linear(human_scores, judge_scores)
+        kappa = _round(raw_kappa)
         pearson = _round(_pearson_correlation(human_scores, judge_scores))
         mae = _round(_mean_absolute_error(human_scores, judge_scores))
+        label = interpret_kappa(raw_kappa)
     else:
         kappa = 0.0
         pearson = 0.0
         mae = 0.0
+        label = interpret_kappa(0.0)
 
     return ValidationMetricSummary(
         kappa=kappa,
         pearson_correlation=pearson,
         mae=mae,
-        agreement_label=interpret_kappa(kappa),
+        agreement_label=label,
         total_scenarios=len(results),
         evaluated_scenarios=len(scored),
     )
