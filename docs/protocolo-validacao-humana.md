@@ -1,50 +1,50 @@
-# Protocolo de Validacao Humana do LLM-as-a-Judge
+# Protocolo de Validação Humana do LLM-as-a-Judge
 
 ## Contexto
 
-O projeto `llm-eval` avalia a confiabilidade de chatbots baseados em LLMs a partir de cenarios de teste organizados em tres dimensoes: `factual`, `consistency` e `robustness`. A avaliacao das respostas combina metricas automaticas e um componente `LLM-as-a-Judge`, responsavel por atribuir uma nota ordinal de 1 a 5 e uma justificativa para cada resposta avaliada.
+O projeto `llm-eval` avalia a confiabilidade de chatbots baseados em LLMs a partir de cenários de teste organizados em três dimensões: `factual`, `consistency` e `robustness`. A avaliação das respostas combina métricas automáticas e um componente `LLM-as-a-Judge`, responsável por atribuir uma nota ordinal de 1 a 5 e uma justificativa para cada resposta avaliada.
 
-Este protocolo define o procedimento de validacao humana do componente `LLM-as-a-Judge`. A finalidade da validacao humana e verificar se as notas atribuidas pelo juiz automatico apresentam concordancia aceitavel com julgamentos humanos em uma amostra controlada. Portanto, os resultados deste protocolo devem ser interpretados como evidencia sobre o alinhamento do juiz automatico com anotadores humanos no contexto do estudo, e nao como prova de confiabilidade universal dos chatbots avaliados.
+Este protocolo define o procedimento de validação humana do componente `LLM-as-a-Judge`. A finalidade da validação humana é verificar se as notas atribuídas pelo juiz automático apresentam concordância aceitável com julgamentos humanos em uma amostra controlada. Portanto, os resultados deste protocolo devem ser interpretados como evidência sobre o alinhamento do juiz automático com anotadores humanos no contexto do estudo, e não como prova de confiabilidade universal dos chatbots avaliados.
 
-O `JudgeValidator` do projeto utiliza um golden set com anotacoes humanas e calcula metricas de concordancia entre o `human_consensus_score` e a nota atribuida pelo juiz. A estrategia preferencial adotada neste protocolo utiliza tres anotadores humanos por item, permitindo calcular o consenso humano pela mediana das tres notas independentes.
+O `JudgeValidator` do projeto utiliza um golden set com anotações humanas e calcula métricas de concordância entre o `human_consensus_score` e a nota atribuída pelo juiz. A estratégia preferencial adotada neste protocolo utiliza três anotadores humanos por item, permitindo calcular o consenso humano pela mediana das três notas independentes.
 
 ## Objetivo
 
-O objetivo deste protocolo e orientar a construcao de um golden set humano para validar o comportamento do `LLM-as-a-Judge` nas tres dimensoes avaliadas pelo framework. Especificamente, busca-se:
+O objetivo deste protocolo é orientar a construção de um golden set humano para validar o comportamento do `LLM-as-a-Judge` nas três dimensões avaliadas pelo framework. Especificamente, busca-se:
 
-- coletar anotacoes humanas independentes para uma amostra controlada de cenarios;
+- coletar anotações humanas independentes para uma amostra controlada de cenários;
 - calcular uma nota humana consensual por item;
 - medir o acordo inter-anotador;
-- comparar a nota consensual humana com a nota produzida pelo juiz automatico;
-- registrar limitacoes metodologicas da validacao humana.
+- comparar a nota consensual humana com a nota produzida pelo juiz automático;
+- registrar limitações metodológicas da validação humana.
 
 ## Escopo
 
-O protocolo cobre a validacao humana de cenarios avaliados nas dimensoes:
+O protocolo cobre a validação humana de cenários avaliados nas dimensões:
 
 - `factual`: alinhamento da resposta do chatbot com um `ground_truth`;
-- `consistency`: manutencao do sentido entre respostas a prompts semanticamente equivalentes;
-- `robustness`: manutencao da qualidade da resposta diante de ruido, erros, variacoes superficiais ou formulacoes adversariais.
+- `consistency`: manutenção do sentido entre respostas a prompts semanticamente equivalentes;
+- `robustness`: manutenção da qualidade da resposta diante de ruído, erros, variações superficiais ou formulações adversariais.
 
-A unidade de anotacao e a saida do chatbot associada a um cenario de validacao. Para `factual`, essa saida corresponde a uma resposta individual, que o anotador compara com o `ground_truth`. Para `consistency`, corresponde ao conjunto de respostas geradas para o prompt base e suas variantes semanticamente equivalentes. Para `robustness`, corresponde a comparacao entre a resposta ao prompt original e a resposta a variante perturbada, considerando o comportamento esperado.
+A unidade de anotação é a saída do chatbot associada a um cenário de validação. Para `factual`, essa saída corresponde a uma resposta individual, que o anotador compara com o `ground_truth`. Para `consistency`, corresponde ao conjunto de respostas geradas para o prompt base e suas variantes semanticamente equivalentes. Para `robustness`, corresponde à comparação entre a resposta ao prompt original e a resposta à variante perturbada, considerando o comportamento esperado.
 
 ## Amostra
 
-A amostra recomendada contem aproximadamente 30 cenarios, estratificados por dimensao:
+A amostra recomendada contém aproximadamente 30 cenários, estratificados por dimensão:
 
-- 10 cenarios `factual`;
-- 10 cenarios `consistency`;
-- 10 cenarios `robustness`.
+- 10 cenários `factual`;
+- 10 cenários `consistency`;
+- 10 cenários `robustness`.
 
-Esse tamanho e adequado para uma validacao exploratoria no contexto do TCC, pois permite observar tendencias de concordancia sem transformar a validacao humana em um estudo estatistico amplo. Caso haja tempo disponivel, a amostra pode ser ampliada, mantendo a estratificacao por dimensao.
+Esse tamanho é adequado para uma validação exploratória no contexto do TCC, pois permite observar tendências de concordância sem transformar a validação humana em um estudo estatístico amplo. Caso haja tempo disponível, a amostra pode ser ampliada, mantendo a estratificação por dimensão.
 
-## Criterio de Selecao da Amostra
+## Critério de Seleção da Amostra
 
-A selecao dos cenarios deve priorizar diversidade e rastreabilidade. Recomenda-se selecionar a amostra de forma estratificada por dimensao e, quando possivel, tambem por:
+A seleção dos cenários deve priorizar diversidade e rastreabilidade. Recomenda-se selecionar a amostra de forma estratificada por dimensão e, quando possível, também por:
 
-- categoria tematica do cenario;
+- categoria temática do cenário;
 - provedor e modelo do chatbot avaliado;
-- nivel esperado de dificuldade;
+- nível esperado de dificuldade;
 - presenca de casos simples, intermediarios e potencialmente problematicos;
 - casos em que o framework ou o juiz automatico apresentaram erros, divergencias ou resultados inesperados em execucoes preliminares.
 
