@@ -70,7 +70,10 @@ Thumbs.db
 results/
 *.log
 
-# Exceptions: pilot artifacts are committed for reproducibility / TCC record.
+# Exceptions: pilot artifacts and demo-chatbot smoke test are committed for
+# reproducibility / TCC record. New ad-hoc runs elsewhere stay gitignored.
 !experiments/**/results/
 !experiments/**/results/**
 !experiments/**/*.log
+!examples/demo-chatbot/results/
+!examples/demo-chatbot/results/**

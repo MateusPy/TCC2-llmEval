@@ -177,6 +177,72 @@ jobs:
           path: results/
 ```
 
+### Como quality gate em PRs (fail-on-regression)
+
+Mudanças no system prompt, no modelo ou na cadeia de RAG do seu chatbot podem regredir a qualidade silenciosamente. O `llm-eval` foi pensado para rodar como **quality gate** em cada PR: se algum score por dimensão cair abaixo do threshold, o PR falha.
+
+O exemplo vivo desse padrão está em [`examples/demo-chatbot/`](examples/demo-chatbot/) e no job `eval-gate` do nosso próprio [`.github/workflows/ci.yml`](.github/workflows/ci.yml). Versão genérica para você copiar:
+
+```yaml
+# Adicione ao seu .github/workflows/ci.yml, junto dos jobs existentes:
+
+  changes:                              # detecta se vale rodar o gate
+    runs-on: ubuntu-latest
+    permissions: { pull-requests: read }
+    outputs: { eval: "${{ steps.f.outputs.eval }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: f
+        with:
+          filters: |
+            eval:
+              - 'seu-chatbot/**'        # substitua pelo path do seu chatbot
+              - 'scenarios/**'
+
+  eval-gate:
+    runs-on: ubuntu-latest
+    needs: [changes, lint, test]        # roda DEPOIS dos testes; se eles falham, nem inicia
+    if: needs.changes.outputs.eval == 'true'
+    env:
+      EVAL_THRESHOLD: "3.0"             # piso observado − 0.3; calibre após 3+ runs
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # SUA_CHAVE_DO_LLM: ${{ secrets.SUA_CHAVE_DO_LLM }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install llm-eval
+      - run: |                          # substitua: comando que sobe seu chatbot
+          uvicorn seu_chatbot.main:app --port 8000 &
+          for i in $(seq 1 30); do curl -sf localhost:8000/health && break; sleep 1; done
+      - run: llm-eval run --config seu-chatbot/eval-config.yaml
+      - run: |                          # parser do gate (veja examples/demo-chatbot/scripts/check_gate.py)
+          python -c "
+          import json, os, sys
+          r = json.load(open('seu-chatbot/results/report.json'))
+          t = float(os.environ['EVAL_THRESHOLD'])
+          for dim, s in r['summary']['by_dimension'].items():
+              ok = s['mean'] >= t
+              print(f'{dim}: {s[\"mean\"]:.2f} {\"OK\" if ok else \"FAIL\"}')
+              if not ok: sys.exit(1)
+          "
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-report, path: seu-chatbot/results/ }
+```
+
+Pré-requisitos no repo:
+
+- Secrets `GEMINI_API_KEY` (juiz) e a chave do LLM por trás do seu chatbot, em **Settings → Secrets and variables → Actions**.
+- Um `config.yaml` usando o `CustomProvider` apontando para o endpoint local do chatbot (veja [`examples/demo-chatbot/config.yaml`](examples/demo-chatbot/config.yaml)).
+- Um banco de cenários do seu domínio (comece com 5 factual + 3 consistency + 3 robustness — veja [`docs/metodologia-cenarios.md`](docs/metodologia-cenarios.md) para os 4 critérios de validação).
+
+**Documentação relacionada:**
+
+- [`docs/ci-quality-gate-tuning.md`](docs/ci-quality-gate-tuning.md) — todos os parâmetros que afetam quando e como o gate falha (threshold, métrica, repetições, filtros de path, escolha do juiz).
+- [`examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md`](examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md) — análise do primeiro run E2E, achados sobre o Llama 3.1 8B e sobre cenários ambíguos.
+
 ### GitLab CI
 
 ```yaml

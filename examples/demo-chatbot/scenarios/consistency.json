@@ -1,0 +1,256 @@
+{
+  "dimension": "consistency",
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "consistency-tutor-001",
+      "dimension": "consistency",
+      "category": "python_loops",
+      "prompt": "Como faco um for em Python para percorrer uma lista?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-001-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Como itero sobre os elementos de uma lista em Python?"
+        },
+        {
+          "id": "consistency-tutor-001-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a forma idiomatica de percorrer cada item de uma lista usando for em Python?"
+        },
+        {
+          "id": "consistency-tutor-001-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como uso um laco for para visitar cada elemento de uma list em Python?"
+        }
+      ],
+      "expected_topic": "for loop sobre lista"
+    },
+    {
+      "id": "consistency-tutor-002",
+      "dimension": "consistency",
+      "category": "python_strings",
+      "prompt": "Como concateno duas strings em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-002-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a forma mais simples de juntar duas strings em Python?"
+        },
+        {
+          "id": "consistency-tutor-002-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como unir duas variaveis de texto em uma so em Python?"
+        },
+        {
+          "id": "consistency-tutor-002-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Quais operadores Python usar para grudar duas strings?"
+        }
+      ],
+      "expected_topic": "concatenacao de strings"
+    },
+    {
+      "id": "consistency-tutor-003",
+      "dimension": "consistency",
+      "category": "python_dict",
+      "prompt": "Como acesso o valor de uma chave em um dict em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-003-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a sintaxe para pegar o valor associado a uma chave de dicionario em Python?"
+        },
+        {
+          "id": "consistency-tutor-003-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como leio um item de um dict Python a partir da chave?"
+        },
+        {
+          "id": "consistency-tutor-003-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Dado um dict, como obtenho o valor de uma chave especifica em Python?"
+        }
+      ],
+      "expected_topic": "acesso a valor de dict"
+    },
+    {
+      "id": "consistency-tutor-004",
+      "dimension": "consistency",
+      "category": "python_functions",
+      "prompt": "Como defino uma funcao em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-004-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a sintaxe basica de uma funcao em Python?"
+        },
+        {
+          "id": "consistency-tutor-004-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como crio uma funcao chamada soma que retorna a soma de dois numeros em Python?"
+        },
+        {
+          "id": "consistency-tutor-004-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Mostre como declarar uma funcao Python que recebe parametros e retorna um valor."
+        }
+      ],
+      "expected_topic": "definicao de funcao"
+    },
+    {
+      "id": "consistency-tutor-005",
+      "dimension": "consistency",
+      "category": "python_io",
+      "prompt": "Como leio um arquivo de texto em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-005-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a forma idiomatica de abrir um arquivo .txt e ler seu conteudo em Python?"
+        },
+        {
+          "id": "consistency-tutor-005-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como uso o with open para ler um arquivo em Python sem esquecer de fechar?"
+        },
+        {
+          "id": "consistency-tutor-005-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Mostre como carregar todas as linhas de um arquivo de texto em uma lista em Python."
+        }
+      ],
+      "expected_topic": "leitura de arquivo"
+    },
+    {
+      "id": "consistency-tutor-006",
+      "dimension": "consistency",
+      "category": "python_exceptions",
+      "prompt": "Como capturo um erro em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-006-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a estrutura try/except basica em Python?"
+        },
+        {
+          "id": "consistency-tutor-006-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como trato uma excecao em Python sem o programa quebrar?"
+        },
+        {
+          "id": "consistency-tutor-006-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Mostre como pegar uma ValueError especifica em Python."
+        }
+      ],
+      "expected_topic": "try/except"
+    },
+    {
+      "id": "consistency-tutor-007",
+      "dimension": "consistency",
+      "category": "python_lists",
+      "prompt": "Como ordeno uma lista em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-007-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a forma de classificar os elementos de uma list em Python em ordem crescente?"
+        },
+        {
+          "id": "consistency-tutor-007-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a diferenca entre list.sort() e sorted() em Python?"
+        },
+        {
+          "id": "consistency-tutor-007-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como deixo os numeros de uma lista em ordem do menor para o maior em Python?"
+        }
+      ],
+      "expected_topic": "ordenacao de lista"
+    },
+    {
+      "id": "consistency-tutor-008",
+      "dimension": "consistency",
+      "category": "python_modules",
+      "prompt": "Como importo um modulo em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-008-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a sintaxe basica do import em Python?"
+        },
+        {
+          "id": "consistency-tutor-008-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como uso uma funcao da biblioteca math em Python?"
+        },
+        {
+          "id": "consistency-tutor-008-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a diferenca entre 'import math' e 'from math import sqrt' em Python?"
+        }
+      ],
+      "expected_topic": "import de modulo"
+    },
+    {
+      "id": "consistency-tutor-009",
+      "dimension": "consistency",
+      "category": "python_comprehension",
+      "prompt": "O que e list comprehension em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-009-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Como crio uma nova lista filtrando e transformando elementos de outra lista em uma unica linha em Python?"
+        },
+        {
+          "id": "consistency-tutor-009-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Para que serve a sintaxe [x*2 for x in lista] em Python?"
+        },
+        {
+          "id": "consistency-tutor-009-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Quando devo usar uma compreensao de lista em vez de um for tradicional em Python?"
+        }
+      ],
+      "expected_topic": "list comprehension"
+    },
+    {
+      "id": "consistency-tutor-010",
+      "dimension": "consistency",
+      "category": "python_types",
+      "prompt": "Qual a diferenca entre list e tuple em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-tutor-010-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quando eu uso uma list e quando uso uma tuple em Python?"
+        },
+        {
+          "id": "consistency-tutor-010-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Listas sao mutaveis e tuplas sao imutaveis em Python, o que isso significa na pratica?"
+        },
+        {
+          "id": "consistency-tutor-010-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Porque algumas estruturas Python usam parenteses e outras usam colchetes? Quais sao as implicacoes?"
+        }
+      ],
+      "expected_topic": "list vs tuple"
+    }
+  ]
+}
