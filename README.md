@@ -205,7 +205,7 @@ O exemplo vivo desse padrão está em [`examples/demo-chatbot/`](examples/demo-c
     needs: [changes, lint, test]        # roda DEPOIS dos testes; se eles falham, nem inicia
     if: needs.changes.outputs.eval == 'true'
     env:
-      EVAL_THRESHOLD: "3.5"             # piso observado − 0.3; calibre após 3+ runs
+      EVAL_THRESHOLD: "3.0"             # piso observado − 0.3; calibre após 3+ runs
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       # SUA_CHAVE_DO_LLM: ${{ secrets.SUA_CHAVE_DO_LLM }}
     steps:
