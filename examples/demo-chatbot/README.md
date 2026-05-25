@@ -122,7 +122,7 @@ Pontos sensíveis:
 
 - **Roda por último.** Use `needs: [lint, test, type-check, ...]` — se os outros falham, o gate nem queima quota.
 - **Filtre por path.** Use `dorny/paths-filter` pra disparar só quando o chatbot ou o framework muda — PR de docs não precisa de gate.
-- **Threshold por env var.** `EVAL_THRESHOLD: '3.5'` no job. Rode o pipeline ≥3x antes de fixar — use `piso_observado − 0.3` como ponto de partida.
+- **Threshold por env var.** `EVAL_THRESHOLD: '3.0'` no job (calibrado a partir do [primeiro smoke test](SMOKE_TEST_ANALYSIS.md)). Rode o pipeline ≥3x antes de recalibrar — use `piso_observado − 0.3` como referência. Detalhes de todos os knobs que afetam o gate em [`docs/ci-quality-gate-tuning.md`](../../docs/ci-quality-gate-tuning.md).
 - **Secrets.** Adicione `GROQ_API_KEY` (ou equivalente do seu LLM) e `GEMINI_API_KEY` em **Repository Settings → Secrets and variables → Actions** antes do primeiro PR.
 
 ---

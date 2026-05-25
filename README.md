@@ -238,6 +238,11 @@ Pré-requisitos no repo:
 - Um `config.yaml` usando o `CustomProvider` apontando para o endpoint local do chatbot (veja [`examples/demo-chatbot/config.yaml`](examples/demo-chatbot/config.yaml)).
 - Um banco de cenários do seu domínio (comece com 5 factual + 3 consistency + 3 robustness — veja [`docs/metodologia-cenarios.md`](docs/metodologia-cenarios.md) para os 4 critérios de validação).
 
+**Documentação relacionada:**
+
+- [`docs/ci-quality-gate-tuning.md`](docs/ci-quality-gate-tuning.md) — todos os parâmetros que afetam quando e como o gate falha (threshold, métrica, repetições, filtros de path, escolha do juiz).
+- [`examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md`](examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md) — análise do primeiro run E2E, achados sobre o Llama 3.1 8B e sobre cenários ambíguos.
+
 ### GitLab CI
 
 ```yaml
