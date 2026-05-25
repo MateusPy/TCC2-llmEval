@@ -164,12 +164,12 @@ def test_validate_accepts_valid_config(runner: CliRunner, valid_config_file: Pat
 
 def test_validate_rejects_unpinned_model(runner: CliRunner, tmp_path: Path):
     config = dict(VALID_CONFIG)
-    config["provider"] = {**VALID_CONFIG["provider"], "model": "gemini-2.0-flash"}
+    config["provider"] = {**VALID_CONFIG["provider"], "model": "gemini-pro"}
     path = _write_yaml(tmp_path / "bad.yaml", config)
     result = runner.invoke(main, ["validate", "-c", str(path)])
     assert result.exit_code == 1
     assert "Configuração inválida" in result.output
-    assert "not pinned" in result.output
+    assert "lacks version" in result.output
 
 
 def test_validate_missing_file(runner: CliRunner, tmp_path: Path):

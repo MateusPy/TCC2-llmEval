@@ -107,8 +107,13 @@ class MistralProvider(BaseProvider):
 
 
 def _default_client_factory(config: ProviderConfig) -> Any:
-    """Default Mistral client builder. Imported lazily to avoid SDK import on tests."""
-    from mistralai import Mistral
+    """Default Mistral client builder. Imported lazily to avoid SDK import on tests.
+
+    The SDK lives at ``mistralai.client.Mistral`` since the 2.x release; the
+    top-level ``mistralai`` namespace is empty in 2.4.x and does not re-export
+    the ``Mistral`` class.
+    """
+    from mistralai.client import Mistral
 
     return Mistral(api_key=config.api_key)
 

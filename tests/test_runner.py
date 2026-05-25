@@ -296,7 +296,12 @@ def test_default_provider_factory_builds_gemini(monkeypatch: pytest.MonkeyPatch)
 
 
 def test_default_provider_factory_builds_mistral(monkeypatch: pytest.MonkeyPatch):
-    """Mistral branch should call the SDK factory; we intercept the SDK import."""
+    """Mistral branch should call the SDK factory; we intercept the SDK import.
+
+    The provider imports from ``mistralai.client`` (the top-level ``mistralai``
+    package is an empty namespace in mistralai 2.x), so the fake module must
+    be installed under that submodule path.
+    """
     import sys
     import types
 
@@ -304,9 +309,9 @@ def test_default_provider_factory_builds_mistral(monkeypatch: pytest.MonkeyPatch
         def __init__(self, api_key: str) -> None:  # noqa: ARG002
             self.chat = object()
 
-    fake_module = types.ModuleType("mistralai")
-    fake_module.Mistral = _FakeMistralClient  # type: ignore[attr-defined]
-    monkeypatch.setitem(sys.modules, "mistralai", fake_module)
+    fake_client_module = types.ModuleType("mistralai.client")
+    fake_client_module.Mistral = _FakeMistralClient  # type: ignore[attr-defined]
+    monkeypatch.setitem(sys.modules, "mistralai.client", fake_client_module)
 
     settings = ProviderSettings(type="mistral", api_key="k", model="mistral-small-2503")
 

@@ -195,6 +195,65 @@ def test_retry_invalid_max_attempts():
         retry_with_backoff(lambda: 1, max_attempts=0)
 
 
+def test_retry_honors_server_retry_after():
+    """When a RateLimitError carries ``retry_after``, the loop must sleep that
+    value (+1s buffer) instead of the local exponential delay. This fixes the
+    free-tier 429 case where the server asks for ~30s but the local backoff
+    would give up after ~3s."""
+    sleeps: list[float] = []
+    calls = {"n": 0}
+
+    def fn() -> str:
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise RateLimitError("rate-limited", retry_after=30.0)
+        return "ok"
+
+    result = retry_with_backoff(
+        fn, max_attempts=5, sleep=sleeps.append, initial_delay=0.1, backoff_factor=2.0
+    )
+    assert result == "ok"
+    # Two retries waited 31s each (30 + 1s buffer); local backoff was ignored.
+    assert sleeps == [31.0, 31.0]
+
+
+def test_retry_caps_retry_after_at_max():
+    """A pathologically large server hint (e.g. 600s) is capped at
+    ``max_retry_after`` to avoid getting stuck."""
+    sleeps: list[float] = []
+    calls = {"n": 0}
+
+    def fn() -> str:
+        calls["n"] += 1
+        if calls["n"] < 2:
+            raise RateLimitError("rate-limited", retry_after=600.0)
+        return "ok"
+
+    retry_with_backoff(
+        fn, max_attempts=3, sleep=sleeps.append, max_retry_after=60.0
+    )
+    assert sleeps == [60.0]
+
+
+def test_retry_falls_back_to_backoff_when_no_hint():
+    """When ``retry_after`` is None, behavior matches the pre-existing
+    exponential backoff exactly — TransientError and 429 without hint both
+    follow the local schedule."""
+    sleeps: list[float] = []
+    calls = {"n": 0}
+
+    def fn() -> str:
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise RateLimitError("rate-limited", retry_after=None)
+        return "ok"
+
+    retry_with_backoff(
+        fn, max_attempts=3, sleep=sleeps.append, initial_delay=0.1, backoff_factor=2.0
+    )
+    assert sleeps == [0.1, 0.2]
+
+
 # ---------------------------------------------------------------------------
 # Gemini provider
 # ---------------------------------------------------------------------------
@@ -228,16 +287,18 @@ def test_gemini_send_omits_usage_when_absent():
     assert "usage" not in result.parameters
 
 
-def test_gemini_send_forwards_seed_when_set():
-    """seed must appear in generation_config and parameters when configured."""
+def test_gemini_send_never_forwards_seed():
+    """google-generativeai's GenerationConfig has no seed field; the provider
+    must never forward it, even when configured. Reproducibility for Gemini
+    relies on temperature=0.0."""
     stub = _GeminiClientStub(text="ok")
     config = ProviderConfig(
         api_key="k", model="gemini-2.0-flash-001", temperature=0.0, max_tokens=128, seed=42
     )
     provider = GeminiProvider(config, client_factory=lambda _: stub)
     result = provider.send("oi")
-    assert stub.calls[0]["generation_config"]["seed"] == 42
-    assert result.parameters["seed"] == 42
+    assert "seed" not in stub.calls[0]["generation_config"]
+    assert "seed" not in result.parameters
 
 
 def test_gemini_send_omits_seed_when_none():
@@ -257,6 +318,48 @@ def test_gemini_send_translates_rate_limit():
     provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub, max_attempts=1)
     with pytest.raises(RateLimitError):
         provider.send("oi")
+
+
+def test_gemini_extracts_retry_after_from_human_form():
+    """The "Please retry in N.NNs" phrase in the SDK exception message must
+    be parsed into ``RateLimitError.retry_after`` (preferred — has fractional
+    precision)."""
+    class ResourceExhausted(Exception):
+        pass
+
+    msg = "429 quota exceeded ... Please retry in 34.318398262s. [...]"
+    stub = _GeminiClientStub(raise_on_call=ResourceExhausted(msg))
+    provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub, max_attempts=1)
+    with pytest.raises(RateLimitError) as exc_info:
+        provider.send("oi")
+    assert exc_info.value.retry_after == pytest.approx(34.318, abs=0.01)
+
+
+def test_gemini_extracts_retry_after_from_proto_block():
+    """Fallback: when the human form is absent, the proto-style
+    ``retry_delay { seconds: N }`` block is parsed instead."""
+    class ResourceExhausted(Exception):
+        pass
+
+    msg = "429 quota exceeded ... retry_delay { seconds: 28 }"
+    stub = _GeminiClientStub(raise_on_call=ResourceExhausted(msg))
+    provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub, max_attempts=1)
+    with pytest.raises(RateLimitError) as exc_info:
+        provider.send("oi")
+    assert exc_info.value.retry_after == 28.0
+
+
+def test_gemini_retry_after_none_when_no_hint():
+    """When neither form is present, ``retry_after`` is None and the retry
+    loop falls back to local backoff."""
+    class ResourceExhausted(Exception):
+        pass
+
+    stub = _GeminiClientStub(raise_on_call=ResourceExhausted("429 quota exceeded"))
+    provider = GeminiProvider(_gemini_config(), client_factory=lambda _: stub, max_attempts=1)
+    with pytest.raises(RateLimitError) as exc_info:
+        provider.send("oi")
+    assert exc_info.value.retry_after is None
 
 
 def test_gemini_send_translates_timeout():

@@ -23,7 +23,19 @@ class ProviderError(Exception):
 
 
 class RateLimitError(ProviderError):
-    """Raised when the provider returned a rate-limit response (HTTP 429)."""
+    """Raised when the provider returned a rate-limit response (HTTP 429).
+
+    When the server included a ``Retry-After`` hint (e.g. Google's
+    ``retry_delay { seconds: N }`` block), the provider's translator parses
+    it and passes it via ``retry_after``. The retry loop honors this value
+    instead of the local exponential backoff — required because free-tier
+    quotas can demand waits (~30s) longer than the local backoff would
+    accumulate, which previously caused premature failures.
+    """
+
+    def __init__(self, message: str, *, retry_after: float | None = None) -> None:
+        super().__init__(message)
+        self.retry_after = retry_after
 
 
 class TimeoutError(ProviderError):  # noqa: A001  - intentional shadow of builtin
@@ -48,17 +60,23 @@ def retry_with_backoff(
     initial_delay: float = 1.0,
     backoff_factor: float = 2.0,
     sleep: Callable[[float], None] | None = None,
+    max_retry_after: float = 120.0,
 ) -> T:
     """Run ``fn`` retrying on retryable provider errors.
 
     Args:
         fn: Zero-argument callable that performs the request.
         max_attempts: Total attempts including the first call. Must be >= 1.
-        initial_delay: Seconds to wait before the second attempt.
-        backoff_factor: Multiplicative growth applied between retries.
+        initial_delay: Seconds to wait before the second attempt when the
+            server did not provide a retry hint.
+        backoff_factor: Multiplicative growth applied between retries
+            (only when falling back to local exponential backoff).
         sleep: Sleep function. ``None`` resolves to :func:`time.sleep` at
             call time (so monkeypatching ``time.sleep`` is respected). Tests
             should pass an explicit no-op such as ``lambda _: None``.
+        max_retry_after: Upper bound (seconds) applied to a server-provided
+            ``retry_after``. Caps pathological cases (server asking for a
+            10-minute wait) without losing the principle of honoring the hint.
 
     Returns:
         Whatever ``fn`` returned on the first successful attempt.
@@ -86,15 +104,24 @@ def retry_with_backoff(
                     exc,
                 )
                 raise
+            # Honor server-provided retry hint (e.g. Google's retry_delay
+                # block on free-tier 429s) when present. Add a 1s buffer so we
+                # wake up after the quota window resets, not exactly on the
+                # edge. Cap at max_retry_after to avoid pathological waits.
+            server_hint = getattr(exc, "retry_after", None)
+            if server_hint is not None:
+                wait = min(server_hint + 1.0, max_retry_after)
+            else:
+                wait = delay
+                delay *= backoff_factor
             logger.info(
                 "Provider call failed (attempt %d/%d), retrying in %.2fs: %s",
                 attempt,
                 max_attempts,
-                delay,
+                wait,
                 exc,
             )
-            sleep_fn(delay)
-            delay *= backoff_factor
+            sleep_fn(wait)
 
     # Defensive: loop above either returns or raises. This line keeps mypy happy.
     raise last_error if last_error is not None else ProviderError("retry exhausted")

@@ -11,7 +11,7 @@ authors = [
 ]
 dependencies = [
     "google-generativeai>=0.8.0",
-    "mistralai>=1.0.0",
+    "mistralai>=2.4.0,<3.0",
     "httpx>=0.27.0",
     "bert-score>=0.3.13",
     "pydantic>=2.0.0",
@@ -59,7 +59,7 @@ exclude_lines = [
     "raise last_error if last_error is not None",
     # Lazy SDK imports — tested via injection, not the default factory
     "from bert_score import score as bert_score_fn",
-    "from mistralai import Mistral",
+    "from mistralai.client import Mistral",
     # Built-in scenario bank only fails if the package install is corrupt
     "raise ScenarioLoadError\\(\\s*$",
 ]

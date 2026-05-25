@@ -19,10 +19,13 @@ class ProviderSettings(BaseModel):
         type: Provider identifier (``"gemini"``, ``"mistral"`` or ``"custom"``).
         api_key: Authentication token. May be ``None`` when the custom provider
             relies on headers for authentication.
-        model: Target model name. **Must be pinned to an explicit version**
-            for built-in providers (e.g. ``gemini-2.0-flash-001``, not
-            ``gemini-1.5-pro``) so results are reproducible. The validator
-            rejects unpinned identifiers — see :meth:`validate_model_pin`.
+        model: Target model name. Must carry version information for
+            built-in providers, either as an explicit snapshot suffix
+            (``gemini-2.0-flash-001``, ``mistral-small-2503``) or as an
+            embedded minor version (``gemini-2.5-flash``, ``gemini-1.5-pro``).
+            Names without any version digits (``gemini-pro``, ``mistral-small``)
+            and floating aliases (``-latest``, ``-stable``) are rejected.
+            See :meth:`validate_model_pin`.
         temperature: Sampling temperature for generation.
         max_tokens: Maximum number of tokens to request.
         seed: Optional integer seed forwarded to providers that support
@@ -49,44 +52,60 @@ class ProviderSettings(BaseModel):
 
     @model_validator(mode="after")
     def validate_model_pin(self) -> "ProviderSettings":
-        """Enforce explicit model versioning for built-in providers.
+        """Enforce model versioning for built-in providers.
 
-        Reproducibility requires pinning the exact model snapshot — vendors
-        update floating identifiers (e.g. ``gemini-1.5-pro``) silently, which
-        makes a TCC's empirical results impossible to replicate later. This
-        validator rejects unpinned model strings for the SDK-backed providers.
+        Reproducibility requires that the model identifier carry version
+        information. Two forms are accepted:
+
+        1. Explicit snapshot suffix (preferred): ``gemini-2.0-flash-001``,
+           ``mistral-small-2503``. Hard pin — same identifier resolves to the
+           same weights forever (vendor contract).
+        2. Embedded minor version (soft pin): ``gemini-2.5-flash``,
+           ``gemini-1.5-pro``. Required when the vendor stops publishing
+           dated snapshots for a model family (Google did this for Gemini
+           2.5+). The vendor may still update the underlying weights within
+           the minor version, so results must be timestamped at collection.
+
+        Names without any version digits (``gemini-pro``, ``mistral-small``)
+        and floating aliases (``-latest``, ``-stable``) are rejected.
         Custom HTTP providers are exempt: the user controls the endpoint and
-        the model identifier may be opaque (proprietary chatbot, internal
-        deployment, etc.).
+        the identifier may be opaque (proprietary chatbot, internal deployment).
         """
         if self.type in ("gemini", "mistral") and not is_pinned_model(self.model):
             raise ValueError(
-                f"model '{self.model}' is not pinned to an explicit version. "
-                f"Use a versioned identifier (e.g. 'gemini-2.0-flash-001', "
-                f"'mistral-small-2503') so results are reproducible. "
-                f"Floating aliases like '{self.model}' are updated by vendors "
-                f"without notice and break reproducibility of the study."
+                f"model '{self.model}' lacks version information. "
+                f"Use a snapshot ('gemini-2.0-flash-001', 'mistral-small-2503') "
+                f"or a minor-version family name ('gemini-2.5-flash', "
+                f"'gemini-1.5-pro'). Bare names and floating aliases "
+                f"('-latest', '-stable') are rejected because vendors mutate "
+                f"them silently and break reproducibility."
             )
         return self
 
 
-# Regex describes ONLY pinned suffixes. Floating aliases such as
-# ``-latest``/``-stable`` are intentionally NOT in the alternation — they are
-# rejected up-front by ``is_pinned_model`` before the regex runs. Keeping them
-# out of the pattern preserves the "regex describes what is pinned" semantics
-# and prevents a future refactor from silently classifying them as valid.
-_PINNED_MODEL_RE = re.compile(r"-(?:\d{3,}|\d{4}-\d{2}|\d{2}-\d{2})$")
+# Two acceptance patterns for pinning. Floating aliases (``-latest``,
+# ``-stable``) are filtered up-front in ``is_pinned_model`` before either
+# regex runs — keep them out of these patterns so a future refactor that
+# trusts "the regex covers it" cannot silently classify them as valid.
+#
+# _SNAPSHOT_SUFFIX_RE — hard pin: dated/numeric snapshot suffix.
+_SNAPSHOT_SUFFIX_RE = re.compile(r"-(?:\d{3,}|\d{4}-\d{2}|\d{2}-\d{2})$")
+# _MINOR_VERSION_RE — soft pin: embedded minor version like ``2.5`` or ``1.5``
+# anywhere in the name (vendor stopped publishing dated snapshots).
+_MINOR_VERSION_RE = re.compile(r"\d+\.\d+")
 
 _FLOATING_ALIAS_SUFFIXES = ("-latest", "-stable")
 
 
 def is_pinned_model(model: str) -> bool:
-    """Return True when ``model`` carries an explicit version suffix.
+    """Return True when ``model`` carries version information.
 
-    Accepted patterns (suffix on the model name):
-    - ``-<digits>`` of length >= 3 (e.g. ``-001``, ``-2503``)
-    - ``-<YYYY>-<MM>`` (e.g. ``-2024-09``)
-    - ``-<MM>-<DD>`` (e.g. ``-09-15``)
+    Accepted patterns:
+    - Snapshot suffix (hard pin): ``-<digits>`` of length >= 3
+      (``-001``, ``-2503``), ``-<YYYY>-<MM>`` (``-2024-09``), or
+      ``-<MM>-<DD>`` (``-09-15``).
+    - Embedded minor version (soft pin): ``X.Y`` anywhere in the string
+      (``gemini-2.5-flash``, ``gemini-1.5-pro``).
 
     The strings ``-latest`` and ``-stable`` are explicitly rejected as
     floating aliases (vendors mutate them silently).
@@ -95,7 +114,9 @@ def is_pinned_model(model: str) -> bool:
         return False
     if model.endswith(_FLOATING_ALIAS_SUFFIXES):
         return False
-    return bool(_PINNED_MODEL_RE.search(model))
+    if _SNAPSHOT_SUFFIX_RE.search(model):
+        return True
+    return bool(_MINOR_VERSION_RE.search(model))
 
 
 class JudgeSettings(BaseModel):

@@ -28,7 +28,7 @@ from llm_eval.scenarios.loader import (
 REPORT_FORMATS = ("json", "markdown")
 VALIDATION_PROVIDER_DEFAULTS = {
     "gemini": {
-        "model": "gemini-2.0-flash-001",
+        "model": "gemini-2.5-flash-lite",
         "api_env": "GEMINI_API_KEY",
     },
     "mistral": {
