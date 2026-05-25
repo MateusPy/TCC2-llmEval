@@ -69,3 +69,8 @@ Thumbs.db
 # Project
 results/
 *.log
+
+# Exceptions: pilot artifacts are committed for reproducibility / TCC record.
+!experiments/**/results/
+!experiments/**/results/**
+!experiments/**/*.log

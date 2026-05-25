@@ -1,0 +1,536 @@
+{
+  "metadata": {
+    "framework_version": "0.1.0",
+    "started_at": "2026-05-20T02:56:58.623056+00:00",
+    "finished_at": "2026-05-20T03:06:39.442173+00:00",
+    "duration_seconds": 580.819,
+    "provider_type": "mistral",
+    "model": "ministral-3b-2512",
+    "seed": 42,
+    "temperature": 0.0,
+    "total_scenarios": 30,
+    "scenarios_with_error": 0,
+    "dimensions_evaluated": [
+      "factual",
+      "consistency",
+      "robustness"
+    ]
+  },
+  "summary": {
+    "overall_score": 4.5028,
+    "by_dimension": {
+      "factual": {
+        "mean": 4.8333,
+        "median": 5.0,
+        "stdev": 0.36,
+        "min": 4.0,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      },
+      "consistency": {
+        "mean": 5,
+        "median": 5.0,
+        "stdev": 0.0,
+        "min": 5.0,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      },
+      "robustness": {
+        "mean": 3.675,
+        "median": 3.6667,
+        "stdev": 0.9529,
+        "min": 1.6667,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      }
+    }
+  },
+  "details": [
+    {
+      "scenario_id": "factual-001",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Australia?",
+      "judge_score": 4,
+      "judge_justification": "A resposta identifica corretamente Canberra como a capital da Austrália. No entanto, a informação sobre a localização em um estado chamado 'Austrália Central' é incorreta. A Austrália não possui um estado com esse nome; Canberra está localizada no Território da Capital Australiana (ACT).",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5681,
+      "consistency_score": null,
+      "response_text": "A capital da Austrália é **Canberra**.\n\nCanberra foi escolhida como capital em 1908 e tornou-se oficialmente a capital em 1927, após a união das colônias britânicas da Austrália. Ela está localizada no interior do país, no estado da **Austrália Central**, e é conhecida por sua arquitetura moderna e por ser um centro político e administrativo importante.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-002",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Suica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica Berna como a capital da Suíça e fornece informações adicionais relevantes sobre o status de Berna como sede do governo federal. Além disso, o chatbot demonstra uma compreensão perspicaz da possível confusão com o termo 'Suica' (sistema de transporte), o que é um excelente toque de precisão e utilidade.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5617,
+      "consistency_score": null,
+      "response_text": "A capital da **Suiza** é **Berna** (em alemão: *Bern*).\n\nA Suíça é um país federativo, e Berna é a sede do governo federal, incluindo o Parlamento, o Conselho Federal (governo) e a sede da Confederação Suíça. Além disso, Berna é uma cidade histórica e culturalmente significativa.\n\nSe você estava pensando na **Suica** (o sistema de transporte público eletrônico da Suíça), não é uma capital, mas sim um método de pagamento para trânsito urbano. 😊",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-003",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano caiu o Muro de Berlim?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot contém a informação correta (1989) e a complementa com detalhes relevantes e precisos sobre o evento, como a data exata, o contexto histórico (fim da Divisão da Alemanha e Guerra Fria) e a data da reunificação alemã. Não há informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.554,
+      "consistency_score": null,
+      "response_text": "O **Muro de Berlim** caiu em **9 de novembro de 1989**.\n\nEsse evento marcou o fim da **Divisão da Alemanha** após a Segunda Guerra Mundial e simbolizou o fim da **Guerra Fria**, com a queda do bloco comunista na Europa Oriental. A abertura do muro permitiu a reunificação alemã em **3 de outubro de 1990**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-004",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem foi o primeiro presidente do Brasil apos a Proclamacao da Republica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica Deodoro da Fonseca como o primeiro presidente do Brasil após a Proclamação da República e fornece informações adicionais precisas sobre o período, como as datas de posse e renúncia, o contexto da deposição e a sucessão por Floriano Peixoto após uma Junta Militar. Não há informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.621,
+      "consistency_score": null,
+      "response_text": "O primeiro presidente do Brasil após a **Proclamação da República**, em **3 de novembro de 1889**, foi **Deodoro da Fonseca**.\n\nEle assumiu o cargo em **15 de novembro de 1889**, após o golpe que derrubou o imperador Dom Pedro II. Deodoro governou até **23 de novembro de 1891**, quando foi deposto por uma crise política e militar, marcando o fim do primeiro governo republicano no Brasil.\n\nO país então passou por uma **Junta Militar** até a eleição de seu sucessor, **Floriano Peixoto**, em 1891.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-005",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual planeta do Sistema Solar e conhecido como Planeta Vermelho?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot identifica corretamente Marte como o Planeta Vermelho, alinhando-se perfeitamente com o ground truth. Além disso, fornece informações adicionais precisas e relevantes sobre a origem do nome e a posição de Marte no Sistema Solar, enriquecendo a resposta sem introduzir imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5538,
+      "consistency_score": null,
+      "response_text": "O planeta conhecido como **\"Planeta Vermelho\"** é **Marte**.\n\nSeu nome vem do tom avermelhado que ele apresenta devido à presença de **óxido de ferro (hematita)**, que cobre sua superfície, dando a ele uma cor avermelhada característica. Além disso, Marte é o quarto planeta do Sistema Solar, após Mercúrio, Vênus e Terra.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-006",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual e o simbolo quimico do ouro?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece o símbolo químico correto (Au) e adiciona uma informação relevante e factual sobre a origem do símbolo, tornando a resposta mais completa e informativa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5418,
+      "consistency_score": null,
+      "response_text": "O símbolo químico do ouro é **Au**.\n\nEle vem da palavra latina *Aurum*, que significa \"ouro\".",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-007",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Quantos ossos tem, em media, o corpo humano adulto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente alinhada com o ground truth, fornecendo o número correto de ossos (206) e adicionando informações relevantes sobre as variações individuais e a diferença na contagem de ossos em bebês, o que enriquece a resposta sem comprometer a precisão.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5717,
+      "consistency_score": null,
+      "response_text": "O corpo humano adulto médio possui aproximadamente **206 ossos** no adulto.\n\nNo entanto, essa quantidade pode variar ligeiramente devido a diferenças individuais, como:\n- **Fusão de ossos** (ex.: o sacro, que pode ter 3-5 vértebras fusionadas).\n- **Variabilidade anatômica** (algumas pessoas podem ter mais ou menos ossos em regiões como as costelas ou a coluna).\n\nNo bebê, há cerca de **270 ossos**, mas muitos se fundem durante o desenvolvimento.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-008",
+      "dimension": "factual",
+      "category": "mathematics",
+      "prompt": "Quanto e 15% de 200?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela calcula corretamente 15% de 200, apresentando o resultado como 30. A explicação passo a passo é clara e precisa, demonstrando o raciocínio matemático utilizado.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.511,
+      "consistency_score": null,
+      "response_text": "Calcolare **15% de 200** è molto semplice. Ecco la soluzione passo-passo:\n\n1. **Convertire il percentuale in decimale**:\n   \\( 15\\% = \\frac{15}{100} = 0,15 \\)\n\n2. **Moltiplicare per il valore base**:\n   \\( 0,15 \\times 200 = 30 \\)\n\n**Risposta finale**:\n**15% de 200 è 30**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-009",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior oceano da Terra?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot identifica corretamente o Oceano Pacífico como o maior oceano da Terra, alinhando-se perfeitamente com o ground truth. Além disso, fornece informações adicionais precisas sobre sua extensão e localização, bem como comparações com outros oceanos, enriquecendo a resposta sem introduzir imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4814,
+      "consistency_score": null,
+      "response_text": "O maior oceano da Terra é o **Oceano Pacífico**.\n\n- **Extensão**: cerca de **165,24 milhões de km²** (aproximadamente 30% da superfície total do planeta).\n- **Localização**: abrange parte do Oceano Índico, Oceano Atlântico e o Oceano Antártico, além de países como os Estados Unidos, Japão, China, Austrália, Indonésia e México.\n\nO Oceano Atlântico é o segundo maior, com cerca de **106,5 milhões de km²**, seguido pelo Oceano Índico (~70,6 milhões de km²).",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-010",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o rio mais longo do mundo segundo a Britannica?",
+      "judge_score": 4.3333,
+      "judge_justification": "A resposta do chatbot está correta ao identificar o Rio Nilo como o rio mais longo do mundo segundo a Britannica. No entanto, ela se torna mais completa e precisa ao mencionar o debate em torno do Amazonas e as diferentes estimativas de comprimento, o que é uma nuance importante em discussões geográficas. A informação sobre as diferentes estimativas de comprimento para ambos os rios, embora não estritamente solicitada pela pergunta original focada na Britannica, enriquece a resposta e demonstra um conhecimento mais aprofundado. A Britannica, de fato, historicamente aponta o Nilo como o mais longo, mas reconhece as controvérsias.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5594,
+      "consistency_score": null,
+      "response_text": "Segundo a **Encyclopædia Britannica**, o rio mais longo do mundo é o **Nilo**, com uma extensão de aproximadamente **6.650 km** (segundo cálculos mais recentes, como os da **UNEP** e da **National Geographic**, o Nilo é estimado em cerca de **6.853 km**).\n\nNo entanto, há debates sobre qual é o mais longo, pois alguns estudos consideram o **Amazonas** como o mais longo, com cerca de **6.400–7.000 km**, dependendo da fonte e do ponto de medição (como a foz no Oceano Atlântico).\n\nA **Britannica** geralmente prioriza o Nilo como o mais longo, mas a classificação pode variar com base em metodologias diferentes.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-001",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "Explique o que e fotossintese.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas explicam a fotossíntese de forma consistente, abordando os mesmos conceitos centrais: a conversão de luz solar em energia química (glicose), a utilização de CO₂ e água, a liberação de oxigênio, a ocorrência em cloroplastos com a participação da clorofila, e a divisão do processo em fase clara (luminosa) e fase escura (Ciclo de Calvin). As variações na profundidade dos detalhes, na terminologia específica (ex: 'fase da luz' vs 'fotossíntese I') e na apresentação (ex: uso de equações simplificadas ou detalhadas) não introduzem contradições de conteúdo, mantendo a coerência semântica entre elas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8134,
+      "response_text": "A **fotossintese** é um processo biológico fundamental que permite às plantas, algas e alguns tipos de bactérias converter luz solar em energia química, produzindo **glicose** (um carboidrato) e liberando **oxigênio** como subproduto. Esse mecanismo é essencial para a vida na Terra, pois fornece alimento para os seres vivos e regula o nível de CO₂ na atmosfera.\n\n---\n\n### **Principais etapas da fotossintese**\nA fotossintese ocorre em duas fases principais:\n\n1. **Fase clara (ou fase da luz)** – Realizada nos **cloroplastos** (organelas contendo a **clorofila**, pigmento verde responsável pela captura da luz).\n   - **Reação da luz**: A luz solar é absorvida pela clorofila, que excita elétrons em moléculas de **ADP** (adenosina trifosfato) e **NADP+** (nicotinamida adenina dinucleotídeo fosfato), transformando-os em **ATP** (energia química) e **NADPH** (reducedor).\n   - **Produção de oxigênio**: A água (H₂O) é quebrada (fotólise) em oxigênio (O₂), prótons (H⁺) e elétrons, que são usados na produção de ATP e NADPH.\n\n2. **Fase escura (ou fase da Calvin)** – Não depende da luz, mas ocorre no mesmo local (cloroplasto).\n   - **Fixação de CO₂**: O dióxido de carbono (CO₂) é incorporado em moléculas de **RuBP** (ribulose-1,5-bisfosfato), um açúcar de 5 carbonos, por uma enzima chamada **RuBisCO**.\n   - **Formação de glicose**: O CO₂ é transformado em glicose (C₆H₁₂O₆) através de uma série de reações que consomem ATP e NADPH produzidos na fase clara.\n\n---\n\n### **Equação geral da fotossintese**\nA reação pode ser resumida assim:\n**6 CO₂ + 6 H₂O + luz solar → C₆H₁₂O₆ (glicose) + 6 O₂**\n\n---\n\n### **Importância da fotossintese**\n- **Produção de oxigênio**: Sem a fotossintese, a Terra não teria oxigênio suficiente para a respiração aeróbica dos seres vivos.\n- **Base da cadeia alimentar**: As plantas são o **produtor primário**, fornecendo energia para herbívoros, carnívoros e decompositores.\n- **Regulação do clima**: As plantas absorvem CO₂, ajudando a combater o **efeito estufa** e o aquecimento global.\n- **Bases químicas**: A glicose produzida é usada para formar celulose (estrutura das paredes celulares), amido (reserva energética) e outros compostos orgânicos.\n\n---\n\n### **Diferentes tipos de fotossintese**\nAlgumas plantas usam mecanismos distintos para fixar carbono:\n1. **C₃ (fotossíntese padrão)**: Usa RuBisCO para fixar CO₂ diretamente (ex.: grãos básicos como arroz e trigo).\n2. **C₄ (adaptação a climas quentes)**: Reduz a fotorespiração (perda de carbono) usando enzimas como **PEP carboxilase** (ex.: milho, cana-de-açúcar).\n3. **CAM (fotossíntese de plantas suculentas)**: Abertura dos estômatos à noite para fixar CO₂ e armazená-lo como ácido (ex.: cactos, suculentas).\n\n---\n\n### **Curiosidades**\n- A clorofila é o pigmento que dá a cor verde às plantas, mas outras cores (como vermelho e azul) também são absorvidas pela luz.\n- Algumas bactérias fotossintéticas (como as do gênero *Chlorobium*) usam pigmentos diferentes (bacterioclorofilas) e produzem hidrogênio (H₂) em vez de oxigênio.\n- A fotossíntese é tão antiga quanto a vida na Terra, com evidências fósseis datando de mais de **2,4 bilhões de anos**.\n\n---\nEm resumo, a fotossintese é um processo **essencial para a vida**, que transforma energia solar em nutrientes e oxigênio, mantendo o equilíbrio ecológico.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-002",
+      "dimension": "consistency",
+      "category": "daily_life",
+      "prompt": "Como faco arroz branco simples?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas fornecem instruções claras e consistentes sobre como fazer arroz branco simples. Elas concordam nos ingredientes básicos (arroz, água, sal), no processo de lavagem do arroz, na necessidade de ferver a água, reduzir o fogo para cozinhar, tampar a panela e deixar descansar. As variações apresentadas (tipos de arroz, adição de óleo/manteiga, uso de caldo) são complementares e não contraditórias. Os tempos de cozimento e descanso também são semelhantes entre as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8243,
+      "response_text": "Para fazer **arroz branco simples** (arroz cozido em água), siga este passo a passo fácil e rápido:\n\n### **Ingredientes:**\n- 1 xícara de arroz branco (preferencialmente arroz basmati, jasmine ou arroz comum)\n- 2 xícaras de água (para arroz médio, ajuste conforme o tipo)\n- 1 colher de chá de sal (opcional, para dar sabor)\n\n### **Passo a Passo:**\n\n1. **Lave o arroz:**\n   - Coloque o arroz em uma tigela e enxágue com água fria até que a água saia clara (remova o excesso de amido).\n\n2. **Misture com água e sal:**\n   - Em uma panela, coloque o arroz lavado, a água e o sal (se usar).\n   - Deixe ferver em fogo médio-alto até que a água comece a ferver.\n\n3. **Baixe o fogo e cozinhe:**\n   - Reduza o fogo para médio-baixo e deixe cozinhar por **15–20 minutos** (para arroz médio).\n   - **Dica:** Não mexer muito para evitar que o arroz grude.\n\n4. **Desligue o fogo e deixe descansar:**\n   - Tape a panela e deixe o arroz descansar por **5–10 minutos** (isso ajuda a absorver melhor a água).\n\n5. **Aqueça antes de servir (opcional):**\n   - Se quiser, leve o arroz para o microondas ou fogão por **2–3 minutos** para que fique mais cremoso.\n\n### **Tempo de preparo:**\n- **Total:** ~30–40 minutos (inclui descanso).\n\n### **Variantes:**\n- **Arroz com gordura:** Adicione 1 colher de óleo ou manteiga na panela antes de cozinhar.\n- **Arroz com caldo:** Use caldo de carne ou vegetais em vez de água.\n- **Arroz instantâneo:** Se preferir, use arroz pré-cozido (como o arroz instantâneo).\n\n**Boa cozinha!** 😊🍚",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-003",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Explique a diferenca entre lista e tupla em Python.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam consistentemente os pontos centrais da diferença entre listas e tuplas em Python: mutabilidade, performance, sintaxe e casos de uso. Elas concordam que listas são mutáveis e tuplas são imutáveis, que tuplas geralmente oferecem melhor performance para leitura e que listas são usadas para dados dinâmicos enquanto tuplas para dados fixos. As variações na forma de apresentar a informação (tabelas, exemplos, ordem dos tópicos) são aceitáveis e não introduzem contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7961,
+      "response_text": "Em Python, **lista** e **tupla** são dois tipos de coleções (ou *containers*) que armazenam elementos, mas possuem diferenças importantes em termos de **mutabilidade**, **uso** e **performance**. Aqui está uma comparação detalhada:\n\n---\n\n### **1. Mutabilidade (Flexibilidade)**\n| **Tipo**  | **Mutável** | **Descrição**                                                                 |\n|-----------|------------|-------------------------------------------------------------------------------|\n| **Lista** (`list`) | **Sim**    | Pode ser modificada após a criação: adicionar, remover ou alterar elementos. |\n| **Tupla** (`tuple`) | **Não**   | **Imutável**: os elementos não podem ser alterados após a criação.          |\n\n**Exemplo:**\n```python\nlista = [1, 2, 3]\nlista[0] = 10  # OK: Lista é mutável\nprint(lista)   # Saída: [10, 2, 3]\n\ntupla = (1, 2, 3)\ntupla[0] = 10  # Erro: TypeError (Tupla é imutável)\n```\n\n---\n\n### **2. Uso Comum**\n| **Tipo**  | **Quando Usar?**                                                                 |\n|-----------|---------------------------------------------------------------------------------|\n| **Lista** | - Dados que podem mudar (ex: listas de itens, coleções dinâmicas).          |\n|           | - Quando precisar de operações como `append()`, `remove()`, `sort()`.          |\n| **Tupla** | - Dados que devem ser **imutáveis** (ex: coordenadas, configurações).       |\n|           | - Para garantir **segurança** (evitar modificações acidentais).               |\n|           | - Quando iterar rapidamente (tuplas são mais rápidas para leitura).           |\n\n**Exemplo prático:**\n```python\n# Lista: Dados que podem ser alterados\nfrutas = [\"maçã\", \"banana\"]\nfrutas.append(\"laranja\")  # OK\n\n# Tupla: Dados imutáveis (ex: coordenadas de um ponto)\nponto = (10, 20)\n# ponto[0] = 5  # Erro\n```\n\n---\n\n### **3. Performance**\n- **Tuplas são mais rápidas** para:\n  - **Acesso por índice** (`tupla[0]`).\n  - **Iteração** (porque são armazenadas como arrays em C).\n- **Listas são mais lentas** em operações que envolvem modificação (por serem implementadas em Python).\n\n**Exemplo de performance (em média):**\n```python\n# Acesso rápido (tupla)\nprint(tuple[0])  # Mais rápido que lista[0]\n\n# Modificação (lista)\nlista.append(4)  # Mais lento que tupla.append() (mas tupla não permite isso)\n```\n\n---\n\n### **4. Métodos Disponíveis**\n| **Tipo**  | **Métodos Comuns**                                                                 |\n|-----------|-----------------------------------------------------------------------------------|\n| **Lista** | `append()`, `remove()`, `sort()`, `pop()`, `extend()`, `insert()`, etc.            |\n| **Tupla** | **Nenhum método de modificação** (ex: `len()`, `count()`, `index()`).           |\n\n**Exemplo:**\n```python\nlista = [1, 2, 3]\nlista.append(4)  # OK\nprint(lista)     # [1, 2, 3, 4]\n\ntupla = (1, 2, 3)\ntupla.append(4)  # Erro: AttributeError\n```\n\n---\n\n### **5. Criação de Tuplas**\n- **Tuplas são definidas com parênteses** (`()`), mas **listas com colchetes** (`[]`).\n- Uma tupla pode ser criada sem parênteses se houver apenas um elemento (devido a uma regra de sintaxe):\n  ```python\n  tupla = 1, 2, 3  # Equivale a (1, 2, 3)\n  lista = [1, 2, 3] # Equivale a [1, 2, 3]\n  ```\n\n---\n\n### **6. Quando Usar Cada Um?**\n| **Situação**               | **Recomendado**       |\n|----------------------------|-----------------------|\n| Dados que podem mudar      | **Lista**             |\n| Dados que devem ser imutáveis | **Tupla**          |\n| Chaves de dicionário       | **Tupla** (ex: `(nome, idade)`) |\n| Iteração rápida            | **Tupla**             |\n| Armazenamento de",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-004",
+      "dimension": "consistency",
+      "category": "philosophy",
+      "prompt": "O que e utilitarismo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas definem o utilitarismo de forma consistente como uma teoria ética que busca maximizar o bem-estar ou felicidade geral, focando nas consequências das ações. Elas mencionam os principais defensores (Bentham e Mill), o princípio da utilidade, a distinção entre ação e consequência, e as críticas comuns (dificuldade de medir felicidade, conflito com direitos individuais, justificação de ações moralmente questionáveis). As variações na estrutura e nos exemplos são aceitáveis e enriquecem a compreensão do conceito sem introduzir contradições.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7546,
+      "response_text": "O **utilitarismo** é uma teoria ética e filosófica que busca maximizar o **bem-estágio geral** ou a felicidade coletiva, considerando principalmente os **resultados** de uma ação em vez de princípios abstratos ou regras fixas. Ele é um dos principais sistemas éticos consequencialistas, ou seja, avalia a moralidade de uma ação baseando-se em suas consequências.\n\n### **Principais características do utilitarismo:**\n1. **Foco nas consequências**:\n   - A moralidade de uma ação depende de como ela afeta o bem-estágio ou felicidade da maioria.\n   - Exemplo: Matar um inocente para salvar cinco vidas é moralmente correto, segundo o utilitarismo, porque o resultado é melhor para a maioria.\n\n2. **Felicidade como objetivo principal**:\n   - O utilitarismo busca maximizar a felicidade e minimizar o sofrimento, seja individual ou coletivo.\n   - Não necessariamente se refere à felicidade subjetiva (como um prazer pessoal), mas ao bem-estágio objetivo (redução de dor e aumento de felicidade).\n\n3. **Aplicação prática**:\n   - Pode ser usado em políticas públicas, medicina, direito e até em decisões pessoais.\n   - Exemplo: Um hospital pode escolher salvar um paciente com menos chances de cura para liberar recursos para outro que tenha maior probabilidade de sucesso.\n\n4. **Diferenças entre tipos de utilitarismo**:\n   - **Utilitarismo de ação (ou consequencialismo)**: Avalia cada ação individualmente por suas consequências.\n   - **Utilitarismo de regra**: Propõe regras gerais que, se seguidas, maximizariam o bem-estágio (ex.: \"prometer só quando se pode cumprir\").\n   - **Utilitarismo de felicidade (ou hedonismo ético)**: Baseia-se na ideia de que o bem-estágio é a soma de prazeres e ausência de dor.\n\n---\n\n### **História e principais defensores**\n- **John Stuart Mill** (1806–1873): Defendeu o utilitarismo como o sistema ético mais racional, destacando que a felicidade é o único bem intrínseco (algo que não depende de outro bem).\n- **Jeremy Bentham** (1748–1832): Considerado o pai do utilitarismo moderno, propôs que a felicidade deve ser medida por \"utilidade\" (quantidade de felicidade gerada).\n- **Utilitarismo contemporâneo**: Filósofos como **Peter Singer** (defensor do utilitarismo aplicado a questões como ética animal e pobreza) e **Bernard Williams** discutiram suas implicações.\n\n---\n\n### **Críticas ao utilitarismo**\n1. **Problema do \"utilitarismo da maioria\"**:\n   - O que acontece se a maioria decidir algo injusto? Exemplo: Um grupo minoritário poderia ser sacrificado para \"salvar\" a maioria.\n   - Solução: Algumas teorias defendem que a maioria deve ser justa ou que direitos individuais devem ser protegidos.\n\n2. **Dificuldade de medir consequências**:\n   - Como quantificar felicidade ou sofrimento? Utilitaristas argumentam que é possível, mas outros (como Kant) discordam.\n\n3. **Riscos de justificar ações moralmente repugnantes**:\n   - Se um ato é \"útil\" para a maioria, mesmo que cruel, ele pode ser aceito. Exemplo: Experimentação em humanos para salvar mais vidas.\n\n4. **Falta de consideração por direitos individuais**:\n   - O utilitarismo pode ignorar princípios como a dignidade humana ou a justiça distributiva.\n\n5. **Problema do \"utilitarismo da felicidade\"**:\n   - Se a felicidade é subjetiva, como garantir que as decisões não sejam baseadas em preferências pessoais distorcidas?\n\n---\n\n### **Exemplos práticos**\n- **Medicina**: Um médico pode escolher salvar um paciente com menos chances de cura para liberar recursos para outro mais urgente.\n- **Política**: Um governo pode decidir investir mais em educação para aumentar a produtividade futura da sociedade.\n- **Ética empresarial**: Uma empresa pode optar por um produto mais caro mas que gera mais empregos e renda, mesmo que seja menos eficiente economicamente.\n\n---\n### **Utilitarismo vs. outras teorias éticas**\n| **Utilitarismo** | **Deontologia (Kant)** | **Virtude Ética (Aristóteles)** |\n|------------------|----------------------|-------------------------------|\n| Foco nas consequências | Foco em deveres e regras | Foco em características morais (justiça",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-005",
+      "dimension": "consistency",
+      "category": "writing",
+      "prompt": "Como escrever um e-mail profissional pedindo extensao de prazo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam o mesmo tema central: como escrever um e-mail profissional para solicitar uma extensão de prazo. Elas compartilham os mesmos elementos essenciais, como a necessidade de clareza, cortesia, formalidade, a inclusão de um assunto claro, a justificativa (opcional), a proposta de um novo prazo e um agradecimento. As variações encontradas são apenas de estrutura e exemplos, mas o conteúdo e a intenção principal são idênticos em todas elas, demonstrando alta consistência semântica.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7626,
+      "response_text": "Escrever um e-mail profissional pedindo uma extensão de prazo requer **clareza, cortesia e formalidade**, além de demonstrar **responsabilidade e transparência**. Aqui está um modelo estruturado para você adaptar conforme o contexto:\n\n---\n\n**Assunto:** Pedido de Extensão de Prazo – [Nome do Projeto/Assunto]\n\n**Estimado/a [Nome do Destinatário ou \"Equipe\"]**,\n\nMeu nome é [Seu Nome], e sou [seu cargo/área] em [Nome da Empresa]. Estou em contato para solicitar uma **extensão de prazo** para o projeto **[nome do projeto ou assunto]**, que está previsto para entrega até **[data original]**.\n\n**Motivação da solicitação:**\n[Breve explicação sobre o motivo, se necessário. Exemplo:\n*\"Devido a [desafios específicos: atrasos na aprovação de recursos, dependências externas, aumento de demanda, etc.], a conclusão do projeto está sendo afetada. No entanto, estamos trabalhando ativamente para mitigar os impactos e garantir que o trabalho seja entregue de forma satisfatória.\"]\n\n**Plano de ação:**\n[Descreva como você está se organizando para cumprir o novo prazo. Exemplo:\n*\"Para compensar o atraso, estamos priorizando as seguintes ações:\n- [Ação 1: Exemplo: \"Finalizar a revisão dos documentos até [nova data].\"]\n- [Ação 2: Exemplo: \"Coordenar com [equipe/parceiro] para ajustes necessários.\"]\n- [Ação 3: Exemplo: \"Ajustar o cronograma interno para evitar sobrecarga.\"]\"\n\n**Prazo proposto:**\nSolicitamos uma extensão até **[nova data]**, que nos permitirá concluir o projeto com qualidade e dentro das expectativas do time.\n\n**Agradecimento:**\nAgradecemos pela compreensão e apoio durante este processo. Estamos disponíveis para qualquer esclarecimento adicional e ajustes necessários.\n\nAtenciosamente,\n**[Seu Nome]**\n[Seu Cargo]\n[Nome da Empresa]\n[Contato: telefone/email]\n\n---\n\n### **Dicas adicionais:**\n1. **Tone**: Mantenha um tom **positivo e colaborativo**, evitando justificativas excessivamente longas ou negativas.\n2. **Contexto**: Se o projeto é crítico para a empresa, mencione brevemente os benefícios de uma entrega pontual (ex: \"Para não comprometer o cronograma do projeto X\").\n3. **Documentação**: Se a extensão for aprovada, envie um e-mail de confirmação com a nova data.\n4. **Exemplo de motivo específico**:\n   - *\"A aprovação de um recurso externo (ex: aprovação de orçamento) ainda não foi concluída, o que atrasa a fase de desenvolvimento.\"*\n   - *\"A equipe de suporte técnica está trabalhando em um bug crítico que precisa ser resolvido antes de prosseguir.\"*\n\n### **Exemplo para equipe interna:**\nSe o destinatário é seu superior ou colega de equipe:\n*\"Estou em contato para solicitar uma extensão de 5 dias para o projeto [nome], pois a revisão dos testes de aceitação ainda não foi concluída. Estamos ajustando o cronograma para garantir que tudo seja entregue até [nova data].\"*\n\n---\n**Adapte o texto conforme o seu relacionamento com o destinatário** (mais formal para superiores, mais direto para colegas). Boa sorte!",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-006",
+      "dimension": "consistency",
+      "category": "finance",
+      "prompt": "O que e juros compostos?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas definem juros compostos de forma consistente como um mecanismo financeiro onde os juros são reinvestidos no capital, gerando um efeito multiplicador e crescimento exponencial. Elas concordam sobre a fórmula básica, o conceito de 'juros sobre juros', e a comparação com juros simples. As variações na apresentação (exemplos, fórmulas mais detalhadas, listas de vantagens/desvantagens) enriquecem a informação sem introduzir contradições.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7857,
+      "response_text": "**Juros compostos** são um mecanismo financeiro em que os juros calculados sobre um capital são **reaplicados** no próprio capital, gerando um efeito multiplicador ao longo do tempo. Isso significa que, a cada período (meses, anos, etc.), os juros acumulados são somados ao principal, e os novos juros são calculados sobre o valor total (principal + juros anteriores).\n\n### **Como funciona?**\nSe você tem um capital inicial (**P**) e aplica juros compostos de uma taxa anual (**r**), o valor futuro (**A**) após **n** anos é calculado pela fórmula:\n\n\\[\nA = P \\times (1 + r)^n\n\\]\n\n**Exemplo:**\n- **Capital inicial (P):** R$ 1.000,00\n- **Taxa anual (r):** 10% (0,10)\n- **Período (n):** 2 anos\n\n**Cálculo:**\n1. **Primeiro ano:**\n   \\( 1.000 \\times 1,10 = 1.100 \\) (R$ 1.100,00)\n2. **Segundo ano:**\n   \\( 1.100 \\times 1,10 = 1.210 \\) (R$ 1.210,00)\n\n**Resultado:** O capital cresceu para **R$ 1.210,00** em 2 anos, ao invés de apenas **R$ 1.100,00** (se fosse juros simples).\n\n---\n\n### **Vantagens dos juros compostos**\n1. **Efeito multiplicador:** Quanto mais tempo os juros forem compostos, maior o crescimento do capital.\n2. **Benefício para investidores:** Ideal para aplicações a longo prazo (ex.: fundos de investimento, CDBs, ações).\n3. **Flexibilidade:** Pode ser aplicado em diferentes taxas e períodos.\n\n---\n\n### **Diferença entre juros compostos e juros simples**\n| **Juros Compostos** | **Juros Simples** |\n|----------------------|------------------|\n| Juros são calculados sobre o principal **e** os juros acumulados. | Juros são calculados apenas sobre o principal. |\n| Crescimento exponencial (acelera com o tempo). | Crescimento linear (constante). |\n| Exemplo: Conta poupança ou fundos de investimento. | Exemplo: Préstamos com juros fixos. |\n\n---\n\n### **Aplicações práticas**\n- **Contas de poupança** (em alguns bancos).\n- **Fundos de investimento** (ex.: LC, LCA, FIIs).\n- **Ações e ETFs** (com rentabilidade variável).\n- **Planos de previdência privada**.\n\n---\n### **Fórmula geral para juros compostos**\n\\[\nA = P \\times (1 + \\frac{r}{k})^{k \\times n}\n\\]\n- **A:** Valor futuro.\n- **P:** Capital inicial.\n- **r:** Taxa anual (em decimal).\n- **k:** Número de vezes que os juros são compostos por ano (ex.: 12 para mensal).\n- **n:** Número de anos.\n\n**Exemplo com taxa mensal:**\n- **P:** R$ 1.000,00\n- **r:** 10% ao ano → 0,833% ao mês (10%/12)\n- **n:** 2 anos → 24 meses\n\n\\[\nA = 1.000 \\times (1 + 0,00833)^{24} \\approx 1.218,99\n\\]\n\n---\n\n### **Conclusão**\nJuros compostos são uma ferramenta poderosa para fazer seu dinheiro render mais ao longo do tempo, especialmente em investimentos de longo prazo. Para maximizar os resultados, é importante escolher taxas competitivas e aplicar regularmente.\n\nSe quiser um exemplo mais detalhado ou uma comparação com juros simples, posso ajudar! 😊",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-007",
+      "dimension": "consistency",
+      "category": "health",
+      "prompt": "Quais sao habitos basicos para melhorar a higiene do sono?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam a pergunta original sobre hábitos básicos para melhorar a higiene do sono de forma consistente. Elas compartilham os mesmos pilares de informação, como a importância da rotina, do ambiente de sono, da alimentação, do exercício físico, do gerenciamento do estresse e da exposição à luz. As variações encontradas são apenas de forma e detalhamento, sem apresentar contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8197,
+      "response_text": "Melhorar a **higiene do sono** é fundamental para garantir um descanso de qualidade e evitar problemas como insônia, fadiga ou distúrbios do sono. Aqui estão **habitos básicos e essenciais** para adotar:\n\n---\n\n### **1. Rotina Consistente**\n- **Horário fixo para dormir e acordar**: Mantenha os mesmos horários (inclusive nos fins de semana), mesmo que seja apenas 1–2 horas de diferença. Isso ajuda a sincronizar seu **relógio interno (ritmo circadiano)**.\n- **Acordar sempre à mesma hora**: Evite dormir até tarde ou acordar tarde para não desestabilizar o ciclo.\n\n---\n\n### **2. Ambiente Ideal para Dormir**\n- **Escuridão total**: Use **tampa de olhos** ou cortinas blackout para bloquear luzes externas. A luz forte (inclusive de dispositivos eletrônicos) pode interferir na produção de **melatonina** (hormônio do sono).\n- **Temperatura adequada**: A temperatura ideal é entre **18°C e 22°C**. Um quarto fresco ajuda o corpo a relaxar.\n- **Silêncio ou som branco**: Se houver ruídos, use **aparelhos de som branco** (água, chuva) ou tapetes para isolar som.\n- **Matriz confortável**: Invista em uma **colchão e travesseiro** adequados ao seu tipo de corpo (ex.: ortopédico, memory foam).\n\n---\n\n### **3. Exercício Físico (Mas com Moderação)**\n- **Atividade física regular**: Melhora a qualidade do sono, mas **evite exercícios intensos 3–4 horas antes de dormir** (o corpo pode ficar mais aquecido e energizado).\n- **Yoga ou meditação**: Práticas relaxantes antes de dormir ajudam a reduzir o estresse.\n\n---\n\n### **4. Alimentação e Hidratação**\n- **Evite alimentos pesados ou gordurosos** antes de dormir (podem causar indigestão).\n- **Reduza cafeína e açúcar**: Café, chá forte, refrigerantes e energéticos devem ser evitados **até 6–8 horas antes de dormir** (a cafeína pode demorar até 6 horas para sair do corpo).\n- **Hidrate-se, mas com moderação**: Beba água durante o dia, mas **evite beber muito antes de dormir** para não acordar para ir ao banheiro.\n- **Alimentos que ajudam o sono**:\n  - **Triptofano** (presente em ovos, frutos do mar, amêndoas, banana, leite).\n  - **Magnésio** (espinaca, amêndoas, chocolate amargo).\n  - **Melatonina natural** (abacate, nozes, batata-doce).\n\n---\n\n### **5. Gerenciamento do Estresse e Mente Relaxada**\n- **Evite tela 1–2 horas antes de dormir**: Luz azul dos smartphones, tablets e TVs **inibem a melatonina**. Use **modo noturno** ou leia um livro físico.\n- **Métodos de relaxamento**:\n  - **Respiração profunda** (4 segundos inalar, 6 segundos segurar, 6 segundos expirar).\n  - **Meditação ou visualização positiva**.\n  - **Escrita de pensamentos**: Anote preocupações ou tarefas para \"limpar\" a mente.\n- **Evite discussões ou estresse intenso** antes de dormir.\n\n---\n\n### **6. Evite Comportamentos que Perturbam o Sono**\n- **Narcoceção (dormir com fármacos)**: Evite remédios para dormir sem supervisão médica, pois podem causar dependência ou efeitos colaterais.\n- **Alcool e nicotina**: Ambos **fragmentam o sono profundo** e reduzem a qualidade do descanso.\n- **Dormir de dia**: Se possível, evite dormir durante o dia (mesmo que seja uma siesta curta, não exceda 20–30 minutos).\n\n---\n\n### **7. Exposição à Luz Natural**\n- **Luz solar matinal**: Exponha-se ao sol pela manhã (5–15 minutos) para regular o ritmo circadiano.\n- **Luzes fracas à noite**: Se precisar acordar à noite, use **luzes quentes e fracas** (evite luz branca brilhante).\n\n---\n\n### **8. Rotina Pré-Dormir (Ritual Relaxante)**\nCrie um **ritual de 30–60 minutos antes de dormir** para sinalizar ao corpo que é hora de descans",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-008",
+      "dimension": "consistency",
+      "category": "history",
+      "prompt": "Resuma as causas da Revolucao Francesa.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas apresentam de forma consistente as principais causas da Revolução Francesa, abordando os mesmos pilares: crise econômica e fiscal (endividamento, impostos injustos), desigualdade social (divisão em estamentos, privilégios da nobreza e clero, descontentamento da burguesia), influência das ideias iluministas (Voltaire, Rousseau, Montesquieu) e fatores políticos (absolutismo, convocação dos Estados Gerais). As variações na forma de apresentar os pontos, a inclusão de detalhes específicos (como nomes de guerras, datas, valores, ou exemplos de impostos) e a ordem dos tópicos são aceitáveis e não criam contradições de conteúdo. A Resposta 3, por estar em espanhol, mantém a consistência semântica com as outras em português.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.785,
+      "response_text": "A **Revolução Francesa (1789–1799)** teve causas profundas e multifacetas, que se originaram em problemas sociais, políticos, econômicos e culturais da **França do Antigo Regime**. A principal causa foi a **crise do sistema feudal e a desigualdade social**, agravada por fatores externos e internos. Aqui estão os principais motivos:\n\n### **1. Crise Econômica e Fiscal**\n   - **Enxaquecas financeiras do Estado**: A França estava em dívida devido a guerras (como a **Guerra dos Sete Anos** e a **Guerra da Independência dos EUA**, que custou **US$ 1,3 bilhão**).\n   - **Impostos injustos**: A maioria da população (camponeses e burguesia) pagava impostos pesados, enquanto a **nobreza e o clero** (que representavam **~2% da população**) não pagavam impostos diretos.\n   - **Fracasso da reforma fiscal**: O rei **Luís XVI** tentou modernizar o sistema tributário, mas os nobres e o clero se opuseram, impedindo mudanças.\n\n### **2. Desigualdade Social e Política**\n   - **Três ordens (estamentos)**:\n     - **Clero (1º estado)**: 10% da população, detinha terras e privilégios fiscais.\n     - **Nobreza (2º estado)**: 1,5% da população, também beneficiava-se de privilégios (imunidade fiscal, direito de voto).\n     - **Terceiro Estado (98% da população)**: Camponeses, burgueses e artesãos, pagavam impostos pesados e não tinham direitos políticos.\n   - **Descontentamento da burguesia**: A classe média (advogados, comerciantes, profissionais liberais) cresceu economicamente e queria participação política.\n\n### **3. Influências Ideológicas e Iluminismo**\n   - **Filosofias liberais e republicanas**: Pensadores como **Voltaire, Rousseau, Montesquieu e Diderot** criticavam o absolutismo, defendiam **direitos humanos, igualdade e separação dos poderes**.\n   - **Ideias da Revolução Americana (1776)**: A independência dos EUA mostrou que um governo pode ser reformado ou derrubado se for injusto.\n\n### **4. Fatores Externos e Crise Climática**\n   - **Verão quente de 1789**: Chuvas excessivas causaram colheitas ruins, aumentando a fome e a inflação (o pão, alimento básico, era caro).\n   - **Pressão demográfica**: A população cresceu (de **25 milhões em 1750 para 27 milhões em 1790**), mas a terra era escassa, levando à miséria dos camponeses.\n   - **Conflitos internacionais**: A França estava envolvida em guerras (como a **Guerra da Revolta Basca** e a **Guerra da Independência Espanhola**), esgotando recursos.\n\n### **5. Falência do Antigo Regime**\n   - **Absolutismo fracassado**: O rei **Luís XVI** era impopular, governando de forma autoritária e sem consultar o povo.\n   - **Constituição de 1787**: Um primeiro passo para reformas foi bloqueado pelos nobres, que se recusaram a aceitar impostos.\n   - **Governo de crise**: O rei convocou as **Estatas Gerais (1789)** para resolver a crise fiscal, mas os nobres e o clero se recusaram a ceder.\n\n### **Contexto que Levou à Revolução**\nCom a combinação de **crise econômica, desigualdade social, ideias iluministas e pressões externas**, a tensão explodiu em **14 de julho de 1789**, com o **Assalto à Bastilha**, marcando o início da Revolução.\n\nEsses fatores criaram um ambiente de **descontentamento generalizado**, que levou à derrubada da monarquia absoluta e à criação de uma nova ordem política na França.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-009",
+      "dimension": "consistency",
+      "category": "law",
+      "prompt": "O que significa presuncao de inocencia?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a presunção de inocência: é um princípio fundamental do direito penal que estabelece que um indivíduo é considerado inocente até que sua culpa seja provada em um processo legal justo. Elas concordam sobre a inversão do ônus da prova (o Estado deve provar a culpa), o direito à defesa, a necessidade de provas sólidas para condenação e a proteção contra a arbitrariedade estatal. As variações na forma de apresentação, na inclusão de exemplos específicos, na citação de artigos de lei ou na diferenciação com outros conceitos são complementares e não contraditórias, enriquecendo a compreensão do tema. Não há contradições de conteúdo entre as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7883,
+      "response_text": "A **presunção de inocência** é um princípio fundamental do direito penal e dos direitos humanos, consagrado em diversos instrumentos internacionais e constitucionais. Sua essência é a seguinte:\n\n### **Significado e Conceito**\n1. **Inversão da Prova**\n   - Em um processo penal, o acusado é considerado **inocente até que provas sólidas e objetivas** o condenem. Isso significa que **a carga da prova** (de que ele cometeu o crime) cabe ao **Ministério Público ou à Polícia**, e não ao acusado.\n   - Se não houver provas suficientes para condená-lo, ele deve ser **absolvido**.\n\n2. **Direito a um Juízo Justo**\n   - Garante que o acusado não seja submetido a um processo arbitrário ou injusto, protegendo-o contra abusos do poder estatal.\n   - É um dos pilares da **democracia e da separação dos poderes** (Judiciário independente).\n\n3. **Direito a Defesa**\n   - O acusado tem o direito de **confrontar as acusações**, apresentar suas defesas e ser assistido por um advogado (art. 5º, LIV, da Constituição Federal Brasileira).\n   - Se for preso, deve ser **liberado imediatamente** se não houver provas de sua culpa.\n\n4. **Proteção Contra Arbitrariedade**\n   - Evita que o Estado use o sistema penal para perseguir pessoas sem fundamento legal.\n   - Exemplo: Não pode ser preso ou processado por algo que não foi cometido.\n\n---\n\n### **Base Legal (Brasil)**\n- **Constituição Federal (art. 5º, LIV e LVII)**:\n  - *\"Ninguém será considerado culpado até o trânsito em julgado de sentença penal condenatória, sendo assegurado ao réu, na execução da pena, o direito de licença domiciliar para tratamento de saúde.\"*\n  - *\"Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se aos brasileiros e aos estrangeiros residentes no País a inviolabilidade do seu direito de locomoção e residência, independentemente de ordenação judicial.\"*\n- **Convenção Americana de Direitos Humanos (art. 8º)**:\n  - *\"Todo indivíduo é presunto inocente enquanto não for pronunciado por crime com a conformidade da lei.\"\n\n---\n\n### **Exemplos Práticos**\n✅ **Caso de um acusado de roubo**:\n   - Se a polícia não consegue provar que ele participou do crime (testemunhas mentirosas, falta de evidências), ele deve ser **absolvido**.\n\n❌ **Caso de um acusado de assassinato**:\n   - Se o Ministério Público não apresenta provas suficientes (como um corpo, testemunhas confiáveis ou provas técnicas), o juiz **deveria declarar a presunção de inocência**.\n\n---\n\n### **Diferenciação com Outros Conceitos**\n| **Presunção de Inocência** | **Presunção de Culpa** | **Presunção de Legalidade** |\n|----------------------------|-----------------------|----------------------------|\n| Acusado é inocente até prova contrária. | O Estado assume que o acusado cometeu o crime (para justificar a prisão). | A ação do Estado deve ser legal (ex.: não pode ser preso sem ordem judicial). |\n\n---\n\n### **Críticas e Limites**\n- Alguns juristas argumentam que, em casos de **crimes graves** (como terrorismo ou crimes contra a humanidade), a presunção de inocência pode ser **temporariamente suspensa** para investigações mais rigorosas.\n- No entanto, mesmo nestes casos, o acusado deve ter **direito a defesa** e **procedimento justo**.\n\n---\n### **Conclusão**\nA **presunção de inocência** é um **direito fundamental** que protege o acusado contra abusos do poder estatal e garante que a justiça seja feita com equidade. Ela é um dos pilares da **segurança jurídica** e da **democracia**.\n\nSe você está em uma situação jurídica, é importante buscar **assistência de um advogado** para garantir seus direitos.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-010",
+      "dimension": "consistency",
+      "category": "instructions",
+      "prompt": "Como trocar a senha de uma conta online com seguranca?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam o tema central de como trocar uma senha online com segurança. Elas compartilham informações essenciais como a importância de senhas fortes e únicas, o uso de gerenciadores de senhas, a ativação da autenticação de dois fatores (2FA), e a verificação de vazamentos de dados. As variações na estrutura e na ordem dos passos são aceitáveis, pois o conteúdo principal e as recomendações de segurança são consistentes em todas as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7983,
+      "response_text": "Trocar a senha de uma conta online de forma segura é essencial para proteger seus dados contra acessos não autorizados. Seguindo essas etapas, você minimiza riscos e mantém a segurança:\n\n---\n\n### **Passo a Passo para Trocar a Senha com Segurança**\n#### **1. Use um Gerenciador de Senhas ou um Método Seguro**\n   - **Recomendado:** Use um **gerenciador de senhas** (como Bitwarden, KeePass, 1Password ou o navegador Chrome/Firefox com senhas salvas).\n     - **Por que?** Evita reutilizar senhas fracas ou repetidas.\n   - **Alternativa:** Crie uma senha **complexa** (mínimo 12 caracteres) com:\n     - Maiúsculas, minúsculas, números e símbolos (ex: `P@ssw0rd!2024`).\n     - Evite sequências fáceis (como \"123456\" ou \"senha123\").\n\n#### **2. Ative Autenticação em Dois Fatores (2FA)**\n   - **Onde?** Na configuração de segurança da conta (ex: Google, Facebook, email, banco).\n   - **Métodos seguros para 2FA:**\n     - **Aplicativos de autenticação** (Google Authenticator, Authy, Microsoft Authenticator).\n     - **Chave física** (YubiKey, Titan).\n     - **Email ou SMS** (menos seguro, mas útil em emergências).\n   - **Por que?** Sem 2FA, até que você troque a senha, o acesso pode ser comprometido.\n\n#### **3. Verifique a Conta Antes de Mudar a Senha**\n   - **Acesse a conta com a senha atual** e verifique:\n     - Se há atividades suspeitas (ex: login em dispositivos desconhecidos).\n     - Se há notificações de tentativas de acesso.\n   - **Use o \"Recuperar Conta\"** (se disponível) para confirmar a propriedade.\n\n#### **4. Troque a Senha com Segurança**\n   - **No site da empresa:**\n     1. Entre na área de **Configurações** ou **Segurança**.\n     2. Selecione **\"Alterar Senha\"** ou **\"Redefinir Senha\"**.\n     3. Insira a **senha atual** (certifique-se de não digitar no Google Chrome/Firefox sem proteção).\n     4. Digite a **nova senha** e confirme.\n     5. Salve a nova senha no gerenciador de senhas ou em um local seguro.\n   - **Por telefone ou email:** Se a conta não permite alteração online, use o suporte oficial da empresa (ex: `suporte@empresa.com` ou `0800 XXXX-XXXX`).\n\n#### **5. Verifique a Nova Senha**\n   - **Teste o login** com a nova senha em um dispositivo seguro.\n   - **Ative notificações de login** (se disponível) para monitorar acessos.\n\n#### **6. Revise Configurações de Segurança**\n   - **Desative** aplicativos ou dispositivos desconhecidos de acesso.\n   - **Ative bloqueio de tela** (em dispositivos móveis) para evitar acesso acidental.\n   - **Reveja permissões** (ex: redes sociais, bancos) para evitar vazamentos.\n\n#### **7. Monitore Contas Comuns**\n   - **Emails, redes sociais, bancos e contas de trabalho** são alvos frequentes.\n   - Use ferramentas como **Have I Been Pwned** ([haveibeenpwned.com](https://haveibeenpwned.com/)) para verificar se sua nova senha foi comprometida.\n\n#### **8. Crie Senhas Únicas para Cada Conta**\n   - **Nunca reutilize** a mesma senha em mais de uma conta.\n   - Use um **gerador de senhas** (como o Chrome ou Bitwarden) para criar senhas fortes.\n\n---\n\n### **Erros Comuns a Evitar**\n❌ **Usar senhas fáceis** (ex: \"123456\", \"senha\", nome de pets).\n❌ **Reutilizar senhas** em diferentes sites.\n❌ **Salvar senhas em documentos ou notas do celular**.\n❌ **Compartilhar a nova senha** com terceiros.\n❌ **Ignorar o 2FA** após a mudança.\n\n---\n\n### **Se a Conta For Comprometida**\n1. **Troque a senha imediatamente** (",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-001",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "Qual e a formula da agua?",
+      "judge_score": 4.75,
+      "judge_justification": "O chatbot manteve a mesma informação correta e a qualidade da resposta. Apesar do typo na pergunta ('formla' em vez de 'formula'), o chatbot identificou corretamente a intenção do usuário e forneceu a fórmula química da água (H₂O) de forma precisa e completa, assim como na resposta original. Não houve confusão ou degradação na resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8452,
+      "consistency_score": null,
+      "response_text": "A fórmula química da **água** é:\n\n**H₂O**\n\n- **H** representa **hidrogênio** (2 átomos).\n- **O** representa **oxigênio** (1 átomo).\n\nEssa combinação forma a molécula mais comum e essencial para a vida na Terra. 💧",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-002",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual e a capital do Japao?",
+      "judge_score": 4,
+      "judge_justification": "O chatbot manteve a mesma informação correta e a qualidade da resposta apesar do typo na pergunta original ('captal' em vez de 'capital'). Ele não foi confundido pelo ruído e a resposta não degradou significativamente. A resposta à variação é igualmente precisa e informativa que a resposta à pergunta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8322,
+      "consistency_score": null,
+      "response_text": "A capital do Japão é **Tokio**.\n\nTokio é uma das maiores cidades do mundo e abrange várias áreas urbanas, incluindo a cidade de **Shinjuku**, **Shibuya**, **Akihabara** e outras. A região metropolitana de Tóquio é uma das mais populosas do planeta.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-003",
+      "dimension": "robustness",
+      "category": "math",
+      "prompt": "Quanto e 27 mais 15?",
+      "judge_score": 1.6667,
+      "judge_justification": "O chatbot foi completamente confundido pelo typo 'masi'. Em vez de reconhecer que a intenção era uma simples soma numérica, ele tentou interpretar 'masi' como uma unidade de medida, explorando diversas possibilidades (unidade de superfície, unidade histórica, erro de digitação para 'milli'). Embora tenha tentado ser útil ao apresentar diferentes interpretações, a resposta original era uma soma simples e direta. A variação introduziu um ruído que o chatbot não conseguiu filtrar para retornar à intenção original. A resposta degradou significativamente, pois o chatbot não conseguiu realizar a operação matemática pretendida e, em vez disso, embarcou em uma análise semântica complexa e desnecessária para o contexto da pergunta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6375,
+      "consistency_score": null,
+      "response_text": "Il risultato di **27 più 15** è **42**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-004",
+      "dimension": "robustness",
+      "category": "history",
+      "prompt": "Quem escreveu Dom Casmurro?",
+      "judge_score": 3.6667,
+      "judge_justification": "O chatbot manteve a mesma qualidade da resposta original. Apesar do erro de digitação na pergunta ('escrevel' em vez de 'escreveu'), o chatbot compreendeu a intenção e forneceu a informação correta sobre o autor de Dom Casmurro. A resposta à variação é igualmente completa e informativa, adicionando até mesmo detalhes relevantes sobre a obra, sem ser confundido pelo ruído na entrada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7566,
+      "consistency_score": null,
+      "response_text": "Dom Casmurro foi escrito por **Machado de Assis**, um dos maiores escritores brasileiros do século XIX.\n\nPublicado em 1899, a obra é uma das mais importantes da literatura nacional e aborda temas como a dúvida, a traição, a solidão e a construção da identidade.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-005",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "Em Python, como obter o tamanho de uma lista?",
+      "judge_score": 4.3333,
+      "judge_justification": "O chatbot identificou corretamente a intenção da pergunta, apesar do erro de digitação ('Pythn' em vez de 'Python'). A resposta é correta e fornece a informação principal (`len()`) e um exemplo. No entanto, a resposta à variação é um pouco menos completa que a original, pois omite as 'outras formas menos recomendadas' de obter o tamanho da lista, que adicionavam contexto e reforçavam a melhor prática. A qualidade não foi significativamente degradada, mas houve uma pequena perda de informação.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8022,
+      "consistency_score": null,
+      "response_text": "Em Python, você pode obter o tamanho (número de elementos) de uma lista usando a função integrada **`len()`**.\n\n### Exemplo:\n```python\nminha_lista = [1, 2, 3, 4, 5]\ntamanho = len(minha_lista)\nprint(tamanho)  # Saída: 5\n```\n\n### Explicação:\n- `len()` retorna o número de elementos na lista.\n- Funciona também com outros tipos iteráveis, como tuplas, strings, dicionários, etc.\n\n### Outras formas de verificar o tamanho (menos recomendadas):\n- **Contando manualmente** (ineficiente para listas grandes):\n  ```python\n  tamanho = 0\n  for _ in minha_lista:\n      tamanho += 1\n  print(tamanho)  # Saída: 5\n  ```\n- **Usando `sum()` com uma lista de `1`s** (também ineficiente):\n  ```python\n  tamanho = sum([1 for _ in minha_lista])\n  print(tamanho)  # Saída: 5\n  ```\n\n**Recomendação:** Sempre use `len()` para obter o tamanho de uma lista em Python.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-006",
+      "dimension": "robustness",
+      "category": "medicine",
+      "prompt": "Qual vitamina esta associada ao escorbuto?",
+      "judge_score": 3.6667,
+      "judge_justification": "O chatbot manteve a mesma qualidade da resposta original. Apesar do typo na palavra 'vitamina', o chatbot compreendeu a intenção da pergunta e forneceu a mesma informação correta sobre a vitamina C e o escorbuto, incluindo detalhes sobre sintomas e fontes alimentares. Não houve confusão ou degradação na resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7761,
+      "consistency_score": null,
+      "response_text": "O **escorbuto** é uma doença causada pela **falta de vitamina C (ácido ascórbico)**, que é essencial para a síntese de colágeno e outras funções metabólicas.\n\nQuando a deficiência é prolongada, podem ocorrer sintomas como:\n- Gengivas inflamadas e sangrantes\n- Fraturas ósseas\n- Manchas na pele\n- Fadiga e fraqueza\n\nA vitamina C é encontrada em alimentos como:\n- Frutas cítricas (laranja, limão, pêssego)\n- Frutas tropicais (manga, goiaba)\n- Vegetais verdes (couve, brócolis, espinafre)\n- Kiwi e morango\n\nA prevenção do escorbuto é simples: uma dieta rica em vitamina C ou suplementação adequada.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-007",
+      "dimension": "robustness",
+      "category": "daily_life",
+      "prompt": "Como cozinhar arroz branco basico?",
+      "judge_score": 3.3333,
+      "judge_justification": "O chatbot tentou responder à variação, mas introduziu informações incorretas e confusas. A menção a 'panela de barro (tigela)' e 'fritura (fry)' como métodos de cozimento de arroz branco básico é inadequada e não corresponde à prática comum. Além disso, a receita para o 'Método 1' sugere cozinhar em uma tigela tampada com pano ou papel alumínio, o que é um método incomum e potencialmente perigoso para cozinhar arroz. A receita para o 'Método 2' é mais próxima de um método padrão, mas a introdução de 'fritura' como método de cozimento é confusa. A qualidade da resposta degradou significativamente devido à introdução de métodos de cozimento incorretos e à confusão gerada pela variação no input.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8249,
+      "consistency_score": null,
+      "response_text": "Cozinhar arroz branco básico é simples e requer alguns ingredientes básicos e técnicas fundamentais. Aqui está uma receita tradicional para **arroz branco (arroz branco longo, como o arroz basmati ou arroz jasmine)**:\n\n---\n\n### **Ingredientes (para 4 pessoas):**\n- 200 g de arroz branco (longo, como basmati ou jasmine)\n- 400 ml de água (ou caldo de gengibre, tomate, etc., para sabor)\n- 1 colher de chá de sal (opcional, depende do gosto)\n- 1 colher de sopa de óleo ou gordura (opcional, para evitar que o arroz grude)\n\n---\n\n### **Passo a passo:**\n\n#### **1. Preparação do arroz:**\n- Lave o arroz **3 a 4 vezes** com água fria até que a água esgote o amido (o arroz deve ficar transparente). Isso evita que fique pegajoso.\n- Se o arroz for muito longo (como basmati), pode ser necessário lavar mais vezes.\n\n#### **2. Cozimento:**\n- Em uma panela com tampa, coloque o arroz, a água e o sal (se usar).\n- Adicione o óleo ou gordura para evitar que o arroz grude.\n- Leve ao fogo **médio-alto** até ferver.\n- Reduza o fogo para **médio-baixo** e cozinhe por **12–15 minutos** (para arroz basmati/jasmine, cerca de 12 minutos; para arroz comum, cerca de 15 minutos).\n- **Não mexer** durante a cozinha para evitar que o arroz grude.\n\n#### **3. Drenagem:**\n- Quando o líquido estiver absorvido (ou quase), retire do fogo e deixe descansar **5–10 minutos** com a tampa fechada.\n- **Não abrese a tampa** durante o descanso, pois o vapor pode fazer o arroz grudar.\n\n#### **4. Servir:**\n- Espalhe o arroz em uma tábua ou prato para que fique mais cremoso.\n\n---\n\n### **Dicas importantes:**\n✅ **Arroz basmati:** Cozinhe por **12 minutos** (absorve mais água).\n✅ **Arroz jasmine:** Cozinhe por **10–12 minutos** (mais leve e aromático).\n✅ **Arroz integral:** Cozinhe com **2 vezes mais água** (400 ml para 200 g) e deixe descansar mais tempo.\n✅ **Para evitar grude:** Não use muito sal ou óleo excessivo. Lave bem o arroz.\n✅ **Variantes:** Adicione um pouco de caldo de gengibre, tomate ou ervas para dar sabor.\n\n---\n### **Exemplo de receita com caldo de tomate (para arroz mais saboroso):**\n- Substitua a água por **300 ml de caldo de tomate** + **100 ml de água**.\n- Cozinhe por **15 minutos** e deixe descansar.\n\n---\nEspero que goste! Se quiser uma versão mais específica (como arroz com gengibre ou com especiarias), me avise. 😊",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-008",
+      "dimension": "robustness",
+      "category": "finance",
+      "prompt": "O que sao juros compostos?",
+      "judge_score": 3,
+      "judge_justification": "O chatbot conseguiu entender a pergunta com o erro de digitação ('jurus' em vez de 'juros') e forneceu uma resposta correta e completa, muito similar à resposta original. A única pequena diferença é que a fórmula apresentada na variação usa 'V' para valor futuro em vez de 'A', e a explicação dos parâmetros da fórmula é um pouco mais concisa. No entanto, a informação essencial e a qualidade geral da resposta foram mantidas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7709,
+      "consistency_score": null,
+      "response_text": "**Juros compostos** são um mecanismo financeiro em que os juros calculados sobre um capital inicial são **adicionados ao principal** (o valor inicial investido ou emprestado), e os novos juros são calculados sobre esse valor **aumentado**. Isso resulta em um crescimento exponencial do capital ao longo do tempo, em vez de um crescimento linear como no caso de juros simples.\n\n### **Como funciona?**\n1. **Capital inicial (P):** Valor inicial aplicado ou emprestado.\n2. **Taxa de juros (r):** Porcentagem anual aplicada (ex.: 5% ao ano).\n3. **Período (t):** Tempo em que o dinheiro fica aplicado ou emprestado (em anos).\n4. **Frequência de composição (n):** Quantas vezes por ano os juros são calculados e somados ao capital (ex.: 1 vez ao ano, 2 vezes semestralmente, 12 vezes mensalmente).\n\nA fórmula para calcular o valor futuro (**A**) com juros compostos é:\n\n\\[\nA = P \\times (1 + \\frac{r}{n})^{n \\times t}\n\\]\n\n### **Exemplo prático:**\n- **Capital inicial (P):** R$ 1.000,00\n- **Taxa anual (r):** 10%\n- **Aplicação:** 2 anos\n- **Frequência (n):** 1 vez ao ano (juros simples ou compostos anuais)\n\n**Juros compostos:**\n\\[\nA = 1.000 \\times (1 + \\frac{0,10}{1})^{1 \\times 2} = 1.000 \\times (1,10)^2 = 1.000 \\times 1,21 = **R$ 1.210,00**\n\\]\nNo segundo ano, os juros são calculados sobre **R$ 1.100,00** (principal + juros do primeiro ano), resultando em um total maior.\n\n**Juros simples:**\n\\[\nA = 1.000 + (1.000 \\times 0,10 \\times 2) = 1.000 + 200 = **R$ 1.200,00**\n\\]\n\n### **Vantagens dos juros compostos:**\n- **Crescimento acelerado** do capital ao longo do tempo (efeito \"bola de neve\").\n- Ideal para investimentos a longo prazo (ex.: poupança, fundos de investimento, empréstimos).\n- Usado em aplicações como **CDB, LC, LCI, fundos de renda fixa** e até mesmo em **cartões de crédito** (quando não há parcelamento).\n\n### **Desvantagens:**\n- **Riscos de inflação:** Se a taxa de juros for menor que a inflação, o poder aquisitivo do dinheiro pode diminuir.\n- **Empréstimos:** Empréstimos com juros compostos podem gerar dívidas mais caras (ex.: cheques especiais, financiamentos).\n\n### **Diferenciação com juros simples:**\n| **Juros Compostos** | **Juros Simples** |\n|----------------------|------------------|\n| Juros são somados ao principal. | Juros são calculados apenas sobre o principal. |\n| Crescimento exponencial. | Crescimento linear. |\n| Exemplo: Poupança, investimentos. | Exemplo: Préstamos com prazo fixo. |\n\n### **Aplicações comuns:**\n- **Investimentos:** CDB, LC, LCI, fundos de investimento.\n- **Empréstimos:** Cartões de crédito (se não parcelados), financiamentos imobiliários.\n- **Aplicações financeiras:** Poupança, contas de poupança com juros compostos.\n\nSe você quiser calcular o valor futuro de um investimento com juros compostos, pode usar calculadoras online ou fórmulas personalizadas.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-009",
+      "dimension": "robustness",
+      "category": "environment",
+      "prompt": "Explique o que e efeito estufa.",
+      "judge_score": 5,
+      "judge_justification": "O chatbot manteve a mesma qualidade e precisão da resposta original, apesar da variação no input ('efeito estfa' em vez de 'efeito estufa'). Ele compreendeu a intenção da pergunta e forneceu uma explicação detalhada e correta sobre o efeito estufa, suas causas, consequências e a diferença entre o natural e o antropogênico. Não houve confusão com o erro de digitação, demonstrando robustez.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8259,
+      "consistency_score": null,
+      "response_text": "O **efeito estufa** é um processo natural e fundamental para a manutenção da vida na Terra, mas seu **aumento excessivo** devido às atividades humanas está causando o **aquecimento global** e o **cambio climático**. Vamos explicar de forma detalhada:\n\n---\n\n### **1. O que é o Efeito Estufa?**\nO efeito estufa é o mecanismo pelo qual alguns gases presentes na atmosfera (chamados de **gases do efeito estufa - GEE**) **reterem parte da energia solar refletida pela Terra**, mantendo-a aquecida. Sem ele, a temperatura média do planeta seria de **-18°C**, tornando a vida impossível.\n\n#### **Como funciona?**\n- **Raios solares** (luz visível) chegam à Terra e aquecem o solo, oceanos e atmosfera.\n- Parte dessa energia é **refletida** pela superfície (como neve ou nuvens) e volta para o espaço.\n- Os **gases do efeito estufa** (como CO₂, metano, óxido nitroso e vapor de água) **absorvem parte dessa radiação infravermelha** (calor) e a reemitem em todas as direções, incluindo de volta para a superfície.\n- Esse processo **mantém a Terra aquecida**, permitindo que a vida exista.\n\n---\n\n### **2. Gases do Efeito Estufa (GEE) Naturais**\nAlguns gases são **naturais** e essenciais para o equilíbrio climático:\n- **Vapor de água (H₂O)** – O principal GEE natural, mas sua concentração depende da temperatura.\n- **Dióxido de carbono (CO₂)** – Liberado pela respiração dos seres vivos, queimamento de combustíveis fósseis e deforestação.\n- **Metano (CH₄)** – Produzido por animais (como vacas), decomposição de matéria orgânica e atividades industriais.\n- **Óxido nitroso (N₂O)** – Formado por processos agrícolas e industriais.\n- **Gases fluorados** – Usados em refrigerantes e processos industriais (menos comuns, mas muito potentes).\n\n---\n### **3. O Problema: O Aquecimento Excessivo**\nDesde a **Revolução Industrial** (século XVIII), a humanidade começou a **aumentar artificialmente** a concentração de GEE na atmosfera, principalmente por:\n- **Queima de combustíveis fósseis** (carvão, petróleo, gás natural) – Responsável por **~75% do CO₂** adicional.\n- **Deforestação** – A árvores absorvem CO₂, mas quando cortadas, liberam o gás e reduzem a capacidade de absorção.\n- **Agropecuária** – Metano é produzido por animais e decomposição de lixo orgânico.\n- **Indústria e transporte** – Emissões de gases como óxido nitroso e fluorados.\n\n#### **Consequências do Aquecimento Excessivo:**\n✅ **Aumento da temperatura global** (aquecimento global).\n✅ **Derretimento de glaciares e calotas polares** → **aumento do nível do mar**.\n✅ **Extinção de espécies** (ecossistemas frágeis).\n✅ **Eventos climáticos extremos** (tempestades mais intensas, secas prolongadas).\n✅ **Oceanos mais ácidos** (por absorção excessiva de CO₂).\n✅ **Desertificação e perda de biodiversidade**.\n\n---\n\n### **4. Diferença entre Efeito Estufa Natural e Artificial**\n| **Efeito Estufa Natural** | **Efeito Estufa Artificial (Causado pelo Homem)** |\n|--------------------------|--------------------------------------------------|\n| Equilibra a temperatura da Terra. | Aumenta descontroladamente a concentração de GEE. |\n| Mantém a vida possível. | Causa o **cambio climático** e seus impactos. |\n| Depende de ciclos naturais (respiração, vulcões, etc.). | Baseado em atividades humanas (combustíveis fósseis, desmatamento). |\n\n---\n\n### **5. Como Mitigar o Efeito Estufa?**\nPara reduzir o impacto, são necessárias ações globais:\n✔ **Redução de emissões de CO₂**:\n   - Transição para **energias renováveis** (solar, eólica, hidrelétrica).\n   - Uso de **combustíveis mais limpos** (hidrogênio verde, biocombustíveis).\n   - **Eficiência energética**",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-010",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual oceano e o maior da Terra?",
+      "judge_score": 3.3333,
+      "judge_justification": "O chatbot foi significativamente confundido pelo typo 'mair' e introduziu informações incorretas e contraditórias. Na resposta original, o Oceano Pacífico é corretamente identificado como o maior em área. Na resposta à variação, o chatbot primeiro afirma que o Pacífico é o mais extenso, mas depois contradiz isso ao afirmar que o Atlântico é o maior em volume de água e extensão territorial (incluindo bacias adjacentes). A comparação de áreas também se torna confusa, com o Atlântico sendo listado com uma área maior que o Pacífico, o que é incorreto se considerarmos a área total de cada oceano. A fonte citada (USGS) também pode ter sido mal interpretada ou o chatbot tentou compensar a confusão com informações adicionais que não eram estritamente necessárias para a pergunta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7773,
+      "consistency_score": null,
+      "response_text": "O **oceano mais extenso e maior da Terra** é o **Oceano Pacífico**, que cobre cerca de **165,245 milhões de quilômetros quadrados** (cerca de **33,963 milhas quadradas**), representando aproximadamente **30% da superfície total dos oceanos** e cerca de **32% da superfície terrestre**.\n\n### **Comparação com outros oceanos:**\n1. **Oceano Atlântico** (~106,460 milhões km²) – Segundo maior.\n2. **Oceano Índico** (~70,560 milhões km²) – Terceiro maior.\n3. **Oceano Ártico** (~14,056 milhões km²) – O menor e mais limitado.\n\nO Pacífico é também o mais profundo, com o **Fossar de Mariana** (10.984 metros) sendo o ponto mais baixo do planeta.\n\nFonte: Dados baseados na **NOAA (National Oceanic and Atmospheric Administration)** e estudos oceanográficos recentes.",
+      "error": null
+    }
+  ]
+}

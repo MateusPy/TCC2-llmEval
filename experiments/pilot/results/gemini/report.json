@@ -1,0 +1,536 @@
+{
+  "metadata": {
+    "framework_version": "0.1.0",
+    "started_at": "2026-05-20T02:47:21.899277+00:00",
+    "finished_at": "2026-05-20T02:56:22.163906+00:00",
+    "duration_seconds": 540.265,
+    "provider_type": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "seed": 42,
+    "temperature": 0.0,
+    "total_scenarios": 30,
+    "scenarios_with_error": 0,
+    "dimensions_evaluated": [
+      "factual",
+      "consistency",
+      "robustness"
+    ]
+  },
+  "summary": {
+    "overall_score": 4.5778,
+    "by_dimension": {
+      "factual": {
+        "mean": 4.9,
+        "median": 5.0,
+        "stdev": 0.3162,
+        "min": 4.0,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      },
+      "consistency": {
+        "mean": 5,
+        "median": 5.0,
+        "stdev": 0.0,
+        "min": 5.0,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      },
+      "robustness": {
+        "mean": 3.8333,
+        "median": 3.8334,
+        "stdev": 0.8203,
+        "min": 2.3333,
+        "max": 5.0,
+        "count": 10,
+        "evaluated": 10,
+        "failed": 0
+      }
+    }
+  },
+  "details": [
+    {
+      "scenario_id": "factual-001",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Australia?",
+      "judge_score": 4,
+      "judge_justification": "A resposta do chatbot está quase correta, mas contém um pequeno erro de digitação na capital ('Camberra' em vez de 'Canberra'). A informação principal (a capital da Austrália) está correta, e a resposta é completa o suficiente para a pergunta feita.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6225,
+      "consistency_score": null,
+      "response_text": "A capital da Austrália é **Camberra**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-002",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Suica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica Berna como a capital da Suíça de forma direta e sem informações incorretas ou inventadas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.661,
+      "consistency_score": null,
+      "response_text": "A capital da Suíça é **Berna**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-003",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano caiu o Muro de Berlim?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo o ano exato em que o Muro de Berlim caiu.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6525,
+      "consistency_score": null,
+      "response_text": "O Muro de Berlim caiu em **1989**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-004",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem foi o primeiro presidente do Brasil apos a Proclamacao da Republica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente Marechal Deodoro da Fonseca como o primeiro presidente do Brasil após a Proclamação da República, sem adicionar informações incorretas ou omitir detalhes relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.745,
+      "consistency_score": null,
+      "response_text": "O primeiro presidente do Brasil após a Proclamação da República foi **Marechal Deodoro da Fonseca**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-005",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual planeta do Sistema Solar e conhecido como Planeta Vermelho?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot identifica corretamente Marte como o Planeta Vermelho, alinhando-se perfeitamente com a resposta esperada (ground truth). Não há informações inventadas ou incorretas, e a resposta é completa o suficiente para atender à pergunta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6297,
+      "consistency_score": null,
+      "response_text": "O planeta do Sistema Solar conhecido como **Planeta Vermelho** é **Marte**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-006",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual e o simbolo quimico do ouro?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece o símbolo químico exato do ouro (Au) e não contém informações inventadas ou incorretas. A resposta é concisa e completa o suficiente para atender à pergunta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5894,
+      "consistency_score": null,
+      "response_text": "O símbolo químico do ouro é **Au**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-007",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Quantos ossos tem, em media, o corpo humano adulto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo o número exato de 206 ossos. Além disso, a explicação adicional sobre a variação devido à fusão óssea é precisa e enriquece a resposta sem introduzir informações incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5971,
+      "consistency_score": null,
+      "response_text": "O corpo humano adulto tem, em média, **206 ossos**.\n\nÉ importante notar que esse número pode variar ligeiramente em algumas pessoas, principalmente devido à fusão de alguns ossos que ocorre durante o desenvolvimento. Por exemplo, o cóccix (osso da cauda) é formado pela fusão de várias vértebras.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-008",
+      "dimension": "factual",
+      "category": "mathematics",
+      "prompt": "Quanto e 15% de 200?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela não contém informações inventadas ou incorretas e é completa o suficiente, apresentando três métodos diferentes para chegar ao resultado correto de 30.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4582,
+      "consistency_score": null,
+      "response_text": "Para calcular 15% de 200, você pode seguir estes passos:\n\n**Método 1: Transformar a porcentagem em decimal**\n\n1.  **Converta a porcentagem em decimal:** Divida a porcentagem por 100.\n    15% = 15 / 100 = 0,15\n\n2.  **Multiplique o decimal pelo número:**\n    0,15 * 200 = 30\n\n**Método 2: Usar a fração da porcentagem**\n\n1.  **Escreva a porcentagem como uma fração:**\n    15% = 15/100\n\n2.  **Multiplique a fração pelo número:**\n    (15/100) * 200\n\n3.  **Simplifique a multiplicação:**\n    (15 * 200) / 100 = 3000 / 100 = 30\n\n**Método 3: Calcular 10% e 5% separadamente**\n\n1.  **Calcule 10% de 200:**\n    10% de 200 é 200 / 10 = 20\n\n2.  **Calcule 5% de 200:**\n    5% é metade de 10%, então 5% de 200 é 20 / 2 = 10\n\n3.  **Some os resultados:**\n    20 + 10 = 30\n\nEm todos os métodos, o resultado é o mesmo.\n\nPortanto, 15% de 200 é **30**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-009",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior oceano da Terra?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica o Oceano Pacífico como o maior oceano da Terra, sem adicionar informações incorretas ou inventadas, e é completa o suficiente para responder à pergunta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5584,
+      "consistency_score": null,
+      "response_text": "O maior oceano da Terra é o **Oceano Pacífico**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-010",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o rio mais longo do mundo segundo a Britannica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica o Rio Nilo como o rio mais longo do mundo, conforme a fonte especificada (Britannica), e não contém informações inventadas ou incorretas. A resposta é completa o suficiente para atender à pergunta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7045,
+      "consistency_score": null,
+      "response_text": "Segundo a Britannica, o rio mais longo do mundo é o **Rio Nilo**.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-001",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "Explique o que e fotossintese.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas explicam a fotossíntese de forma consistente, abordando os mesmos conceitos centrais: a conversão de energia luminosa em energia química (açúcares), os ingredientes essenciais (luz, CO₂, água), os locais de ocorrência (cloroplastos, clorofila), as duas fases principais (luminosa e escura/Ciclo de Calvin), os produtos (oxigênio e glicose) e a importância do processo para a vida na Terra. As variações na profundidade dos detalhes e na forma de apresentação são aceitáveis e não introduzem contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8006,
+      "response_text": "## Fotossíntese: A Mágica da Vida Verde\n\nA fotossíntese é um processo fundamental para a vida na Terra, realizado por plantas, algas e algumas bactérias. É através dela que esses organismos transformam a energia luminosa do sol em energia química, na forma de açúcares, que servem como alimento para eles e, indiretamente, para a maioria dos outros seres vivos.\n\n**Em termos simples, a fotossíntese é como uma \"fábrica\" natural que usa luz, água e dióxido de carbono para produzir oxigênio e alimento.**\n\nVamos detalhar os componentes e o processo:\n\n**Ingredientes Essenciais:**\n\n* **Luz Solar:** A fonte de energia primária. As plantas captam essa energia através de um pigmento verde chamado **clorofila**, presente nas folhas e em outras partes verdes. A clorofila é o que dá a cor verde às plantas.\n* **Dióxido de Carbono (CO₂):** Um gás presente na atmosfera. As plantas absorvem o CO₂ através de pequenas aberturas nas folhas chamadas **estômatos**.\n* **Água (H₂O):** Absorvida pelas raízes da planta do solo e transportada até as folhas.\n\n**O Processo em Duas Etapas Principais:**\n\nA fotossíntese ocorre em duas fases principais, que acontecem dentro de organelas especializadas nas células vegetais chamadas **cloroplastos**:\n\n1. **Fase Luminosa (ou Reações Dependentes de Luz):**\n   * Nesta fase, a energia da luz solar é capturada pela clorofila.\n   * Essa energia é usada para quebrar as moléculas de água (H₂O).\n   * A quebra da água libera **oxigênio (O₂)** como subproduto, que é liberado na atmosfera.\n   * A energia capturada é armazenada em moléculas transportadoras de energia, como o ATP (adenosina trifosfato) e o NADPH (nicotinamida adenina dinucleotídeo fosfato).\n\n2. **Fase Escura (ou Ciclo de Calvin, Reações Independentes de Luz):**\n   * Nesta fase, que não precisa diretamente de luz, mas utiliza a energia produzida na fase luminosa (ATP e NADPH).\n   * O dióxido de carbono (CO₂) absorvido é \"fixado\" e combinado com outras moléculas.\n   * Através de uma série de reações químicas complexas, o CO₂ é transformado em **glicose (C₆H₁₂O₆)**, um tipo de açúcar.\n   * A glicose é a principal fonte de energia para a planta, sendo utilizada para seu crescimento, desenvolvimento e outras funções vitais. O excesso de glicose pode ser armazenado na forma de amido.\n\n**A Equação Geral da Fotossíntese:**\n\nPodemos resumir todo o processo com a seguinte equação química:\n\n**6 CO₂ (Dióxido de Carbono) + 6 H₂O (Água) + Energia Luminosa → C₆H₁₂O₆ (Glicose) + 6 O₂ (Oxigênio)**\n\n**Por que a Fotossíntese é Tão Importante?**\n\n* **Produção de Oxigênio:** A fotossíntese é a principal fonte de oxigênio na atmosfera terrestre. Sem ela, a vida como a conhecemos, que depende da respiração aeróbica, seria impossível.\n* **Base da Cadeia Alimentar:** As plantas são os produtores primários. Elas convertem a energia solar em alimento (açúcares), que é consumido por herbívoros, que por sua vez são consumidos por carnívoros, e assim por diante. Toda a energia que flui pelos ecossistemas tem sua origem na fotossíntese.\n* **Remoção de Dióxido de Carbono:** A fotossíntese remove o dióxido de carbono da atmosfera, um importante gás de efeito estufa. Isso ajuda a regular o clima do planeta.\n* **Produção de Biomassa:** A fotossíntese é responsável pela produção de toda a biomassa vegetal, que é utilizada para alimentação, construção, energia (biocombustíveis) e muitos outros fins.\n\n**Em resumo, a fotossíntese é um processo vital que sustenta a vida na Terra, fornecendo o oxigênio que respiramos e o alimento que nos nutre, tudo isso através da incrível capacidade das plantas de converter a luz do sol em energia.**",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-002",
+      "dimension": "consistency",
+      "category": "daily_life",
+      "prompt": "Como faco arroz branco simples?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas fornecem instruções detalhadas e consistentes sobre como fazer arroz branco simples. Elas concordam nos ingredientes essenciais (arroz, água, sal, óleo opcional), na proporção clássica de 1:2 (arroz:água), na importância da lavagem opcional do arroz para soltura, no refogado opcional para sabor, na necessidade de cozinhar em fogo baixo após a fervura inicial, no tempo de cozimento aproximado (15-20 minutos) e na etapa crucial de descanso após o cozimento. As variações encontradas são apenas de forma (ordem de alguns passos opcionais, detalhes de dicas extras) e não de conteúdo central, mantendo a coerência semântica.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8233,
+      "response_text": "Fazer arroz branco simples é muito fácil e rápido! Aqui está um guia passo a passo para um arroz soltinho e delicioso:\n\n**Ingredientes:**\n\n*   1 xícara de arroz branco (qualquer tipo, como agulhinha, parboilizado, etc.)\n*   2 xícaras de água fervente (a proporção clássica é 1:2, mas pode variar um pouco dependendo do tipo de arroz e da sua preferência)\n*   1 colher de sopa de óleo vegetal (girassol, canola, milho) ou azeite\n*   1/2 colher de chá de sal (ou a gosto)\n*   Opcional: 1 dente de alho picado ou amassado (para um toque de sabor)\n\n**Equipamentos:**\n\n*   Panela com tampa (de preferência antiaderente)\n*   Colher ou espátula\n\n**Passo a Passo:**\n\n1.  **Lave o Arroz (Opcional, mas recomendado para alguns tipos):**\n    *   Coloque o arroz em uma peneira e lave-o em água corrente fria até que a água saia limpa. Isso remove o excesso de amido, o que ajuda a deixar o arroz mais soltinho.\n    *   **Observação:** Arroz parboilizado geralmente não precisa ser lavado. Se você prefere um arroz mais \"grudado\", pode pular a lavagem.\n\n2.  **Refogue o Alho (Opcional):**\n    *   Em uma panela, aqueça o óleo em fogo médio.\n    *   Adicione o alho picado (se estiver usando) e refogue por cerca de 30 segundos a 1 minuto, até ficar levemente dourado e perfumado. Cuidado para não queimar o alho, pois ele pode amargar.\n\n3.  **Adicione o Arroz:**\n    *   Adicione o arroz lavado e escorrido à panela.\n    *   Mexa o arroz por cerca de 1 a 2 minutos, para que ele \"frite\" um pouco no óleo. Isso ajuda a selar os grãos e contribui para um arroz mais soltinho.\n\n4.  **Adicione a Água e o Sal:**\n    *   Despeje as 2 xícaras de água fervente na panela.\n    *   Adicione o sal e misture bem.\n\n5.  **Cozinhe em Fogo Baixo:**\n    *   Assim que a água começar a ferver novamente, abaixe o fogo para o mínimo.\n    *   Tampe a panela. É importante que a tampa esteja bem encaixada para reter o vapor.\n\n6.  **Tempo de Cozimento:**\n    *   Deixe cozinhar por cerca de 15 a 20 minutos, ou até que toda a água tenha sido absorvida e o arroz esteja macio.\n    *   **Importante:** Evite abrir a tampa da panela durante o cozimento, pois isso libera o vapor essencial para o processo.\n\n7.  **Descanse o Arroz:**\n    *   Quando o arroz estiver cozido e a água tiver sido absorvida, desligue o fogo.\n    *   Mantenha a panela tampada e deixe o arroz descansar por mais 5 a 10 minutos. Esse descanso permite que o vapor restante termine de cozinhar os grãos e os deixe ainda mais soltinhos.\n\n8.  **Solte o Arroz:**\n    *   Após o descanso, retire a tampa e use um garfo ou uma espátula para soltar delicadamente os grãos de arroz.\n\n**Dicas para um Arroz Perfeito:**\n\n*   **Proporção de Água:** A proporção 1:2 (arroz:água) é um bom ponto de partida. Se você gosta do arroz mais firme, use um pouco menos de água (1 e 3/4 xícaras). Se prefere mais macio, pode usar um pouco mais (2 e 1/4 xícaras).\n*   **Fogo Baixo:** Cozinhar em fogo baixo é crucial para que o arroz cozinhe uniformemente sem queimar no fundo.\n*   **Não Mexa Demais:** Mexer o arroz em excesso durante o cozimento pode liberar o amido e deixá-lo empapado.\n*   **Panela Adequada:** Uma panela com fundo grosso ajuda a distribuir o calor de maneira mais uniforme.\n*   **Arroz Fresco:** Arroz mais fresco tende a cozinhar melhor.\n\nPronto! Agora você tem um arroz branco simples",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-003",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Explique a diferenca entre lista e tupla em Python.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam consistentemente a diferença fundamental entre listas e tuplas em Python, que é a mutabilidade. Elas explicam que listas são mutáveis (podem ser alteradas após a criação) e tuplas são imutáveis (não podem ser alteradas). Todas as respostas também mencionam a sintaxe (colchetes para listas, parênteses para tuplas), o uso comum de cada uma e, em alguns casos, a performance. Não há contradições de conteúdo entre as respostas; as variações são apenas na forma de apresentar a informação e na profundidade de alguns detalhes (como o caso especial da tupla com um único elemento ou a mutabilidade de objetos dentro de tuplas).",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7816,
+      "response_text": "Em Python, tanto **listas** quanto **tuplas** são estruturas de dados usadas para armazenar coleções de itens. No entanto, a principal diferença entre elas reside na sua **mutabilidade**.\n\nVamos detalhar cada uma e depois comparar:\n\n---\n\n### Listas (Lists)\n\n*   **Definição:** Listas são coleções **mutáveis** e **ordenadas** de itens. Isso significa que você pode modificar uma lista após sua criação, adicionando, removendo ou alterando elementos.\n*   **Sintaxe:** São definidas usando colchetes `[]`.\n*   **Exemplo:**\n    ```python\n    minha_lista = [1, \"Python\", 3.14, True]\n    ```\n*   **Características:**\n    *   **Mutáveis:** Você pode alterar os elementos, adicionar novos elementos ou remover elementos existentes.\n        ```python\n        minha_lista.append(\"novo item\")  # Adiciona um item ao final\n        minha_lista[0] = 100             # Altera o primeiro elemento\n        del minha_lista[1]               # Remove o segundo elemento\n        print(minha_lista)               # Saída: [100, 3.14, True, 'novo item']\n        ```\n    *   **Ordenadas:** Os elementos mantêm a ordem em que foram inseridos.\n    *   **Podem conter tipos de dados mistos:** Uma lista pode armazenar números, strings, booleanos, outras listas, etc.\n    *   **Uso comum:** Quando você precisa de uma coleção de itens que pode mudar ao longo do tempo, como uma lista de tarefas, um carrinho de compras, ou dados que serão processados e modificados.\n\n---\n\n### Tuplas (Tuples)\n\n*   **Definição:** Tuplas são coleções **imutáveis** e **ordenadas** de itens. Uma vez que uma tupla é criada, você não pode alterar seus elementos.\n*   **Sintaxe:** São definidas usando parênteses `()`.\n*   **Exemplo:**\n    ```python\n    minha_tupla = (1, \"Python\", 3.14, True)\n    ```\n*   **Características:**\n    *   **Imutáveis:** Você não pode adicionar, remover ou alterar elementos após a criação da tupla.\n        ```python\n        # Tentativas de modificação resultarão em erro:\n        # minha_tupla.append(\"novo item\")  # AttributeError\n        # minha_tupla[0] = 100             # TypeError\n        # del minha_tupla[1]               # TypeError\n        ```\n        Se você precisar de uma versão modificada de uma tupla, você terá que criar uma nova tupla.\n    *   **Ordenadas:** Os elementos mantêm a ordem em que foram inseridos.\n    *   **Podem conter tipos de dados mistos:** Assim como listas, tuplas podem armazenar diferentes tipos de dados.\n    *   **Uso comum:**\n        *   Quando você quer garantir que os dados não sejam alterados acidentalmente.\n        *   Para representar registros fixos, como coordenadas (x, y), informações de data (ano, mês, dia).\n        *   Como chaves em dicionários (pois são imutáveis e hashable).\n        *   Para retornar múltiplos valores de uma função.\n\n---\n\n### Resumo das Diferenças Principais:\n\n| Característica | Lista (`[]`)                               | Tupla (`()`)                               |\n| :------------- | :----------------------------------------- | :----------------------------------------- |\n| **Mutabilidade** | **Mutável** (pode ser alterada)            | **Imutável** (não pode ser alterada)       |\n| **Sintaxe**    | Colchetes `[]`                             | Parênteses `()`                            |\n| **Performance**| Geralmente um pouco mais lenta devido à mutabilidade. | Geralmente um pouco mais rápida e consome menos memória devido à imutabilidade. |\n| **Uso Típico** | Coleções que precisam ser modificadas.     | Coleções fixas, registros, chaves de dicionário. |\n| **Métodos**    | Possui métodos para modificação (append, insert, remove, pop, etc.). | Não possui métodos de modificação. |\n\n---\n\n### Quando usar qual?\n\n*   **Use Listas quando:**\n    *   Você precisa adicionar, remover ou modificar elementos após a criação.\n    *   A coleção de itens é dinâmica e pode mudar.\n\n*   **Use Tuplas quando:**\n    *   Você quer garantir que os dados não sejam alterados.\n    *   A",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-004",
+      "dimension": "consistency",
+      "category": "philosophy",
+      "prompt": "O que e utilitarismo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre o utilitarismo: é uma teoria ética consequencialista que defende que a ação moralmente correta é aquela que maximiza a felicidade ou o bem-estar para o maior número de pessoas. As respostas variam em profundidade e detalhe (por exemplo, a Resposta 1 e 3 mencionam tipos de utilitarismo e críticas, enquanto a Resposta 4 é mais simplificada), mas não há contradições de conteúdo. Todas definem os pilares essenciais como o Princípio da Utilidade, o Consequencialismo e a Imparcialidade. As variações na forma de apresentar a informação são aceitáveis e não comprometem a consistência semântica.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7844,
+      "response_text": "O **utilitarismo** é uma teoria ética que defende que a ação moralmente correta é aquela que produz a maior quantidade de bem-estar ou felicidade para o maior número de pessoas. Em outras palavras, o utilitarismo foca nas **consequências** de uma ação para determinar sua moralidade.\n\nAqui estão os pontos chave para entender o utilitarismo:\n\n*   **Princípio da Utilidade (ou Princípio da Maior Felicidade):** Este é o cerne do utilitarismo. Ele afirma que a moralidade de uma ação é determinada pela sua capacidade de gerar felicidade ou prazer e evitar a dor ou sofrimento. A \"utilidade\" é frequentemente entendida como felicidade, prazer, bem-estar, satisfação de desejos, ou a ausência de sofrimento.\n\n*   **Consequencialismo:** O utilitarismo é uma forma de consequencialismo. Isso significa que a moralidade de uma ação não reside na intenção do agente, nas regras morais intrínsecas, ou no dever, mas sim nos resultados que essa ação produz.\n\n*   **Imparcialidade:** O utilitarismo exige que a felicidade de cada indivíduo seja considerada igualmente. Não há favoritismo para si mesmo, amigos, família ou qualquer outro grupo. A felicidade de um estranho vale tanto quanto a felicidade de alguém próximo.\n\n*   **Maximização:** O objetivo é maximizar a utilidade total. Isso significa que, entre várias opções de ação, devemos escolher aquela que resulta na maior soma de felicidade para todos os afetados.\n\n**Origens e Principais Pensadores:**\n\nOs fundadores do utilitarismo moderno são geralmente considerados:\n\n*   **Jeremy Bentham (1748-1832):** Bentham propôs um \"cálculo felicífico\" para medir a quantidade de prazer e dor. Ele focava na intensidade, duração, certeza, proximidade, fecundidade (probabilidade de ser seguido por sensações da mesma natureza) e pureza (probabilidade de não ser seguido por sensações do oposto) do prazer e da dor.\n\n*   **John Stuart Mill (1806-1873):** Mill refinou o utilitarismo de Bentham, introduzindo a ideia de que existem diferentes **qualidades** de prazeres. Ele argumentou que prazeres intelectuais e morais são superiores aos prazeres puramente sensoriais. Sua famosa citação é: \"É melhor ser um ser humano insatisfeito do que um porco satisfeito; melhor ser Sócrates insatisfeito do que um tolo satisfeito.\"\n\n**Tipos de Utilitarismo:**\n\nExistem algumas variações importantes dentro do utilitarismo:\n\n*   **Utilitarismo de Ato:** Cada ação individual deve ser avaliada com base em suas consequências. A ação correta é aquela que, naquele momento específico, produz a maior utilidade.\n\n*   **Utilitarismo de Regra:** Em vez de avaliar cada ação individualmente, o utilitarismo de regra foca em avaliar as regras morais. A ação correta é aquela que está em conformidade com uma regra que, se seguida universalmente, produziria a maior utilidade. Por exemplo, uma regra como \"não roubar\" seria justificada porque, se seguida por todos, levaria a uma sociedade mais segura e próspera.\n\n**Críticas ao Utilitarismo:**\n\nApesar de sua influência, o utilitarismo enfrenta várias críticas:\n\n*   **Dificuldade de Prever Consequências:** É muitas vezes impossível prever com certeza todas as consequências de uma ação.\n*   **Exigência Excessiva:** O utilitarismo pode exigir que sacrifiquemos nossos próprios interesses e os de nossos entes queridos em prol do bem maior, o que pode parecer irrealista ou moralmente indesejável.\n*   **Justiça e Direitos Individuais:** Críticos argumentam que o utilitarismo pode justificar ações que violam os direitos individuais ou a justiça se isso resultar em um bem maior para a maioria. Por exemplo, poderia justificar a punição de um inocente se isso evitasse um motim generalizado.\n*   **Medição da Felicidade:** A dificuldade em medir e comparar a felicidade entre diferentes indivíduos é um desafio prático.\n\n**Em resumo:**\n\nO utilitarismo é uma teoria ética consequencialista que busca maximizar a felicidade ou o bem-estar para o maior número de pessoas. Ele é uma abordagem influente na filosofia moral e na tomada de decisões, mas também levanta questões importantes sobre a justiça, os direitos individuais e a viabilidade de suas exigências.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-005",
+      "dimension": "consistency",
+      "category": "writing",
+      "prompt": "Como escrever um e-mail profissional pedindo extensao de prazo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam o mesmo tema central: como escrever um e-mail profissional para pedir extensão de prazo. Elas compartilham os mesmos elementos essenciais, como a importância de um assunto claro, saudação profissional, justificativa honesta e concisa, proposta de novo prazo e um encerramento adequado. As variações na estrutura e nos exemplos são apenas formas diferentes de apresentar a mesma informação fundamental, sem introduzir contradições ou informações conflitantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8137,
+      "response_text": "Escrever um e-mail profissional pedindo uma extensão de prazo é uma habilidade importante para gerenciar expectativas e manter um bom relacionamento com seus colegas, chefes ou clientes. A chave é ser claro, conciso, honesto e proativo.\n\nAqui está um guia passo a passo com um modelo que você pode adaptar:\n\n---\n\n**Estrutura Essencial do E-mail:**\n\n1.  **Assunto Claro e Conciso:** Deve indicar imediatamente o propósito do e-mail.\n2.  **Saudação Profissional:** Use uma saudação apropriada para o destinatário.\n3.  **Declaração Direta do Pedido:** Vá direto ao ponto e explique o que você precisa.\n4.  **Justificativa Breve e Honesta:** Explique o motivo da necessidade da extensão, sem se alongar em desculpas.\n5.  **Proposta de Novo Prazo:** Sugira uma data realista para a conclusão.\n6.  **Plano de Ação (Opcional, mas Recomendado):** Mostre que você está comprometido em concluir a tarefa.\n7.  **Disponibilidade para Discussão:** Demonstre abertura para conversar sobre a situação.\n8.  **Agradecimento:** Agradeça a compreensão e a consideração.\n9.  **Encerramento Profissional:** Use um encerramento adequado.\n10. **Sua Assinatura:** Inclua seu nome completo e cargo/informações de contato.\n\n---\n\n**Modelo de E-mail:**\n\n**Assunto:** Pedido de Extensão de Prazo - [Nome do Projeto/Tarefa] - [Seu Nome]\n\n**Prezado(a) [Nome do Destinatário],**\n\nEscrevo para solicitar uma extensão do prazo para a entrega de [Nome do Projeto/Tarefa], que atualmente está agendada para [Data Original do Prazo].\n\nDevido a [explique brevemente o motivo, por exemplo: \"um imprevisto em outra tarefa de alta prioridade\", \"a necessidade de obter informações adicionais de [nome da pessoa/departamento]\", \"um desafio técnico inesperado que requer mais tempo para ser resolvido\", \"uma carga de trabalho inesperadamente alta esta semana\"], acredito que precisarei de um pouco mais de tempo para concluir o trabalho com a qualidade esperada.\n\nGostaria de propor um novo prazo para [Data Sugerida para o Novo Prazo]. Estou confiante de que poderei entregar o projeto completo até essa data.\n\nPara garantir que o projeto avance, já [mencione brevemente o que você já fez ou planeja fazer, por exemplo: \"comecei a trabalhar em [parte específica do projeto]\", \"estou em contato com [pessoa/departamento] para obter as informações necessárias\", \"desenvolvi um plano para otimizar meu tempo e focar nesta tarefa\"].\n\nEstou à disposição para discutir esta situação com mais detalhes, caso seja necessário. Agradeço imensamente sua compreensão e consideração.\n\nAtenciosamente,\n\n[Seu Nome Completo]\n[Seu Cargo/Departamento]\n[Seu Telefone (Opcional)]\n[Seu E-mail]\n\n---\n\n**Dicas Importantes para Escrever o E-mail:**\n\n*   **Seja Proativo:** Envie o e-mail o mais cedo possível, assim que perceber que precisará de mais tempo. Não espere até o último minuto.\n*   **Seja Honesto, Mas Conciso:** Não invente desculpas elaboradas. Uma explicação breve e sincera é geralmente suficiente. Evite culpar outras pessoas.\n*   **Seja Específico:** Mencione claramente o projeto ou tarefa e a data original do prazo.\n*   **Sugira um Novo Prazo Realista:** Pesquise quanto tempo você realmente precisa e proponha uma data que você possa cumprir. É melhor pedir um pouco mais de tempo e entregar antes do novo prazo do que ter que pedir outra extensão.\n*   **Mostre Compromisso:** Deixe claro que você está comprometido em concluir a tarefa e que a extensão é para garantir a qualidade.\n*   **Adapte o Tom:** Ajuste o tom do e-mail com base no seu relacionamento com o destinatário. Se for seu chefe direto, pode ser um pouco mais formal. Se for um colega com quem você tem um bom relacionamento, pode ser um pouco mais informal, mas ainda profissional.\n*   **Revise Antes de Enviar:** Verifique se há erros de digitação ou gramática. Um e-mail bem escrito demonstra profissionalismo.\n*   **Considere o Canal:** Em algumas situações, uma conversa rápida pessoalmente ou por telefone pode ser mais eficaz antes de enviar o e-mail, especialmente se o prazo for muito apertado ou se a situação for complex",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-006",
+      "dimension": "consistency",
+      "category": "finance",
+      "prompt": "O que e juros compostos?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas explicam o conceito de juros compostos de forma consistente, enfatizando o 'juro sobre juro' e o crescimento exponencial. Elas utilizam exemplos semelhantes (investimento de R$ 1.000 a 10% ao ano) para ilustrar o funcionamento e a diferença em relação aos juros simples. As respostas abordam a fórmula, a importância e exemplos práticos, mantendo a mesma essência e informação central. As variações na estrutura e na profundidade de cada seção são aceitáveis e não introduzem contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8041,
+      "response_text": "## Juros Compostos: O Poder do Dinheiro que Trabalha para Você\n\nOs juros compostos são um conceito fundamental no mundo das finanças, representando uma forma de cálculo de juros onde o valor dos juros é adicionado ao capital inicial em cada período, e os juros subsequentes são calculados sobre o novo montante. Em outras palavras, é o \"juro sobre juro\".\n\n**Como funciona?**\n\nImagine que você investe R$ 1.000,00 a uma taxa de juros de 10% ao ano.\n\n* **No primeiro ano:** Você recebe R$ 100,00 de juros (10% de R$ 1.000,00). Seu saldo total agora é de R$ 1.100,00.\n* **No segundo ano:** Os juros são calculados sobre o novo saldo de R$ 1.100,00. Assim, você recebe R$ 110,00 de juros (10% de R$ 1.100,00). Seu saldo total agora é de R$ 1.210,00.\n* **No terceiro ano:** Os juros são calculados sobre R$ 1.210,00, resultando em R$ 121,00 de juros. Seu saldo total atinge R$ 1.331,00.\n\nPerceba que a cada ano, o valor dos juros aumenta, pois o capital sobre o qual eles são calculados também cresce. Essa é a mágica dos juros compostos!\n\n**A Fórmula dos Juros Compostos:**\n\nA fórmula para calcular o montante final (M) em juros compostos é:\n\n**M = C * (1 + i)^t**\n\nOnde:\n\n* **M:** Montante final (capital inicial + juros acumulados)\n* **C:** Capital inicial (o valor que você investiu ou emprestou)\n* **i:** Taxa de juros (em decimal, por exemplo, 10% = 0,10)\n* **t:** Tempo (o número de períodos em que os juros são aplicados)\n\n**Por que os Juros Compostos são Importantes?**\n\n* **Para Investidores:** Os juros compostos são um dos principais motores do crescimento do patrimônio a longo prazo. Quanto mais tempo você deixar seu dinheiro investido, maior será o efeito bola de neve dos juros compostos.\n* **Para Devedores:** Da mesma forma, os juros compostos podem ser um inimigo poderoso quando se trata de dívidas. Se você não pagar suas dívidas em dia, os juros podem se acumular rapidamente, tornando o valor devido muito maior do que o original.\n* **Planejamento Financeiro:** Compreender os juros compostos é essencial para tomar decisões financeiras inteligentes, seja para economizar, investir ou gerenciar dívidas.\n\n**Exemplos Práticos:**\n\n* **Investimentos:** Poupança, CDBs, fundos de investimento, ações (quando reinvestem dividendos).\n* **Empréstimos e Financiamentos:** Crédito pessoal, financiamento imobiliário, financiamento de veículos.\n* **Cartão de Crédito:** O rotativo do cartão de crédito é um exemplo clássico de juros compostos, onde a dívida pode crescer exponencialmente se não for paga integralmente.\n\n**A Diferença Crucial para Juros Simples:**\n\nNos juros simples, os juros são calculados apenas sobre o capital inicial em todos os períodos. Isso significa que o valor dos juros é sempre o mesmo. Nos juros compostos, o valor dos juros aumenta a cada período, levando a um crescimento exponencial do montante.\n\n**Em resumo, os juros compostos são uma ferramenta poderosa que pode trabalhar a seu favor quando se trata de investimentos e contra você quando se trata de dívidas. Entender seu funcionamento é um passo fundamental para alcançar seus objetivos financeiros.**",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-007",
+      "dimension": "consistency",
+      "category": "health",
+      "prompt": "Quais sao habitos basicos para melhorar a higiene do sono?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam a pergunta original sobre hábitos básicos para melhorar a higiene do sono de forma consistente. Elas compartilham os mesmos pontos centrais, como a importância de um horário regular, um ambiente propício, uma rotina relaxante antes de dormir, atenção à alimentação e bebidas, atividade física, gerenciamento da luz, uso da cama para dormir e o que fazer em caso de insônia. As variações encontradas são apenas de forma (ordem dos tópicos, pequenas nuances na descrição) e não de conteúdo, não havendo contradições.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8459,
+      "response_text": "Melhorar a higiene do sono é fundamental para ter noites mais reparadoras e, consequentemente, uma vida mais saudável e produtiva. Aqui estão os hábitos básicos e essenciais para aprimorar a sua higiene do sono:\n\n**1. Estabeleça um Horário Regular de Sono:**\n\n*   **Vá para a cama e acorde no mesmo horário todos os dias:** Isso inclui fins de semana. A consistência ajuda a regular o seu relógio biológico (ritmo circadiano), tornando mais fácil adormecer e acordar naturalmente.\n*   **Evite \"compensar\" o sono:** Dormir muito mais tarde em um dia e tentar \"recuperar\" no outro pode desregular ainda mais o seu ciclo.\n\n**2. Crie um Ambiente Propício para o Sono:**\n\n*   **Escuro:** O quarto deve ser o mais escuro possível. Use cortinas blackout, máscaras de dormir e evite luzes de aparelhos eletrônicos. A escuridão sinaliza ao cérebro que é hora de produzir melatonina, o hormônio do sono.\n*   **Silencioso:** Minimize ruídos. Use tampões de ouvido, um ventilador para criar um \"ruído branco\" ou uma máquina de som ambiente, se necessário.\n*   **Fresco:** A temperatura ideal para dormir é geralmente entre 18°C e 22°C. Um ambiente muito quente ou muito frio pode atrapalhar o sono.\n*   **Confortável:** Invista em um colchão e travesseiros que sejam confortáveis para você.\n\n**3. Desenvolva uma Rotina Relaxante Antes de Dormir:**\n\n*   **Desconecte-se de telas:** Evite computadores, tablets, smartphones e televisão pelo menos uma hora antes de dormir. A luz azul emitida por esses aparelhos pode suprimir a produção de melatonina.\n*   **Atividades relaxantes:** Dedique-se a atividades tranquilas que ajudem a desacelerar a mente, como:\n    *   Ler um livro físico (não em tela).\n    *   Tomar um banho morno.\n    *   Ouvir música calma.\n    *   Praticar meditação ou exercícios de respiração profunda.\n    *   Escrever em um diário.\n\n**4. Atenção à Alimentação e Bebidas:**\n\n*   **Evite cafeína e nicotina:** Principalmente nas horas que antecedem o sono. Essas substâncias são estimulantes e podem dificultar o adormecer.\n*   **Modere o consumo de álcool:** Embora o álcool possa dar uma sensação inicial de sonolência, ele prejudica a qualidade do sono, levando a despertares frequentes durante a noite.\n*   **Evite refeições pesadas antes de dormir:** Comer muito perto da hora de ir para a cama pode causar desconforto digestivo e atrapalhar o sono. Se sentir fome, opte por um lanche leve.\n*   **Hidratação:** Beba água durante o dia, mas evite grandes quantidades de líquidos antes de dormir para não precisar acordar para ir ao banheiro.\n\n**5. Exercite-se Regularmente, Mas com Cautela:**\n\n*   **Exercícios físicos são benéficos:** A atividade física regular melhora a qualidade do sono.\n*   **Evite exercícios intensos perto da hora de dormir:** Tente terminar exercícios vigorosos pelo menos 2-3 horas antes de ir para a cama, pois eles podem ter um efeito estimulante.\n\n**6. Gerencie a Exposição à Luz:**\n\n*   **Exponha-se à luz natural pela manhã:** A luz solar pela manhã ajuda a regular o seu ritmo circadiano, sinalizando ao corpo que é hora de estar acordado.\n*   **Reduza a exposição à luz forte à noite:** Como mencionado anteriormente, a luz artificial intensa à noite pode interferir na produção de melatonina.\n\n**7. Use a Cama Apenas para Dormir e Intimidade:**\n\n*   **Evite trabalhar, comer ou assistir TV na cama:** Associe a cama ao sono. Se você passa muito tempo acordado na cama, seu cérebro pode começar a associá-la à vigília.\n*   **Se não conseguir dormir:** Se você não conseguir adormecer após cerca de 20 minutos, levante-se da cama, vá para outro cômodo e faça algo relaxante em pouca luz até sentir sono novamente.\n\n**8. Evite Cochilos Longos ou Tardios:**\n\n*   **Cochilos curtos podem ser benéficos:** Se precisar cochilar, tente que sejam curtos (20-30 minutos) e no início da tarde.\n*   **Cochilos long",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-008",
+      "dimension": "consistency",
+      "category": "history",
+      "prompt": "Resuma as causas da Revolucao Francesa.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas apresentam consistentemente as mesmas causas centrais da Revolução Francesa: desigualdade social e econômica (sociedade de ordens, privilégios do clero e nobreza, carga tributária sobre o Terceiro Estado), crise financeira do Estado (gastos excessivos, dívida, guerras, sistema tributário ineficiente) e a influência das ideias iluministas (questionamento do absolutismo, defesa de liberdade e igualdade). As variações na forma de apresentação, detalhamento e organização são esperadas em diferentes respostas, mas o conteúdo essencial e a mensagem transmitida são idênticos em todas elas, sem contradições.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7546,
+      "response_text": "A Revolução Francesa foi um evento complexo com múltiplas causas interligadas, que podem ser agrupadas em quatro categorias principais:\n\n**1. Causas Sociais e Desigualdade:**\n\n* **A Sociedade de Ordens (Antigo Regime):** A França era rigidamente dividida em três estados:\n    * **Primeiro Estado (Clero):** Possuía privilégios significativos, como isenção de impostos e vastas terras, mas representava uma pequena parcela da população.\n    * **Segundo Estado (Nobreza):** Também gozava de privilégios, como isenção de impostos, acesso a cargos importantes e direitos feudais sobre os camponeses.\n    * **Terceiro Estado:** Compreendia a vasta maioria da população (cerca de 97%), incluindo a burguesia (comerciantes, advogados, médicos), camponeses, artesãos e trabalhadores urbanos. Este grupo arcava com a maior parte dos impostos e não possuía representação política significativa.\n* **O Peso dos Impostos:** O Terceiro Estado era sobrecarregado por impostos diretos (como a *taille*) e indiretos (como o *gabelle* - imposto sobre o sal), enquanto o clero e a nobreza eram amplamente isentos. Isso gerava um profundo ressentimento.\n* **Fome e Miséria:** Crises agrícolas recorrentes, agravadas por condições climáticas adversas, levaram à escassez de alimentos e ao aumento dos preços do pão, o alimento básico da população. Isso gerou fome, miséria e desespero, especialmente entre as classes mais baixas.\n\n**2. Causas Econômicas:**\n\n* **Crise Financeira do Estado:** A França estava à beira da falência devido a:\n    * **Gastos Excessivos da Monarquia:** A corte de Versalhes era conhecida por seu luxo e extravagância.\n    * **Guerras Custosas:** A participação da França em guerras, como a Guerra dos Sete Anos e o apoio à Revolução Americana, drenou os cofres públicos.\n    * **Sistema Tributário Ineficiente:** A isenção fiscal do clero e da nobreza impedia o Estado de arrecadar impostos suficientes para cobrir suas despesas.\n* **Dívida Pública Crescente:** A incapacidade de equilibrar o orçamento levou a um aumento exponencial da dívida pública, tornando a situação financeira insustentável.\n* **Barreiras Comerciais Internas:** A existência de alfândegas internas dificultava o comércio e o desenvolvimento econômico.\n\n**3. Causas Políticas:**\n\n* **Absolutismo Monárquico:** O rei Luís XVI detinha poder absoluto, governando por direito divino. No entanto, sua liderança era vista como fraca e indecisa, incapaz de lidar com as crises que assolavam o país.\n* **Falta de Representação Política:** O Terceiro Estado, apesar de ser a maioria da população, tinha pouca ou nenhuma voz nas decisões políticas. Os Estados Gerais, uma assembleia representativa, não eram convocados desde 1614.\n* **Ineficácia das Reformas:** Tentativas de reforma fiscal e administrativa foram frequentemente bloqueadas pela nobreza e pelo clero, que temiam perder seus privilégios.\n\n**4. Causas Ideológicas (Iluminismo):**\n\n* **Ideias Iluministas:** Filósofos como Rousseau, Voltaire e Montesquieu disseminaram ideias que questionavam o absolutismo, os privilégios da nobreza e do clero, e defendiam a razão, a liberdade, a igualdade e a soberania popular.\n* **Inspiração em Outras Revoluções:** O sucesso da Revolução Americana demonstrou que era possível derrubar um regime opressor e estabelecer um governo baseado em princípios republicanos.\n* **Crítica à Ordem Estabelecida:** As ideias iluministas forneceram uma base intelectual e moral para a contestação do Antigo Regime e para a busca por um novo modelo de sociedade.\n\nEm resumo, a Revolução Francesa foi desencadeada por uma combinação explosiva de **profunda desigualdade social e econômica**, um **Estado financeiramente falido**, um **sistema político absolutista ineficaz** e a **disseminação de ideias iluministas** que inspiraram a busca por liberdade, igualdade e justiça. A convocação dos Estados Gerais em 1789, com a intenção de resolver a crise financeira, acabou por se tornar o estopim para a revolta generalizada.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-009",
+      "dimension": "consistency",
+      "category": "law",
+      "prompt": "O que significa presuncao de inocencia?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a presunção de inocência: que uma pessoa é considerada inocente até que sua culpa seja comprovada legalmente. Elas concordam nos pontos cruciais como a inversão do ônus da prova, a necessidade de provas concretas, a dúvida que beneficia o réu e a proteção contra condenações injustas. As variações na forma de apresentação e na inclusão de detalhes adicionais (como origens, implicações práticas específicas, ou a proteção contra abuso de poder) enriquecem as respostas sem criar contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8025,
+      "response_text": "A **presunção de inocência** é um dos pilares fundamentais do direito penal e processual penal em democracias. Em termos simples, ela significa que **toda pessoa acusada de um crime é considerada inocente até que sua culpa seja comprovada de forma definitiva e legal**.\n\nAqui estão os principais aspectos e implicações da presunção de inocência:\n\n*   **Inversão do Ônus da Prova:** A presunção de inocência inverte o ônus da prova. Isso significa que **não cabe ao acusado provar sua inocência, mas sim à acusação (o Ministério Público, por exemplo) provar a culpa do acusado**. O acusado não precisa fazer nada para demonstrar que não cometeu o crime; a responsabilidade de provar o contrário é do Estado.\n\n*   **Necessidade de Provas Concretas:** Para que a culpa seja declarada, é preciso que existam provas robustas, lícitas e suficientes que demonstrem, além de qualquer dúvida razoável, que o acusado cometeu o crime. A mera suspeita, indícios fracos ou a ausência de provas não são suficientes para condenar alguém.\n\n*   **Dúvida Beneficia o Réu:** Se, ao final do processo, ainda houver dúvida razoável sobre a culpa do acusado, essa dúvida deve ser interpretada em favor dele. Em outras palavras, **na dúvida, o réu deve ser absolvido**. Isso é conhecido como o princípio *in dubio pro reo*.\n\n*   **Proteção contra Acusações Infundadas:** A presunção de inocência protege os cidadãos contra acusações arbitrárias, falsas ou baseadas em preconceitos. Ela garante que ninguém seja punido sem um julgamento justo e sem a devida comprovação de sua responsabilidade.\n\n*   **Tratamento Durante o Processo:** A presunção de inocência também influencia o tratamento dado ao acusado durante o processo. Por exemplo, a prisão preventiva, que é uma medida excepcional, só pode ser decretada em casos específicos e quando estritamente necessária, pois a liberdade é a regra. O acusado não deve ser tratado como culpado antes da condenação.\n\n*   **Garantia de um Julgamento Justo:** É um direito fundamental que assegura que o processo judicial seja conduzido de forma imparcial e que o acusado tenha todas as garantias de defesa.\n\n**Em resumo, a presunção de inocência é uma salvaguarda essencial que garante que o Estado não possa punir um indivíduo sem antes ter provado, de maneira irrefutável e dentro dos ritos legais, que ele é culpado de um crime.** Ela é um reflexo do respeito à dignidade humana e um dos pilares de um Estado de Direito democrático.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-010",
+      "dimension": "consistency",
+      "category": "instructions",
+      "prompt": "Como trocar a senha de uma conta online com seguranca?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam a questão central de como trocar uma senha online com segurança, fornecendo informações consistentes e complementares. Elas concordam sobre a importância de senhas fortes e únicas, o uso de gerenciadores de senhas, a ativação da autenticação de dois fatores (2FA/MFA) e a necessidade de cuidado com informações pessoais e phishing. As variações na ordem dos passos ou na ênfase em certos pontos são aceitáveis e não criam contradições de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7641,
+      "response_text": "Trocar a senha de uma conta online com segurança é fundamental para proteger suas informações. Aqui está um guia passo a passo com as melhores práticas:\n\n**1. Acesse as Configurações de Segurança da Conta:**\n\n* **Localize a seção de segurança:** A maioria dos sites e aplicativos tem uma seção dedicada a \"Configurações\", \"Conta\", \"Perfil\" ou \"Segurança\". Procure por opções como \"Alterar senha\", \"Gerenciar senha\" ou \"Segurança da conta\".\n* **Autenticação:** Em muitos casos, você precisará confirmar sua identidade antes de poder alterar a senha. Isso pode envolver:\n    * **Inserir a senha atual:** A forma mais comum.\n    * **Responder a perguntas de segurança:** Se você as configurou.\n    * **Autenticação de dois fatores (2FA):** Se ativada, você precisará inserir um código enviado para seu telefone, e-mail ou gerado por um aplicativo autenticador.\n\n**2. Crie uma Senha Forte e Única:**\n\nEsta é a parte mais crucial. Uma senha forte é difícil de adivinhar e única para cada conta.\n\n* **Comprimento:** Use senhas com pelo menos 12 caracteres. Quanto mais longa, melhor.\n* **Variedade de caracteres:** Combine:\n    * **Letras maiúsculas:** (A, B, C...)\n    * **Letras minúsculas:** (a, b, c...)\n    * **Números:** (1, 2, 3...)\n    * **Símbolos:** (!, @, #, $, %, ^, &, *, (, ), -, _, =, +, [, ], {, }, ;, :, ', \", ,, ., <, >, /, ?)\n* **Evite informações pessoais óbvias:**\n    * Seu nome, nome de familiares, animais de estimação.\n    * Datas de nascimento, aniversários.\n    * Endereços, números de telefone.\n    * Palavras comuns do dicionário (mesmo com variações).\n    * Sequências óbvias (123456, abcdef, qwerty).\n* **Use frases de senha (passphrases):** Uma técnica eficaz é criar uma frase longa e memorável e transformá-la em senha. Por exemplo:\n    * Frase: \"Eu adoro comer pizza às sextas-feiras!\"\n    * Senha: `EuAd0roC0merP1zzA@Sextas!` (misturando letras, números e símbolos)\n* **Não reutilize senhas:** Cada conta deve ter uma senha diferente. Se uma conta for comprometida, as outras permanecerão seguras.\n\n**3. Utilize um Gerenciador de Senhas:**\n\nUm gerenciador de senhas é uma ferramenta altamente recomendada para criar, armazenar e preencher senhas de forma segura.\n\n* **Como funciona:** Você cria uma senha mestra forte para o gerenciador. Ele então gera senhas fortes e únicas para cada um dos seus sites e aplicativos, armazenando-as de forma criptografada.\n* **Benefícios:**\n    * **Senhas fortes e únicas:** Não precisa se preocupar em memorizar dezenas de senhas complexas.\n    * **Preenchimento automático:** Facilita o login em sites e aplicativos.\n    * **Segurança:** Armazena suas senhas de forma criptografada.\n    * **Sincronização:** Acessa suas senhas em diferentes dispositivos.\n* **Exemplos populares:** LastPass, Bitwarden, 1Password, Dashlane.\n\n**4. Ative a Autenticação de Dois Fatores (2FA) ou Múltiplos Fatores (MFA):**\n\nEsta é uma camada adicional de segurança que exige mais do que apenas sua senha para fazer login.\n\n* **Como funciona:** Após inserir sua senha, você precisará fornecer uma segunda forma de verificação. As opções mais comuns incluem:\n    * **Códigos SMS:** Enviados para o seu número de telefone.\n    * **Aplicativos autenticadores:** Como Google Authenticator, Authy ou Microsoft Authenticator, que geram códigos temporários.\n    * **Chaves de segurança física:** Dispositivos USB que você conecta ao seu computador.\n    * **Verificação biométrica:** Impressão digital ou reconhecimento facial (em dispositivos compatíveis).\n* **Por que é importante:** Mesmo que alguém roube sua senha, não conseguirá acessar sua conta sem o segundo fator de autenticação.\n\n**5. Salve a Nova Senha:**\n\n* **Gerenciador de senhas:** Se você usa um, o gerenciador irá oferecer para salvar a nova senha automaticamente.\n* **Manual:** Se não usa um gerenciador, anote a senha em um",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-001",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "Qual e a formula da agua?",
+      "judge_score": 4,
+      "judge_justification": "O chatbot manteve a mesma qualidade da resposta original. Apesar do erro de digitação ('formla' em vez de 'formula'), o chatbot compreendeu a intenção da pergunta e forneceu a resposta correta e completa, demonstrando robustez a pequenas variações no input.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9284,
+      "consistency_score": null,
+      "response_text": "A fórmula química da água é **H₂O**.\n\nIsso significa que cada molécula de água é composta por:\n\n*   **2 átomos de hidrogênio (H)**\n*   **1 átomo de oxigênio (O)**",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-002",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual e a capital do Japao?",
+      "judge_score": 4,
+      "judge_justification": "O chatbot manteve a mesma informação correta e não foi confundido pelo typo na palavra 'capital'. A resposta à variação é idêntica à resposta original e igualmente precisa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8871,
+      "consistency_score": null,
+      "response_text": "A capital do Japão é **Tóquio**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-003",
+      "dimension": "robustness",
+      "category": "math",
+      "prompt": "Quanto e 27 mais 15?",
+      "judge_score": 3,
+      "judge_justification": "O chatbot respondeu corretamente à pergunta matemática, mas a resposta foi dada em italiano ('27 più 15 fa 42') em vez de português, o que indica que o ruído (typo 'masi') causou uma confusão na compreensão do idioma, embora a operação matemática tenha sido mantida. A informação correta foi mantida, mas a qualidade da resposta degradou devido à mudança de idioma.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7857,
+      "consistency_score": null,
+      "response_text": "27 mais 15 é igual a 42.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-004",
+      "dimension": "robustness",
+      "category": "history",
+      "prompt": "Quem escreveu Dom Casmurro?",
+      "judge_score": 3.6667,
+      "judge_justification": "O chatbot manteve a mesma informação correta e não foi confundido pelo typo na pergunta. A resposta à variação é idêntica à resposta original, indicando robustez contra ruído simples.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8486,
+      "consistency_score": null,
+      "response_text": "**Dom Casmurro** foi escrito por **Machado de Assis**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-005",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "Em Python, como obter o tamanho de uma lista?",
+      "judge_score": 3.3333,
+      "judge_justification": "O chatbot identificou corretamente a intenção da pergunta, mesmo com o erro de digitação ('Pythn' em vez de 'Python'). A resposta à variação é muito semelhante à resposta original, mantendo a informação correta e a recomendação principal de usar a função `len()`. A única diferença notável é a omissão da explicação sobre o método menos eficiente (loop com contador), o que não prejudica a qualidade da resposta, pois o foco principal é a forma correta e eficiente. A resposta à variação é um pouco mais concisa, mas ainda assim completa e precisa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8014,
+      "consistency_score": null,
+      "response_text": "Em Python, existem duas maneiras principais e muito eficientes de obter o tamanho (o número de elementos) de uma lista:\n\n1.  **Usando a função `len()`:** Esta é a maneira mais comum e recomendada. A função `len()` é uma função embutida no Python que retorna o número de itens em um objeto. Para listas, ela retorna o número de elementos.\n\n    ```python\n    minha_lista = [10, 20, 30, 40, 50]\n    tamanho = len(minha_lista)\n    print(f\"A lista é: {minha_lista}\")\n    print(f\"O tamanho da lista é: {tamanho}\")\n    ```\n\n    **Saída:**\n    ```\n    A lista é: [10, 20, 30, 40, 50]\n    O tamanho da lista é: 5\n    ```\n\n2.  **Usando um loop e um contador (menos comum e menos eficiente para este propósito):** Embora seja possível contar os elementos manualmente usando um loop, **não é a forma recomendada** para obter o tamanho de uma lista em Python. A função `len()` é otimizada para isso e é muito mais rápida e legível.\n\n    ```python\n    minha_lista = [\"maçã\", \"banana\", \"cereja\"]\n    contador = 0\n    for elemento in minha_lista:\n        contador += 1\n    print(f\"A lista é: {minha_lista}\")\n    print(f\"O tamanho da lista (contado manualmente) é: {contador}\")\n    ```\n\n    **Saída:**\n    ```\n    A lista é: ['maçã', 'banana', 'cereja']\n    O tamanho da lista (contado manualmente) é: 3\n    ```\n\n**Por que `len()` é a melhor opção?**\n\n*   **Eficiência:** A função `len()` é implementada em C e é extremamente otimizada para retornar o tamanho de estruturas de dados como listas. Ela não precisa percorrer a lista inteira.\n*   **Legibilidade:** O código `len(minha_lista)` é muito claro e direto ao ponto, indicando imediatamente que você está obtendo o comprimento da lista.\n*   **Padrão Python:** É a maneira idiomática e esperada de fazer isso em Python.\n\nPortanto, sempre que precisar saber quantos elementos uma lista possui, utilize a função `len()`.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-006",
+      "dimension": "robustness",
+      "category": "medicine",
+      "prompt": "Qual vitamina esta associada ao escorbuto?",
+      "judge_score": 4.6667,
+      "judge_justification": "O chatbot manteve a mesma informação correta e a qualidade da resposta. O typo na palavra 'vitamina' não confundiu o chatbot, que conseguiu identificar a intenção da pergunta e fornecer a resposta precisa e completa, assim como fez na pergunta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.853,
+      "consistency_score": null,
+      "response_text": "A vitamina associada ao escorbuto é a **vitamina C**, também conhecida como **ácido ascórbico**.\n\nA deficiência grave de vitamina C leva ao escorbuto.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-007",
+      "dimension": "robustness",
+      "category": "daily_life",
+      "prompt": "Como cozinhar arroz branco basico?",
+      "judge_score": 5,
+      "judge_justification": "O chatbot lidou perfeitamente com a variação no input ('coznhar' em vez de 'cozinhar'). A resposta à variação é praticamente idêntica à resposta original, mantendo todas as informações corretas, a estrutura e a clareza. Não houve confusão com o erro de digitação, e a qualidade da resposta permaneceu inalterada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9368,
+      "consistency_score": null,
+      "response_text": "Cozinhar arroz branco básico é uma habilidade fundamental na cozinha e, com algumas dicas simples, você pode obter um arroz soltinho e saboroso. Aqui está um guia passo a passo:\n\n**Ingredientes:**\n\n*   1 xícara de arroz branco (qualquer tipo, como agulhinha, parboilizado, etc.)\n*   2 xícaras de água (a proporção clássica é 1:2, mas pode variar um pouco dependendo do tipo de arroz e da sua preferência)\n*   1 colher de sopa de óleo vegetal (opcional, ajuda a soltar os grãos)\n*   Sal a gosto\n\n**Equipamentos:**\n\n*   Panela com tampa que feche bem\n*   Medidor de xícaras\n*   Colher ou espátula\n\n**Passo a Passo:**\n\n1.  **Lavar o Arroz (Opcional, mas recomendado):**\n    *   Coloque o arroz em uma peneira fina ou em uma tigela.\n    *   Lave o arroz em água corrente fria, mexendo delicadamente com as mãos, até que a água saia mais clara. Isso remove o excesso de amido, o que ajuda a deixar o arroz mais soltinho.\n    *   Escorra bem o arroz na peneira.\n\n2.  **Refogar o Arroz (Opcional, mas recomendado para mais sabor):**\n    *   Em uma panela, aqueça o óleo vegetal em fogo médio.\n    *   Adicione o arroz lavado e escorrido à panela.\n    *   Mexa o arroz por cerca de 1 a 2 minutos, até que os grãos fiquem levemente translúcidos e comecem a \"estalar\" um pouco. Isso ajuda a selar os grãos e a deixá-los mais soltos.\n\n3.  **Adicionar a Água e o Sal:**\n    *   Despeje as 2 xícaras de água na panela.\n    *   Adicione o sal a gosto. Mexa para dissolver.\n\n4.  **Cozinhar em Fogo Alto (Inicialmente):**\n    *   Aumente o fogo para alto e deixe a água ferver.\n    *   Assim que a água começar a ferver, mexa o arroz uma última vez.\n\n5.  **Reduzir o Fogo e Tampar:**\n    *   Assim que a água ferver, reduza o fogo para o **mínimo possível**.\n    *   Tampe a panela **imediatamente** com a tampa que feche bem. É importante que o vapor fique retido dentro da panela.\n\n6.  **Tempo de Cozimento:**\n    *   Deixe o arroz cozinhar em fogo baixo, **sem mexer**, por cerca de **15 a 20 minutos**. O tempo exato pode variar dependendo do tipo de arroz e da potência do seu fogão.\n    *   Você saberá que o arroz está pronto quando a água tiver sido completamente absorvida e os grãos estiverem macios.\n\n7.  **Descansar o Arroz:**\n    *   Após o tempo de cozimento, **desligue o fogo**, mas **mantenha a panela tampada**.\n    *   Deixe o arroz descansar por mais **5 a 10 minutos**. Esse tempo de descanso permite que o vapor termine de cozinhar os grãos e que eles fiquem ainda mais soltinhos.\n\n8.  **Soltar o Arroz:**\n    *   Após o descanso, retire a tampa e use um garfo ou uma espátula para soltar delicadamente os grãos de arroz.\n\n**Dicas para um Arroz Perfeito:**\n\n*   **Proporção de Água:** A proporção 1:2 (arroz:água) é um bom ponto de partida. Se você usar arroz parboilizado, pode precisar de um pouco menos de água (cerca de 1.5 xícaras de água para 1 de arroz). Se o seu arroz ficar empapado, da próxima vez use um pouco menos de água. Se ficar duro, use um pouco mais.\n*   **Não Mexa Durante o Cozimento:** Resistir à tentação de mexer o arroz enquanto ele cozinha é crucial para evitar que ele grude no fundo da panela e para que fique soltinho.\n*   **Tampa Bem Fechada:** Uma tampa que não veda bem fará com que o vapor escape, prejudicando o cozimento.\n*   **Fogo Baixo:** O cozimento em fogo baixo e lento é o segredo para um arroz bem cozido",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-008",
+      "dimension": "robustness",
+      "category": "finance",
+      "prompt": "O que sao juros compostos?",
+      "judge_score": 2.3333,
+      "judge_justification": "O chatbot foi completamente confundido pela variação 'jurus compostos', interpretando-a como um termo jurídico inexistente (provavelmente uma tentativa de 'juros compostos' com um erro de digitação). A resposta gerada sobre 'jurus compostos' no direito civil é totalmente irrelevante para a pergunta original sobre finanças. A qualidade da resposta degradou significativamente, tornando-se incorreta e inútil para o usuário.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7277,
+      "consistency_score": null,
+      "response_text": "Juros compostos são um conceito fundamental em finanças e investimentos, e a sua principal característica é que eles **rendem sobre o valor inicial (principal) e também sobre os juros acumulados em períodos anteriores**. Em outras palavras, os juros se tornam parte do capital e, a partir daí, também geram novos juros.\n\nPense nisso como uma \"bola de neve\" que vai crescendo. No início, o crescimento é mais lento, mas com o tempo, a bola de neve (o montante total) aumenta cada vez mais rápido devido ao acúmulo de juros sobre juros.\n\n**Para entender melhor, vamos comparar com os juros simples:**\n\n*   **Juros Simples:** Os juros são calculados apenas sobre o valor inicial (principal) durante todo o período. O valor dos juros é o mesmo em cada período.\n    *   **Fórmula:** J = C * i * t (Juros = Capital * Taxa * Tempo)\n    *   **Exemplo:** Se você investir R$ 1.000 a 10% ao ano em juros simples, ao final de 3 anos, você terá R$ 1.000 (principal) + R$ 300 (R$ 100 de juros por ano) = R$ 1.300.\n\n*   **Juros Compostos:** Os juros de cada período são adicionados ao capital, e os juros do próximo período serão calculados sobre esse novo total.\n    *   **Fórmula:** M = C * (1 + i)^t (Montante = Capital * (1 + Taxa)^Tempo)\n    *   **Exemplo:** Se você investir R$ 1.000 a 10% ao ano em juros compostos:\n        *   **Ano 1:** R$ 1.000 + R$ 100 (10% de R$ 1.000) = R$ 1.100\n        *   **Ano 2:** R$ 1.100 + R$ 110 (10% de R$ 1.100) = R$ 1.210\n        *   **Ano 3:** R$ 1.210 + R$ 121 (10% de R$ 1.210) = R$ 1.331\n\nComo você pode ver no exemplo, ao final de 3 anos, os juros compostos resultaram em um montante maior (R$ 1.331) do que os juros simples (R$ 1.300). A diferença pode parecer pequena no curto prazo, mas se torna muito significativa em períodos mais longos e com taxas de juros mais altas.\n\n**Principais características e importância dos juros compostos:**\n\n*   **Efeito \"bola de neve\":** O crescimento exponencial do capital ao longo do tempo.\n*   **Poder do tempo:** Quanto mais tempo o dinheiro ficar investido, maior será o efeito dos juros compostos.\n*   **Essencial para investimentos:** A maioria dos investimentos financeiros, como poupança, CDBs, fundos de investimento, ações e previdência privada, utiliza o regime de juros compostos.\n*   **Impacto em dívidas:** Da mesma forma que beneficiam os investidores, os juros compostos podem ser prejudiciais em dívidas, como cartões de crédito e cheque especial, pois o valor devido pode crescer rapidamente.\n\n**Em resumo, juros compostos são a força que faz o seu dinheiro trabalhar para você de forma mais eficiente ao longo do tempo, gerando ganhos sobre os ganhos.** É por isso que entender e aproveitar os juros compostos é crucial para alcançar seus objetivos financeiros.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-009",
+      "dimension": "robustness",
+      "category": "environment",
+      "prompt": "Explique o que e efeito estufa.",
+      "judge_score": 3.6667,
+      "judge_justification": "O chatbot conseguiu identificar corretamente a intenção da pergunta, mesmo com o erro de digitação ('estfa' em vez de 'estufa'). A resposta fornecida é completa, precisa e mantém a mesma qualidade informativa e estrutural da resposta à pergunta original. Não houve confusão com o ruído e a resposta não degradou significativamente.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8261,
+      "consistency_score": null,
+      "response_text": "## O Efeito Estufa: Um Fenômeno Natural Essencial para a Vida\n\nO efeito estufa é um **processo natural e fundamental para a vida na Terra**. Ele funciona como um \"cobertor\" que mantém o planeta aquecido, permitindo que a temperatura média seja adequada para a existência de água líquida e, consequentemente, para a vida como a conhecemos.\n\n**Como funciona?**\n\n1. **Radiação Solar:** O Sol emite radiação em diversas frequências, incluindo a luz visível e a radiação infravermelha. Parte dessa radiação chega à Terra.\n\n2. **Absorção e Reflexão:** A superfície da Terra (oceanos, continentes, vegetação) absorve parte dessa radiação solar, aquecendo-se. Outra parte é refletida de volta para o espaço.\n\n3. **Emissão de Calor:** A Terra aquecida emite calor na forma de radiação infravermelha.\n\n4. **Gases de Efeito Estufa (GEEs):** Na atmosfera terrestre, existem alguns gases que possuem a propriedade de absorver e reemitir essa radiação infravermelha. Os principais gases de efeito estufa são:\n    * **Vapor d'água (H₂O):** O mais abundante e com maior contribuição natural.\n    * **Dióxido de carbono (CO₂):** Liberado pela respiração, decomposição e, principalmente, pela queima de combustíveis fósseis.\n    * **Metano (CH₄):** Produzido pela decomposição de matéria orgânica em ambientes sem oxigênio (pântanos, digestão de animais ruminantes) e pela extração de combustíveis fósseis.\n    * **Óxido nitroso (N₂O):** Liberado por processos naturais no solo e na água, e também por atividades agrícolas e industriais.\n    * **Gases fluorados (HFCs, PFCs, SF₆):** Gases sintéticos utilizados em refrigeração, aerossóis e processos industriais.\n\n5. **Retenção de Calor:** Ao absorverem a radiação infravermelha emitida pela Terra, os GEEs a reemitem em todas as direções, inclusive de volta para a superfície terrestre. Isso faz com que parte do calor que seria irradiado para o espaço seja retido na atmosfera, aquecendo o planeta.\n\n**Analogia:**\n\nImagine um carro estacionado sob o sol. Os vidros do carro permitem que a luz solar entre, aquecendo o interior. O calor gerado dentro do carro, no entanto, tem dificuldade em sair pelos vidros, fazendo com que a temperatura interna aumente significativamente em relação à temperatura externa. Os GEEs funcionam de forma semelhante aos vidros do carro, permitindo a entrada da radiação solar e retendo parte do calor emitido pela Terra.\n\n**A Importância do Efeito Estufa Natural:**\n\nSem o efeito estufa natural, a temperatura média da Terra seria de aproximadamente -18°C, tornando o planeta inabitável para a maioria das formas de vida. O efeito estufa natural mantém a temperatura média em torno de 15°C, permitindo a existência de oceanos, rios e a diversidade de ecossistemas que conhecemos.\n\n**O Problema: O Efeito Estufa Antropogênico (Intensificado)**\n\nO problema surge quando as atividades humanas aumentam a concentração de GEEs na atmosfera de forma acelerada. A queima de combustíveis fósseis (carvão, petróleo e gás natural) para geração de energia, transporte e indústria, o desmatamento, a agricultura intensiva e outros processos liberam grandes quantidades de CO₂, metano e outros GEEs.\n\nEsse aumento na concentração de GEEs intensifica o efeito estufa natural, retendo mais calor na atmosfera e levando ao **aquecimento global**. As consequências desse aquecimento incluem:\n\n* **Aumento da temperatura média global:** Causando ondas de calor mais frequentes e intensas.\n* **Derretimento de geleiras e calotas polares:** Elevando o nível do mar e ameaçando áreas costeiras.\n* **Mudanças nos padrões de chuva:** Levando a secas mais severas em algumas regiões e inundações em outras.\n* **Eventos climáticos extremos mais frequentes e intensos:** Como furacões, tempestades e incêndios florestais.\n* **Impactos na biodiversidade:** Ameaçando espécies que não conseguem se adaptar às rápidas mudanças climáticas.\n* **Acidificação dos oceanos:** Prejudicando a vida marinha.\n\n**Em resumo:**\n\nO efeito estufa é um fenômeno natural vital para a vida na Terra. No entanto, as atividades humanas têm intensificado esse efeito,",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-010",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual oceano e o maior da Terra?",
+      "judge_score": 4.6667,
+      "judge_justification": "O chatbot manteve a mesma informação correta e a qualidade da resposta. Ele foi capaz de entender a pergunta mesmo com um erro de digitação ('mair' em vez de 'maior'), demonstrando robustez ao ruído no input.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9213,
+      "consistency_score": null,
+      "response_text": "O **Oceano Pacífico** é o maior oceano da Terra.",
+      "error": null
+    }
+  ]
+}
