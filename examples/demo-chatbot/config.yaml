@@ -1,0 +1,53 @@
+# ============================================================
+# llm-eval — Config do exemplo demo-chatbot
+# ============================================================
+# Avalia o chatbot tutor de Python (rodando em localhost:8000)
+# via CustomProvider. Juiz: Gemini 2.5 Flash Lite (free tier).
+#
+# Pré-requisitos:
+#   - GROQ_API_KEY exportada (o chatbot consome o Groq).
+#   - GEMINI_API_KEY exportada (o juiz consome o Gemini).
+#   - uvicorn chatbot.main:app --app-dir examples/demo-chatbot --port 8000
+#     rodando em background.
+#
+# Como rodar:
+#   llm-eval run --config examples/demo-chatbot/config.yaml
+# ============================================================
+
+provider:
+  type: custom
+  url: "http://localhost:8000/chat"
+  method: POST
+  headers:
+    Content-Type: application/json
+  model: "llama-3.1-8b-instant"
+  request_template:
+    prompt: "{prompt}"
+  response_path: "response"
+  temperature: 0.0
+  max_tokens: 512
+
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.5-flash-lite        # soft-pin (Gemini 2.5+ não publica snapshots dated)
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./examples/demo-chatbot/scenarios
+
+repetitions: 1                          # CI: 1; análise empírica completa: 3+
+
+output_dir: ./examples/demo-chatbot/results
+
+output_format:
+  - json
+  - markdown
