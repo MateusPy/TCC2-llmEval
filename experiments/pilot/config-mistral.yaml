@@ -1,0 +1,45 @@
+# ============================================================
+# llm-eval — Configuração do piloto (chatbot avaliado: Mistral)
+# ============================================================
+# Issue #49 — Piloto experimental.
+#
+# Subset reproduzível: primeiros 10 cenários por dimensão do banco
+# embutido, gerado por experiments/pilot/scripts/subset_scenarios.py.
+#
+# Juiz: Gemini para ambos os chatbots (decisão do piloto; self-bias
+# documentado como limitação na §10 do RESUMO_PROJETO.md). Mantém
+# config-gemini.yaml comparável.
+# ============================================================
+
+provider:
+  type: mistral
+  api_key: "${MISTRAL_API_KEY}"
+  model: ministral-3b-2512
+  temperature: 0.0
+  max_tokens: 1024
+  seed: 42
+
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.5-flash-lite
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./experiments/pilot/scenarios
+
+repetitions: 3
+
+output_dir: ./experiments/pilot/results/mistral
+
+output_format:
+  - json
+  - markdown

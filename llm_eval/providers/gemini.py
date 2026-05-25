@@ -25,6 +25,7 @@ effects out of unit tests and to allow stubbing in :mod:`tests.test_providers`.
 from __future__ import annotations
 
 import logging
+import re
 import sys
 import time
 from collections.abc import Callable
@@ -58,7 +59,7 @@ class GeminiProvider(BaseProvider):
         config: ProviderConfig,
         *,
         client_factory: Callable[[ProviderConfig], Any] | None = None,
-        max_attempts: int = 3,
+        max_attempts: int = 6,
         initial_delay: float = 1.0,
         sleep: Callable[[float], None] | None = None,
     ) -> None:
@@ -69,7 +70,9 @@ class GeminiProvider(BaseProvider):
             client_factory: Callable that builds the underlying SDK model
                 instance. ``None`` uses the default Gemini SDK; tests can
                 inject a stub returning an object with ``generate_content``.
-            max_attempts: Maximum retry attempts for transient errors.
+            max_attempts: Maximum retry attempts for transient errors. Default
+                6 to accommodate free-tier rate-limit waits (~30s per retry
+                from the server hint) without prematurely giving up.
             initial_delay: Seconds to wait before the second attempt.
             sleep: Sleep function passed to :func:`retry_with_backoff`.
                 ``None`` defaults to :func:`time.sleep`. Tests should pass a
@@ -87,12 +90,13 @@ class GeminiProvider(BaseProvider):
 
         def _call() -> ProviderResponse:
             start = time.perf_counter()
+            # google-generativeai's GenerationConfig proto does not expose a
+            # `seed` field; passing it raises ValueError at request build time.
+            # Determinism for this provider relies on temperature=0.0.
             generation_config: dict[str, Any] = {
                 "temperature": self.config.temperature,
                 "max_output_tokens": self.config.max_tokens,
             }
-            if self.config.seed is not None:
-                generation_config["seed"] = self.config.seed
             try:
                 response = self._client.generate_content(
                     prompt,
@@ -110,8 +114,6 @@ class GeminiProvider(BaseProvider):
                 "temperature": self.config.temperature,
                 "max_tokens": self.config.max_tokens,
             }
-            if self.config.seed is not None:
-                parameters["seed"] = self.config.seed
             if usage:
                 parameters["usage"] = usage
 
@@ -193,13 +195,41 @@ def _extract_usage(response: Any) -> dict[str, int] | None:
     }
 
 
+_RETRY_AFTER_TEXT_RE = re.compile(r"retry\s+in\s+([\d.]+)\s*s", re.IGNORECASE)
+_RETRY_DELAY_BLOCK_RE = re.compile(r"retry_delay\s*\{\s*seconds:\s*(\d+)")
+
+
+def _extract_retry_after(message: str) -> float | None:
+    """Parse the retry hint out of a Gemini rate-limit error message.
+
+    The Google SDK serializes the gRPC ``RetryInfo`` detail as part of the
+    exception string. Two formats appear in practice:
+
+    1. Human-readable: ``Please retry in 34.318398262s.``
+    2. Proto block: ``retry_delay { seconds: 34 }``
+
+    We try the human form first (more precise — includes fractional seconds)
+    and fall back to the proto block. Returns ``None`` when neither pattern
+    is present, in which case the caller falls back to local backoff.
+    """
+    m = _RETRY_AFTER_TEXT_RE.search(message)
+    if m:
+        return float(m.group(1))
+    m = _RETRY_DELAY_BLOCK_RE.search(message)
+    if m:
+        return float(m.group(1))
+    return None
+
+
 def _translate_sdk_error(exc: BaseException) -> None:
     """Translate a Gemini SDK error into the local provider error hierarchy.
 
     Returns silently if the exception is not a recognized retryable error;
     the caller is then expected to wrap it in :class:`FatalError`. Raises a
     typed :class:`ProviderError` subclass when the error matches a known
-    transient case.
+    transient case. For rate-limit errors, the server-provided retry hint
+    (when present in the message) is forwarded to ``RateLimitError`` so the
+    retry loop can honor it.
     """
     name = type(exc).__name__
     message = str(exc)
@@ -210,7 +240,10 @@ def _translate_sdk_error(exc: BaseException) -> None:
         or "429" in message
         or "rate limit" in lowered
     ):
-        raise RateLimitError(f"Gemini rate-limited: {message}") from exc
+        raise RateLimitError(
+            f"Gemini rate-limited: {message}",
+            retry_after=_extract_retry_after(message),
+        ) from exc
     if name in {"DeadlineExceeded", "Timeout", "TimeoutError"} or "timeout" in lowered:
         raise ProviderTimeoutError(f"Gemini timeout: {message}") from exc
     if name in {"ServiceUnavailable", "InternalServerError"} or _is_5xx(message):

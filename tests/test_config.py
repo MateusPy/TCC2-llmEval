@@ -45,18 +45,24 @@ def test_provider_settings_seed_none_default():
 @pytest.mark.parametrize(
     "model,expected",
     [
-        # Pinned identifiers (accepted)
+        # Hard pin — explicit snapshot suffix (accepted)
         ("gemini-2.0-flash-001", True),
         ("gemini-1.5-pro-002", True),
         ("mistral-small-2503", True),
         ("mistral-large-2411", True),
         ("model-2024-09", True),
         ("model-09-15", True),
-        # Unpinned identifiers (rejected)
-        ("gemini-2.0-flash", False),
-        ("gemini-1.5-pro", False),
+        # Soft pin — embedded minor version (accepted; vendor stopped
+        # publishing dated snapshots for Gemini 2.5+)
+        ("gemini-2.0-flash", True),
+        ("gemini-1.5-pro", True),
+        ("gemini-2.5-flash", True),
+        ("gemini-2.5-pro", True),
+        # No version info at all (rejected)
         ("mistral-small", False),
         ("gemini-pro", False),
+        ("gemini-flash", False),
+        # Floating aliases (rejected even if minor version is present)
         ("gemini-1.5-pro-latest", False),
         ("gemini-1.5-pro-stable", False),
         ("", False),
@@ -66,36 +72,44 @@ def test_is_pinned_model_classification(model: str, expected: bool):
     assert is_pinned_model(model) is expected
 
 
-def test_pinned_regex_does_not_match_floating_aliases():
+def test_pinned_regexes_do_not_match_floating_aliases():
     """Regression test for the regex/early-return defense in depth.
 
-    The pinning regex must NOT include ``latest`` or ``stable`` in its
-    alternation — those are floating aliases and are rejected by an explicit
-    early return. If a future refactor removes the early return trusting
-    that "the regex already covers it", this test fails immediately rather
-    than silently classifying ``-latest``/``-stable`` as pinned.
+    Floating-alias suffixes (``-latest``, ``-stable``) are rejected by an
+    explicit early return in ``is_pinned_model``. If a future refactor
+    removes that early return trusting that "the regex already covers it",
+    this test fails immediately rather than silently classifying those as
+    pinned (the minor-version regex would match e.g. ``gemini-1.5-pro-latest``
+    on the embedded ``1.5``).
     """
-    from llm_eval.config import _PINNED_MODEL_RE
+    from llm_eval.config import _SNAPSHOT_SUFFIX_RE, _MINOR_VERSION_RE
 
-    assert _PINNED_MODEL_RE.search("model-latest") is None
-    assert _PINNED_MODEL_RE.search("model-stable") is None
-    # And the actual pinned forms still match at the regex level.
-    assert _PINNED_MODEL_RE.search("model-001") is not None
-    assert _PINNED_MODEL_RE.search("model-2503") is not None
+    # Snapshot regex: floating aliases never look like snapshots.
+    assert _SNAPSHOT_SUFFIX_RE.search("model-latest") is None
+    assert _SNAPSHOT_SUFFIX_RE.search("model-stable") is None
+    # Snapshot regex: real snapshots still match.
+    assert _SNAPSHOT_SUFFIX_RE.search("model-001") is not None
+    assert _SNAPSHOT_SUFFIX_RE.search("model-2503") is not None
+    # Minor-version regex: real minor versions match.
+    assert _MINOR_VERSION_RE.search("gemini-2.5-flash") is not None
+    assert _MINOR_VERSION_RE.search("gemini-1.5-pro") is not None
+    # Minor-version regex would also match an aliased name — proving why
+    # the early return on ``-latest``/``-stable`` is load-bearing.
+    assert _MINOR_VERSION_RE.search("gemini-1.5-pro-latest") is not None
 
 
 def test_provider_settings_rejects_unpinned_gemini():
-    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
-        ProviderSettings(type="gemini", model="gemini-2.0-flash")
+    with pytest.raises(ValidationError, match="lacks version information"):
+        ProviderSettings(type="gemini", model="gemini-pro")
 
 
 def test_provider_settings_rejects_unpinned_mistral():
-    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
+    with pytest.raises(ValidationError, match="lacks version information"):
         ProviderSettings(type="mistral", model="mistral-small")
 
 
 def test_provider_settings_rejects_latest_alias():
-    with pytest.raises(ValidationError, match="not pinned to an explicit version"):
+    with pytest.raises(ValidationError, match="lacks version information"):
         ProviderSettings(type="gemini", model="gemini-1.5-pro-latest")
 
 
