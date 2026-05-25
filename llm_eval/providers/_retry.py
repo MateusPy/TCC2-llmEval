@@ -105,9 +105,9 @@ def retry_with_backoff(
                 )
                 raise
             # Honor server-provided retry hint (e.g. Google's retry_delay
-                # block on free-tier 429s) when present. Add a 1s buffer so we
-                # wake up after the quota window resets, not exactly on the
-                # edge. Cap at max_retry_after to avoid pathological waits.
+            # block on free-tier 429s) when present. Add a 1s buffer so we
+            # wake up after the quota window resets, not exactly on the
+            # edge. Cap at max_retry_after to avoid pathological waits.
             server_hint = getattr(exc, "retry_after", None)
             if server_hint is not None:
                 wait = min(server_hint + 1.0, max_retry_after)

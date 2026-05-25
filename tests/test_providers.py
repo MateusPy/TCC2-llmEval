@@ -229,9 +229,7 @@ def test_retry_caps_retry_after_at_max():
             raise RateLimitError("rate-limited", retry_after=600.0)
         return "ok"
 
-    retry_with_backoff(
-        fn, max_attempts=3, sleep=sleeps.append, max_retry_after=60.0
-    )
+    retry_with_backoff(fn, max_attempts=3, sleep=sleeps.append, max_retry_after=60.0)
     assert sleeps == [60.0]
 
 
@@ -324,6 +322,7 @@ def test_gemini_extracts_retry_after_from_human_form():
     """The "Please retry in N.NNs" phrase in the SDK exception message must
     be parsed into ``RateLimitError.retry_after`` (preferred — has fractional
     precision)."""
+
     class ResourceExhausted(Exception):
         pass
 
@@ -338,6 +337,7 @@ def test_gemini_extracts_retry_after_from_human_form():
 def test_gemini_extracts_retry_after_from_proto_block():
     """Fallback: when the human form is absent, the proto-style
     ``retry_delay { seconds: N }`` block is parsed instead."""
+
     class ResourceExhausted(Exception):
         pass
 
@@ -352,6 +352,7 @@ def test_gemini_extracts_retry_after_from_proto_block():
 def test_gemini_retry_after_none_when_no_hint():
     """When neither form is present, ``retry_after`` is None and the retry
     loop falls back to local backoff."""
+
     class ResourceExhausted(Exception):
         pass
 
