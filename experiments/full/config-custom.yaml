@@ -1,0 +1,58 @@
+# ============================================================
+# llm-eval — Full run (chatbot avaliado: Custom / demo-chatbot)
+# ============================================================
+# Issue #50 — 3º chatbot do full run.
+#
+# Avalia o demo-chatbot (examples/demo-chatbot/), um tutor de Python
+# iniciante (Llama 3.1 8B via Groq). A AC do #50 exige que esta
+# execução rode VIA PIPELINE (workflow_dispatch do job
+# eval-full-custom no .github/workflows/ci.yml). O link do GH Actions
+# run vai pro RUN_NOTES.md.
+#
+# Para validação local pré-CI:
+#   uvicorn chatbot.main:app --app-dir examples/demo-chatbot --port 8000 &
+#   llm-eval run --config experiments/full/config-custom.yaml
+#
+# Banco: usa examples/demo-chatbot/scenarios/ (banco do tutor),
+# não o banco genérico — chatbot recusa perguntas fora do escopo.
+# Comparação cross-chatbot é pipeline-to-pipeline, não modelo-to-modelo
+# (caveat documentado em PILOT_ANALYSIS §3.2 e RUN_NOTES §3).
+# ============================================================
+
+provider:
+  type: custom
+  url: "http://localhost:8000/chat"
+  method: POST
+  headers:
+    Content-Type: application/json
+  model: "llama-3.1-8b-instant"
+  request_template:
+    prompt: "{prompt}"
+  response_path: "response"
+  temperature: 0.0
+  max_tokens: 512
+
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.5-flash-lite
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./examples/demo-chatbot/scenarios
+
+repetitions: 3
+
+output_dir: ./experiments/full/results/custom
+
+output_format:
+  - json
+  - markdown

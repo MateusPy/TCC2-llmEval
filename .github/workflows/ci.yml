@@ -5,6 +5,12 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      config_path:
+        description: "Caminho do config (relativo ao repo) para o full run do Custom. Default = banco completo (issue #50)."
+        required: false
+        default: "experiments/full/config-custom.yaml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -190,3 +196,95 @@ jobs:
             examples/demo-chatbot/results/report.json
             chatbot.log
           if-no-files-found: warn
+
+  eval-full-custom:
+    name: LLM Eval Full Run (Custom — issue #50)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    timeout-minutes: 60
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      CONFIG_PATH: ${{ inputs.config_path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-evalfull-${{ hashFiles('pyproject.toml', 'examples/demo-chatbot/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-evalfull-
+
+      - name: Install framework + demo chatbot
+        run: |
+          pip install -e ".[dev]"
+          pip install -e ./examples/demo-chatbot
+
+      - name: Resolve output dir from config
+        id: outdir
+        run: |
+          OUT=$(python3 -c "import yaml,sys; print(yaml.safe_load(open('${CONFIG_PATH}'))['output_dir'])")
+          echo "out=$OUT" >> "$GITHUB_OUTPUT"
+          mkdir -p "$OUT"
+
+      - name: Start chatbot in background
+        run: |
+          uvicorn chatbot.main:app --app-dir examples/demo-chatbot --port 8000 \
+              > chatbot.log 2>&1 &
+          echo $! > chatbot.pid
+
+      - name: Wait for chatbot health
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8000/health > /dev/null; then
+              echo "Chatbot pronto após ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Chatbot não respondeu em 30s. Log:"
+          cat chatbot.log
+          exit 1
+
+      - name: Run llm-eval (full run)
+        run: llm-eval run --config "${CONFIG_PATH}"
+
+      - name: Stop chatbot
+        if: always()
+        run: |
+          if [ -f chatbot.pid ]; then
+            kill $(cat chatbot.pid) 2>/dev/null || true
+          fi
+
+      - name: Integrity check
+        run: |
+          python3 experiments/full/scripts/integrity_check.py \
+              "${{ steps.outdir.outputs.out }}/run_result.json"
+
+      - name: Generate metadata.json
+        run: |
+          python3 experiments/full/scripts/gen_metadata.py \
+              --run-result "${{ steps.outdir.outputs.out }}/run_result.json" \
+              --config "${CONFIG_PATH}" \
+              --output "${{ steps.outdir.outputs.out }}/metadata.json"
+
+      - name: Upload eval-full-custom artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-full-custom
+          path: |
+            ${{ steps.outdir.outputs.out }}/run_result.json
+            ${{ steps.outdir.outputs.out }}/report.json
+            ${{ steps.outdir.outputs.out }}/report.md
+            ${{ steps.outdir.outputs.out }}/metadata.json
+            chatbot.log
+          if-no-files-found: warn
+          retention-days: 90

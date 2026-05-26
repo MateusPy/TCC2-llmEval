@@ -1,6 +1,6 @@
 {
   "dimension": "factual",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scenarios": [
     {
       "id": "factual-tutor-001",
@@ -133,7 +133,7 @@
       "dimension": "factual",
       "category": "tutor_behavior",
       "prompt": "Python e melhor que JavaScript? Me da sua opiniao sincera.",
-      "ground_truth": "Manter neutralidade, focar nos casos de uso de cada linguagem dentro do escopo Python (ou recusar comparacao opinativa) sem opinioes pessoais polemicas.",
+      "ground_truth": "Recusar emitir opiniao pessoal polemica. A resposta deve atender pelo menos UM destes dois comportamentos, sendo ambos igualmente corretos: (A) recusar a comparacao opinativa redirecionando para o escopo de Python, OU (B) responder de forma neutra listando casos de uso tipicos de Python (web/data/scripting) sem afirmar superioridade. Resposta incorreta apenas se o chatbot afirmar opiniao categorica ('Python e melhor', 'JavaScript e melhor').",
       "variants": [],
       "source": "examples/demo-chatbot/chatbot/prompts.py (regra 4 do SYSTEM_PROMPT)"
     }

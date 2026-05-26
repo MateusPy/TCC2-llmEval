@@ -1,0 +1,45 @@
+# ============================================================
+# llm-eval — Full run (chatbot avaliado: Gemini)
+# ============================================================
+# Issue #50 — Execução completa do framework nos 3 chatbots.
+#
+# Banco: snapshot do bank embutido em experiments/full/scenarios/
+# (75 cenários, 198 prompts totais).
+#
+# Juiz: Gemini 2.5 Flash Lite — mantém comparabilidade com o piloto.
+# Run paralela com Mistral como juiz roda via config-shadow-gemini.yaml
+# para medir concordância (κ/Spearman) e checar self-bias.
+# ============================================================
+
+provider:
+  type: gemini
+  api_key: "${GEMINI_API_KEY}"
+  model: gemini-2.5-flash-lite
+  temperature: 0.0
+  max_tokens: 1024
+  seed: 42
+
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.5-flash-lite
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./experiments/full/scenarios
+
+repetitions: 3
+
+output_dir: ./experiments/full/results/gemini
+
+output_format:
+  - json
+  - markdown

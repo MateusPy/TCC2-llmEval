@@ -1,0 +1,519 @@
+{
+  "dimension": "consistency",
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "consistency-001",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "Explique o que e fotossintese.",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-001-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Descreva o processo de fotossintese."
+        },
+        {
+          "id": "consistency-001-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como as plantas produzem energia a partir da luz solar?"
+        },
+        {
+          "id": "consistency-001-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que e fotossintese e como ela funciona nas plantas?"
+        },
+        {
+          "id": "consistency-001-v4",
+          "variant_type": "paraphrase",
+          "prompt": "Resuma como a fotossintese converte luz em energia quimica."
+        }
+      ],
+      "expected_topic": "fotossintese"
+    },
+    {
+      "id": "consistency-002",
+      "dimension": "consistency",
+      "category": "daily_life",
+      "prompt": "Como faco arroz branco simples?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-002-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Qual e um jeito basico de preparar arroz branco?"
+        },
+        {
+          "id": "consistency-002-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Me ensine a cozinhar arroz branco no fogao."
+        },
+        {
+          "id": "consistency-002-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Quais sao os passos para fazer arroz branco soltinho?"
+        }
+      ],
+      "expected_topic": "arroz branco"
+    },
+    {
+      "id": "consistency-003",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Explique a diferenca entre lista e tupla em Python.",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-003-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Em Python, o que muda entre list e tuple?"
+        },
+        {
+          "id": "consistency-003-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Compare listas e tuplas na linguagem Python."
+        },
+        {
+          "id": "consistency-003-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Quando devo usar lista em vez de tupla em Python?"
+        },
+        {
+          "id": "consistency-003-v4",
+          "variant_type": "paraphrase",
+          "prompt": "Quais sao as principais diferencas entre listas e tuplas?"
+        }
+      ],
+      "expected_topic": "lista e tupla"
+    },
+    {
+      "id": "consistency-004",
+      "dimension": "consistency",
+      "category": "philosophy",
+      "prompt": "O que e utilitarismo?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-004-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique a ideia central do utilitarismo."
+        },
+        {
+          "id": "consistency-004-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como a teoria utilitarista avalia se uma acao e correta?"
+        },
+        {
+          "id": "consistency-004-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Defina utilitarismo em termos simples."
+        }
+      ],
+      "expected_topic": "utilitarismo"
+    },
+    {
+      "id": "consistency-005",
+      "dimension": "consistency",
+      "category": "writing",
+      "prompt": "Como escrever um e-mail profissional pedindo extensao de prazo?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-005-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Como redigir um e-mail formal para solicitar mais prazo?"
+        },
+        {
+          "id": "consistency-005-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Quais elementos devem aparecer em uma mensagem profissional pedindo prorrogacao?"
+        },
+        {
+          "id": "consistency-005-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Me de orientacoes para pedir extensao de prazo por e-mail sem soar rude."
+        }
+      ],
+      "expected_topic": "e-mail profissional"
+    },
+    {
+      "id": "consistency-006",
+      "dimension": "consistency",
+      "category": "finance",
+      "prompt": "O que e juros compostos?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-006-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique como funcionam os juros compostos."
+        },
+        {
+          "id": "consistency-006-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Qual a diferenca pratica entre juros simples e compostos?"
+        },
+        {
+          "id": "consistency-006-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Descreva o efeito de capitalizacao nos juros compostos."
+        }
+      ],
+      "expected_topic": "juros compostos"
+    },
+    {
+      "id": "consistency-007",
+      "dimension": "consistency",
+      "category": "health",
+      "prompt": "Quais sao habitos basicos para melhorar a higiene do sono?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-007-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Como posso dormir melhor com mudancas simples de rotina?"
+        },
+        {
+          "id": "consistency-007-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Que praticas ajudam a manter uma boa higiene do sono?"
+        },
+        {
+          "id": "consistency-007-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Liste orientacoes basicas para quem quer ter um sono mais regular."
+        }
+      ],
+      "expected_topic": "higiene do sono"
+    },
+    {
+      "id": "consistency-008",
+      "dimension": "consistency",
+      "category": "history",
+      "prompt": "Resuma as causas da Revolucao Francesa.",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-008-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quais fatores levaram a Revolucao Francesa?"
+        },
+        {
+          "id": "consistency-008-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Explique de forma breve por que a Revolucao Francesa aconteceu."
+        },
+        {
+          "id": "consistency-008-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Que problemas politicos e sociais antecederam a Revolucao Francesa?"
+        }
+      ],
+      "expected_topic": "Revolucao Francesa"
+    },
+    {
+      "id": "consistency-009",
+      "dimension": "consistency",
+      "category": "law",
+      "prompt": "O que significa presuncao de inocencia?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-009-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique o principio da presuncao de inocencia."
+        },
+        {
+          "id": "consistency-009-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Em termos juridicos, o que quer dizer presumir alguem inocente ate prova em contrario?"
+        },
+        {
+          "id": "consistency-009-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Qual e a ideia por tras da presuncao de inocencia no direito?"
+        }
+      ],
+      "expected_topic": "presuncao de inocencia"
+    },
+    {
+      "id": "consistency-010",
+      "dimension": "consistency",
+      "category": "instructions",
+      "prompt": "Como trocar a senha de uma conta online com seguranca?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-010-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quais passos devo seguir para alterar uma senha com seguranca?"
+        },
+        {
+          "id": "consistency-010-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Me oriente sobre como redefinir a senha de uma conta online sem riscos desnecessarios."
+        },
+        {
+          "id": "consistency-010-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que fazer para atualizar uma senha mantendo boas praticas de seguranca?"
+        }
+      ],
+      "expected_topic": "troca de senha segura"
+    },
+    {
+      "id": "consistency-011",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "Como escolher um banco para guardar dinheiro?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-011-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quais criterios devo usar para escolher uma instituicao financeira?"
+        },
+        {
+          "id": "consistency-011-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como comparar bancos para abrir conta ou investir?"
+        },
+        {
+          "id": "consistency-011-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que analisar antes de confiar meu dinheiro a um banco?"
+        }
+      ],
+      "expected_topic": "instituicao financeira",
+      "context_shift": true
+    },
+    {
+      "id": "consistency-012",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "Como escolher um banco confortavel para a sala?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-012-v1",
+          "variant_type": "paraphrase",
+          "prompt": "O que avaliar ao comprar um banco para sentar na sala?"
+        },
+        {
+          "id": "consistency-012-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Que caracteristicas tornam um banco de madeira confortavel para uso interno?"
+        },
+        {
+          "id": "consistency-012-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como escolher um assento do tipo banco para decoracao e conforto?"
+        }
+      ],
+      "expected_topic": "assento",
+      "context_shift": true
+    },
+    {
+      "id": "consistency-013",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "O que pode causar manga na camiseta branca?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-013-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Por que uma camiseta branca pode ficar com manchas?"
+        },
+        {
+          "id": "consistency-013-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Quais sao causas comuns de manchas em tecido branco?"
+        },
+        {
+          "id": "consistency-013-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como evitar manchas aparecendo na manga de uma camisa clara?"
+        }
+      ],
+      "expected_topic": "mancha em roupa",
+      "context_shift": true
+    },
+    {
+      "id": "consistency-014",
+      "dimension": "consistency",
+      "category": "environment",
+      "prompt": "O que e efeito estufa?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-014-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique o fenomeno do efeito estufa."
+        },
+        {
+          "id": "consistency-014-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como o efeito estufa funciona na atmosfera terrestre?"
+        },
+        {
+          "id": "consistency-014-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Defina efeito estufa em linguagem simples."
+        }
+      ],
+      "expected_topic": "efeito estufa"
+    },
+    {
+      "id": "consistency-015",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Como funciona um loop for em Python?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-015-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique o uso de for em Python."
+        },
+        {
+          "id": "consistency-015-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Para que serve a estrutura for na linguagem Python?"
+        },
+        {
+          "id": "consistency-015-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como iterar sobre uma lista com for em Python?"
+        }
+      ],
+      "expected_topic": "loop for"
+    },
+    {
+      "id": "consistency-016",
+      "dimension": "consistency",
+      "category": "food",
+      "prompt": "Qual a diferenca entre ferver, assar e fritar alimentos?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-016-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Compare os metodos de coccao: fervura, forno e fritura."
+        },
+        {
+          "id": "consistency-016-v2",
+          "variant_type": "paraphrase",
+          "prompt": "O que muda entre cozinhar um alimento fervendo, assando ou fritando?"
+        },
+        {
+          "id": "consistency-016-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Explique as principais diferencas entre ferver, assar e fritar."
+        }
+      ],
+      "expected_topic": "metodos de coccao"
+    },
+    {
+      "id": "consistency-017",
+      "dimension": "consistency",
+      "category": "education",
+      "prompt": "Como montar um plano de estudos semanal?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-017-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quais passos ajudam a organizar uma rotina semanal de estudos?"
+        },
+        {
+          "id": "consistency-017-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Me explique como distribuir materias em um cronograma de estudos."
+        },
+        {
+          "id": "consistency-017-v3",
+          "variant_type": "paraphrase",
+          "prompt": "Como criar um planejamento semanal realista para estudar?"
+        }
+      ],
+      "expected_topic": "plano de estudos"
+    },
+    {
+      "id": "consistency-018",
+      "dimension": "consistency",
+      "category": "communication",
+      "prompt": "O que e escuta ativa?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-018-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Explique o conceito de escuta ativa."
+        },
+        {
+          "id": "consistency-018-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como descrever a pratica de ouvir com atencao e validar o interlocutor?"
+        },
+        {
+          "id": "consistency-018-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que caracteriza a escuta ativa em uma conversa?"
+        }
+      ],
+      "expected_topic": "escuta ativa"
+    },
+    {
+      "id": "consistency-019",
+      "dimension": "consistency",
+      "category": "security",
+      "prompt": "Como identificar um possivel golpe de phishing?",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-019-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Quais sinais indicam que um e-mail pode ser phishing?"
+        },
+        {
+          "id": "consistency-019-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como reconhecer tentativas de roubo de credenciais por mensagem falsa?"
+        },
+        {
+          "id": "consistency-019-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que devo observar para desconfiar de links e e-mails fraudulentos?"
+        }
+      ],
+      "expected_topic": "phishing"
+    },
+    {
+      "id": "consistency-020",
+      "dimension": "consistency",
+      "category": "math",
+      "prompt": "Explique o que significa media aritmetica.",
+      "ground_truth": null,
+      "variants": [
+        {
+          "id": "consistency-020-v1",
+          "variant_type": "paraphrase",
+          "prompt": "Defina media aritmetica com um exemplo simples."
+        },
+        {
+          "id": "consistency-020-v2",
+          "variant_type": "paraphrase",
+          "prompt": "Como se calcula a media aritmetica de um conjunto de numeros?"
+        },
+        {
+          "id": "consistency-020-v3",
+          "variant_type": "paraphrase",
+          "prompt": "O que quer dizer tirar a media de varios valores?"
+        }
+      ],
+      "expected_topic": "media aritmetica"
+    }
+  ]
+}

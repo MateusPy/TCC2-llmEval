@@ -37,22 +37,27 @@ class _StubProvider(BaseProvider):
         response_text: str,
         model: str = "stub-model",
         response_time_ms: float = 12.5,
+        usage: dict[str, int] | None = None,
     ) -> None:
         super().__init__(ProviderConfig(api_key="x", model=model))
         self._response_text = response_text
         self._response_time_ms = response_time_ms
+        self._usage = usage
         self.last_prompt: str | None = None
         self.call_count = 0
 
     def send(self, prompt: str) -> ProviderResponse:
         self.last_prompt = prompt
         self.call_count += 1
+        parameters: dict[str, object] = {"temperature": self.config.temperature}
+        if self._usage is not None:
+            parameters["usage"] = self._usage
         return ProviderResponse(
             response_text=self._response_text,
             model=self.config.model,
             timestamp=datetime.now(timezone.utc),
             response_time_ms=self._response_time_ms,
-            parameters={"temperature": self.config.temperature},
+            parameters=parameters,
         )
 
 
@@ -416,6 +421,32 @@ def test_regex_fallback_clamps_huge_negative_score():
     result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
     assert result.score == 1
     assert result.metadata["parse_method"] == "regex"
+
+
+# ---------------------------------------------------------------------------
+# Usage propagation — chave para medir custo do juiz no full run (#50)
+# ---------------------------------------------------------------------------
+
+
+def test_usage_is_propagated_to_metadata_when_provider_reports_it():
+    provider = _StubProvider(
+        _good_json(),
+        usage={"prompt_tokens": 120, "completion_tokens": 40, "total_tokens": 160},
+    )
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert result.metadata["usage"] == {
+        "prompt_tokens": 120,
+        "completion_tokens": 40,
+        "total_tokens": 160,
+    }
+
+
+def test_usage_metadata_absent_when_provider_omits_it():
+    provider = _StubProvider(_good_json(), usage=None)
+    judge = Judge(provider)
+    result = judge.evaluate_factual(prompt="p", ground_truth="gt", response="r")
+    assert "usage" not in result.metadata
 
 
 def test_regex_fallback_with_negative_no_justification_uses_fallback():
