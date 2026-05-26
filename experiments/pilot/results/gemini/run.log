@@ -1,1009 +1,0 @@
-Configuração carregada de experiments/pilot/config-gemini.yaml
-Dimensões: factual, consistency, robustness | repetitions: 3 | output_dir: ./experiments/pilot/results/gemini
-/usr/lib/python3.12/importlib/__init__.py:90: FutureWarning: 
-
-All support for the `google.generativeai` package has ended. It will no longer be receiving 
-updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
-See README for more details:
-
-https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
-
-  return _bootstrap._gcd_import(name[level:], package, level)
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 139/199 [00:00<00:00, 1385.59it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1749.48it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 136/199 [00:00<00:00, 1357.05it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1546.91it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1394.82it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1697.79it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 145/199 [00:00<00:00, 1439.91it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1637.78it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 123/199 [00:00<00:00, 1219.04it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1627.94it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  63%|██████▎   | 125/199 [00:00<00:00, 1243.64it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1396.49it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  61%|██████    | 121/199 [00:00<00:00, 1207.79it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1406.24it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 137/199 [00:00<00:00, 1365.01it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1643.34it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  61%|██████    | 121/199 [00:00<00:00, 1207.12it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1593.56it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 133/199 [00:00<00:00, 1327.93it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1595.53it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 135/199 [00:00<00:00, 1343.73it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1376.31it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1398.89it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1685.86it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  71%|███████▏  | 142/199 [00:00<00:00, 1416.52it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1729.66it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  65%|██████▍   | 129/199 [00:00<00:00, 1287.65it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1487.25it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1399.42it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1459.13it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 135/199 [00:00<00:00, 1348.35it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1642.52it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 131/199 [00:00<00:00, 1304.73it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1536.98it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1392.64it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1518.74it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 134/199 [00:00<00:00, 1337.06it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1390.26it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  74%|███████▍  | 147/199 [00:00<00:00, 1461.00it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1544.16it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  66%|██████▋   | 132/199 [00:00<00:00, 1313.85it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1566.74it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 136/199 [00:00<00:00, 1357.40it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1841.60it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 138/199 [00:00<00:00, 1375.64it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1580.22it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  55%|█████▌    | 110/199 [00:00<00:00, 1091.92it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1356.71it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1396.60it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1766.05it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 139/199 [00:00<00:00, 1382.13it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1826.54it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 133/199 [00:00<00:00, 1321.71it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1617.19it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 146/199 [00:00<00:00, 1445.93it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1549.88it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [-00:09<00:00, -21.21it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 138/199 [00:00<00:00, 1368.91it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1599.19it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 133/199 [00:00<00:00, 1326.08it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1722.50it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 136/199 [00:00<00:00, 1356.04it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1829.56it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 136/199 [00:00<00:00, 1357.40it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1564.50it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 131/199 [00:00<00:00, 1304.68it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1356.52it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  65%|██████▌   | 130/199 [00:00<00:00, 1296.87it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1372.89it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 131/199 [00:00<00:00, 1304.58it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1589.02it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 135/199 [00:00<00:00, 1327.35it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1560.30it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1397.03it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1793.76it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 139/199 [00:00<00:00, 1381.11it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1713.28it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 138/199 [00:00<00:00, 1377.78it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1649.84it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  63%|██████▎   | 126/199 [00:00<00:00, 1249.86it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1480.34it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  61%|██████    | 121/199 [00:00<00:00, 1207.57it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1651.83it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 144/199 [00:00<00:00, 1438.59it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1515.40it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 131/199 [00:00<00:00, 1309.76it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1693.15it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  65%|██████▍   | 129/199 [00:00<00:00, 1276.11it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1556.53it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  71%|███████   | 141/199 [00:00<00:00, 1406.45it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1724.18it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 144/199 [00:00<00:00, 1427.24it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1801.58it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 145/199 [00:00<00:00, 1439.11it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1627.71it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 139/199 [00:00<00:00, 1378.35it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1664.38it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 144/199 [00:00<00:00, 1438.15it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1579.22it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 133/199 [00:00<00:00, 1329.51it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1665.17it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 134/199 [00:00<00:00, 1333.65it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1780.44it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  71%|███████▏  | 142/199 [00:00<00:00, 1407.05it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1697.22it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  71%|███████▏  | 142/199 [00:00<00:00, 1406.42it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1634.09it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 143/199 [00:00<00:00, 1420.76it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1523.98it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  63%|██████▎   | 126/199 [00:00<00:00, 1248.73it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1691.93it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1379.08it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1745.15it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 139/199 [00:00<00:00, 1385.48it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1763.41it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [-00:09<00:00, -21.16it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 143/199 [00:00<00:00, 1406.91it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1788.11it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  68%|██████▊   | 135/199 [00:00<00:00, 1341.02it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1470.72it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 137/199 [00:00<00:00, 1361.02it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1614.20it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  65%|██████▍   | 129/199 [00:00<00:00, 1268.98it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1643.91it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 143/199 [00:00<00:00, 1426.11it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1853.74it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  63%|██████▎   | 125/199 [00:00<00:00, 1231.11it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1775.68it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2298.90it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 145/199 [00:00<00:00, 1444.01it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1691.40it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 138/199 [00:00<00:00, 1372.17it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1511.77it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  77%|███████▋  | 153/199 [00:00<00:00, 1526.63it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1685.16it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  74%|███████▍  | 147/199 [00:00<00:00, 1463.70it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1753.88it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 124/199 [00:00<00:00, 1236.83it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1598.61it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: bert-base-multilingual-cased
-Key                                        | Status     |  | 
--------------------------------------------+------------+--+-
-cls.predictions.bias                       | UNEXPECTED |  | 
-cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
-cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
-cls.seq_relationship.bias                  | UNEXPECTED |  | 
-cls.seq_relationship.weight                | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Avaliação concluída. 30 cenários executados (0 com erro). Resultado salvo em: experiments/pilot/results/gemini/run_result.json
-Relatório JSON salvo em: experiments/pilot/results/gemini/report.json
-Relatório Markdown salvo em: experiments/pilot/results/gemini/report.md
