@@ -1,0 +1,59 @@
+# ============================================================
+# llm-eval — Configuração do piloto (chatbot avaliado: Custom)
+# ============================================================
+# Issue #49 — 3º chatbot do piloto.
+#
+# Avalia o demo-chatbot (examples/demo-chatbot/), um tutor de Python
+# iniciante (Llama 3.1 8B via Groq) servido em http://localhost:8765.
+#
+# Pré-requisito: subir o chatbot antes da run:
+#   uvicorn chatbot.main:app --app-dir examples/demo-chatbot --port 8765 &
+#
+# Juiz: Gemini 2.5 Flash Lite (mesmo dos config-gemini.yaml e
+# config-mistral.yaml — mantém comparabilidade).
+#
+# Subset de cenários: usa o banco do domínio do tutor
+# (examples/demo-chatbot/scenarios/), não o banco genérico do piloto.
+# Razão: tutor recusa perguntas fora de Python, então o banco genérico
+# daria scores artificialmente baixos. Comparação cross-chatbot é entre
+# pipelines end-to-end, não scores absolutos — caveat documentado na
+# análise.
+# ============================================================
+
+provider:
+  type: custom
+  url: "http://localhost:8765/chat"
+  method: POST
+  headers:
+    Content-Type: application/json
+  model: "llama-3.1-8b-instant"
+  request_template:
+    prompt: "{prompt}"
+  response_path: "response"
+  temperature: 0.0
+  max_tokens: 512
+
+judge:
+  enabled: true
+  provider:
+    type: gemini
+    api_key: "${GEMINI_API_KEY}"
+    model: gemini-2.5-flash-lite
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./examples/demo-chatbot/scenarios
+
+repetitions: 3
+
+output_dir: ./experiments/pilot/results/custom
+
+output_format:
+  - json
+  - markdown
