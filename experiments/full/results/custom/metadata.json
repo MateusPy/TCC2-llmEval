@@ -1,0 +1,42 @@
+{
+  "issue": "#50",
+  "generated_at": "2026-05-27T00:43:46.445777+00:00",
+  "run": {
+    "started_at": "2026-05-27T00:25:43.048899Z",
+    "finished_at": "2026-05-27T00:43:43.451048Z",
+    "config_file": "experiments/full/config-custom.yaml",
+    "run_result_file": "experiments/full/results/custom/run_result.json"
+  },
+  "chatbot": {
+    "provider": "custom",
+    "model": "llama-3.1-8b-instant",
+    "temperature": 0.0,
+    "seed": null
+  },
+  "judge": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "temperature": 0.0,
+    "seed": 42
+  },
+  "scenarios": {
+    "path": "examples/demo-chatbot/scenarios",
+    "repetitions": 3,
+    "hash": {
+      "combined": "1f70e96bc9917755321620339a862bdd8347643c17aff082ff58bab7cf6abfbe",
+      "files": {
+        "consistency.json": "184d00f53178b4792000f7c6de2c4d9780c4cadaad15a277bc47860ba0aabd34",
+        "factual.json": "70f7a28b68588f56cce0fecc4b70c7fab666115e8f5097776c2e7645c006a3b9",
+        "robustness.json": "eb3a281f2f4c9ba2a28ef4f7c066d45c0aa7c44fa3e12aca1557d9e28388bd85"
+      }
+    }
+  },
+  "framework": {
+    "git_commit": "f723d589d46a948fe7e88cd92b311c0a579c73a8",
+    "llm_eval_version": "0.1.0",
+    "bert_score_version": "0.3.13",
+    "google_genai_version": "0.8.6",
+    "mistralai_version": "2.4.7",
+    "pydantic_version": "2.13.4"
+  }
+}
