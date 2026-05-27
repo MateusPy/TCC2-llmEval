@@ -209,6 +209,9 @@ class Judge:
             "judge_model": provider_response.model,
             "parse_method": parsed["parse_method"],
         }
+        usage = provider_response.parameters.get("usage")
+        if usage:
+            metadata["usage"] = usage
         if parsed["justification_fallback"]:
             metadata["justification_fallback"] = True
         if parsed["parse_method"] != "json":

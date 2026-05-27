@@ -1,0 +1,27 @@
+{
+  "main_run": "experiments/full/results/mistral/run_result.json",
+  "shadow_run": "experiments/full/results/shadow-mistral/run_result.json",
+  "n_scenarios_common": 75,
+  "overall": {
+    "spearman_rho": 0.6785402119748849,
+    "cohen_kappa_quadratic": 0.5121069750632454,
+    "interpretation": "ranking deve ser descartado no Cap. 5"
+  },
+  "by_dimension": {
+    "factual": {
+      "n": 35,
+      "spearman_rho": 0.45281296622031175,
+      "cohen_kappa_quadratic": 0.6666666666666667
+    },
+    "consistency": {
+      "n": 20,
+      "spearman_rho": 0.3973597071195132,
+      "cohen_kappa_quadratic": 0.2727272727272727
+    },
+    "robustness": {
+      "n": 20,
+      "spearman_rho": 0.43363206943965366,
+      "cohen_kappa_quadratic": 0.25
+    }
+  }
+}

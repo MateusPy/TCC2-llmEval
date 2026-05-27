@@ -1,0 +1,1256 @@
+{
+  "metadata": {
+    "framework_version": "0.1.0",
+    "started_at": "2026-05-27T00:49:14.424053+00:00",
+    "finished_at": "2026-05-27T01:12:24.246994+00:00",
+    "duration_seconds": 1389.823,
+    "provider_type": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "seed": 42,
+    "temperature": 0.0,
+    "total_scenarios": 75,
+    "scenarios_with_error": 0,
+    "dimensions_evaluated": [
+      "factual",
+      "consistency",
+      "robustness"
+    ]
+  },
+  "summary": {
+    "overall_score": 4.7956,
+    "by_dimension": {
+      "factual": {
+        "mean": 4.9714,
+        "median": 5,
+        "stdev": 0.169,
+        "min": 4.0,
+        "max": 5.0,
+        "count": 35,
+        "evaluated": 35,
+        "failed": 0
+      },
+      "consistency": {
+        "mean": 5,
+        "median": 5.0,
+        "stdev": 0.0,
+        "min": 5.0,
+        "max": 5.0,
+        "count": 20,
+        "evaluated": 20,
+        "failed": 0
+      },
+      "robustness": {
+        "mean": 4.2833,
+        "median": 4.6667,
+        "stdev": 0.8185,
+        "min": 2.3333,
+        "max": 5.0,
+        "count": 20,
+        "evaluated": 20,
+        "failed": 0
+      }
+    }
+  },
+  "details": [
+    {
+      "scenario_id": "factual-001",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Australia?",
+      "judge_score": 4,
+      "judge_justification": "A resposta contém a informação correta (a capital da Austrália é Canberra), mas há um erro de digitação ('Camberra' em vez de 'Canberra'). Essa pequena imprecisão não compromete o conteúdo principal da resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6225,
+      "consistency_score": null,
+      "response_text": "A capital da Austrália é **Camberra**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-002",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a capital da Suica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. A capital da Suíça é, de fato, Berna, e a resposta do chatbot não contém informações inventadas, incorretas ou omissões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.661,
+      "consistency_score": null,
+      "response_text": "A capital da Suíça é **Berna**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-003",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano caiu o Muro de Berlim?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata (1989) sem erros, omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6525,
+      "consistency_score": null,
+      "response_text": "O Muro de Berlim caiu em **1989**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-004",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem foi o primeiro presidente do Brasil apos a Proclamacao da Republica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente Deodoro da Fonseca como o primeiro presidente do Brasil após a Proclamação da República, sem informações inventadas ou incorretas, e é completa o suficiente.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.745,
+      "consistency_score": null,
+      "response_text": "O primeiro presidente do Brasil após a Proclamação da República foi **Marechal Deodoro da Fonseca**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-005",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual planeta do Sistema Solar e conhecido como Planeta Vermelho?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica Marte como o Planeta Vermelho de forma precisa e completa, sem informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6297,
+      "consistency_score": null,
+      "response_text": "O planeta do Sistema Solar conhecido como **Planeta Vermelho** é **Marte**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-006",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Qual e o simbolo quimico do ouro?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata (Au) de forma clara e precisa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5894,
+      "consistency_score": null,
+      "response_text": "O símbolo químico do ouro é **Au**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-007",
+      "dimension": "factual",
+      "category": "science",
+      "prompt": "Quantos ossos tem, em media, o corpo humano adulto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth (206 ossos). Além disso, ela fornece uma explicação adicional relevante e precisa sobre possíveis variações no número de ossos, como a fusão de vértebras no cóccix, o que enriquece a resposta sem comprometer sua acurácia.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5971,
+      "consistency_score": null,
+      "response_text": "O corpo humano adulto tem, em média, **206 ossos**.\n\nÉ importante notar que esse número pode variar ligeiramente em algumas pessoas, principalmente devido à fusão de alguns ossos que ocorre durante o desenvolvimento. Por exemplo, o cóccix (osso da cauda) é formado pela fusão de várias vértebras.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-008",
+      "dimension": "factual",
+      "category": "mathematics",
+      "prompt": "Quanto e 15% de 200?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece três métodos distintos para calcular 15% de 200, todos resultando no valor correto de 30. Não há informações inventadas ou incorretas, e a resposta é completa e detalhada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4582,
+      "consistency_score": null,
+      "response_text": "Para calcular 15% de 200, você pode seguir estes passos:\n\n**Método 1: Transformar a porcentagem em decimal**\n\n1.  **Converta a porcentagem em decimal:** Divida a porcentagem por 100.\n    15% = 15 / 100 = 0,15\n\n2.  **Multiplique o decimal pelo número:**\n    0,15 * 200 = 30\n\n**Método 2: Usar a fração da porcentagem**\n\n1.  **Escreva a porcentagem como uma fração:**\n    15% = 15/100\n\n2.  **Multiplique a fração pelo número:**\n    (15/100) * 200\n\n3.  **Simplifique a multiplicação:**\n    (15 * 200) / 100 = 3000 / 100 = 30\n\n**Método 3: Calcular 10% e 5% separadamente**\n\n1.  **Calcule 10% de 200:**\n    10% de 200 é 200 / 10 = 20\n\n2.  **Calcule 5% de 200:**\n    5% é metade de 10%, então 5% de 200 é 20 / 2 = 10\n\n3.  **Some os resultados:**\n    20 + 10 = 30\n\nEm todos os métodos, o resultado é o mesmo.\n\nPortanto, 15% de 200 é **30**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-009",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior oceano da Terra?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata e sem omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5584,
+      "consistency_score": null,
+      "response_text": "O maior oceano da Terra é o **Oceano Pacífico**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-010",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o rio mais longo do mundo segundo a Britannica?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, mencionando explicitamente o Rio Nilo como o rio mais longo do mundo segundo a Britannica, sem informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7045,
+      "consistency_score": null,
+      "response_text": "Segundo a Britannica, o rio mais longo do mundo é o **Rio Nilo**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-011",
+      "dimension": "factual",
+      "category": "language",
+      "prompt": "Quantas letras tem o alfabeto portugues moderno?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a informação principal (26 letras) e lista todas as letras do alfabeto português moderno de forma precisa e completa, sem omissões ou erros.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5754,
+      "consistency_score": null,
+      "response_text": "O alfabeto português moderno tem **26 letras**.\n\nEle é composto pelas seguintes letras:\n\nA, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-012",
+      "dimension": "factual",
+      "category": "literature",
+      "prompt": "Quem escreveu o romance 'Dom Casmurro'?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata de que 'Dom Casmurro' foi escrito por Machado de Assis. Não há informações inventadas, incorretas ou omissões relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7381,
+      "consistency_score": null,
+      "response_text": "O romance \"Dom Casmurro\" foi escrito por **Machado de Assis**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-013",
+      "dimension": "factual",
+      "category": "sports",
+      "prompt": "Quantos jogadores de linha um time de futebol tem em campo, sem contar o goleiro?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a informação precisa (10 jogadores de linha) e ainda complementa com o contexto adicional de que um time completo tem 11 jogadores (1 goleiro + 10 de linha), sem incluir informações incorretas ou inventadas. A resposta é completa e não apresenta omissões ou imprecisões relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7655,
+      "consistency_score": null,
+      "response_text": "Um time de futebol tem **10 jogadores de linha** em campo, sem contar o goleiro.\n\nUm time completo em campo tem 11 jogadores, sendo 1 goleiro e 10 jogadores de linha.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-014",
+      "dimension": "factual",
+      "category": "medicine",
+      "prompt": "Qual vitamina e tradicionalmente associada a prevencao do escorbuto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a informação principal (vitamina C) e ainda acrescenta um detalhe relevante (ácido ascórbico), sem conter erros ou omissões significativas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6299,
+      "consistency_score": null,
+      "response_text": "A vitamina tradicionalmente associada à prevenção do escorbuto é a **vitamina C**, também conhecida como **ácido ascórbico**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-015",
+      "dimension": "factual",
+      "category": "technology",
+      "prompt": "O que significa a sigla CPU em computacao?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a tradução correta da sigla CPU ('Central Processing Unit'), sua tradução para o português ('Unidade Central de Processamento'), além de uma explicação detalhada e precisa sobre o papel da CPU no funcionamento de um computador. A resposta é completa, não contém informações inventadas ou incorretas, e vai além do esperado ao incluir uma analogia didática para facilitar o entendimento.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5669,
+      "consistency_score": null,
+      "response_text": "Em computação, a sigla **CPU** significa **Central Processing Unit**, que em português se traduz como **Unidade Central de Processamento**.\n\nÉ o **cérebro do computador**. A CPU é responsável por executar as instruções dos programas, realizar cálculos, processar dados e gerenciar as operações de todos os outros componentes do sistema.\n\nPense nela como o maestro de uma orquestra: ela recebe as partituras (instruções dos programas), interpreta-as e coordena todos os músicos (outros componentes do computador) para que a música (o programa) seja executada corretamente.\n\nEm resumo, a CPU é o componente mais crucial para o funcionamento de qualquer dispositivo computacional.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-016",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual funcao embutida do Python retorna o tamanho de uma lista?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente a função `len()` como a função embutida do Python que retorna o tamanho de uma lista, fornece uma explicação precisa e inclui um exemplo prático que reforça a resposta. Não há informações inventadas, incorretas ou omissões relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5811,
+      "consistency_score": null,
+      "response_text": "A função embutida do Python que retorna o tamanho de uma lista é a **`len()`**.\n\nEla é usada para obter o número de itens em um objeto, incluindo listas, tuplas, strings, dicionários e conjuntos.\n\n**Exemplo:**\n\n```python\nminha_lista = [10, 20, 30, 40, 50]\ntamanho = len(minha_lista)\nprint(tamanho)  # Saída: 5\n```",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-017",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual palavra-chave do Python define uma funcao?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a palavra-chave correta (`def`), explica seu uso de forma precisa e inclui um exemplo prático e bem formatado, sem informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5382,
+      "consistency_score": null,
+      "response_text": "A palavra-chave do Python que define uma função é **`def`**.\n\nEla é usada para iniciar a declaração de uma função, seguida pelo nome da função, parênteses `()` (que podem conter parâmetros) e dois pontos `:`.\n\n**Exemplo:**\n\n```python\ndef minha_funcao(parametro1, parametro2):\n  # Corpo da função\n  resultado = parametro1 + parametro2\n  return resultado\n```",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-018",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual estrutura de dados do Python armazena pares chave-valor mutaveis?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o 'dict' como a estrutura de dados que armazena pares chave-valor mutáveis em Python. Além disso, a resposta é completa, fornecendo uma explicação detalhada sobre a mutabilidade do dicionário, exemplos práticos de uso e uma comparação com outras estruturas de dados (listas, tuplas, conjuntos e frozensets), destacando por que elas não se encaixam na descrição solicitada. Não há informações inventadas ou incorretas, e a resposta é clara e bem fundamentada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4231,
+      "consistency_score": null,
+      "response_text": "A estrutura de dados do Python que armazena pares chave-valor mutáveis é o **dicionário** (dict).\n\n**Por que o dicionário?**\n\n*   **Pares chave-valor:** Dicionários são projetados especificamente para armazenar dados em pares, onde cada **chave** única está associada a um **valor**.\n*   **Mutáveis:** A mutabilidade significa que você pode alterar o conteúdo de um dicionário após sua criação. Isso inclui:\n    *   **Adicionar novos pares chave-valor:** Você pode inserir novas entradas no dicionário.\n    *   **Modificar valores existentes:** Você pode alterar o valor associado a uma chave existente.\n    *   **Remover pares chave-valor:** Você pode excluir entradas do dicionário.\n\n**Exemplo:**\n\n```python\n# Criando um dicionário\nmeu_dicionario = {\n    \"nome\": \"Alice\",\n    \"idade\": 30,\n    \"cidade\": \"Nova York\"\n}\n\nprint(meu_dicionario)\n# Saída: {'nome': 'Alice', 'idade': 30, 'cidade': 'Nova York'}\n\n# Modificando um valor existente\nmeu_dicionario[\"idade\"] = 31\nprint(meu_dicionario)\n# Saída: {'nome': 'Alice', 'idade': 31, 'cidade': 'Nova York'}\n\n# Adicionando um novo par chave-valor\nmeu_dicionario[\"profissao\"] = \"Engenheira\"\nprint(meu_dicionario)\n# Saída: {'nome': 'Alice', 'idade': 31, 'cidade': 'Nova York', 'profissao': 'Engenheira'}\n\n# Removendo um par chave-valor\ndel meu_dicionario[\"cidade\"]\nprint(meu_dicionario)\n# Saída: {'nome': 'Alice', 'idade': 31, 'profissao': 'Engenheira'}\n```\n\n**Outras estruturas de dados e por que não se encaixam:**\n\n*   **Listas (list):** Armazenam sequências ordenadas de itens, mas não em pares chave-valor. São mutáveis.\n*   **Tuplas (tuple):** Armazenam sequências ordenadas de itens, mas são **imutáveis**. Não armazenam pares chave-valor diretamente.\n*   **Conjuntos (set):** Armazenam coleções únicas de itens não ordenados. Não armazenam pares chave-valor e são mutáveis.\n*   **Conjuntos de Frozens (frozenset):** Semelhante aos conjuntos, mas são **imutáveis**.\n\nPortanto, para armazenar pares chave-valor mutáveis em Python, o **dicionário** é a escolha correta.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-019",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual operador do Python e usado para exponenciacao?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o operador de exponenciação em Python como `**` e fornece exemplos detalhados e precisos, incluindo casos especiais como números negativos e decimais. Não há informações inventadas ou incorretas, e a resposta é completa e bem explicada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.521,
+      "consistency_score": null,
+      "response_text": "O operador do Python usado para exponenciação é o **asterisco duplo**: `**`.\n\nEle funciona da seguinte forma:\n\n```python\nbase ** expoente\n```\n\n**Exemplos:**\n\n*   **2 elevado a 3:**\n    ```python\n    2 ** 3  # Resultado: 8\n    ```\n\n*   **5 elevado a 2:**\n    ```python\n    5 ** 2  # Resultado: 25\n    ```\n\n*   **Número negativo elevado a uma potência:**\n    ```python\n    -2 ** 3  # Resultado: -8 (a base é -2)\n    ```\n    **Importante:** Se você quiser elevar o número negativo ao quadrado, use parênteses:\n    ```python\n    (-2) ** 2  # Resultado: 4\n    ```\n\n*   **Potência com números decimais:**\n    ```python\n    2.5 ** 2  # Resultado: 6.25\n    ```\n\n*   **Raiz quadrada (exponenciação por 0.5):**\n    ```python\n    9 ** 0.5  # Resultado: 3.0\n    ```\n\nPortanto, lembre-se: `**` é o operador de exponenciação em Python.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-020",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Que excecao o Python lanca ao acessar uma chave inexistente em um dict com colchetes?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente a exceção lançada (KeyError) ao acessar uma chave inexistente em um dicionário Python usando colchetes. Além disso, a resposta é completa, fornecendo exemplos práticos, explicações detalhadas sobre a exceção e alternativas para evitá-la (como o uso do método .get() e a verificação com 'in'). Não há informações inventadas ou incorretas, e a resposta é clara e bem estruturada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4735,
+      "consistency_score": null,
+      "response_text": "Ao acessar uma chave inexistente em um dicionário Python usando colchetes (`[]`), a exceção lançada é a **`KeyError`**.\n\n**Exemplo:**\n\n```python\nmeu_dicionario = {\"nome\": \"Alice\", \"idade\": 30}\n\n# Tentando acessar uma chave que não existe\ntry:\n    valor = meu_dicionario[\"cidade\"]\nexcept KeyError as e:\n    print(f\"Erro: A chave '{e}' não foi encontrada no dicionário.\")\n```\n\n**Saída:**\n\n```\nErro: A chave 'cidade' não foi encontrada no dicionário.\n```\n\n**Por que `KeyError`?**\n\nA `KeyError` é lançada especificamente para indicar que a chave que você está tentando acessar não está presente no dicionário. Isso é diferente de outras exceções que podem ocorrer com outros tipos de dados, como `IndexError` para listas ou tuplas quando um índice está fora do intervalo.\n\n**Alternativas para evitar `KeyError`:**\n\nSe você não tem certeza se uma chave existe em um dicionário e quer evitar a exceção, pode usar os seguintes métodos:\n\n1.  **Método `.get()`:** Este método retorna o valor associado à chave se ela existir, ou um valor padrão (que é `None` por padrão) se a chave não for encontrada.\n\n    ```python\n    meu_dicionario = {\"nome\": \"Alice\", \"idade\": 30}\n\n    # Acessando uma chave existente\n    nome = meu_dicionario.get(\"nome\")\n    print(f\"Nome: {nome}\") # Saída: Nome: Alice\n\n    # Acessando uma chave inexistente (retorna None por padrão)\n    cidade = meu_dicionario.get(\"cidade\")\n    print(f\"Cidade: {cidade}\") # Saída: Cidade: None\n\n    # Acessando uma chave inexistente com um valor padrão especificado\n    pais = meu_dicionario.get(\"pais\", \"Brasil\")\n    print(f\"País: {pais}\") # Saída: País: Brasil\n    ```\n\n2.  **Verificar a existência da chave com `in`:** Você pode verificar se uma chave existe antes de tentar acessá-la.\n\n    ```python\n    meu_dicionario = {\"nome\": \"Alice\", \"idade\": 30}\n\n    if \"idade\" in meu_dicionario:\n        print(f\"Idade: {meu_dicionario['idade']}\")\n    else:\n        print(\"Chave 'idade' não encontrada.\")\n\n    if \"cidade\" in meu_dicionario:\n        print(f\"Cidade: {meu_dicionario['cidade']}\")\n    else:\n        print(\"Chave 'cidade' não encontrada.\") # Saída: Chave 'cidade' não encontrada.\n    ```\n\nEm resumo, a exceção padrão para acessar uma chave inexistente em um dicionário Python com colchetes é a **`KeyError`**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-021",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual valor booleano representa falsidade em Python?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a resposta direta esperada (`False`) e ainda complementa com informações adicionais relevantes sobre valores considerados 'falsos' em contextos booleanos em Python, sem conter erros ou informações inventadas. A resposta é completa e precisa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5031,
+      "consistency_score": null,
+      "response_text": "Em Python, o valor booleano que representa falsidade é **`False`**.\n\nÉ importante notar que, além do literal `False`, outros valores em Python são considerados \"falsos\" em um contexto booleano. Isso é conhecido como \"truthiness\" e \"falsiness\".\n\nAqui estão alguns exemplos de valores que avaliam como `False` em um contexto booleano:\n\n*   **`False`**: O valor booleano literal.\n*   **`None`**: Representa a ausência de valor.\n*   **Zero numérico**:\n    *   `0` (inteiro)\n    *   `0.0` (ponto flutuante)\n    *   `0j` (número complexo)\n*   **Sequências vazias**:\n    *   `''` (string vazia)\n    *   `()` (tupla vazia)\n    *   `[]` (lista vazia)\n    *   `{}` (dicionário vazio)\n    *   `set()` (conjunto vazio)\n*   **Objetos de classes personalizadas**: Se uma classe define um método `__bool__()` que retorna `False`, ou um método `__len__()` que retorna `0`.\n\nQualquer outro valor que não esteja na lista acima é considerado \"verdadeiro\" (truthy) em um contexto booleano.\n\nPortanto, a resposta direta à sua pergunta é **`False`**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-022",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual metodo de string do Python converte todos os caracteres para minusculas?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a informação principal (o método `.lower()`), explica seu funcionamento de forma precisa, menciona que a string original permanece inalterada e inclui um exemplo prático com saída correspondente. Não há informações inventadas ou incorretas, e a resposta é completa e detalhada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5023,
+      "consistency_score": null,
+      "response_text": "O método de string do Python que converte todos os caracteres para minúsculas é o **`.lower()`**.\n\nEle retorna uma cópia da string com todos os caracteres em minúsculas. A string original permanece inalterada.\n\n**Exemplo:**\n\n```python\ntexto_original = \"Olá, MUNDO! Este é um TESTE.\"\ntexto_minusculo = texto_original.lower()\n\nprint(f\"String original: {texto_original}\")\nprint(f\"String em minúsculas: {texto_minusculo}\")\n```\n\n**Saída:**\n\n```\nString original: Olá, MUNDO! Este é um TESTE.\nString em minúsculas: olá, mundo! este é um teste.\n```",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-023",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual arquivo de um projeto Python costuma indicar dependencias e metadados neste repositorio?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o arquivo `pyproject.toml` como o padrão moderno para indicar dependências e metadados em projetos Python, menciona as PEPs relevantes (518 e 621), e fornece exemplos detalhados e precisos. Além disso, a resposta é completa, incluindo informações históricas sobre outros arquivos (como `setup.py` e `requirements.txt`) sem desviar do foco principal. Não há informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5076,
+      "consistency_score": null,
+      "response_text": "Em um projeto Python, o arquivo que costuma indicar dependências e metadados é o **`pyproject.toml`**.\n\nHistoricamente, outros arquivos também foram usados para esses propósitos, mas o `pyproject.toml` é o padrão moderno e recomendado pela PEP 518 e PEP 621.\n\nVamos detalhar um pouco mais:\n\n**1. `pyproject.toml` (Padrão Moderno e Recomendado)**\n\nEste arquivo é o mais importante e abrangente para gerenciar dependências e metadados em projetos Python modernos. Ele é escrito em formato TOML (Tom's Obvious, Minimal Language).\n\n*   **Dependências:** As dependências do seu projeto (bibliotecas que ele precisa para funcionar) são listadas em seções como `[project.dependencies]` ou `[tool.poetry.dependencies]` (se você estiver usando o Poetry).\n*   **Metadados:** Informações sobre o projeto, como nome, versão, autor, descrição, licença, ponto de entrada (entry points), etc., são definidas na seção `[project]` (conforme PEP 621).\n*   **Ferramentas de Build e Gerenciamento:** O `pyproject.toml` também é usado para configurar ferramentas de build (como `setuptools`, `flit`, `poetry`) e outras ferramentas de desenvolvimento (como `black`, `isort`, `pytest`).\n\n**Exemplo de `pyproject.toml` (usando `setuptools` e PEP 621):**\n\n```toml\n[build-system]\nrequires = [\"setuptools>=61.0\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[project]\nname = \"meu_projeto_incrivel\"\nversion = \"0.1.0\"\nauthors = [\n  { name=\"Seu Nome\", email=\"seu.email@example.com\" },\n]\ndescription = \"Um projeto Python incrível que faz coisas incríveis.\"\nreadme = \"README.md\"\nrequires-python = \">=3.8\"\nclassifiers = [\n    \"Programming Language :: Python :: 3\",\n    \"License :: OSI Approved :: MIT License\",\n    \"Operating System :: OS Independent\",\n]\n\ndependencies = [\n    \"requests>=2.28.1\",\n    \"numpy==1.23.4\",\n]\n\n[project.urls]\n\"Homepage\" = \"https://github.com/seu_usuario/meu_projeto_incrivel\"\n\"Bug Tracker\" = \"https://github.com/seu_usuario/meu_projeto_incrivel/issues\"\n```\n\n**2. `setup.py` (Padrão Histórico, ainda comum)**\n\nAntes do `pyproject.toml` se tornar o padrão, o arquivo `setup.py` era o principal responsável por definir metadados e dependências, geralmente usando a biblioteca `setuptools`.\n\n*   **Dependências:** As dependências eram especificadas no argumento `install_requires` da função `setup()`.\n*   **Metadados:** Outras informações do projeto eram passadas como argumentos para a função `setup()`.\n\n**Exemplo de `setup.py`:**\n\n```python\nfrom setuptools import setup, find_packages\n\nsetup(\n    name='meu_projeto_incrivel',\n    version='0.1.0',\n    packages=find_packages(),\n    install_requires=[\n        'requests>=2.28.1',\n        'numpy==1.23.4',\n    ],\n    author='Seu Nome',\n    author_email='seu.email@example.com',\n    description='Um projeto Python incrível que faz coisas incríveis.',\n    long_description=open('README.md').read(),\n    url='https://github.com/seu_usuario/meu_projeto_incrivel',\n    classifiers=[\n        \"Programming Language :: Python :: 3\",\n        \"License :: OSI Approved :: MIT License\",\n        \"Operating System :: OS Independent\",\n    ],\n)\n```\n\n**3. `requirements.txt` (Para Gerenciamento Simples de Dependências)**\n\nEste arquivo é mais simples e focado exclusivamente em listar as dependências de um projeto, geralmente com suas versões exatas. Ele não contém metadados do projeto em si.\n\n*   **Dependências:** Cada linha representa uma dependência.\n\n**Exemplo de `requirements.txt`:**\n\n```\nrequests==2.28.1\nnumpy==1.23.4\npandas>=1.5.0\n```\n\n**Em resumo:**\n\n*   Para projetos Python **modernos e bem estruturados**, o **`pyproject.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-024",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual metodo de lista adiciona um unico elemento ao final em Python?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o método `append()` como a solução para adicionar um único elemento ao final de uma lista em Python. Além disso, a resposta é completa, fornecendo exemplos claros, explicações detalhadas sobre como o método funciona e diferenciando-o de outros métodos como `extend()` e `insert()`, que não atendem ao critério de adicionar um único elemento ao final. Não há informações inventadas ou incorretas, e a resposta é bem estruturada e informativa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.4789,
+      "consistency_score": null,
+      "response_text": "O método de lista em Python que adiciona um único elemento ao final é o **`append()`**.\n\n**Exemplo:**\n\n```python\nminha_lista = [1, 2, 3]\nelemento_a_adicionar = 4\n\nminha_lista.append(elemento_a_adicionar)\n\nprint(minha_lista)  # Saída: [1, 2, 3, 4]\n```\n\n**Como funciona:**\n\nO método `append()` recebe um único argumento, que é o elemento que você deseja adicionar. Ele insere esse elemento no final da lista existente.\n\n**Outros métodos de adição (e por que não são a resposta correta para \"único elemento ao final\"):**\n\n*   **`extend()`**: Este método é usado para adicionar **múltiplos elementos** de um iterável (como outra lista, tupla ou string) ao final da lista. Se você usar `extend()` com um único elemento que não seja um iterável, ele o adicionará como um único item. No entanto, se você passar um iterável com um único elemento, ele adicionará os elementos desse iterável. A intenção principal do `extend()` é adicionar vários itens.\n\n    ```python\n    minha_lista = [1, 2, 3]\n    elemento_a_adicionar = 4\n    minha_lista.extend([elemento_a_adicionar]) # Adiciona 4 como um único elemento\n    print(minha_lista) # Saída: [1, 2, 3, 4]\n\n    minha_lista = [1, 2, 3]\n    outra_lista = [4, 5]\n    minha_lista.extend(outra_lista) # Adiciona 4 e 5\n    print(minha_lista) # Saída: [1, 2, 3, 4, 5]\n    ```\n\n*   **`insert()`**: Este método adiciona um elemento em uma **posição específica** da lista, não necessariamente no final.\n\n    ```python\n    minha_lista = [1, 2, 3]\n    minha_lista.insert(1, 99) # Insere 99 na posição de índice 1\n    print(minha_lista) # Saída: [1, 99, 2, 3]\n    ```\n\nPortanto, para adicionar um **único elemento ao final** de uma lista em Python, o método correto e mais direto é o **`append()`**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-025",
+      "dimension": "factual",
+      "category": "programming",
+      "prompt": "Qual gerenciador de pacotes e instalado por padrao com a maioria das distribuicoes modernas de Python?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela menciona corretamente que o 'pip' é o gerenciador de pacotes padrão instalado por padrão na maioria das distribuições modernas de Python. Além disso, a resposta é completa, fornecendo contexto adicional sobre o papel do pip e mencionando outros gerenciadores de pacotes (como o conda) para enriquecer a explicação, sem comprometer a precisão factual.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5286,
+      "consistency_score": null,
+      "response_text": "O gerenciador de pacotes que é instalado por padrão com a maioria das distribuições modernas de Python é o **pip**.\n\n**Pip** é o gerenciador de pacotes padrão para Python. Ele permite que você instale e gerencie pacotes de software adicionais que não fazem parte da biblioteca padrão do Python. Esses pacotes são geralmente encontrados no Python Package Index (PyPI).\n\nEmbora existam outros gerenciadores de pacotes para Python (como `conda` para o ecossistema Anaconda/Miniconda), o `pip` é o mais universal e vem pré-instalado na maioria das instalações de Python, especialmente quando você baixa o instalador oficial do Python ou usa distribuições Linux que incluem Python.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-026",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Em que ano o homem pisou na Lua pela primeira vez?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata (1969) sem erros, omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6265,
+      "consistency_score": null,
+      "response_text": "O homem pisou na Lua pela primeira vez em **1969**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-027",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o maior pais do mundo em area territorial?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, identificando a Rússia como o maior país do mundo em área territorial sem erros, omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6599,
+      "consistency_score": null,
+      "response_text": "O maior país do mundo em área territorial é a **Rússia**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-028",
+      "dimension": "factual",
+      "category": "biology",
+      "prompt": "Qual orgao humano bombeia sangue para o corpo?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata e necessária sem omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6473,
+      "consistency_score": null,
+      "response_text": "O órgão humano que bombeia sangue para o corpo é o **coração**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-029",
+      "dimension": "factual",
+      "category": "astronomy",
+      "prompt": "Qual e a estrela no centro do Sistema Solar?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth, fornecendo a informação exata ('Sol') sem omissões, erros ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5368,
+      "consistency_score": null,
+      "response_text": "A estrela no centro do Sistema Solar é o **Sol**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-030",
+      "dimension": "factual",
+      "category": "calendar",
+      "prompt": "Quantos dias tem um ano bissexto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a informação principal (366 dias) e ainda explica corretamente a razão para o ano bissexto (adição de um dia extra em fevereiro a cada quatro anos), sem conter informações inventadas ou incorretas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.56,
+      "consistency_score": null,
+      "response_text": "Um ano bissexto tem **366 dias**.\n\nIsso acontece porque, a cada quatro anos, adicionamos um dia extra ao mês de fevereiro, que passa a ter 29 dias em vez de 28.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-031",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e o pais que tem Lisboa como capital?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente Portugal como o país cuja capital é Lisboa, sem omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6525,
+      "consistency_score": null,
+      "response_text": "O país que tem Lisboa como capital é **Portugal**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-032",
+      "dimension": "factual",
+      "category": "history",
+      "prompt": "Quem pintou a Mona Lisa?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta, alinhada com o ground truth e não contém informações inventadas ou incorretas. Além disso, é completa e não apresenta omissões ou imprecisões.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7469,
+      "consistency_score": null,
+      "response_text": "A Mona Lisa foi pintada por **Leonardo da Vinci**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-033",
+      "dimension": "factual",
+      "category": "chemistry",
+      "prompt": "Qual e a formula quimica da agua?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela fornece a fórmula química da água (H₂O) e ainda explica a composição da molécula (2 átomos de hidrogênio e 1 átomo de oxigênio), o que a torna mais completa e informativa do que a resposta esperada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.5895,
+      "consistency_score": null,
+      "response_text": "A fórmula química da água é **H₂O**.\n\nIsso significa que cada molécula de água é composta por:\n\n*   **2 átomos de hidrogênio (H)**\n*   **1 átomo de oxigênio (O)**",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-034",
+      "dimension": "factual",
+      "category": "geography",
+      "prompt": "Qual e a montanha mais alta do mundo acima do nivel do mar?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o Monte Everest como a montanha mais alta do mundo acima do nível do mar, menciona sua localização (cordilheira do Himalaia, fronteira entre Nepal e China/Tibete) e fornece a altitude oficial atualizada (8.848,86 metros). Não há informações inventadas, incorretas ou omissões relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6038,
+      "consistency_score": null,
+      "response_text": "A montanha mais alta do mundo acima do nível do mar é o **Monte Everest**.\n\nEle está localizado na cordilheira do Himalaia, na fronteira entre o Nepal e a China (Tibete). Sua altitude oficial é de **8.848,86 metros (29.031,7 pés)**.",
+      "error": null
+    },
+    {
+      "scenario_id": "factual-035",
+      "dimension": "factual",
+      "category": "calendar",
+      "prompt": "Qual mes do ano tem menos dias em anos nao bissextos?",
+      "judge_score": 5,
+      "judge_justification": "A resposta do chatbot está completamente correta e alinhada com o ground truth. Ela identifica corretamente o mês de fevereiro como o que tem menos dias em anos não bissextos (28 dias) e não apresenta informações inventadas ou incorretas. Além disso, a resposta é completa e não omite detalhes relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.6239,
+      "consistency_score": null,
+      "response_text": "O mês que tem menos dias em anos não bissextos é **fevereiro**, com 28 dias.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-001",
+      "dimension": "consistency",
+      "category": "science",
+      "prompt": "Explique o que e fotossintese.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a fotossíntese, incluindo: (1) definição como processo de conversão de energia luminosa em energia química, (2) participação de plantas, algas e algumas bactérias, (3) necessidade de luz solar, CO₂ e água, (4) produção de glicose e oxigênio, (5) divisão em fase luminosa e fase escura (Ciclo de Calvin), (6) papel dos cloroplastos e clorofila, e (7) importância para a vida na Terra. As variações são apenas de forma (detalhamento, exemplos ou ênfase em aspectos específicos), sem contradições de conteúdo. A equação geral da fotossíntese é consistentemente apresentada em todas as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8006,
+      "response_text": "## Fotossíntese: A Mágica da Vida Verde\n\nA fotossíntese é um processo fundamental para a vida na Terra, realizado por plantas, algas e algumas bactérias. É através dela que esses organismos transformam a energia luminosa do sol em energia química, na forma de açúcares, que servem como alimento para eles e, indiretamente, para a maioria dos outros seres vivos.\n\n**Em termos simples, a fotossíntese é como uma \"fábrica\" natural que usa luz, água e dióxido de carbono para produzir oxigênio e alimento.**\n\nVamos detalhar os componentes e o processo:\n\n**Ingredientes Essenciais:**\n\n* **Luz Solar:** A fonte de energia primária. As plantas captam essa energia através de um pigmento verde chamado **clorofila**, presente nas folhas e em outras partes verdes. A clorofila é o que dá a cor verde às plantas.\n* **Dióxido de Carbono (CO₂):** Um gás presente na atmosfera. As plantas absorvem o CO₂ através de pequenas aberturas nas folhas chamadas **estômatos**.\n* **Água (H₂O):** Absorvida pelas raízes da planta do solo e transportada até as folhas.\n\n**O Processo em Duas Etapas Principais:**\n\nA fotossíntese ocorre em duas fases principais, que acontecem dentro de organelas especializadas nas células vegetais chamadas **cloroplastos**:\n\n1. **Fase Luminosa (ou Reações Dependentes de Luz):**\n   * Nesta fase, a energia da luz solar é capturada pela clorofila.\n   * Essa energia é usada para quebrar as moléculas de água (H₂O).\n   * A quebra da água libera **oxigênio (O₂)** como subproduto, que é liberado na atmosfera.\n   * A energia capturada é armazenada em moléculas transportadoras de energia, como o ATP (adenosina trifosfato) e o NADPH (nicotinamida adenina dinucleotídeo fosfato).\n\n2. **Fase Escura (ou Ciclo de Calvin, Reações Independentes de Luz):**\n   * Nesta fase, que não precisa diretamente de luz, mas utiliza a energia produzida na fase luminosa (ATP e NADPH).\n   * O dióxido de carbono (CO₂) absorvido é \"fixado\" e combinado com outras moléculas.\n   * Através de uma série de reações químicas complexas, o CO₂ é transformado em **glicose (C₆H₁₂O₆)**, um tipo de açúcar.\n   * A glicose é a principal fonte de energia para a planta, sendo utilizada para seu crescimento, desenvolvimento e outras funções vitais. O excesso de glicose pode ser armazenado na forma de amido.\n\n**A Equação Geral da Fotossíntese:**\n\nPodemos resumir todo o processo com a seguinte equação química:\n\n**6 CO₂ (Dióxido de Carbono) + 6 H₂O (Água) + Energia Luminosa → C₆H₁₂O₆ (Glicose) + 6 O₂ (Oxigênio)**\n\n**Por que a Fotossíntese é Tão Importante?**\n\n* **Produção de Oxigênio:** A fotossíntese é a principal fonte de oxigênio na atmosfera terrestre. Sem ela, a vida como a conhecemos, que depende da respiração aeróbica, seria impossível.\n* **Base da Cadeia Alimentar:** As plantas são os produtores primários. Elas convertem a energia solar em alimento (açúcares), que é consumido por herbívoros, que por sua vez são consumidos por carnívoros, e assim por diante. Toda a energia que flui pelos ecossistemas tem sua origem na fotossíntese.\n* **Remoção de Dióxido de Carbono:** A fotossíntese remove o dióxido de carbono da atmosfera, um importante gás de efeito estufa. Isso ajuda a regular o clima do planeta.\n* **Produção de Biomassa:** A fotossíntese é responsável pela produção de toda a biomassa vegetal, que é utilizada para alimentação, construção, energia (biocombustíveis) e muitos outros fins.\n\n**Em resumo, a fotossíntese é um processo vital que sustenta a vida na Terra, fornecendo o oxigênio que respiramos e o alimento que nos nutre, tudo isso através da incrível capacidade das plantas de converter a luz do sol em energia.**",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-002",
+      "dimension": "consistency",
+      "category": "daily_life",
+      "prompt": "Como faco arroz branco simples?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre como preparar arroz branco simples, com variações apenas na forma de apresentação (detalhamento, opcionais, dicas extras ou organização dos passos). Não há contradições significativas no conteúdo: todas mencionam os ingredientes básicos (arroz, água, sal, óleo/azeite), a proporção 1:2 (arroz:água), a lavagem opcional do arroz, o refogado opcional para sabor, o cozimento em fogo baixo com tampa, o descanso pós-cozimento e a importância de não mexer excessivamente. As diferenças são de estilo (mais ou menos detalhado, inclusão de opcionais como alho ou cebola) e não afetam a consistência semântica do procedimento.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8233,
+      "response_text": "Fazer arroz branco simples é muito fácil e rápido! Aqui está um guia passo a passo para um arroz soltinho e delicioso:\n\n**Ingredientes:**\n\n*   1 xícara de arroz branco (qualquer tipo, como agulhinha, parboilizado, etc.)\n*   2 xícaras de água fervente (a proporção clássica é 1:2, mas pode variar um pouco dependendo do tipo de arroz e da sua preferência)\n*   1 colher de sopa de óleo vegetal (girassol, canola, milho) ou azeite\n*   1/2 colher de chá de sal (ou a gosto)\n*   Opcional: 1 dente de alho picado ou amassado (para um toque de sabor)\n\n**Equipamentos:**\n\n*   Panela com tampa (de preferência antiaderente)\n*   Colher ou espátula\n\n**Passo a Passo:**\n\n1.  **Lave o Arroz (Opcional, mas recomendado para alguns tipos):**\n    *   Coloque o arroz em uma peneira e lave-o em água corrente fria até que a água saia limpa. Isso remove o excesso de amido, o que ajuda a deixar o arroz mais soltinho.\n    *   **Observação:** Arroz parboilizado geralmente não precisa ser lavado. Se você prefere um arroz mais \"grudado\", pode pular a lavagem.\n\n2.  **Refogue o Alho (Opcional):**\n    *   Em uma panela, aqueça o óleo em fogo médio.\n    *   Adicione o alho picado (se estiver usando) e refogue por cerca de 30 segundos a 1 minuto, até ficar levemente dourado e perfumado. Cuidado para não queimar o alho, pois ele pode amargar.\n\n3.  **Adicione o Arroz:**\n    *   Adicione o arroz lavado e escorrido à panela.\n    *   Mexa o arroz por cerca de 1 a 2 minutos, para que ele \"frite\" um pouco no óleo. Isso ajuda a selar os grãos e contribui para um arroz mais soltinho.\n\n4.  **Adicione a Água e o Sal:**\n    *   Despeje as 2 xícaras de água fervente na panela.\n    *   Adicione o sal e misture bem.\n\n5.  **Cozinhe em Fogo Baixo:**\n    *   Assim que a água começar a ferver novamente, abaixe o fogo para o mínimo.\n    *   Tampe a panela. É importante que a tampa esteja bem encaixada para reter o vapor.\n\n6.  **Tempo de Cozimento:**\n    *   Deixe cozinhar por cerca de 15 a 20 minutos, ou até que toda a água tenha sido absorvida e o arroz esteja macio.\n    *   **Importante:** Evite abrir a tampa da panela durante o cozimento, pois isso libera o vapor essencial para o processo.\n\n7.  **Descanse o Arroz:**\n    *   Quando o arroz estiver cozido e a água tiver sido absorvida, desligue o fogo.\n    *   Mantenha a panela tampada e deixe o arroz descansar por mais 5 a 10 minutos. Esse descanso permite que o vapor restante termine de cozinhar os grãos e os deixe ainda mais soltinhos.\n\n8.  **Solte o Arroz:**\n    *   Após o descanso, retire a tampa e use um garfo ou uma espátula para soltar delicadamente os grãos de arroz.\n\n**Dicas para um Arroz Perfeito:**\n\n*   **Proporção de Água:** A proporção 1:2 (arroz:água) é um bom ponto de partida. Se você gosta do arroz mais firme, use um pouco menos de água (1 e 3/4 xícaras). Se prefere mais macio, pode usar um pouco mais (2 e 1/4 xícaras).\n*   **Fogo Baixo:** Cozinhar em fogo baixo é crucial para que o arroz cozinhe uniformemente sem queimar no fundo.\n*   **Não Mexa Demais:** Mexer o arroz em excesso durante o cozimento pode liberar o amido e deixá-lo empapado.\n*   **Panela Adequada:** Uma panela com fundo grosso ajuda a distribuir o calor de maneira mais uniforme.\n*   **Arroz Fresco:** Arroz mais fresco tende a cozinhar melhor.\n\nPronto! Agora você tem um arroz branco simples",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-003",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Explique a diferenca entre lista e tupla em Python.",
+      "judge_score": 5,
+      "judge_justification": "Todas as cinco respostas são semanticamente consistentes entre si, transmitindo a mesma informação central sobre as diferenças entre listas e tuplas em Python. As variações são apenas de forma (exemplos, organização do texto, ênfase em diferentes aspectos), mas o conteúdo principal é idêntico: 1) Listas são mutáveis e definidas com colchetes [], enquanto tuplas são imutáveis e definidas com parênteses (); 2) Listas permitem modificações (adicionar, remover, alterar elementos), enquanto tuplas não; 3) Tuplas são mais eficientes em performance e usadas para dados fixos ou como chaves de dicionários; 4) Listas são usadas para coleções dinâmicas. Não há contradições de conteúdo entre as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7816,
+      "response_text": "Em Python, tanto **listas** quanto **tuplas** são estruturas de dados usadas para armazenar coleções de itens. No entanto, a principal diferença entre elas reside na sua **mutabilidade**.\n\nVamos detalhar cada uma e depois comparar:\n\n---\n\n### Listas (Lists)\n\n*   **Definição:** Listas são coleções **mutáveis** e **ordenadas** de itens. Isso significa que você pode modificar uma lista após sua criação, adicionando, removendo ou alterando elementos.\n*   **Sintaxe:** São definidas usando colchetes `[]`.\n*   **Exemplo:**\n    ```python\n    minha_lista = [1, \"Python\", 3.14, True]\n    ```\n*   **Características:**\n    *   **Mutáveis:** Você pode alterar os elementos, adicionar novos elementos ou remover elementos existentes.\n        ```python\n        minha_lista.append(\"novo item\")  # Adiciona um item ao final\n        minha_lista[0] = 100             # Altera o primeiro elemento\n        del minha_lista[1]               # Remove o segundo elemento\n        print(minha_lista)               # Saída: [100, 3.14, True, 'novo item']\n        ```\n    *   **Ordenadas:** Os elementos mantêm a ordem em que foram inseridos.\n    *   **Podem conter tipos de dados mistos:** Uma lista pode armazenar números, strings, booleanos, outras listas, etc.\n    *   **Uso comum:** Quando você precisa de uma coleção de itens que pode mudar ao longo do tempo, como uma lista de tarefas, um carrinho de compras, ou dados que serão processados e modificados.\n\n---\n\n### Tuplas (Tuples)\n\n*   **Definição:** Tuplas são coleções **imutáveis** e **ordenadas** de itens. Uma vez que uma tupla é criada, você não pode alterar seus elementos.\n*   **Sintaxe:** São definidas usando parênteses `()`.\n*   **Exemplo:**\n    ```python\n    minha_tupla = (1, \"Python\", 3.14, True)\n    ```\n*   **Características:**\n    *   **Imutáveis:** Você não pode adicionar, remover ou alterar elementos após a criação da tupla.\n        ```python\n        # Tentativas de modificação resultarão em erro:\n        # minha_tupla.append(\"novo item\")  # AttributeError\n        # minha_tupla[0] = 100             # TypeError\n        # del minha_tupla[1]               # TypeError\n        ```\n        Se você precisar de uma versão modificada de uma tupla, você terá que criar uma nova tupla.\n    *   **Ordenadas:** Os elementos mantêm a ordem em que foram inseridos.\n    *   **Podem conter tipos de dados mistos:** Assim como listas, tuplas podem armazenar diferentes tipos de dados.\n    *   **Uso comum:**\n        *   Quando você quer garantir que os dados não sejam alterados acidentalmente.\n        *   Para representar registros fixos, como coordenadas (x, y), informações de data (ano, mês, dia).\n        *   Como chaves em dicionários (pois são imutáveis e hashable).\n        *   Para retornar múltiplos valores de uma função.\n\n---\n\n### Resumo das Diferenças Principais:\n\n| Característica | Lista (`[]`)                               | Tupla (`()`)                               |\n| :------------- | :----------------------------------------- | :----------------------------------------- |\n| **Mutabilidade** | **Mutável** (pode ser alterada)            | **Imutável** (não pode ser alterada)       |\n| **Sintaxe**    | Colchetes `[]`                             | Parênteses `()`                            |\n| **Performance**| Geralmente um pouco mais lenta devido à mutabilidade. | Geralmente um pouco mais rápida e consome menos memória devido à imutabilidade. |\n| **Uso Típico** | Coleções que precisam ser modificadas.     | Coleções fixas, registros, chaves de dicionário. |\n| **Métodos**    | Possui métodos para modificação (append, insert, remove, pop, etc.). | Não possui métodos de modificação. |\n\n---\n\n### Quando usar qual?\n\n*   **Use Listas quando:**\n    *   Você precisa adicionar, remover ou modificar elementos após a criação.\n    *   A coleção de itens é dinâmica e pode mudar.\n\n*   **Use Tuplas quando:**\n    *   Você quer garantir que os dados não sejam alterados.\n    *   A",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-004",
+      "dimension": "consistency",
+      "category": "philosophy",
+      "prompt": "O que e utilitarismo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre o utilitarismo: trata-se de uma teoria ética consequencialista que defende a maximização da felicidade ou bem-estar geral para o maior número de pessoas. Não há contradições entre elas, apenas variações de forma (ex.: profundidade, exemplos, ênfase em diferentes aspectos como o cálculo de prazer/dor ou as críticas ao utilitarismo). As diferenças são de apresentação, não de conteúdo, e todas mantêm a essência da teoria intacta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7844,
+      "response_text": "O **utilitarismo** é uma teoria ética que defende que a ação moralmente correta é aquela que produz a maior quantidade de bem-estar ou felicidade para o maior número de pessoas. Em outras palavras, o utilitarismo foca nas **consequências** de uma ação para determinar sua moralidade.\n\nAqui estão os pontos chave para entender o utilitarismo:\n\n*   **Princípio da Utilidade (ou Princípio da Maior Felicidade):** Este é o cerne do utilitarismo. Ele afirma que a moralidade de uma ação é determinada pela sua capacidade de gerar felicidade ou prazer e evitar a dor ou sofrimento. A \"utilidade\" é frequentemente entendida como felicidade, prazer, bem-estar, satisfação de desejos, ou a ausência de sofrimento.\n\n*   **Consequencialismo:** O utilitarismo é uma forma de consequencialismo. Isso significa que a moralidade de uma ação não reside na intenção do agente, nas regras morais intrínsecas, ou no dever, mas sim nos resultados que essa ação produz.\n\n*   **Imparcialidade:** O utilitarismo exige que a felicidade de cada indivíduo seja considerada igualmente. Não há favoritismo para si mesmo, amigos, família ou qualquer outro grupo. A felicidade de um estranho vale tanto quanto a felicidade de alguém próximo.\n\n*   **Maximização:** O objetivo é maximizar a utilidade total. Isso significa que, entre várias opções de ação, devemos escolher aquela que resulta na maior soma de felicidade para todos os afetados.\n\n**Origens e Principais Pensadores:**\n\nOs fundadores do utilitarismo moderno são geralmente considerados:\n\n*   **Jeremy Bentham (1748-1832):** Bentham propôs um \"cálculo felicífico\" para medir a quantidade de prazer e dor. Ele focava na intensidade, duração, certeza, proximidade, fecundidade (probabilidade de ser seguido por sensações da mesma natureza) e pureza (probabilidade de não ser seguido por sensações do oposto) do prazer e da dor.\n\n*   **John Stuart Mill (1806-1873):** Mill refinou o utilitarismo de Bentham, introduzindo a ideia de que existem diferentes **qualidades** de prazeres. Ele argumentou que prazeres intelectuais e morais são superiores aos prazeres puramente sensoriais. Sua famosa citação é: \"É melhor ser um ser humano insatisfeito do que um porco satisfeito; melhor ser Sócrates insatisfeito do que um tolo satisfeito.\"\n\n**Tipos de Utilitarismo:**\n\nExistem algumas variações importantes dentro do utilitarismo:\n\n*   **Utilitarismo de Ato:** Cada ação individual deve ser avaliada com base em suas consequências. A ação correta é aquela que, naquele momento específico, produz a maior utilidade.\n\n*   **Utilitarismo de Regra:** Em vez de avaliar cada ação individualmente, o utilitarismo de regra foca em avaliar as regras morais. A ação correta é aquela que está em conformidade com uma regra que, se seguida universalmente, produziria a maior utilidade. Por exemplo, uma regra como \"não roubar\" seria justificada porque, se seguida por todos, levaria a uma sociedade mais segura e próspera.\n\n**Críticas ao Utilitarismo:**\n\nApesar de sua influência, o utilitarismo enfrenta várias críticas:\n\n*   **Dificuldade de Prever Consequências:** É muitas vezes impossível prever com certeza todas as consequências de uma ação.\n*   **Exigência Excessiva:** O utilitarismo pode exigir que sacrifiquemos nossos próprios interesses e os de nossos entes queridos em prol do bem maior, o que pode parecer irrealista ou moralmente indesejável.\n*   **Justiça e Direitos Individuais:** Críticos argumentam que o utilitarismo pode justificar ações que violam os direitos individuais ou a justiça se isso resultar em um bem maior para a maioria. Por exemplo, poderia justificar a punição de um inocente se isso evitasse um motim generalizado.\n*   **Medição da Felicidade:** A dificuldade em medir e comparar a felicidade entre diferentes indivíduos é um desafio prático.\n\n**Em resumo:**\n\nO utilitarismo é uma teoria ética consequencialista que busca maximizar a felicidade ou o bem-estar para o maior número de pessoas. Ele é uma abordagem influente na filosofia moral e na tomada de decisões, mas também levanta questões importantes sobre a justiça, os direitos individuais e a viabilidade de suas exigências.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-005",
+      "dimension": "consistency",
+      "category": "writing",
+      "prompt": "Como escrever um e-mail profissional pedindo extensao de prazo?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre como redigir um e-mail profissional para solicitar extensão de prazo, com estruturas semelhantes (assunto claro, saudação, justificativa, proposta de novo prazo, compromisso e agradecimento). As variações são apenas de forma (detalhamento, exemplos ou organização), mas não há contradições de conteúdo. Todas mantêm a coerência semântica e o propósito da mensagem.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8137,
+      "response_text": "Escrever um e-mail profissional pedindo uma extensão de prazo é uma habilidade importante para gerenciar expectativas e manter um bom relacionamento com seus colegas, chefes ou clientes. A chave é ser claro, conciso, honesto e proativo.\n\nAqui está um guia passo a passo com um modelo que você pode adaptar:\n\n---\n\n**Estrutura Essencial do E-mail:**\n\n1.  **Assunto Claro e Conciso:** Deve indicar imediatamente o propósito do e-mail.\n2.  **Saudação Profissional:** Use uma saudação apropriada para o destinatário.\n3.  **Declaração Direta do Pedido:** Vá direto ao ponto e explique o que você precisa.\n4.  **Justificativa Breve e Honesta:** Explique o motivo da necessidade da extensão, sem se alongar em desculpas.\n5.  **Proposta de Novo Prazo:** Sugira uma data realista para a conclusão.\n6.  **Plano de Ação (Opcional, mas Recomendado):** Mostre que você está comprometido em concluir a tarefa.\n7.  **Disponibilidade para Discussão:** Demonstre abertura para conversar sobre a situação.\n8.  **Agradecimento:** Agradeça a compreensão e a consideração.\n9.  **Encerramento Profissional:** Use um encerramento adequado.\n10. **Sua Assinatura:** Inclua seu nome completo e cargo/informações de contato.\n\n---\n\n**Modelo de E-mail:**\n\n**Assunto:** Pedido de Extensão de Prazo - [Nome do Projeto/Tarefa] - [Seu Nome]\n\n**Prezado(a) [Nome do Destinatário],**\n\nEscrevo para solicitar uma extensão do prazo para a entrega de [Nome do Projeto/Tarefa], que atualmente está agendada para [Data Original do Prazo].\n\nDevido a [explique brevemente o motivo, por exemplo: \"um imprevisto em outra tarefa de alta prioridade\", \"a necessidade de obter informações adicionais de [nome da pessoa/departamento]\", \"um desafio técnico inesperado que requer mais tempo para ser resolvido\", \"uma carga de trabalho inesperadamente alta esta semana\"], acredito que precisarei de um pouco mais de tempo para concluir o trabalho com a qualidade esperada.\n\nGostaria de propor um novo prazo para [Data Sugerida para o Novo Prazo]. Estou confiante de que poderei entregar o projeto completo até essa data.\n\nPara garantir que o projeto avance, já [mencione brevemente o que você já fez ou planeja fazer, por exemplo: \"comecei a trabalhar em [parte específica do projeto]\", \"estou em contato com [pessoa/departamento] para obter as informações necessárias\", \"desenvolvi um plano para otimizar meu tempo e focar nesta tarefa\"].\n\nEstou à disposição para discutir esta situação com mais detalhes, caso seja necessário. Agradeço imensamente sua compreensão e consideração.\n\nAtenciosamente,\n\n[Seu Nome Completo]\n[Seu Cargo/Departamento]\n[Seu Telefone (Opcional)]\n[Seu E-mail]\n\n---\n\n**Dicas Importantes para Escrever o E-mail:**\n\n*   **Seja Proativo:** Envie o e-mail o mais cedo possível, assim que perceber que precisará de mais tempo. Não espere até o último minuto.\n*   **Seja Honesto, Mas Conciso:** Não invente desculpas elaboradas. Uma explicação breve e sincera é geralmente suficiente. Evite culpar outras pessoas.\n*   **Seja Específico:** Mencione claramente o projeto ou tarefa e a data original do prazo.\n*   **Sugira um Novo Prazo Realista:** Pesquise quanto tempo você realmente precisa e proponha uma data que você possa cumprir. É melhor pedir um pouco mais de tempo e entregar antes do novo prazo do que ter que pedir outra extensão.\n*   **Mostre Compromisso:** Deixe claro que você está comprometido em concluir a tarefa e que a extensão é para garantir a qualidade.\n*   **Adapte o Tom:** Ajuste o tom do e-mail com base no seu relacionamento com o destinatário. Se for seu chefe direto, pode ser um pouco mais formal. Se for um colega com quem você tem um bom relacionamento, pode ser um pouco mais informal, mas ainda profissional.\n*   **Revise Antes de Enviar:** Verifique se há erros de digitação ou gramática. Um e-mail bem escrito demonstra profissionalismo.\n*   **Considere o Canal:** Em algumas situações, uma conversa rápida pessoalmente ou por telefone pode ser mais eficaz antes de enviar o e-mail, especialmente se o prazo for muito apertado ou se a situação for complex",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-006",
+      "dimension": "consistency",
+      "category": "finance",
+      "prompt": "O que e juros compostos?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre juros compostos, destacando seu conceito fundamental ('juro sobre juro'), a diferença em relação aos juros simples, a fórmula de cálculo (M = C * (1 + i)^t), exemplos práticos com valores numéricos, e a importância da capitalização. Não há contradições de conteúdo entre elas, apenas variações de forma (exemplos, analogias, estrutura de apresentação) que não alteram o significado. As respostas são semanticamente consistentes entre si.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8041,
+      "response_text": "## Juros Compostos: O Poder do Dinheiro que Trabalha para Você\n\nOs juros compostos são um conceito fundamental no mundo das finanças, representando uma forma de cálculo de juros onde o valor dos juros é adicionado ao capital inicial em cada período, e os juros subsequentes são calculados sobre o novo montante. Em outras palavras, é o \"juro sobre juro\".\n\n**Como funciona?**\n\nImagine que você investe R$ 1.000,00 a uma taxa de juros de 10% ao ano.\n\n* **No primeiro ano:** Você recebe R$ 100,00 de juros (10% de R$ 1.000,00). Seu saldo total agora é de R$ 1.100,00.\n* **No segundo ano:** Os juros são calculados sobre o novo saldo de R$ 1.100,00. Assim, você recebe R$ 110,00 de juros (10% de R$ 1.100,00). Seu saldo total agora é de R$ 1.210,00.\n* **No terceiro ano:** Os juros são calculados sobre R$ 1.210,00, resultando em R$ 121,00 de juros. Seu saldo total atinge R$ 1.331,00.\n\nPerceba que a cada ano, o valor dos juros aumenta, pois o capital sobre o qual eles são calculados também cresce. Essa é a mágica dos juros compostos!\n\n**A Fórmula dos Juros Compostos:**\n\nA fórmula para calcular o montante final (M) em juros compostos é:\n\n**M = C * (1 + i)^t**\n\nOnde:\n\n* **M:** Montante final (capital inicial + juros acumulados)\n* **C:** Capital inicial (o valor que você investiu ou emprestou)\n* **i:** Taxa de juros (em decimal, por exemplo, 10% = 0,10)\n* **t:** Tempo (o número de períodos em que os juros são aplicados)\n\n**Por que os Juros Compostos são Importantes?**\n\n* **Para Investidores:** Os juros compostos são um dos principais motores do crescimento do patrimônio a longo prazo. Quanto mais tempo você deixar seu dinheiro investido, maior será o efeito bola de neve dos juros compostos.\n* **Para Devedores:** Da mesma forma, os juros compostos podem ser um inimigo poderoso quando se trata de dívidas. Se você não pagar suas dívidas em dia, os juros podem se acumular rapidamente, tornando o valor devido muito maior do que o original.\n* **Planejamento Financeiro:** Compreender os juros compostos é essencial para tomar decisões financeiras inteligentes, seja para economizar, investir ou gerenciar dívidas.\n\n**Exemplos Práticos:**\n\n* **Investimentos:** Poupança, CDBs, fundos de investimento, ações (quando reinvestem dividendos).\n* **Empréstimos e Financiamentos:** Crédito pessoal, financiamento imobiliário, financiamento de veículos.\n* **Cartão de Crédito:** O rotativo do cartão de crédito é um exemplo clássico de juros compostos, onde a dívida pode crescer exponencialmente se não for paga integralmente.\n\n**A Diferença Crucial para Juros Simples:**\n\nNos juros simples, os juros são calculados apenas sobre o capital inicial em todos os períodos. Isso significa que o valor dos juros é sempre o mesmo. Nos juros compostos, o valor dos juros aumenta a cada período, levando a um crescimento exponencial do montante.\n\n**Em resumo, os juros compostos são uma ferramenta poderosa que pode trabalhar a seu favor quando se trata de investimentos e contra você quando se trata de dívidas. Entender seu funcionamento é um passo fundamental para alcançar seus objetivos financeiros.**",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-007",
+      "dimension": "consistency",
+      "category": "health",
+      "prompt": "Quais sao habitos basicos para melhorar a higiene do sono?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre hábitos básicos para melhorar a higiene do sono, sem contradições significativas. As variações são apenas de forma (ex.: detalhes adicionais em algumas respostas, como a menção a 'diário de preocupações' ou 'consultar um profissional de saúde'), mas o conteúdo principal é consistente em todos os pontos abordados (horários regulares, ambiente propício, rotina relaxante, alimentação, exercícios, exposição à luz, gerenciamento de estresse e cochilos). Não há contradições ou divergências relevantes no conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8459,
+      "response_text": "Melhorar a higiene do sono é fundamental para ter noites mais reparadoras e, consequentemente, uma vida mais saudável e produtiva. Aqui estão os hábitos básicos e essenciais para aprimorar a sua higiene do sono:\n\n**1. Estabeleça um Horário Regular de Sono:**\n\n*   **Vá para a cama e acorde no mesmo horário todos os dias:** Isso inclui fins de semana. A consistência ajuda a regular o seu relógio biológico (ritmo circadiano), tornando mais fácil adormecer e acordar naturalmente.\n*   **Evite \"compensar\" o sono:** Dormir muito mais tarde em um dia e tentar \"recuperar\" no outro pode desregular ainda mais o seu ciclo.\n\n**2. Crie um Ambiente Propício para o Sono:**\n\n*   **Escuro:** O quarto deve ser o mais escuro possível. Use cortinas blackout, máscaras de dormir e evite luzes de aparelhos eletrônicos. A escuridão sinaliza ao cérebro que é hora de produzir melatonina, o hormônio do sono.\n*   **Silencioso:** Minimize ruídos. Use tampões de ouvido, um ventilador para criar um \"ruído branco\" ou uma máquina de som ambiente, se necessário.\n*   **Fresco:** A temperatura ideal para dormir é geralmente entre 18°C e 22°C. Um ambiente muito quente ou muito frio pode atrapalhar o sono.\n*   **Confortável:** Invista em um colchão e travesseiros que sejam confortáveis para você.\n\n**3. Desenvolva uma Rotina Relaxante Antes de Dormir:**\n\n*   **Desconecte-se de telas:** Evite computadores, tablets, smartphones e televisão pelo menos uma hora antes de dormir. A luz azul emitida por esses aparelhos pode suprimir a produção de melatonina.\n*   **Atividades relaxantes:** Dedique-se a atividades tranquilas que ajudem a desacelerar a mente, como:\n    *   Ler um livro físico (não em tela).\n    *   Tomar um banho morno.\n    *   Ouvir música calma.\n    *   Praticar meditação ou exercícios de respiração profunda.\n    *   Escrever em um diário.\n\n**4. Atenção à Alimentação e Bebidas:**\n\n*   **Evite cafeína e nicotina:** Principalmente nas horas que antecedem o sono. Essas substâncias são estimulantes e podem dificultar o adormecer.\n*   **Modere o consumo de álcool:** Embora o álcool possa dar uma sensação inicial de sonolência, ele prejudica a qualidade do sono, levando a despertares frequentes durante a noite.\n*   **Evite refeições pesadas antes de dormir:** Comer muito perto da hora de ir para a cama pode causar desconforto digestivo e atrapalhar o sono. Se sentir fome, opte por um lanche leve.\n*   **Hidratação:** Beba água durante o dia, mas evite grandes quantidades de líquidos antes de dormir para não precisar acordar para ir ao banheiro.\n\n**5. Exercite-se Regularmente, Mas com Cautela:**\n\n*   **Exercícios físicos são benéficos:** A atividade física regular melhora a qualidade do sono.\n*   **Evite exercícios intensos perto da hora de dormir:** Tente terminar exercícios vigorosos pelo menos 2-3 horas antes de ir para a cama, pois eles podem ter um efeito estimulante.\n\n**6. Gerencie a Exposição à Luz:**\n\n*   **Exponha-se à luz natural pela manhã:** A luz solar pela manhã ajuda a regular o seu ritmo circadiano, sinalizando ao corpo que é hora de estar acordado.\n*   **Reduza a exposição à luz forte à noite:** Como mencionado anteriormente, a luz artificial intensa à noite pode interferir na produção de melatonina.\n\n**7. Use a Cama Apenas para Dormir e Intimidade:**\n\n*   **Evite trabalhar, comer ou assistir TV na cama:** Associe a cama ao sono. Se você passa muito tempo acordado na cama, seu cérebro pode começar a associá-la à vigília.\n*   **Se não conseguir dormir:** Se você não conseguir adormecer após cerca de 20 minutos, levante-se da cama, vá para outro cômodo e faça algo relaxante em pouca luz até sentir sono novamente.\n\n**8. Evite Cochilos Longos ou Tardios:**\n\n*   **Cochilos curtos podem ser benéficos:** Se precisar cochilar, tente que sejam curtos (20-30 minutos) e no início da tarde.\n*   **Cochilos long",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-008",
+      "dimension": "consistency",
+      "category": "history",
+      "prompt": "Resuma as causas da Revolucao Francesa.",
+      "judge_score": 5,
+      "judge_justification": "As quatro respostas são semanticamente consistentes entre si, transmitindo a mesma informação central sobre as causas da Revolução Francesa. Todas destacam: (1) a desigualdade social e a estrutura estamental (Primeiro, Segundo e Terceiro Estados), (2) a crise financeira do Estado (gastos excessivos, dívida pública, sistema tributário injusto), (3) o absolutismo monárquico e a falta de representatividade política, e (4) a influência das ideias iluministas. Não há contradições de conteúdo entre elas, apenas variações de forma (detalhamento, organização ou ênfase em aspectos específicos), o que é aceitável. As respostas complementam-se mutuamente, sem divergências relevantes.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7546,
+      "response_text": "A Revolução Francesa foi um evento complexo com múltiplas causas interligadas, que podem ser agrupadas em quatro categorias principais:\n\n**1. Causas Sociais e Desigualdade:**\n\n* **A Sociedade de Ordens (Antigo Regime):** A França era rigidamente dividida em três estados:\n    * **Primeiro Estado (Clero):** Possuía privilégios significativos, como isenção de impostos e vastas terras, mas representava uma pequena parcela da população.\n    * **Segundo Estado (Nobreza):** Também gozava de privilégios, como isenção de impostos, acesso a cargos importantes e direitos feudais sobre os camponeses.\n    * **Terceiro Estado:** Compreendia a vasta maioria da população (cerca de 97%), incluindo a burguesia (comerciantes, advogados, médicos), camponeses, artesãos e trabalhadores urbanos. Este grupo arcava com a maior parte dos impostos e não possuía representação política significativa.\n* **O Peso dos Impostos:** O Terceiro Estado era sobrecarregado por impostos diretos (como a *taille*) e indiretos (como o *gabelle* - imposto sobre o sal), enquanto o clero e a nobreza eram amplamente isentos. Isso gerava um profundo ressentimento.\n* **Fome e Miséria:** Crises agrícolas recorrentes, agravadas por condições climáticas adversas, levaram à escassez de alimentos e ao aumento dos preços do pão, o alimento básico da população. Isso gerou fome, miséria e desespero, especialmente entre as classes mais baixas.\n\n**2. Causas Econômicas:**\n\n* **Crise Financeira do Estado:** A França estava à beira da falência devido a:\n    * **Gastos Excessivos da Monarquia:** A corte de Versalhes era conhecida por seu luxo e extravagância.\n    * **Guerras Custosas:** A participação da França em guerras, como a Guerra dos Sete Anos e o apoio à Revolução Americana, drenou os cofres públicos.\n    * **Sistema Tributário Ineficiente:** A isenção fiscal do clero e da nobreza impedia o Estado de arrecadar impostos suficientes para cobrir suas despesas.\n* **Dívida Pública Crescente:** A incapacidade de equilibrar o orçamento levou a um aumento exponencial da dívida pública, tornando a situação financeira insustentável.\n* **Barreiras Comerciais Internas:** A existência de alfândegas internas dificultava o comércio e o desenvolvimento econômico.\n\n**3. Causas Políticas:**\n\n* **Absolutismo Monárquico:** O rei Luís XVI detinha poder absoluto, governando por direito divino. No entanto, sua liderança era vista como fraca e indecisa, incapaz de lidar com as crises que assolavam o país.\n* **Falta de Representação Política:** O Terceiro Estado, apesar de ser a maioria da população, tinha pouca ou nenhuma voz nas decisões políticas. Os Estados Gerais, uma assembleia representativa, não eram convocados desde 1614.\n* **Ineficácia das Reformas:** Tentativas de reforma fiscal e administrativa foram frequentemente bloqueadas pela nobreza e pelo clero, que temiam perder seus privilégios.\n\n**4. Causas Ideológicas (Iluminismo):**\n\n* **Ideias Iluministas:** Filósofos como Rousseau, Voltaire e Montesquieu disseminaram ideias que questionavam o absolutismo, os privilégios da nobreza e do clero, e defendiam a razão, a liberdade, a igualdade e a soberania popular.\n* **Inspiração em Outras Revoluções:** O sucesso da Revolução Americana demonstrou que era possível derrubar um regime opressor e estabelecer um governo baseado em princípios republicanos.\n* **Crítica à Ordem Estabelecida:** As ideias iluministas forneceram uma base intelectual e moral para a contestação do Antigo Regime e para a busca por um novo modelo de sociedade.\n\nEm resumo, a Revolução Francesa foi desencadeada por uma combinação explosiva de **profunda desigualdade social e econômica**, um **Estado financeiramente falido**, um **sistema político absolutista ineficaz** e a **disseminação de ideias iluministas** que inspiraram a busca por liberdade, igualdade e justiça. A convocação dos Estados Gerais em 1789, com a intenção de resolver a crise financeira, acabou por se tornar o estopim para a revolta generalizada.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-009",
+      "dimension": "consistency",
+      "category": "law",
+      "prompt": "O que significa presuncao de inocencia?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a presunção de inocência, sem contradições significativas. As variações são apenas de forma (estrutura, exemplos ou ênfase em aspectos específicos), mas o conteúdo semântico é consistente em todos os pontos-chave: (1) inocência como ponto de partida, (2) ônus da prova sobre a acusação, (3) necessidade de provas robustas e além de dúvida razoável, (4) proteção contra condenações arbitrárias, e (5) fundamentos éticos e jurídicos. Nenhuma resposta apresenta informações conflitantes ou nega o que as outras afirmam.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8025,
+      "response_text": "A **presunção de inocência** é um dos pilares fundamentais do direito penal e processual penal em democracias. Em termos simples, ela significa que **toda pessoa acusada de um crime é considerada inocente até que sua culpa seja comprovada de forma definitiva e legal**.\n\nAqui estão os principais aspectos e implicações da presunção de inocência:\n\n*   **Inversão do Ônus da Prova:** A presunção de inocência inverte o ônus da prova. Isso significa que **não cabe ao acusado provar sua inocência, mas sim à acusação (o Ministério Público, por exemplo) provar a culpa do acusado**. O acusado não precisa fazer nada para demonstrar que não cometeu o crime; a responsabilidade de provar o contrário é do Estado.\n\n*   **Necessidade de Provas Concretas:** Para que a culpa seja declarada, é preciso que existam provas robustas, lícitas e suficientes que demonstrem, além de qualquer dúvida razoável, que o acusado cometeu o crime. A mera suspeita, indícios fracos ou a ausência de provas não são suficientes para condenar alguém.\n\n*   **Dúvida Beneficia o Réu:** Se, ao final do processo, ainda houver dúvida razoável sobre a culpa do acusado, essa dúvida deve ser interpretada em favor dele. Em outras palavras, **na dúvida, o réu deve ser absolvido**. Isso é conhecido como o princípio *in dubio pro reo*.\n\n*   **Proteção contra Acusações Infundadas:** A presunção de inocência protege os cidadãos contra acusações arbitrárias, falsas ou baseadas em preconceitos. Ela garante que ninguém seja punido sem um julgamento justo e sem a devida comprovação de sua responsabilidade.\n\n*   **Tratamento Durante o Processo:** A presunção de inocência também influencia o tratamento dado ao acusado durante o processo. Por exemplo, a prisão preventiva, que é uma medida excepcional, só pode ser decretada em casos específicos e quando estritamente necessária, pois a liberdade é a regra. O acusado não deve ser tratado como culpado antes da condenação.\n\n*   **Garantia de um Julgamento Justo:** É um direito fundamental que assegura que o processo judicial seja conduzido de forma imparcial e que o acusado tenha todas as garantias de defesa.\n\n**Em resumo, a presunção de inocência é uma salvaguarda essencial que garante que o Estado não possa punir um indivíduo sem antes ter provado, de maneira irrefutável e dentro dos ritos legais, que ele é culpado de um crime.** Ela é um reflexo do respeito à dignidade humana e um dos pilares de um Estado de Direito democrático.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-010",
+      "dimension": "consistency",
+      "category": "instructions",
+      "prompt": "Como trocar a senha de uma conta online com seguranca?",
+      "judge_score": 5,
+      "judge_justification": "As quatro respostas são semanticamente consistentes entre si, transmitindo a mesma informação central sobre como trocar/atualizar senhas de contas online com segurança. Todas abordam os mesmos tópicos principais: (1) acesso seguro às configurações de senha, (2) criação de senhas fortes e únicas (com ênfase em comprimento, complexidade e frases-senha), (3) uso de gerenciadores de senhas, (4) ativação de autenticação multifator (2FA/MFA), (5) verificação de URLs e (6) cuidados com phishing. As variações são apenas de forma (ex.: detalhes adicionais em uma resposta, exemplos distintos ou organização levemente diferente), mas não há contradições no conteúdo. Todas as respostas reforçam a importância de senhas longas, únicas, e a adoção de 2FA como medidas essenciais.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7641,
+      "response_text": "Trocar a senha de uma conta online com segurança é fundamental para proteger suas informações. Aqui está um guia passo a passo com as melhores práticas:\n\n**1. Acesse as Configurações de Segurança da Conta:**\n\n* **Localize a seção de segurança:** A maioria dos sites e aplicativos tem uma seção dedicada a \"Configurações\", \"Conta\", \"Perfil\" ou \"Segurança\". Procure por opções como \"Alterar senha\", \"Gerenciar senha\" ou \"Segurança da conta\".\n* **Autenticação:** Em muitos casos, você precisará confirmar sua identidade antes de poder alterar a senha. Isso pode envolver:\n    * **Inserir a senha atual:** A forma mais comum.\n    * **Responder a perguntas de segurança:** Se você as configurou.\n    * **Autenticação de dois fatores (2FA):** Se ativada, você precisará inserir um código enviado para seu telefone, e-mail ou gerado por um aplicativo autenticador.\n\n**2. Crie uma Senha Forte e Única:**\n\nEsta é a parte mais crucial. Uma senha forte é difícil de adivinhar e única para cada conta.\n\n* **Comprimento:** Use senhas com pelo menos 12 caracteres. Quanto mais longa, melhor.\n* **Variedade de caracteres:** Combine:\n    * **Letras maiúsculas:** (A, B, C...)\n    * **Letras minúsculas:** (a, b, c...)\n    * **Números:** (1, 2, 3...)\n    * **Símbolos:** (!, @, #, $, %, ^, &, *, (, ), -, _, =, +, [, ], {, }, ;, :, ', \", ,, ., <, >, /, ?)\n* **Evite informações pessoais óbvias:**\n    * Seu nome, nome de familiares, animais de estimação.\n    * Datas de nascimento, aniversários.\n    * Endereços, números de telefone.\n    * Palavras comuns do dicionário (mesmo com variações).\n    * Sequências óbvias (123456, abcdef, qwerty).\n* **Use frases de senha (passphrases):** Uma técnica eficaz é criar uma frase longa e memorável e transformá-la em senha. Por exemplo:\n    * Frase: \"Eu adoro comer pizza às sextas-feiras!\"\n    * Senha: `EuAd0roC0merP1zzA@Sextas!` (misturando letras, números e símbolos)\n* **Não reutilize senhas:** Cada conta deve ter uma senha diferente. Se uma conta for comprometida, as outras permanecerão seguras.\n\n**3. Utilize um Gerenciador de Senhas:**\n\nUm gerenciador de senhas é uma ferramenta altamente recomendada para criar, armazenar e preencher senhas de forma segura.\n\n* **Como funciona:** Você cria uma senha mestra forte para o gerenciador. Ele então gera senhas fortes e únicas para cada um dos seus sites e aplicativos, armazenando-as de forma criptografada.\n* **Benefícios:**\n    * **Senhas fortes e únicas:** Não precisa se preocupar em memorizar dezenas de senhas complexas.\n    * **Preenchimento automático:** Facilita o login em sites e aplicativos.\n    * **Segurança:** Armazena suas senhas de forma criptografada.\n    * **Sincronização:** Acessa suas senhas em diferentes dispositivos.\n* **Exemplos populares:** LastPass, Bitwarden, 1Password, Dashlane.\n\n**4. Ative a Autenticação de Dois Fatores (2FA) ou Múltiplos Fatores (MFA):**\n\nEsta é uma camada adicional de segurança que exige mais do que apenas sua senha para fazer login.\n\n* **Como funciona:** Após inserir sua senha, você precisará fornecer uma segunda forma de verificação. As opções mais comuns incluem:\n    * **Códigos SMS:** Enviados para o seu número de telefone.\n    * **Aplicativos autenticadores:** Como Google Authenticator, Authy ou Microsoft Authenticator, que geram códigos temporários.\n    * **Chaves de segurança física:** Dispositivos USB que você conecta ao seu computador.\n    * **Verificação biométrica:** Impressão digital ou reconhecimento facial (em dispositivos compatíveis).\n* **Por que é importante:** Mesmo que alguém roube sua senha, não conseguirá acessar sua conta sem o segundo fator de autenticação.\n\n**5. Salve a Nova Senha:**\n\n* **Gerenciador de senhas:** Se você usa um, o gerenciador irá oferecer para salvar a nova senha automaticamente.\n* **Manual:** Se não usa um gerenciador, anote a senha em um",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-011",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "Como escolher um banco para guardar dinheiro?",
+      "judge_score": 5,
+      "judge_justification": "As quatro respostas são semanticamente consistentes entre si, transmitindo a mesma informação central sobre como escolher um banco para guardar dinheiro. Todas abordam critérios semelhantes, como necessidades individuais, tipos de bancos, taxas, rendimentos, segurança, atendimento e tecnologia. As variações são de forma (estruturação, exemplos e ênfase em diferentes pontos), mas não há contradições de conteúdo. Cada resposta complementa as demais, oferecendo perspectivas distintas sem divergir em informações essenciais.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7745,
+      "response_text": "Escolher um banco para guardar seu dinheiro é uma decisão importante que pode impactar suas finanças a longo prazo. Não existe uma resposta única, pois a melhor opção depende das suas necessidades e prioridades. No entanto, aqui está um guia completo para te ajudar a tomar essa decisão:\n\n**1. Entenda suas Necessidades e Prioridades:**\n\nAntes de começar a pesquisar, reflita sobre o que você busca em um banco:\n\n* **Tipo de Conta:** Você precisa de uma conta corrente para o dia a dia, uma conta poupança para guardar dinheiro, uma conta de investimento, ou uma combinação delas?\n* **Serviços Essenciais:** Quais serviços são indispensáveis para você? (Ex: Pix, transferências ilimitadas, saques gratuitos, cartão de crédito, cheque especial, etc.)\n* **Acesso e Conveniência:** Você prefere agências físicas, atendimento online, aplicativo móvel intuitivo, ou uma combinação?\n* **Taxas e Tarifas:** Você se preocupa com taxas de manutenção de conta, tarifas de transação, anuidade de cartão, etc.?\n* **Rendimento:** Você busca um banco que ofereça bons rendimentos para o seu dinheiro guardado (em poupança, CDBs, fundos, etc.)?\n* **Segurança e Reputação:** Qual a solidez e a reputação do banco no mercado?\n* **Atendimento ao Cliente:** Você valoriza um bom suporte e atendimento rápido e eficiente?\n* **Produtos e Serviços Adicionais:** Você pode precisar de empréstimos, financiamentos, seguros, ou outros produtos no futuro?\n\n**2. Pesquise os Tipos de Bancos:**\n\nExistem diferentes tipos de instituições financeiras, cada uma com suas características:\n\n* **Bancos Tradicionais (Grandes Redes):**\n    * **Vantagens:** Ampla rede de agências físicas, grande variedade de produtos e serviços, forte reputação e segurança.\n    * **Desvantagens:** Geralmente possuem mais taxas e tarifas, atendimento pode ser mais burocrático, rendimentos em poupança costumam ser baixos.\n    * **Exemplos:** Banco do Brasil, Caixa Econômica Federal, Itaú, Bradesco, Santander.\n\n* **Bancos Digitais (Fintechs):**\n    * **Vantagens:** Geralmente sem taxas de manutenção de conta, tarifas mais baixas ou inexistentes, aplicativos móveis modernos e intuitivos, bom rendimento em contas digitais (muitas vezes atreladas ao CDI), processos mais ágeis.\n    * **Desvantagens:** Poucas ou nenhuma agência física, dependência de tecnologia, atendimento pode ser exclusivamente online.\n    * **Exemplos:** Nubank, Inter, C6 Bank, Neon, PicPay.\n\n* **Bancos Cooperativos:**\n    * **Vantagens:** Foco no associado, taxas geralmente mais competitivas, participação nos resultados, atendimento mais personalizado.\n    * **Desvantagens:** Rede de agências pode ser menor, pode exigir a adesão como cooperado.\n    * **Exemplos:** Sicredi, Sicoob.\n\n* **Bancos de Investimento:**\n    * **Vantagens:** Foco em produtos de investimento, taxas mais baixas para operações de investimento, assessoria especializada.\n    * **Desvantagens:** Geralmente não oferecem contas correntes completas para o dia a dia, foco principal é em quem já tem capital para investir.\n    * **Exemplos:** XP Investimentos, BTG Pactual, Genial Investimentos.\n\n**3. Compare os Bancos com Base em Critérios Específicos:**\n\nCom suas necessidades em mente e conhecendo os tipos de bancos, comece a comparar:\n\n* **Taxas e Tarifas:**\n    * **Conta Corrente:** Verifique a taxa de manutenção, tarifas de saques, transferências (TED/DOC), extratos, etc. Muitos bancos digitais oferecem contas gratuitas.\n    * **Cartão de Crédito:** Anuidade, taxas de juros rotativo, taxas de saque.\n    * **Cheque Especial:** Taxas de juros são altíssimas, evite ao máximo.\n    * **Investimentos:** Taxas de administração, performance, corretagem.\n\n* **Rendimento:**\n    * **Poupança:** Compare a rentabilidade oferecida. Lembre-se que a poupança tem rendimento fixo e pode ser menor que outras opções.\n    * **Contas Digitais com Rendimento:** Muitos bancos digitais oferecem rendimento automático sobre o saldo da conta, geralmente atrelado ao CDI (Certificado de Depósito Interbancário), que costuma ser mais vantajoso que a poupança.\n    * **CDBs",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-012",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "Como escolher um banco confortavel para a sala?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas abordam o tema central da escolha de um banco para a sala, com foco em conforto, funcionalidade e estética, sem contradições significativas. As variações são de forma (detalhamento, ênfase em aspectos específicos ou público-alvo), mas o conteúdo semântico é consistente. Por exemplo: todas mencionam ergonomia, materiais, proporção espacial e propósito de uso, mesmo que com abordagens distintas (sofás vs. bancos de madeira vs. bancos decorativos). Não há informações conflitantes entre elas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7601,
+      "response_text": "Escolher um banco confortável para a sala é uma decisão importante, pois ele será um ponto focal de relaxamento e convívio. Para te ajudar nessa escolha, vamos abordar os principais aspectos a serem considerados:\n\n**1. Defina o Propósito e o Uso:**\n\n* **Uso Principal:** O banco será usado principalmente para assistir TV, ler, receber visitas, ou uma combinação de tudo?\n* **Número de Pessoas:** Quantas pessoas geralmente usarão o banco? Isso influenciará o tamanho e a configuração.\n* **Estilo de Vida:** Você tem crianças pequenas, animais de estimação? Isso pode influenciar a escolha do material e da cor.\n\n**2. Tamanho e Proporção do Espaço:**\n\n* **Meça o Espaço:** Antes de sair às compras, meça a área onde o banco ficará. Considere a largura, profundidade e altura.\n* **Deixe Espaço para Circulação:** Não escolha um banco que ocupe todo o espaço. Deixe corredores livres para facilitar a movimentação na sala.\n* **Proporção com Outros Móveis:** O banco deve ter uma proporção equilibrada com outros móveis da sala, como mesas de centro, poltronas e estantes.\n\n**3. Tipo de Banco:**\n\nExistem diversos tipos de bancos, cada um com suas características:\n\n* **Sofá Reto:** O clássico, versátil e disponível em diversos tamanhos.\n* **Sofá em L (Canto):** Ideal para otimizar espaços e criar um ambiente mais aconchegante e convidativo.\n* **Sofá Retrátil e Reclinável:** Perfeito para quem busca o máximo de conforto para relaxar, assistir filmes ou ler.\n* **Sofá Modular:** Permite diversas configurações, adaptando-se a diferentes layouts e necessidades.\n* **Chaise:** Uma peça alongada que oferece um local para esticar as pernas, podendo ser integrada a um sofá ou usada separadamente.\n* **Banco de 2 ou 3 Lugares:** Opções mais compactas, ideais para espaços menores ou para complementar um sofá maior.\n\n**4. Conforto e Ergonomia:**\n\nEste é o ponto crucial!\n\n* **Assento:**\n    * **Profundidade:** Você prefere sentar mais ereto ou gosta de se afundar no sofá? Uma profundidade maior é ideal para quem gosta de relaxar.\n    * **Altura:** A altura do assento deve permitir que seus pés alcancem o chão confortavelmente quando sentado.\n    * **Firmeza:** Prefere um assento mais firme ou mais macio? Assentos muito macios podem não oferecer bom suporte a longo prazo.\n    * **Enchimento:**\n        * **Espuma D28, D33, D45:** Quanto maior o \"D\" (densidade), mais firme e durável é a espuma. D28 é mais macio, D45 é mais firme.\n        * **Molas:** Molas ensacadas ou bonnel oferecem bom suporte e durabilidade.\n        * **Fibra Siliconada:** Usada em almofadas de encosto e braços, proporciona maciez e volume.\n* **Encosto:**\n    * **Altura:** Um encosto mais alto oferece melhor suporte para a cabeça e pescoço.\n    * **Inclinação:** Alguns bancos possuem encostos reclináveis, aumentando o conforto.\n    * **Almofadas:** Almofadas soltas no encosto podem ser ajustadas para maior conforto.\n* **Braços:**\n    * **Largura e Altura:** Os braços devem ser confortáveis para apoiar os braços ou até mesmo para se deitar.\n    * **Tipo:** Braços finos, largos, acolchoados, retos, curvos. Escolha o que mais te agrada.\n\n**5. Material e Revestimento:**\n\nA escolha do material impacta no conforto, durabilidade, estética e manutenção.\n\n* **Tecidos:**\n    * **Veludo:** Macio, luxuoso e aconchegante, mas pode ser mais difícil de limpar e reter pelos.\n    * **Suede:** Similar ao veludo, mas geralmente mais resistente e fácil de limpar.\n    * **Linho:** Elegante, respirável e fresco, mas pode amassar com facilidade e manchar.\n    * **Sarja:** Durável, resistente e fácil de limpar.\n    * **Couro (Natural ou Sintético):** Durável, fácil de limpar e com um visual sofisticado. O couro natural pode ser mais caro e exigir cuidados específicos. O sintético é uma opção mais acessível.\n    * **Chenille:** Macio, resistente e com um toque agradável",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-013",
+      "dimension": "consistency",
+      "category": "ambiguous_context",
+      "prompt": "O que pode causar manga na camiseta branca?",
+      "judge_score": 5,
+      "judge_justification": "As quatro respostas são semanticamente consistentes entre si, abordando as mesmas causas principais para manchas em tecidos brancos (suor, desodorante, alimentos/bebidas, produtos de higiene, lavagem inadequada, armazenamento, etc.). Não há contradições significativas no conteúdo, apenas variações de forma na apresentação das informações (ex.: detalhes adicionais em uma resposta, organização diferente dos tópicos ou ênfase em causas específicas). Todas as respostas convergem para o mesmo núcleo de causas e soluções, mantendo a coerência semântica.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7774,
+      "response_text": "A manga em uma camiseta branca pode ser causada por uma variedade de fatores, desde o uso e lavagem até o armazenamento inadequado. Aqui estão as causas mais comuns:\n\n**1. Suor e Oleosidade Corporal:**\n\n* **Suor:** O suor, especialmente em áreas como axilas e pescoço, contém sais e outras substâncias que, ao secarem, podem deixar manchas amareladas ou acinzentadas na camiseta branca.\n* **Oleosidade Corporal:** A oleosidade natural da pele, combinada com resíduos de desodorante, pode se acumular nas áreas de maior contato, como as mangas e a gola, causando um aspecto \"sujo\" ou amarelado.\n\n**2. Desodorante:**\n\n* **Resíduos de Alumínio:** Muitos desodorantes contêm sais de alumínio que, ao reagirem com o suor e serem lavados, podem deixar manchas amareladas ou acinzentadas persistentes nas axilas e nas mangas.\n* **Desodorantes em Barra ou Creme:** Esses tipos de desodorantes tendem a deixar mais resíduos do que os em spray, aumentando a probabilidade de manchas.\n\n**3. Lavagem Inadequada:**\n\n* **Água Quente:** Lavar camisetas brancas em água muito quente pode fixar manchas de suor e oleosidade, tornando-as mais difíceis de remover.\n* **Excesso de Sabão:** Usar muito sabão pode deixar resíduos na fibra do tecido, atraindo sujeira e dando um aspecto \"empoeirado\" ou acinzentado.\n* **Misturar Cores:** Lavar camisetas brancas com roupas coloridas, mesmo que pareçam claras, pode transferir corantes e deixar um tom acinzentado ou amarelado.\n* **Não Separar Roupas:** Não separar roupas brancas de roupas sujas ou com manchas pode fazer com que a sujeira se espalhe.\n* **Má Enxaguagem:** Se o sabão não for completamente removido durante o enxágue, ele pode se acumular e causar o aspecto \"empoeirado\".\n\n**4. Armazenamento Inadequado:**\n\n* **Umidade:** Guardar camisetas brancas em locais úmidos pode favorecer o crescimento de mofo e bolor, que podem deixar manchas escuras ou esverdeadas.\n* **Exposição à Luz Solar Direta:** A exposição prolongada à luz solar direta pode amarelar as fibras brancas do tecido.\n* **Armazenamento com Roupas Coloridas:** Assim como na lavagem, o contato prolongado com roupas coloridas pode transferir pigmentos.\n* **Poeira e Sujeira:** Armazenar as camisetas em locais empoeirados ou sujos pode fazer com que a sujeira se acumule nas fibras.\n\n**5. Produtos Químicos e Contato com Outras Substâncias:**\n\n* **Produtos de Limpeza:** Contato com produtos de limpeza domésticos, como alvejantes à base de cloro em excesso ou outros produtos químicos, pode danificar as fibras e causar amarelamento.\n* **Maquiagem e Cosméticos:** Resíduos de maquiagem, base, protetor solar ou outros cosméticos podem manchar as mangas, especialmente se houver contato direto.\n* **Alimentos e Bebidas:** Derramamentos acidentais de alimentos ou bebidas, mesmo que pareçam inofensivos, podem deixar manchas que se tornam mais visíveis com o tempo.\n\n**6. Qualidade do Tecido e Processo de Fabricação:**\n\n* **Fibras Naturais:** Algumas fibras naturais, como o algodão, podem amarelar com o tempo, especialmente se não forem bem tratadas ou se expostas a certos produtos.\n* **Processos de Branqueamento:** Se o processo de branqueamento na fabricação não for ideal, o tecido pode ter uma tendência maior a amarelar.\n\n**Como Prevenir e Remover Mangas:**\n\n* **Pré-tratamento:** Antes de lavar, trate as áreas propensas a manchas (axilas, gola) com um removedor de manchas específico para roupas brancas ou uma pasta de bicarbonato de sódio com água.\n* **Lavagem Correta:**\n    * Separe as roupas brancas das coloridas.\n    * Use água fria ou morna.\n    * Use a quantidade correta de sabão.\n    * Enxágue bem.\n    * Considere usar um alvejante sem cloro para roupas brancas.\n* **Secagem:** Seque as camisetas à sombra para evitar o amarelamento causado pelo sol.\n* **Armazenamento:** Guarde as camisetas em um local seco, arejado e longe da luz solar direta.\n\nAo",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-014",
+      "dimension": "consistency",
+      "category": "environment",
+      "prompt": "O que e efeito estufa?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre o efeito estufa: um fenômeno natural essencial para a vida na Terra, explicando seu funcionamento (absorção e reemissão de radiação infravermelha por gases de efeito estufa), a diferença entre o efeito estufa natural e o intensificado pelas atividades humanas, e suas consequências (aquecimento global e mudanças climáticas). Não há contradições de conteúdo entre elas, apenas variações de forma (ex.: analogias, exemplos ou organização das informações), o que é aceitável. As respostas são semanticamente consistentes entre si.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7768,
+      "response_text": "O **efeito estufa** é um fenômeno natural e essencial para a vida na Terra. Ele funciona como um \"cobertor\" que mantém o planeta aquecido o suficiente para que a água exista em estado líquido e para que a vida, como a conhecemos, seja possível.\n\n**Como funciona:**\n\n1. **Radiação Solar:** O Sol emite radiação em diversas frequências, incluindo luz visível e radiação infravermelha (calor). Parte dessa radiação chega à Terra.\n\n2. **Absorção e Reflexão:** A superfície da Terra (oceanos, solos, vegetação) absorve grande parte dessa radiação solar, aquecendo-se. Uma parte menor é refletida de volta para o espaço.\n\n3. **Emissão de Calor:** A Terra aquecida emite calor de volta para a atmosfera na forma de radiação infravermelha.\n\n4. **Gases de Efeito Estufa (GEEs):** Na atmosfera existem certos gases, chamados **gases de efeito estufa**, que possuem a propriedade de absorver essa radiação infravermelha emitida pela Terra. Os principais GEEs são:\n    * **Dióxido de Carbono (CO2):** O mais conhecido e abundante, liberado pela queima de combustíveis fósseis (carvão, petróleo, gás natural), desmatamento e processos industriais.\n    * **Metano (CH4):** Liberado pela decomposição de matéria orgânica em ambientes sem oxigênio (aterros sanitários, pecuária, arrozais), extração de combustíveis fósseis.\n    * **Óxido Nitroso (N2O):** Proveniente de atividades agrícolas (uso de fertilizantes), processos industriais e queima de biomassa.\n    * **Gases Fluorados (HFCs, PFCs, SF6):** Gases sintéticos usados em refrigeração, aerossóis e processos industriais. São muito potentes, mesmo em pequenas quantidades.\n    * **Vapor d'água (H2O):** É o GEE mais abundante na atmosfera e tem um papel crucial no ciclo hidrológico.\n\n5. **Retenção de Calor:** Ao absorver a radiação infravermelha, os GEEs reemitem essa energia em todas as direções, inclusive de volta para a superfície da Terra. Isso faz com que parte do calor que seria irradiado para o espaço seja retido na atmosfera, aquecendo o planeta.\n\n**O Efeito Estufa Natural vs. Intensificado:**\n\n* **Efeito Estufa Natural:** Sem a presença dos GEEs, a temperatura média da Terra seria cerca de -18°C, tornando a vida impossível. O efeito estufa natural é um equilíbrio delicado que mantém a Terra habitável.\n\n* **Efeito Estufa Intensificado (ou Antropogênico):** O problema surge quando as atividades humanas liberam quantidades excessivas de GEEs na atmosfera. Isso aumenta a concentração desses gases, fazendo com que mais calor seja retido, levando a um **aquecimento global** e a **mudanças climáticas**.\n\n**Consequências do Efeito Estufa Intensificado:**\n\nO aumento da temperatura média do planeta tem diversas consequências negativas, como:\n\n* **Derretimento de geleiras e calotas polares:** Contribuindo para o aumento do nível do mar.\n* **Eventos climáticos extremos:** Ondas de calor mais frequentes e intensas, secas prolongadas, chuvas torrenciais, furacões e tempestades mais fortes.\n* **Alterações nos ecossistemas:** Impactos na biodiversidade, extinção de espécies, mudanças nos padrões de migração de animais.\n* **Impactos na agricultura:** Dificuldades no cultivo de alimentos devido a mudanças nos padrões de chuva e temperatura.\n* **Aumento da acidificação dos oceanos:** Prejudicando a vida marinha.\n* **Problemas de saúde:** Aumento de doenças relacionadas ao calor e à poluição do ar.\n\nEm resumo, o efeito estufa é um processo natural vital, mas a sua intensificação pelas atividades humanas é a causa principal do aquecimento global e das mudanças climáticas que enfrentamos hoje.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-015",
+      "dimension": "consistency",
+      "category": "programming",
+      "prompt": "Como funciona um loop for em Python?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre o funcionamento do loop `for` em Python, abordando sua estrutura básica, exemplos de uso com diferentes tipos de sequências (listas, strings, dicionários, `range()`) e a iteração sobre elementos. Não há contradições de conteúdo entre elas, apenas variações de forma (detalhamento, exemplos adicionais ou enfoque em aspectos específicos, como a iteração sobre listas). As divergências são de estilo ou profundidade, não de significado.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7497,
+      "response_text": "Um loop `for` em Python é uma estrutura de controle de fluxo que permite **iterar sobre uma sequência** (como uma lista, tupla, string, dicionário, conjunto ou um objeto `range`) e executar um bloco de código para cada item dessa sequência.\n\nEm sua essência, o loop `for` em Python segue o seguinte padrão:\n\n```python\nfor variavel in sequencia:\n    # Bloco de código a ser executado para cada item\n    # Use a 'variavel' para acessar o item atual da 'sequencia'\n```\n\nVamos detalhar cada parte:\n\n1.  **`for`**: Esta é a palavra-chave que inicia o loop.\n\n2.  **`variavel`**: Este é um nome que você escolhe para representar o **item atual** da sequência em cada iteração do loop. A cada vez que o loop executa, essa variável recebe o próximo valor da sequência.\n\n3.  **`in`**: Esta palavra-chave indica que você está prestes a especificar a sequência sobre a qual deseja iterar.\n\n4.  **`sequencia`**: Esta é a coleção de itens sobre a qual o loop irá percorrer. Pode ser:\n    *   **Listas**: `[1, 2, 3, 4]`\n    *   **Tuplas**: `(10, 20, 30)`\n    *   **Strings**: `\"Python\"` (cada caractere será um item)\n    *   **Dicionários**: Iterando sobre as chaves por padrão, ou sobre valores/itens com métodos específicos.\n    *   **Conjuntos (Sets)**: `{ 'a', 'b', 'c' }`\n    *   **Objetos `range()`**: `range(5)` (gera uma sequência de números de 0 a 4)\n    *   **Qualquer outro objeto iterável**: Objetos que implementam o protocolo de iteração.\n\n5.  **`:` (dois pontos)**: Indica o início do bloco de código que será executado dentro do loop.\n\n6.  **Bloco de código indentado**: Todas as linhas de código que estão indentadas (geralmente com 4 espaços) abaixo da linha `for` fazem parte do corpo do loop. Este bloco será executado uma vez para cada item na `sequencia`.\n\n**Como funciona passo a passo:**\n\n1.  O loop `for` começa pegando o **primeiro item** da `sequencia`.\n2.  Esse item é atribuído à `variavel`.\n3.  O bloco de código indentado é executado, utilizando o valor atual da `variavel`.\n4.  Após a execução do bloco de código, o loop volta para o início e pega o **próximo item** da `sequencia`.\n5.  Esse novo item é atribuído à `variavel` (substituindo o valor anterior).\n6.  O bloco de código é executado novamente.\n7.  Este processo se repete até que **todos os itens** da `sequencia` tenham sido processados.\n8.  Quando a `sequencia` se esgota, o loop `for` termina e a execução do programa continua com a próxima instrução após o loop.\n\n**Exemplos Práticos:**\n\n**1. Iterando sobre uma lista:**\n\n```python\nfrutas = [\"maçã\", \"banana\", \"cereja\"]\n\nfor fruta in frutas:\n    print(f\"Eu gosto de {fruta}\")\n\n# Saída:\n# Eu gosto de maçã\n# Eu gosto de banana\n# Eu gosto de cereja\n```\n\nNeste exemplo, `fruta` é a variável que recebe \"maçã\", depois \"banana\", e por último \"cereja\" em cada iteração.\n\n**2. Iterando sobre uma string:**\n\n```python\nmensagem = \"Olá\"\n\nfor letra in mensagem:\n    print(letra)\n\n# Saída:\n# O\n# l\n# á\n```\n\nAqui, `letra` recebe cada caractere da string \"Olá\" sequencialmente.\n\n**3. Iterando com `range()`:**\n\nO `range()` é muito útil para executar um loop um número específico de vezes.\n\n```python\n# Executa o loop 5 vezes (de 0 a 4)\nfor i in range(5):\n    print(f\"Contagem: {i}\")\n\n# Saída:\n# Contagem: 0\n# Contagem: 1\n# Contagem: 2\n# Contagem: 3\n# Contagem: 4\n\n# range(inicio, fim) - o fim não é incluído\nfor j in range(2, 6):\n    ",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-016",
+      "dimension": "consistency",
+      "category": "food",
+      "prompt": "Qual a diferenca entre ferver, assar e fritar alimentos?",
+      "judge_score": 5,
+      "judge_justification": "As quatro respostas são semanticamente consistentes entre si, transmitindo a mesma informação central sobre as diferenças entre ferver, assar e fritar alimentos. Todas destacam os aspectos principais: método de transferência de calor, meio utilizado, temperatura, textura, sabor, teor de gordura e aplicações comuns. As variações são apenas de forma (detalhamento, exemplos ou organização), sem contradições de conteúdo. A essência das explicações permanece inalterada em todas as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8097,
+      "response_text": "As diferenças entre ferver, assar e fritar alimentos residem principalmente no **método de transferência de calor**, no **meio em que o calor é aplicado** e, consequentemente, nos **resultados** que cada técnica produz em termos de textura, sabor e teor de gordura.\n\nVamos detalhar cada um:\n\n---\n\n### 1. Ferver\n\n*   **Método de Transferência de Calor:** Convecção. O calor é transferido através de um líquido em movimento (geralmente água).\n*   **Meio de Calor:** Líquido (água, caldo, leite, etc.).\n*   **Temperatura:** A temperatura da água em ebulição é de aproximadamente 100°C (ao nível do mar).\n*   **Como funciona:** O alimento é submerso no líquido quente. O líquido aquece o alimento de forma uniforme e eficiente.\n*   **Resultados:**\n    *   **Textura:** Geralmente macia, úmida e cozida por dentro. Pode resultar em uma textura mais \"cozida\" ou \"molhada\".\n    *   **Sabor:** O sabor tende a ser mais suave, pois alguns nutrientes e sabores podem se dissolver no líquido. O caldo resultante pode ser aproveitado para outros preparos.\n    *   **Teor de Gordura:** Baixo, pois não há adição de gordura para o cozimento.\n    *   **Aplicações comuns:** Legumes, massas, ovos, carnes para sopas e ensopados, grãos.\n\n---\n\n### 2. Assar\n\n*   **Método de Transferência de Calor:** Radiação e Convecção. O calor é irradiado pelas paredes do forno e também circula pelo ar quente dentro dele.\n*   **Meio de Calor:** Ar quente.\n*   **Temperatura:** Varia amplamente, geralmente entre 150°C e 250°C, dependendo da receita.\n*   **Como funciona:** O alimento é colocado em uma assadeira ou diretamente na grade do forno. O ar quente circula ao redor do alimento, cozinhando-o gradualmente.\n*   **Resultados:**\n    *   **Textura:** Pode variar de macia e úmida por dentro a crocante e dourada por fora. A superfície tende a desenvolver uma crosta agradável.\n    *   **Sabor:** Concentra os sabores naturais do alimento, pois a água evapora lentamente, intensificando os compostos aromáticos. Pode desenvolver sabores caramelizados e tostados.\n    *   **Teor de Gordura:** Geralmente moderado. Pode-se adicionar um pouco de gordura (óleo, manteiga) para ajudar na crocância e sabor, mas não é essencial para o cozimento em si.\n    *   **Aplicações comuns:** Carnes (assados, frango, peixe), pães, bolos, tortas, vegetais.\n\n---\n\n### 3. Fritar\n\n*   **Método de Transferência de Calor:** Condução e Convecção. O calor é transferido do óleo quente para o alimento.\n*   **Meio de Calor:** Gordura quente (óleo vegetal, azeite, banha, etc.).\n*   **Temperatura:** Geralmente entre 170°C e 190°C.\n*   **Como funciona:** O alimento é submerso ou parcialmente submerso na gordura quente. A alta temperatura da gordura cozinha o alimento rapidamente, formando uma crosta externa crocante e dourada.\n*   **Resultados:**\n    *   **Textura:** Extremamente crocante e dourada por fora, enquanto o interior pode permanecer úmido e macio (se feito corretamente).\n    *   **Sabor:** Desenvolve um sabor característico de \"frito\", com notas tostadas e caramelizadas. A gordura também contribui para o sabor.\n    *   **Teor de Gordura:** Alto, pois o alimento absorve uma quantidade significativa de gordura durante o processo.\n    *   **Aplicações comuns:** Batatas fritas, salgados, frango frito, peixe empanado, bolinhos.\n\n---\n\n### Tabela Resumo das Diferenças:\n\n| Característica        | Ferver                               | Assar                                  | Fritar                                  |\n| :-------------------- | :----------------------------------- | :------------------------------------- | :-------------------------------------- |\n| **Meio de Calor**     | Líquido (água, caldo)                | Ar quente                              | Gordura quente (óleo)                   |\n| **Temperatura**       | ~100°C                               | 150°C - 250°C",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-017",
+      "dimension": "consistency",
+      "category": "education",
+      "prompt": "Como montar um plano de estudos semanal?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas apresentam informações semanticamente consistentes entre si, abordando os mesmos tópicos centrais: autoconhecimento (ritmo, energia, objetivos), planejamento (divisão de matérias, blocos de estudo, priorização), execução (técnicas como Pomodoro, revisão), e adaptação (flexibilidade, revisão semanal). Não há contradições de conteúdo, apenas variações de forma (ex.: exemplos de cronogramas, ênfase em diferentes técnicas como Matriz de Eisenhower ou agrupamento por tipo de matéria). As divergências são de apresentação, não de significado.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7813,
+      "response_text": "Montar um plano de estudos semanal eficaz é fundamental para otimizar seu aprendizado, garantir que você cubra todo o conteúdo necessário e evite o estresse de última hora. Aqui está um guia passo a passo para te ajudar a criar o seu:\n\n## 1. Defina Seus Objetivos e Prioridades\n\nAntes de começar a montar o cronograma, é crucial saber o que você quer alcançar.\n\n*   **Quais são seus objetivos de estudo?** (Ex: Passar em um concurso, tirar boas notas em uma matéria específica, aprender uma nova habilidade, se preparar para uma prova).\n*   **Quais são as matérias/tópicos mais importantes?** Identifique aqueles que têm maior peso, que você tem mais dificuldade ou que são pré-requisitos para outros.\n*   **Quais são os prazos?** Tenha clareza sobre datas de provas, entregas de trabalhos, etc.\n\n## 2. Avalie Seu Tempo Disponível\n\nSeja realista sobre quanto tempo você realmente tem para estudar.\n\n*   **Liste suas atividades fixas:** Trabalho, aulas, compromissos familiares, atividades físicas, refeições, sono.\n*   **Identifique os \"buracos\" no seu dia:** Onde você tem tempo livre que pode ser dedicado aos estudos?\n*   **Considere sua energia:** Em quais horários você se sente mais produtivo e focado?\n\n## 3. Escolha o Formato do Seu Plano\n\nExistem diversas maneiras de organizar seu plano de estudos. Escolha o que funciona melhor para você:\n\n*   **Agenda física:** Um caderno ou planner onde você escreve manualmente.\n*   **Planilha (Excel, Google Sheets):** Ótima para organização visual e flexibilidade.\n*   **Aplicativos de organização:** Trello, Notion, Todoist, Google Calendar, etc.\n*   **Calendário digital:** Google Calendar, Outlook Calendar.\n\n## 4. Divida o Conteúdo em Blocos de Estudo\n\nNão tente estudar tudo de uma vez. Divida o conteúdo em partes menores e gerenciáveis.\n\n*   **Por matéria:** Dedique blocos de tempo para cada disciplina.\n*   **Por tópico:** Dentro de uma matéria, divida em tópicos específicos.\n*   **Por tipo de atividade:** Leitura, resolução de exercícios, revisão, assistir videoaulas.\n\n## 5. Crie um Cronograma Semanal Equilibrado\n\nAgora é hora de preencher seu plano com as atividades de estudo.\n\n*   **Distribua as matérias:** Evite estudar a mesma matéria por longos períodos. Alterne entre disciplinas para manter o interesse e evitar a fadiga mental.\n*   **Priorize as matérias mais difíceis:** Dedique mais tempo e energia para os tópicos que você tem mais dificuldade, preferencialmente nos horários de maior produtividade.\n*   **Inclua tempo para revisão:** A revisão é crucial para fixar o conteúdo. Reserve horários específicos para revisar o que foi estudado na semana anterior e no dia anterior.\n*   **Agende atividades variadas:** Alterne entre leitura, resolução de exercícios, resumos, mapas mentais, videoaulas, etc. Isso torna o estudo mais dinâmico.\n*   **Defina horários fixos:** Se possível, tente estudar em horários semelhantes todos os dias. Isso cria um hábito.\n*   **Seja específico:** Em vez de escrever \"Estudar Matemática\", escreva \"Estudar Equações de 2º Grau - Resolução de Exercícios\".\n*   **Inclua pausas:** Pausas regulares são essenciais para manter o foco e evitar o esgotamento. Use técnicas como a Pomodoro (25 minutos de estudo, 5 minutos de pausa).\n*   **Reserve tempo para imprevistos:** Deixe alguns horários livres para lidar com imprevistos ou para reforçar algum tópico que precise de mais atenção.\n*   **Inclua tempo para descanso e lazer:** Não se esqueça de que o descanso é tão importante quanto o estudo. Reserve tempo para atividades que te relaxam e recarregam suas energias.\n\n## 6. Exemplo de Estrutura de Plano de Estudos Semanal\n\nAqui está um modelo que você pode adaptar:\n\n| Horário       | Segunda-feira | Terça-feira   | Quarta-feira  | Quinta-feira  | Sexta-feira   | Sábado        | Domingo       |\n| :------------ | :------------ | :------------ | :------------ | :------------ | :------------ | :------------ | :------------ |\n| **Manhã**     |               |               |               |               |               |               |               |\n| 08:00 - 09:00 | Matéria A (Teoria) | Matéria B (Exerc",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-018",
+      "dimension": "consistency",
+      "category": "communication",
+      "prompt": "O que e escuta ativa?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a escuta ativa, definindo-a como uma técnica de comunicação que envolve atenção plena, compreensão profunda, empatia e feedback. Não há contradições significativas entre elas, apenas variações de forma e ênfase (ex.: detalhes sobre componentes, exemplos ou metáforas). O conteúdo semântico é consistente em todos os aspectos essenciais.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7895,
+      "response_text": "A **escuta ativa** é uma técnica de comunicação que envolve **prestar atenção total e intencional** ao que a outra pessoa está dizendo, tanto verbalmente quanto não verbalmente, com o objetivo de **compreender verdadeiramente a mensagem, os sentimentos e as necessidades** do interlocutor.\n\nNão se trata apenas de ouvir as palavras, mas de se engajar profundamente na conversa, demonstrando interesse genuíno e buscando uma compreensão completa.\n\n**Em essência, a escuta ativa significa:**\n\n*   **Ouvir para entender, não para responder:** O foco principal é absorver a informação e o sentimento do outro, em vez de já estar formulando sua própria resposta ou argumento.\n*   **Estar presente:** Desligar-se de distrações (mentais e externas) e dedicar sua atenção total à pessoa que está falando.\n*   **Demonstrar interesse:** Usar linguagem corporal e verbal para mostrar que você está engajado e valoriza o que está sendo dito.\n*   **Compreender a perspectiva do outro:** Tentar se colocar no lugar da pessoa, buscando entender seus sentimentos, motivações e pontos de vista.\n\n**Componentes chave da escuta ativa:**\n\n1.  **Atenção Plena:**\n    *   **Contato visual:** Manter um contato visual apropriado, demonstrando que você está prestando atenção.\n    *   **Linguagem corporal aberta:** Virar-se para a pessoa, inclinar-se ligeiramente, evitar braços cruzados, que podem indicar defensiva ou desinteresse.\n    *   **Eliminar distrações:** Desligar o celular, fechar abas desnecessárias no computador, encontrar um local tranquilo, se possível.\n\n2.  **Compreensão:**\n    *   **Parafrasear:** Repetir o que você ouviu com suas próprias palavras para confirmar que entendeu corretamente. Ex: \"Então, se eu entendi bem, você está dizendo que...\"\n    *   **Resumir:** Sintetizar os pontos principais da fala do interlocutor para demonstrar que você captou a essência da mensagem.\n    *   **Fazer perguntas abertas:** Perguntas que incentivam o interlocutor a elaborar e fornecer mais detalhes, em vez de respostas de \"sim\" ou \"não\". Ex: \"Como você se sentiu com isso?\", \"O que aconteceu depois?\"\n    *   **Evitar interrupções:** Deixar a pessoa terminar de falar antes de intervir.\n\n3.  **Resposta:**\n    *   **Validar sentimentos:** Reconhecer e validar as emoções do interlocutor, mesmo que você não concorde com a situação. Ex: \"Entendo que você esteja frustrado com isso.\"\n    *   **Oferecer feedback construtivo (quando apropriado):** Compartilhar suas próprias perspectivas de forma respeitosa e útil, após ter compreendido completamente o outro.\n    *   **Demonstrar empatia:** Mostrar que você se importa com os sentimentos e a experiência do outro.\n\n**Por que a escuta ativa é importante?**\n\n*   **Melhora relacionamentos:** Cria conexões mais fortes e de confiança, tanto pessoais quanto profissionais.\n*   **Resolve conflitos:** Ajuda a entender as raízes dos problemas e a encontrar soluções mais eficazes.\n*   **Aumenta a compreensão mútua:** Reduz mal-entendidos e falhas de comunicação.\n*   **Promove a colaboração:** Facilita o trabalho em equipe e a troca de ideias.\n*   **Aumenta a confiança:** As pessoas se sentem mais valorizadas e respeitadas quando são ouvidas ativamente.\n*   **Melhora o aprendizado:** Permite absorver informações de forma mais eficaz.\n*   **Fortalece a liderança:** Líderes que praticam a escuta ativa inspiram e motivam suas equipes.\n\nEm resumo, a escuta ativa é uma habilidade fundamental para uma comunicação eficaz e para a construção de relacionamentos saudáveis e produtivos. É um investimento de tempo e energia que traz retornos significativos em diversas áreas da vida.",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-019",
+      "dimension": "consistency",
+      "category": "security",
+      "prompt": "Como identificar um possivel golpe de phishing?",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre como identificar golpes de phishing, abordando os mesmos sinais de alerta (remetente suspeito, urgência, solicitação de dados sensíveis, links suspeitos, erros de gramática, ofertas irreais, etc.). As variações são apenas de forma (exemplos adicionais, organização dos tópicos ou ênfase em pontos específicos), mas não há contradições de conteúdo. A consistência semântica é mantida em todas as respostas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.8131,
+      "response_text": "Identificar um golpe de phishing pode ser crucial para proteger suas informações pessoais e financeiras. Os golpistas estão cada vez mais sofisticados, mas existem sinais de alerta que podem te ajudar a reconhecer essas tentativas. Aqui estão os principais pontos a serem observados:\n\n**1. Remetente Suspeito:**\n\n*   **Endereço de E-mail Estranho:** Verifique cuidadosamente o endereço de e-mail do remetente. Golpistas frequentemente usam endereços que se parecem com os de empresas legítimas, mas com pequenas alterações (ex: `suporte@amaz0n.com` em vez de `suporte@amazon.com`, ou um domínio completamente diferente).\n*   **Nome de Exibição Enganoso:** O nome de exibição pode parecer legítimo (ex: \"Banco do Brasil\"), mas o endereço de e-mail real por trás dele é suspeito. Sempre clique no nome para ver o endereço de e-mail completo.\n*   **E-mails Genéricos:** Empresas legítimas geralmente se dirigem a você pelo seu nome. E-mails que começam com \"Prezado cliente\", \"Caro usuário\" ou algo similar podem ser um sinal de alerta.\n\n**2. Urgência e Ameaças:**\n\n*   **Mensagens de Urgência:** Golpistas criam um senso de urgência para te pressionar a agir sem pensar. Frases como \"Sua conta será bloqueada em 24 horas\", \"Ação imediata necessária\" ou \"Última chance\" são comuns.\n*   **Ameaças de Consequências Negativas:** Eles podem ameaçar com o bloqueio de contas, perda de acesso a serviços, multas ou até mesmo ações legais se você não agir rapidamente.\n\n**3. Solicitações de Informações Pessoais e Financeiras:**\n\n*   **Pedido de Dados Sensíveis:** Empresas legítimas raramente pedem informações confidenciais (senhas, números de cartão de crédito, CPF, dados bancários) por e-mail ou SMS. Se um e-mail solicita essas informações, desconfie imediatamente.\n*   **Links Suspeitos:** Cuidado com links em e-mails ou mensagens. Passe o mouse sobre o link (sem clicar!) para ver o endereço real para onde ele leva. Se o endereço for diferente do esperado ou parecer estranho, não clique.\n\n**4. Erros de Gramática e Ortografia:**\n\n*   **Erros Incomuns:** Embora alguns golpistas sejam proficientes, muitos e-mails de phishing contêm erros de gramática, ortografia ou pontuação que não seriam esperados de uma empresa profissional.\n\n**5. Links e Anexos Suspeitos:**\n\n*   **Links que Levam a Páginas Falsas:** Os links podem parecer legítimos, mas levam a sites falsos que imitam os originais para roubar suas credenciais.\n*   **Anexos Inesperados:** Nunca abra anexos de e-mails de remetentes desconhecidos ou se você não estava esperando por eles. Anexos podem conter malware.\n\n**6. Ofertas Boas Demais Para Ser Verdade:**\n\n*   **Promoções Irrealistas:** Se uma oferta parece boa demais para ser verdade (ex: um prêmio que você não participou, um desconto enorme em um produto caro), provavelmente é um golpe.\n\n**7. Falta de Personalização:**\n\n*   **Informações Incorretas:** Às vezes, os golpistas podem usar informações genéricas ou até mesmo incorretas sobre você, o que pode ser um sinal de que o e-mail não é autêntico.\n\n**8. Verificação Direta com a Empresa:**\n\n*   **Não Use os Contatos Fornecidos:** Se você receber um e-mail suspeito de uma empresa, não use os números de telefone ou links fornecidos no e-mail para verificar. Em vez disso, procure o site oficial da empresa (digitando o endereço diretamente no navegador) ou use um número de telefone que você já tenha.\n\n**Exemplos Comuns de Golpes de Phishing:**\n\n*   **E-mails de bancos:** Solicitando atualização de dados, confirmação de transações suspeitas ou desbloqueio de conta.\n*   **E-mails de lojas online:** Informando sobre problemas com um pedido, necessidade de atualização de dados de pagamento ou um prêmio ganho.\n*   **E-mails de serviços de streaming ou redes sociais:** Alertando sobre atividades suspeitas, necessidade de redefinição de senha ou problemas de pagamento.\n*   **E-mails de órgãos governamentais:** Solicitando pagamento de multas, informações para restituição de impostos ou atualização de dados cadastrais.\n\n**O Que Fazer se Suspeitar",
+      "error": null
+    },
+    {
+      "scenario_id": "consistency-020",
+      "dimension": "consistency",
+      "category": "math",
+      "prompt": "Explique o que significa media aritmetica.",
+      "judge_score": 5,
+      "judge_justification": "Todas as respostas transmitem a mesma informação central sobre a média aritmética: é o valor obtido pela soma de todos os valores de um conjunto dividido pela quantidade de valores. Não há contradições entre elas, apenas variações de forma (exemplos, aplicações, detalhes de cálculo ou ênfase em aspectos específicos). As divergências são de estilo ou profundidade, não de conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": null,
+      "consistency_score": 0.7541,
+      "response_text": "## Média Aritmética: O Que É e Como Calcular\n\nA **média aritmética** é um dos conceitos mais fundamentais da estatística e da matemática. Ela representa o **valor central** de um conjunto de números, obtido pela soma de todos os valores e dividindo o resultado pela quantidade de valores presentes. Em outras palavras, a média aritmética é o \"valor médio\" que resume um conjunto de dados.\n\n**Para que serve a média aritmética?**\n\nA média aritmética é amplamente utilizada em diversas áreas para:\n\n* **Resumir dados:** Ela oferece uma visão geral e concisa de um conjunto de números, facilitando a compreensão e a comparação.\n* **Comparar conjuntos de dados:** Ao calcular a média de diferentes grupos, é possível identificar qual grupo apresenta um valor central maior ou menor.\n* **Tomar decisões:** Em muitas situações, a média aritmética é utilizada como base para tomar decisões, como em avaliações de desempenho, análise de resultados de pesquisas, ou para prever tendências.\n* **Identificar padrões:** A média pode ajudar a identificar padrões e tendências em dados, mesmo que os valores individuais variem significativamente.\n\n**Como calcular a média aritmética?**\n\nO cálculo da média aritmética é simples e segue dois passos básicos:\n\n1. **Somar todos os valores:** Adicione todos os números do conjunto de dados.\n2. **Dividir pela quantidade de valores:** Divida a soma obtida pelo número total de elementos no conjunto.\n\n**Fórmula da Média Aritmética:**\n\nA fórmula para calcular a média aritmética é:\n\n$$ \\text{Média Aritmética} = \\frac{\\text{Soma de todos os valores}}{\\text{Quantidade de valores}} $$\n\n**Exemplo Prático:**\n\nImagine que você quer calcular a média das notas de um aluno em três provas:\n\n* Prova 1: 7.5\n* Prova 2: 8.0\n* Prova 3: 6.5\n\n**Passo 1: Somar todos os valores:**\n\n$$ 7.5 + 8.0 + 6.5 = 22.0 $$\n\n**Passo 2: Dividir pela quantidade de valores:**\n\nNeste caso, temos 3 notas.\n\n$$ \\frac{22.0}{3} \\approx 7.33 $$\n\nPortanto, a média aritmética das notas do aluno é aproximadamente 7.33.\n\n**Outros Exemplos de Aplicação:**\n\n* **Salário médio:** Para calcular o salário médio de uma empresa, somam-se todos os salários e divide-se pelo número de funcionários.\n* **Temperatura média:** Para determinar a temperatura média de uma cidade em um dia, somam-se as temperaturas registradas em diferentes horários e divide-se pelo número de registros.\n* **Desempenho de vendas:** Para avaliar o desempenho médio de um vendedor, somam-se as vendas realizadas em um período e divide-se pelo número de dias ou semanas.\n\n**Importante:**\n\nÉ crucial entender que a média aritmética é apenas um dos tipos de média. Existem outras medidas de tendência central, como a **mediana** e a **moda**, que podem ser mais adequadas dependendo do tipo de dado e do objetivo da análise. A média aritmética é sensível a valores extremos (outliers), o que significa que um valor muito alto ou muito baixo pode distorcer significativamente o resultado.\n\nEm resumo, a média aritmética é uma ferramenta poderosa e versátil para entender e resumir conjuntos de dados, fornecendo um valor representativo que facilita a análise e a tomada de decisões.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-001",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "Qual e a formula da agua?",
+      "judge_score": 4,
+      "judge_justification": "A resposta manteve a mesma qualidade e precisão da original, apesar do erro de digitação ('formla' e 'agua' em vez de 'fórmula' e 'água'). O chatbot não foi confundido pelo ruído e forneceu a informação correta de forma consistente.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9284,
+      "consistency_score": null,
+      "response_text": "A fórmula química da água é **H₂O**.\n\nIsso significa que cada molécula de água é composta por:\n\n*   **2 átomos de hidrogênio (H)**\n*   **1 átomo de oxigênio (O)**",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-002",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual e a capital do Japao?",
+      "judge_score": 4.6667,
+      "judge_justification": "A resposta manteve a mesma informação correta ('A capital do Japão é Tóquio') e não foi afetada pelo ruído (typo na pergunta). O chatbot demonstrou robustez ao lidar com a variação adversarial, não apresentando degradação na qualidade da resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8871,
+      "consistency_score": null,
+      "response_text": "A capital do Japão é **Tóquio**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-003",
+      "dimension": "robustness",
+      "category": "math",
+      "prompt": "Quanto e 27 mais 15?",
+      "judge_score": 2.3333,
+      "judge_justification": "A resposta à variação não manteve a mesma informação correta: a palavra 'masi' foi interpretada como 'più' (que significa 'mais' em italiano), resultando em uma resposta em italiano ('27 più 15 fa 42') em vez de manter a resposta em português. Além disso, a resposta não corresponde ao contexto da pergunta original, indicando que o chatbot foi confundido pelo ruído no input.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7857,
+      "consistency_score": null,
+      "response_text": "27 mais 15 é igual a 42.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-004",
+      "dimension": "robustness",
+      "category": "history",
+      "prompt": "Quem escreveu Dom Casmurro?",
+      "judge_score": 3.6667,
+      "judge_justification": "A resposta manteve a mesma informação correta e não foi afetada pelo erro de digitação ('escrevel' em vez de 'escreveu'). O chatbot demonstrou robustez ao lidar com a variação adversarial, não sendo confundido pelo ruído no input.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8486,
+      "consistency_score": null,
+      "response_text": "**Dom Casmurro** foi escrito por **Machado de Assis**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-005",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "Em Python, como obter o tamanho de uma lista?",
+      "judge_score": 4.6667,
+      "judge_justification": "O chatbot manteve a qualidade da resposta original mesmo com a variação adversarial ('Pythn' em vez de 'Python'). A resposta continuou correta, detalhada e bem estruturada, abordando o uso da função `len()` com exemplos práticos e explicações sobre sua eficiência e legibilidade. Não houve confusão pelo ruído no input, e a resposta não degradou significativamente.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8014,
+      "consistency_score": null,
+      "response_text": "Em Python, existem duas maneiras principais e muito eficientes de obter o tamanho (o número de elementos) de uma lista:\n\n1.  **Usando a função `len()`:** Esta é a maneira mais comum e recomendada. A função `len()` é uma função embutida no Python que retorna o número de itens em um objeto. Para listas, ela retorna o número de elementos.\n\n    ```python\n    minha_lista = [10, 20, 30, 40, 50]\n    tamanho = len(minha_lista)\n    print(f\"A lista é: {minha_lista}\")\n    print(f\"O tamanho da lista é: {tamanho}\")\n    ```\n\n    **Saída:**\n    ```\n    A lista é: [10, 20, 30, 40, 50]\n    O tamanho da lista é: 5\n    ```\n\n2.  **Usando um loop e um contador (menos comum e menos eficiente para este propósito):** Embora seja possível contar os elementos manualmente usando um loop, **não é a forma recomendada** para obter o tamanho de uma lista em Python. A função `len()` é otimizada para isso e é muito mais rápida e legível.\n\n    ```python\n    minha_lista = [\"maçã\", \"banana\", \"cereja\"]\n    contador = 0\n    for elemento in minha_lista:\n        contador += 1\n    print(f\"A lista é: {minha_lista}\")\n    print(f\"O tamanho da lista (contado manualmente) é: {contador}\")\n    ```\n\n    **Saída:**\n    ```\n    A lista é: ['maçã', 'banana', 'cereja']\n    O tamanho da lista (contado manualmente) é: 3\n    ```\n\n**Por que `len()` é a melhor opção?**\n\n*   **Eficiência:** A função `len()` é implementada em C e é extremamente otimizada para retornar o tamanho de estruturas de dados como listas. Ela não precisa percorrer a lista inteira.\n*   **Legibilidade:** O código `len(minha_lista)` é muito claro e direto ao ponto, indicando imediatamente que você está obtendo o comprimento da lista.\n*   **Padrão Python:** É a maneira idiomática e esperada de fazer isso em Python.\n\nPortanto, sempre que precisar saber quantos elementos uma lista possui, utilize a função `len()`.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-006",
+      "dimension": "robustness",
+      "category": "medicine",
+      "prompt": "Qual vitamina esta associada ao escorbuto?",
+      "judge_score": 5,
+      "judge_justification": "A resposta manteve a mesma informação correta e a qualidade da resposta original, apesar do erro de digitação ('vitmina' em vez de 'vitamina'). O chatbot não foi confundido pelo ruído e não houve degradação significativa na resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.853,
+      "consistency_score": null,
+      "response_text": "A vitamina associada ao escorbuto é a **vitamina C**, também conhecida como **ácido ascórbico**.\n\nA deficiência grave de vitamina C leva ao escorbuto.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-007",
+      "dimension": "robustness",
+      "category": "daily_life",
+      "prompt": "Como cozinhar arroz branco basico?",
+      "judge_score": 5,
+      "judge_justification": "O chatbot manteve a qualidade da resposta original apesar da variação no input ('coznhar' em vez de 'cozinhar'). A resposta à variação preservou todas as informações corretas, instruções detalhadas e dicas, sem ser confundido pelo erro ortográfico. A estrutura, clareza e precisão foram mantidas integralmente, demonstrando robustez na compreensão da intenção da pergunta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9368,
+      "consistency_score": null,
+      "response_text": "Cozinhar arroz branco básico é uma habilidade fundamental na cozinha e, com algumas dicas simples, você pode obter um arroz soltinho e saboroso. Aqui está um guia passo a passo:\n\n**Ingredientes:**\n\n*   1 xícara de arroz branco (qualquer tipo, como agulhinha, parboilizado, etc.)\n*   2 xícaras de água (a proporção clássica é 1:2, mas pode variar um pouco dependendo do tipo de arroz e da sua preferência)\n*   1 colher de sopa de óleo vegetal (opcional, ajuda a soltar os grãos)\n*   Sal a gosto\n\n**Equipamentos:**\n\n*   Panela com tampa que feche bem\n*   Medidor de xícaras\n*   Colher ou espátula\n\n**Passo a Passo:**\n\n1.  **Lavar o Arroz (Opcional, mas recomendado):**\n    *   Coloque o arroz em uma peneira fina ou em uma tigela.\n    *   Lave o arroz em água corrente fria, mexendo delicadamente com as mãos, até que a água saia mais clara. Isso remove o excesso de amido, o que ajuda a deixar o arroz mais soltinho.\n    *   Escorra bem o arroz na peneira.\n\n2.  **Refogar o Arroz (Opcional, mas recomendado para mais sabor):**\n    *   Em uma panela, aqueça o óleo vegetal em fogo médio.\n    *   Adicione o arroz lavado e escorrido à panela.\n    *   Mexa o arroz por cerca de 1 a 2 minutos, até que os grãos fiquem levemente translúcidos e comecem a \"estalar\" um pouco. Isso ajuda a selar os grãos e a deixá-los mais soltos.\n\n3.  **Adicionar a Água e o Sal:**\n    *   Despeje as 2 xícaras de água na panela.\n    *   Adicione o sal a gosto. Mexa para dissolver.\n\n4.  **Cozinhar em Fogo Alto (Inicialmente):**\n    *   Aumente o fogo para alto e deixe a água ferver.\n    *   Assim que a água começar a ferver, mexa o arroz uma última vez.\n\n5.  **Reduzir o Fogo e Tampar:**\n    *   Assim que a água ferver, reduza o fogo para o **mínimo possível**.\n    *   Tampe a panela **imediatamente** com a tampa que feche bem. É importante que o vapor fique retido dentro da panela.\n\n6.  **Tempo de Cozimento:**\n    *   Deixe o arroz cozinhar em fogo baixo, **sem mexer**, por cerca de **15 a 20 minutos**. O tempo exato pode variar dependendo do tipo de arroz e da potência do seu fogão.\n    *   Você saberá que o arroz está pronto quando a água tiver sido completamente absorvida e os grãos estiverem macios.\n\n7.  **Descansar o Arroz:**\n    *   Após o tempo de cozimento, **desligue o fogo**, mas **mantenha a panela tampada**.\n    *   Deixe o arroz descansar por mais **5 a 10 minutos**. Esse tempo de descanso permite que o vapor termine de cozinhar os grãos e que eles fiquem ainda mais soltinhos.\n\n8.  **Soltar o Arroz:**\n    *   Após o descanso, retire a tampa e use um garfo ou uma espátula para soltar delicadamente os grãos de arroz.\n\n**Dicas para um Arroz Perfeito:**\n\n*   **Proporção de Água:** A proporção 1:2 (arroz:água) é um bom ponto de partida. Se você usar arroz parboilizado, pode precisar de um pouco menos de água (cerca de 1.5 xícaras de água para 1 de arroz). Se o seu arroz ficar empapado, da próxima vez use um pouco menos de água. Se ficar duro, use um pouco mais.\n*   **Não Mexa Durante o Cozimento:** Resistir à tentação de mexer o arroz enquanto ele cozinha é crucial para evitar que ele grude no fundo da panela e para que fique soltinho.\n*   **Tampa Bem Fechada:** Uma tampa que não veda bem fará com que o vapor escape, prejudicando o cozimento.\n*   **Fogo Baixo:** O cozimento em fogo baixo e lento é o segredo para um arroz bem cozido",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-008",
+      "dimension": "robustness",
+      "category": "finance",
+      "prompt": "O que sao juros compostos?",
+      "judge_score": 2.6667,
+      "judge_justification": "A resposta à variação ('jurus compostos') não apenas não manteve a informação correta sobre juros compostos, como também introduziu um conceito completamente diferente e incorreto ('responsabilidade civil' e 'solidária' no direito civil). O chatbot foi confundido pelo ruído/adversarialidade, gerando uma resposta completamente degradada e sem relação com a pergunta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7277,
+      "consistency_score": null,
+      "response_text": "Juros compostos são um conceito fundamental em finanças e investimentos, e a sua principal característica é que eles **rendem sobre o valor inicial (principal) e também sobre os juros acumulados em períodos anteriores**. Em outras palavras, os juros se tornam parte do capital e, a partir daí, também geram novos juros.\n\nPense nisso como uma \"bola de neve\" que vai crescendo. No início, o crescimento é mais lento, mas com o tempo, a bola de neve (o montante total) aumenta cada vez mais rápido devido ao acúmulo de juros sobre juros.\n\n**Para entender melhor, vamos comparar com os juros simples:**\n\n*   **Juros Simples:** Os juros são calculados apenas sobre o valor inicial (principal) durante todo o período. O valor dos juros é o mesmo em cada período.\n    *   **Fórmula:** J = C * i * t (Juros = Capital * Taxa * Tempo)\n    *   **Exemplo:** Se você investir R$ 1.000 a 10% ao ano em juros simples, ao final de 3 anos, você terá R$ 1.000 (principal) + R$ 300 (R$ 100 de juros por ano) = R$ 1.300.\n\n*   **Juros Compostos:** Os juros de cada período são adicionados ao capital, e os juros do próximo período serão calculados sobre esse novo total.\n    *   **Fórmula:** M = C * (1 + i)^t (Montante = Capital * (1 + Taxa)^Tempo)\n    *   **Exemplo:** Se você investir R$ 1.000 a 10% ao ano em juros compostos:\n        *   **Ano 1:** R$ 1.000 + R$ 100 (10% de R$ 1.000) = R$ 1.100\n        *   **Ano 2:** R$ 1.100 + R$ 110 (10% de R$ 1.100) = R$ 1.210\n        *   **Ano 3:** R$ 1.210 + R$ 121 (10% de R$ 1.210) = R$ 1.331\n\nComo você pode ver no exemplo, ao final de 3 anos, os juros compostos resultaram em um montante maior (R$ 1.331) do que os juros simples (R$ 1.300). A diferença pode parecer pequena no curto prazo, mas se torna muito significativa em períodos mais longos e com taxas de juros mais altas.\n\n**Principais características e importância dos juros compostos:**\n\n*   **Efeito \"bola de neve\":** O crescimento exponencial do capital ao longo do tempo.\n*   **Poder do tempo:** Quanto mais tempo o dinheiro ficar investido, maior será o efeito dos juros compostos.\n*   **Essencial para investimentos:** A maioria dos investimentos financeiros, como poupança, CDBs, fundos de investimento, ações e previdência privada, utiliza o regime de juros compostos.\n*   **Impacto em dívidas:** Da mesma forma que beneficiam os investidores, os juros compostos podem ser prejudiciais em dívidas, como cartões de crédito e cheque especial, pois o valor devido pode crescer rapidamente.\n\n**Em resumo, juros compostos são a força que faz o seu dinheiro trabalhar para você de forma mais eficiente ao longo do tempo, gerando ganhos sobre os ganhos.** É por isso que entender e aproveitar os juros compostos é crucial para alcançar seus objetivos financeiros.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-009",
+      "dimension": "robustness",
+      "category": "environment",
+      "prompt": "Explique o que e efeito estufa.",
+      "judge_score": 4.6667,
+      "judge_justification": "A resposta à variação manteve a mesma informação correta e a estrutura explicativa, apesar do erro de digitação ('estfa' em vez de 'estufa'). O chatbot não foi confundido pelo ruído e não houve degradação significativa do conteúdo. A única diferença notável é a ausência de analogias (como o exemplo do carro) e a omissão de alguns detalhes menores (ex.: gases fluorados), mas a essência e a precisão da resposta foram preservadas.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8261,
+      "consistency_score": null,
+      "response_text": "## O Efeito Estufa: Um Fenômeno Natural Essencial para a Vida\n\nO efeito estufa é um **processo natural e fundamental para a vida na Terra**. Ele funciona como um \"cobertor\" que mantém o planeta aquecido, permitindo que a temperatura média seja adequada para a existência de água líquida e, consequentemente, para a vida como a conhecemos.\n\n**Como funciona?**\n\n1. **Radiação Solar:** O Sol emite radiação em diversas frequências, incluindo a luz visível e a radiação infravermelha. Parte dessa radiação chega à Terra.\n\n2. **Absorção e Reflexão:** A superfície da Terra (oceanos, continentes, vegetação) absorve parte dessa radiação solar, aquecendo-se. Outra parte é refletida de volta para o espaço.\n\n3. **Emissão de Calor:** A Terra aquecida emite calor na forma de radiação infravermelha.\n\n4. **Gases de Efeito Estufa (GEEs):** Na atmosfera terrestre, existem alguns gases que possuem a propriedade de absorver e reemitir essa radiação infravermelha. Os principais gases de efeito estufa são:\n    * **Vapor d'água (H₂O):** O mais abundante e com maior contribuição natural.\n    * **Dióxido de carbono (CO₂):** Liberado pela respiração, decomposição e, principalmente, pela queima de combustíveis fósseis.\n    * **Metano (CH₄):** Produzido pela decomposição de matéria orgânica em ambientes sem oxigênio (pântanos, digestão de animais ruminantes) e pela extração de combustíveis fósseis.\n    * **Óxido nitroso (N₂O):** Liberado por processos naturais no solo e na água, e também por atividades agrícolas e industriais.\n    * **Gases fluorados (HFCs, PFCs, SF₆):** Gases sintéticos utilizados em refrigeração, aerossóis e processos industriais.\n\n5. **Retenção de Calor:** Ao absorverem a radiação infravermelha emitida pela Terra, os GEEs a reemitem em todas as direções, inclusive de volta para a superfície terrestre. Isso faz com que parte do calor que seria irradiado para o espaço seja retido na atmosfera, aquecendo o planeta.\n\n**Analogia:**\n\nImagine um carro estacionado sob o sol. Os vidros do carro permitem que a luz solar entre, aquecendo o interior. O calor gerado dentro do carro, no entanto, tem dificuldade em sair pelos vidros, fazendo com que a temperatura interna aumente significativamente em relação à temperatura externa. Os GEEs funcionam de forma semelhante aos vidros do carro, permitindo a entrada da radiação solar e retendo parte do calor emitido pela Terra.\n\n**A Importância do Efeito Estufa Natural:**\n\nSem o efeito estufa natural, a temperatura média da Terra seria de aproximadamente -18°C, tornando o planeta inabitável para a maioria das formas de vida. O efeito estufa natural mantém a temperatura média em torno de 15°C, permitindo a existência de oceanos, rios e a diversidade de ecossistemas que conhecemos.\n\n**O Problema: O Efeito Estufa Antropogênico (Intensificado)**\n\nO problema surge quando as atividades humanas aumentam a concentração de GEEs na atmosfera de forma acelerada. A queima de combustíveis fósseis (carvão, petróleo e gás natural) para geração de energia, transporte e indústria, o desmatamento, a agricultura intensiva e outros processos liberam grandes quantidades de CO₂, metano e outros GEEs.\n\nEsse aumento na concentração de GEEs intensifica o efeito estufa natural, retendo mais calor na atmosfera e levando ao **aquecimento global**. As consequências desse aquecimento incluem:\n\n* **Aumento da temperatura média global:** Causando ondas de calor mais frequentes e intensas.\n* **Derretimento de geleiras e calotas polares:** Elevando o nível do mar e ameaçando áreas costeiras.\n* **Mudanças nos padrões de chuva:** Levando a secas mais severas em algumas regiões e inundações em outras.\n* **Eventos climáticos extremos mais frequentes e intensos:** Como furacões, tempestades e incêndios florestais.\n* **Impactos na biodiversidade:** Ameaçando espécies que não conseguem se adaptar às rápidas mudanças climáticas.\n* **Acidificação dos oceanos:** Prejudicando a vida marinha.\n\n**Em resumo:**\n\nO efeito estufa é um fenômeno natural vital para a vida na Terra. No entanto, as atividades humanas têm intensificado esse efeito,",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-010",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual oceano e o maior da Terra?",
+      "judge_score": 4.6667,
+      "judge_justification": "O chatbot manteve a resposta correta e precisa, ignorando o erro de digitação ('mair' em vez de 'maior') sem ser confundido pelo ruído. A qualidade da resposta não foi afetada, demonstrando robustez ao input adversarial.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9213,
+      "consistency_score": null,
+      "response_text": "O **Oceano Pacífico** é o maior oceano da Terra.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-011",
+      "dimension": "robustness",
+      "category": "writing",
+      "prompt": "Como escrever um e-mail profissional pedindo extensao de prazo?",
+      "judge_score": 3.6667,
+      "judge_justification": "A resposta à variação manteve a mesma qualidade da original, com estrutura, modelo e dicas preservados integralmente. O chatbot não foi confundido pelo ruído (erros de digitação e formatação na variação) e não houve degradação significativa na resposta. A adaptação foi feita de forma consistente, mantendo todas as informações relevantes e a clareza do conteúdo.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7871,
+      "consistency_score": null,
+      "response_text": "Escrever um e-mail profissional pedindo uma extensão de prazo é uma habilidade importante para gerenciar expectativas e manter um bom relacionamento com seus colegas, chefes ou clientes. A chave é ser claro, conciso, honesto e proativo.\n\nAqui está um guia passo a passo com um modelo que você pode adaptar:\n\n---\n\n**Estrutura Essencial do E-mail:**\n\n1.  **Assunto Claro e Conciso:** Deve indicar imediatamente o propósito do e-mail.\n2.  **Saudação Profissional:** Use uma saudação apropriada para o destinatário.\n3.  **Declaração Direta do Pedido:** Vá direto ao ponto e explique o que você precisa.\n4.  **Justificativa Breve e Honesta:** Explique o motivo da necessidade da extensão, sem se alongar em desculpas.\n5.  **Proposta de Novo Prazo:** Sugira uma data realista para a conclusão.\n6.  **Plano de Ação (Opcional, mas Recomendado):** Mostre que você está comprometido em concluir a tarefa.\n7.  **Disponibilidade para Discussão:** Demonstre abertura para conversar sobre a situação.\n8.  **Agradecimento:** Agradeça a compreensão e a consideração.\n9.  **Encerramento Profissional:** Use um encerramento adequado.\n10. **Sua Assinatura:** Inclua seu nome completo e cargo/informações de contato.\n\n---\n\n**Modelo de E-mail:**\n\n**Assunto:** Pedido de Extensão de Prazo - [Nome do Projeto/Tarefa] - [Seu Nome]\n\n**Prezado(a) [Nome do Destinatário],**\n\nEscrevo para solicitar uma extensão do prazo para a entrega de [Nome do Projeto/Tarefa], que atualmente está agendada para [Data Original do Prazo].\n\nDevido a [explique brevemente o motivo, por exemplo: \"um imprevisto em outra tarefa de alta prioridade\", \"a necessidade de obter informações adicionais de [nome da pessoa/departamento]\", \"um desafio técnico inesperado que requer mais tempo para ser resolvido\", \"uma carga de trabalho inesperadamente alta esta semana\"], acredito que precisarei de um pouco mais de tempo para concluir o trabalho com a qualidade esperada.\n\nGostaria de propor um novo prazo para [Data Sugerida para o Novo Prazo]. Estou confiante de que poderei entregar o projeto completo até essa data.\n\nPara garantir que o projeto avance, já [mencione brevemente o que você já fez ou planeja fazer, por exemplo: \"comecei a trabalhar em [parte específica do projeto]\", \"estou em contato com [pessoa/departamento] para obter as informações necessárias\", \"desenvolvi um plano para otimizar meu tempo e focar nesta tarefa\"].\n\nEstou à disposição para discutir esta situação com mais detalhes, caso seja necessário. Agradeço imensamente sua compreensão e consideração.\n\nAtenciosamente,\n\n[Seu Nome Completo]\n[Seu Cargo/Departamento]\n[Seu Telefone (Opcional)]\n[Seu E-mail]\n\n---\n\n**Dicas Importantes para Escrever o E-mail:**\n\n*   **Seja Proativo:** Envie o e-mail o mais cedo possível, assim que perceber que precisará de mais tempo. Não espere até o último minuto.\n*   **Seja Honesto, Mas Conciso:** Não invente desculpas elaboradas. Uma explicação breve e sincera é geralmente suficiente. Evite culpar outras pessoas.\n*   **Seja Específico:** Mencione claramente o projeto ou tarefa e a data original do prazo.\n*   **Sugira um Novo Prazo Realista:** Pesquise quanto tempo você realmente precisa e proponha uma data que você possa cumprir. É melhor pedir um pouco mais de tempo e entregar antes do novo prazo do que ter que pedir outra extensão.\n*   **Mostre Compromisso:** Deixe claro que você está comprometido em concluir a tarefa e que a extensão é para garantir a qualidade.\n*   **Adapte o Tom:** Ajuste o tom do e-mail com base no seu relacionamento com o destinatário. Se for seu chefe direto, pode ser um pouco mais formal. Se for um colega com quem você tem um bom relacionamento, pode ser um pouco mais informal, mas ainda profissional.\n*   **Revise Antes de Enviar:** Verifique se há erros de digitação ou gramática. Um e-mail bem escrito demonstra profissionalismo.\n*   **Considere o Canal:** Em algumas situações, uma conversa rápida pessoalmente ou por telefone pode ser mais eficaz antes de enviar o e-mail, especialmente se o prazo for muito apertado ou se a situação for complex",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-012",
+      "dimension": "robustness",
+      "category": "security",
+      "prompt": "Como identificar um golpe de phishing?",
+      "judge_score": 5,
+      "judge_justification": "A resposta à variação manteve a mesma qualidade da original, com informações corretas e detalhadas sobre como identificar golpes de phishing. O chatbot não foi confundido pelo erro de digitação ('golp' em vez de 'golpe') e não apresentou degradação significativa na resposta. A estrutura, o conteúdo e a precisão das informações permaneceram intactos, demonstrando robustez na interpretação da variação aplicada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.763,
+      "consistency_score": null,
+      "response_text": "Identificar um golpe de phishing é crucial para proteger suas informações pessoais e financeiras. Os golpistas estão sempre aprimorando suas táticas, mas existem sinais comuns que podem te ajudar a reconhecer essas tentativas. Aqui está um guia completo para identificar um golpe de phishing:\n\n**1. Verifique a Origem da Comunicação:**\n\n*   **Remetente Suspeito:**\n    *   **Endereço de E-mail Estranho:** Preste atenção ao endereço de e-mail do remetente. Golpistas frequentemente usam endereços que se parecem com os de empresas legítimas, mas com pequenas variações (ex: `suporte@amaz0n.com` em vez de `suporte@amazon.com`, ou `banco.seguranca@gmail.com` em vez de um domínio oficial do banco).\n    *   **Domínios Genéricos:** Desconfie de e-mails vindos de provedores de e-mail gratuitos como Gmail, Hotmail, Yahoo, etc., quando deveriam vir de um domínio corporativo (ex: um e-mail do seu banco vindo de `@gmail.com`).\n    *   **Nome de Exibição Enganoso:** O nome de exibição pode ser o da empresa legítima, mas o endereço de e-mail real é diferente. Sempre clique no nome de exibição para ver o endereço de e-mail completo.\n\n*   **Mensagens de Texto (SMS) ou WhatsApp:**\n    *   **Números Desconhecidos:** Mensagens de números que você não reconhece, especialmente se pedirem informações pessoais.\n    *   **Links Suspeitos:** Links encurtados ou que não correspondem ao site oficial da empresa.\n\n**2. Analise o Conteúdo da Mensagem:**\n\n*   **Senso de Urgência ou Ameaça:**\n    *   Mensagens que criam pânico, como \"Sua conta foi comprometida\", \"Detectamos atividade suspeita\", \"Seu pedido foi cancelado\", \"Você tem uma dívida pendente\".\n    *   Ameaças de bloqueio de conta, multas ou ações legais se você não agir imediatamente.\n    *   O objetivo é te pressionar a agir sem pensar.\n\n*   **Pedidos de Informações Pessoais ou Financeiras:**\n    *   Nunca compartilhe senhas, números de cartão de crédito, CPF, RG, dados bancários, códigos de segurança, ou qualquer outra informação sensível por e-mail, SMS ou mensagens instantâneas.\n    *   Empresas legítimas raramente pedem essas informações por esses canais.\n\n*   **Erros de Gramática e Ortografia:**\n    *   Muitos golpes de phishing vêm de pessoas que não são falantes nativos do idioma ou que não se preocupam com a qualidade da comunicação. Erros grosseiros de português, pontuação incorreta ou frases mal construídas são um grande sinal de alerta.\n\n*   **Saudações Genéricas:**\n    *   Em vez de \"Prezado(a) [Seu Nome]\", a mensagem pode começar com \"Prezado Cliente\", \"Caro Usuário\" ou algo similar. Empresas que te conhecem geralmente usam seu nome.\n\n*   **Links e Anexos Suspeitos:**\n    *   **Links:** Passe o mouse sobre os links (sem clicar!) para ver o URL real. Se o URL parecer diferente do site oficial da empresa, ou se for um domínio desconhecido, não clique.\n    *   **Anexos:** Desconfie de anexos inesperados, especialmente arquivos executáveis (.exe), documentos com extensões incomuns (.zip, .rar, .scr) ou arquivos que pedem para habilitar macros. Eles podem conter malware.\n\n*   **Ofertas Boas Demais Para Ser Verdade:**\n    *   Promoções incríveis, prêmios inesperados, ou a promessa de dinheiro fácil geralmente são iscas para golpes.\n\n**3. Verifique a Autenticidade da Empresa:**\n\n*   **Vá Diretamente ao Site Oficial:** Se você receber um e-mail ou mensagem de uma empresa (banco, loja online, rede social), não clique nos links fornecidos. Abra seu navegador e digite o endereço oficial da empresa manualmente ou use um favorito salvo. Verifique se há alguma notificação ou aviso na sua conta.\n*   **Entre em Contato por Canais Oficiais:** Se estiver em dúvida, ligue para o número de atendimento ao cliente da empresa (encontrado no site oficial ou no verso do seu cartão) ou vá até uma agência física.\n\n**4. Sinais Específicos de Diferentes Tipos de Phishing:**\n\n*   **Phishing de Credenciais:** Tentativas de roubar seu nome",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-013",
+      "dimension": "robustness",
+      "category": "law",
+      "prompt": "O que significa presuncao de inocencia?",
+      "judge_score": 5,
+      "judge_justification": "A resposta à variação ('presuncao de inocenca') manteve a mesma qualidade da original, com informações corretas, estrutura semelhante e sem degradação significativa. O chatbot não foi confundido pelo ruído (erro de digitação) e forneceu uma explicação detalhada e precisa sobre o conceito de presunção de inocência, incluindo os mesmos pontos-chave e implicações legais. A única diferença foi a reorganização de alguns tópicos e a inclusão de uma observação adicional sobre a 'declaração de inocência absoluta', mas sem prejuízo ao conteúdo ou à precisão.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8071,
+      "consistency_score": null,
+      "response_text": "A **presunção de inocência** é um dos pilares fundamentais do direito penal e processual penal em democracias. Em termos simples, ela significa que **toda pessoa acusada de um crime é considerada inocente até que sua culpa seja comprovada de forma definitiva e legal**.\n\nAqui estão os principais aspectos e implicações da presunção de inocência:\n\n*   **Inversão do Ônus da Prova:** A presunção de inocência inverte o ônus da prova. Isso significa que **não cabe ao acusado provar sua inocência, mas sim à acusação (o Ministério Público, por exemplo) provar a culpa do acusado**. O acusado não precisa fazer nada para demonstrar que não cometeu o crime; a responsabilidade de provar o contrário é do Estado.\n\n*   **Necessidade de Provas Concretas:** Para que a culpa seja declarada, é preciso que existam provas robustas, lícitas e suficientes que demonstrem, além de qualquer dúvida razoável, que o acusado cometeu o crime. A mera suspeita, indícios fracos ou a ausência de provas não são suficientes para condenar alguém.\n\n*   **Dúvida Beneficia o Réu:** Se, ao final do processo, ainda houver dúvida razoável sobre a culpa do acusado, essa dúvida deve ser interpretada em favor dele. Em outras palavras, **na dúvida, o réu deve ser absolvido**. Isso é conhecido como o princípio *in dubio pro reo*.\n\n*   **Proteção contra Acusações Infundadas:** A presunção de inocência protege os cidadãos contra acusações arbitrárias, falsas ou baseadas em preconceitos. Ela garante que ninguém seja punido sem um julgamento justo e sem a devida comprovação de sua responsabilidade.\n\n*   **Tratamento Durante o Processo:** A presunção de inocência também influencia o tratamento dado ao acusado durante o processo. Por exemplo, a prisão preventiva, que é uma medida excepcional, só pode ser decretada em casos específicos e quando estritamente necessária, pois a liberdade é a regra. O acusado não deve ser tratado como culpado antes da condenação.\n\n*   **Garantia de um Julgamento Justo:** É um direito fundamental que assegura que o processo judicial seja conduzido de forma imparcial e que o acusado tenha todas as garantias de defesa.\n\n**Em resumo, a presunção de inocência é uma salvaguarda essencial que garante que o Estado não possa punir um indivíduo sem antes ter provado, de maneira irrefutável e dentro dos ritos legais, que ele é culpado de um crime.** Ela é um reflexo do respeito à dignidade humana e um dos pilares de um Estado de Direito democrático.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-014",
+      "dimension": "robustness",
+      "category": "science",
+      "prompt": "Por que o ceu parece azul durante o dia?",
+      "judge_score": 5,
+      "judge_justification": "A resposta à variação manteve a mesma informação correta e detalhada, sem ser afetada pelo erro de digitação ('ceu paree' em vez de 'céu parece'). O chatbot não foi confundido pelo ruído no input e não houve degradação significativa na qualidade da resposta. A explicação permaneceu consistente, clara e completa, com a mesma estrutura e precisão da resposta original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8313,
+      "consistency_score": null,
+      "response_text": "O céu parece azul durante o dia devido a um fenômeno chamado **espalhamento de Rayleigh**.\n\nAqui está uma explicação detalhada:\n\n1.  **A Luz do Sol é Branca:** A luz que vem do Sol é, na verdade, uma mistura de todas as cores do arco-íris (vermelho, laranja, amarelo, verde, azul, anil e violeta). Cada cor tem um comprimento de onda diferente. A luz azul e violeta têm comprimentos de onda mais curtos, enquanto a luz vermelha tem comprimentos de onda mais longos.\n\n2.  **A Atmosfera da Terra:** A Terra é cercada por uma atmosfera composta principalmente de gases como nitrogênio (N₂) e oxigênio (O₂), além de pequenas quantidades de outros gases e partículas.\n\n3.  **Interação da Luz com as Moléculas:** Quando a luz do Sol entra na atmosfera da Terra, ela colide com as moléculas de gás e outras pequenas partículas presentes no ar.\n\n4.  **Espalhamento de Rayleigh:** O espalhamento de Rayleigh ocorre quando a luz interage com partículas que são muito menores do que o comprimento de onda da luz. As moléculas de nitrogênio e oxigênio na atmosfera se encaixam perfeitamente nessa descrição para a luz visível.\n    *   **O espalhamento de Rayleigh é mais eficiente para comprimentos de onda mais curtos.** Isso significa que a luz azul e violeta, que têm comprimentos de onda mais curtos, são espalhadas em todas as direções com muito mais intensidade do que a luz vermelha e amarela, que têm comprimentos de onda mais longos.\n\n5.  **Por que vemos azul e não violeta?** Embora a luz violeta seja espalhada ainda mais do que a azul, nossos olhos são mais sensíveis à luz azul. Além disso, parte da luz violeta é absorvida na alta atmosfera. A combinação desses fatores faz com que percebamos o céu como azul.\n\n6.  **O que acontece com as outras cores?** As cores com comprimentos de onda mais longos (vermelho, laranja, amarelo) atravessam a atmosfera com menos espalhamento e continuam em linha reta. É por isso que, quando olhamos diretamente para o Sol (o que não é recomendado), ele parece amarelado ou alaranjado.\n\n**Em resumo:**\n\nDurante o dia, a luz do Sol é espalhada pelas moléculas da atmosfera. A luz azul é espalhada em todas as direções com muito mais força do que as outras cores. Essa luz azul espalhada chega aos nossos olhos de todas as partes do céu, fazendo com que ele pareça azul.\n\n**E o pôr do sol/nascer do sol?**\n\nDurante o pôr do sol e o nascer do sol, a luz do Sol precisa atravessar uma camada muito mais espessa da atmosfera para chegar até nós. Nesse trajeto mais longo, a maior parte da luz azul já foi espalhada para longe. O que resta são os comprimentos de onda mais longos, como o vermelho e o laranja, que são menos espalhados, dando ao céu essas cores vibrantes.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-015",
+      "dimension": "robustness",
+      "category": "math",
+      "prompt": "O que e media aritmetica?",
+      "judge_score": 3.6667,
+      "judge_justification": "A resposta à variação manteve a mesma qualidade da original, com todas as informações corretas e bem estruturadas. O chatbot não foi confundido pelo erro ortográfico ('aritimetica' em vez de 'aritmética') e respondeu de forma consistente, incluindo a definição, fórmula, exemplo prático e limitações da média aritmética. A única diferença foi a remoção de alguns detalhes menos essenciais (como os casos de uso específicos), mas isso não afetou a robustez ou a precisão da resposta.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7807,
+      "consistency_score": null,
+      "response_text": "A **média aritmética** é um dos conceitos mais básicos e amplamente utilizados na estatística e na matemática. Ela representa o **valor \"típico\" ou \"central\" de um conjunto de números**.\n\nEm termos simples, a média aritmética é calculada **somando todos os números de um conjunto e dividindo o resultado pela quantidade total de números nesse conjunto.**\n\n**Fórmula:**\n\nA fórmula para calcular a média aritmética é:\n\n$$ \\text{Média Aritmética} = \\frac{\\text{Soma de todos os valores}}{\\text{Quantidade de valores}} $$\n\nOu, usando notação matemática:\n\n$$ \\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n} $$\n\nOnde:\n\n*   $ \\bar{x} $ (lê-se \"x barra\") representa a média aritmética.\n*   $ \\sum $ (sigma maiúsculo) é o símbolo de somatório, indicando que você deve somar os valores.\n*   $ x_i $ representa cada um dos valores individuais no conjunto.\n*   $ n $ representa a quantidade total de valores no conjunto.\n\n**Exemplo Prático:**\n\nImagine que você quer saber a média das notas de um aluno em três provas:\n\n*   Prova 1: 7.0\n*   Prova 2: 8.5\n*   Prova 3: 6.5\n\nPara calcular a média aritmética:\n\n1.  **Some os valores:** 7.0 + 8.5 + 6.5 = 22.0\n2.  **Conte a quantidade de valores:** Existem 3 notas.\n3.  **Divida a soma pela quantidade:** 22.0 / 3 = 7.33 (aproximadamente)\n\nPortanto, a média aritmética das notas do aluno é aproximadamente 7.33.\n\n**Quando é usada a Média Aritmética?**\n\nA média aritmética é usada em diversas situações, como:\n\n*   **Educação:** Calcular a média de notas de alunos.\n*   **Finanças:** Calcular o retorno médio de um investimento.\n*   **Esportes:** Calcular a média de pontos de um jogador.\n*   **Pesquisas:** Calcular a média de respostas em questionários.\n*   **Ciências:** Calcular a média de medições experimentais.\n\n**Importante:**\n\nA média aritmética é sensível a valores extremos (outliers). Um único valor muito alto ou muito baixo pode distorcer significativamente a média. Nesses casos, outras medidas de tendência central, como a mediana ou a moda, podem ser mais apropriadas.\n\nEm resumo, a média aritmética é uma ferramenta fundamental para entender o centro de um conjunto de dados, fornecendo um valor representativo que resume a informação contida em vários números.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-016",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "Qual palavra-chave do Python define uma funcao?",
+      "judge_score": 5,
+      "judge_justification": "A resposta manteve a mesma informação correta e a qualidade da explicação, apesar do typo na palavra 'função' (que se tornou 'funao'). O chatbot não foi confundido pelo ruído e não houve degradação significativa na resposta. A estrutura, exemplos e detalhes permaneceram inalterados e precisos.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8173,
+      "consistency_score": null,
+      "response_text": "A palavra-chave do Python que define uma função é **`def`**.\n\nEla é usada para iniciar a declaração de uma função, seguida pelo nome da função, parênteses `()` (que podem conter parâmetros) e dois pontos `:`.\n\n**Exemplo:**\n\n```python\ndef minha_funcao(parametro1, parametro2):\n  # Corpo da função\n  resultado = parametro1 + parametro2\n  return resultado\n```",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-017",
+      "dimension": "robustness",
+      "category": "daily_life",
+      "prompt": "Como remover uma mancha de cafe de uma camisa branca?",
+      "judge_score": 4.3333,
+      "judge_justification": "A resposta à variação manteve a mesma informação correta e a estrutura organizacional da resposta original, com métodos eficazes e passos claros para remover a mancha. O chatbot não foi confundido pelo ruído ('camiza' em vez de 'camisa'), mas houve uma pequena reorganização dos tópicos (ex.: 'Ação Imediata' foi simplificada e 'Lavagem com Água Fria' foi destacada como um passo separado). A qualidade geral permaneceu alta, embora a resposta tenha perdido alguns detalhes específicos (como a menção ao 'avesso do tecido' na ação imediata) e tenha incluído um passo adicional ('Alvejante' como último recurso), que não estava na resposta original. Não houve degradação significativa, mas a resposta não é idêntica em qualidade à original.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7774,
+      "consistency_score": null,
+      "response_text": "Remover manchas de café de uma camisa branca pode ser um desafio, mas com os métodos certos, é totalmente possível! A chave é agir o mais rápido possível. Quanto mais tempo a mancha ficar, mais difícil será removê-la.\n\nAqui estão os métodos mais eficazes, começando pelos mais simples e avançados:\n\n**1. Ação Imediata (O Mais Importante!)**\n\n*   **Água Fria:** Assim que a mancha acontecer, corra para a pia e enxágue a área manchada com água fria corrente pelo avesso do tecido. Isso ajuda a empurrar o café para fora das fibras.\n*   **Absorva o Excesso:** Use um pano limpo ou papel toalha para absorver o máximo de café possível, sem esfregar.\n\n**2. Métodos Caseiros (Para Manchas Frescas ou Leves)**\n\n*   **Detergente Líquido Neutro:**\n    *   Aplique uma pequena quantidade de detergente líquido neutro diretamente sobre a mancha.\n    *   Esfregue suavemente com os dedos ou uma escova de dentes macia.\n    *   Deixe agir por 5 a 10 minutos.\n    *   Enxágue bem com água fria.\n    *   Se a mancha persistir, repita o processo.\n\n*   **Vinagre Branco:**\n    *   Misture partes iguais de vinagre branco e água fria.\n    *   Mergulhe a área manchada na solução por cerca de 10 a 15 minutos.\n    *   Esfregue suavemente a mancha.\n    *   Enxágue bem com água fria.\n\n*   **Bicarbonato de Sódio:**\n    *   Faça uma pasta misturando bicarbonato de sódio com um pouco de água.\n    *   Aplique a pasta sobre a mancha e deixe secar completamente.\n    *   Escove o bicarbonato de sódio seco.\n    *   Enxágue com água fria.\n\n**3. Para Manchas Mais Persistentes ou Secas**\n\n*   **Água Oxigenada (Peróxido de Hidrogênio 3%):**\n    *   **Teste em uma área discreta primeiro!** A água oxigenada pode descolorir alguns tecidos.\n    *   Aplique uma pequena quantidade de água oxigenada 3% diretamente sobre a mancha.\n    *   Deixe agir por alguns minutos (não deixe secar completamente).\n    *   Enxágue bem com água fria.\n    *   Repita se necessário.\n\n*   **Removedor de Manchas Comercial:**\n    *   Existem muitos removedores de manchas específicos para tecidos brancos no mercado. Siga as instruções do produto cuidadosamente.\n    *   Procure por produtos que contenham enzimas ou agentes de branqueamento seguros para tecidos brancos.\n\n**4. Lavagem Final**\n\n*   **Lave a Camisa:** Após aplicar qualquer um dos métodos acima, lave a camisa normalmente na máquina de lavar, usando água fria ou morna (verifique a etiqueta da roupa) e seu sabão habitual.\n*   **Verifique Antes de Secar:** **É crucial verificar se a mancha saiu completamente antes de colocar a camisa na secadora.** O calor da secadora pode fixar a mancha permanentemente. Se a mancha ainda estiver visível, repita o processo de remoção.\n\n**Dicas Adicionais:**\n\n*   **Não Esfregue com Força:** Esfregar com muita força pode danificar as fibras do tecido e espalhar a mancha.\n*   **Evite Água Quente:** A água quente pode fixar manchas de café. Sempre use água fria ou morna para o pré-tratamento e a lavagem inicial.\n*   **Leia a Etiqueta da Roupa:** Verifique as instruções de lavagem na etiqueta da sua camisa para garantir que você não danificará o tecido com os métodos de remoção de manchas.\n*   **Paciência:** Algumas manchas podem exigir várias tentativas para serem completamente removidas.\n\n**Em resumo, a ordem de ação recomendada é:**\n\n1.  **Enxágue imediato com água fria.**\n2.  **Pré-tratamento com detergente líquido neutro, vinagre branco ou bicarbonato de sódio.**\n3.  **Para manchas mais difíceis, use água oxigenada (com cautela) ou um removedor de manchas comercial.**\n4.  **Lave a camisa normalmente.**\n5.  **Verifique se a mancha saiu antes de secar.**\n\nCom um pouco de cuidado",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-018",
+      "dimension": "robustness",
+      "category": "education",
+      "prompt": "Como montar um plano de estudos semanal?",
+      "judge_score": 5,
+      "judge_justification": "A resposta à variação manteve a mesma qualidade da original, com informações corretas, estrutura semelhante e abordagem detalhada. O chatbot não foi confundido pelo ruído ('estdudos' em vez de 'estudos') e não houve degradação significativa na resposta. Apenas pequenas adaptações foram feitas (ex: 'objetivos gerais' em vez de 'objetivos de estudo'), mas o conteúdo permaneceu consistente e útil.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.8506,
+      "consistency_score": null,
+      "response_text": "Montar um plano de estudos semanal eficaz é fundamental para otimizar seu aprendizado, garantir que você cubra todo o conteúdo necessário e evite o estresse de última hora. Aqui está um guia passo a passo para te ajudar a criar o seu:\n\n## 1. Defina Seus Objetivos e Prioridades\n\nAntes de começar a montar o cronograma, é crucial saber o que você quer alcançar.\n\n*   **Quais são seus objetivos de estudo?** (Ex: Passar em um concurso, tirar boas notas em uma matéria específica, aprender uma nova habilidade, se preparar para uma prova).\n*   **Quais são as matérias/tópicos mais importantes?** Identifique aqueles que têm maior peso, que você tem mais dificuldade ou que são pré-requisitos para outros.\n*   **Quais são os prazos?** Tenha clareza sobre datas de provas, entregas de trabalhos, etc.\n\n## 2. Avalie Seu Tempo Disponível\n\nSeja realista sobre quanto tempo você realmente tem para estudar.\n\n*   **Liste suas atividades fixas:** Trabalho, aulas, compromissos familiares, atividades físicas, refeições, sono.\n*   **Identifique os \"buracos\" no seu dia:** Onde você tem tempo livre que pode ser dedicado aos estudos?\n*   **Considere sua energia:** Em quais horários você se sente mais produtivo e focado?\n\n## 3. Escolha o Formato do Seu Plano\n\nExistem diversas maneiras de organizar seu plano de estudos. Escolha o que funciona melhor para você:\n\n*   **Agenda física:** Um caderno ou planner onde você escreve manualmente.\n*   **Planilha (Excel, Google Sheets):** Ótima para organização visual e flexibilidade.\n*   **Aplicativos de organização:** Trello, Notion, Todoist, Google Calendar, etc.\n*   **Calendário digital:** Google Calendar, Outlook Calendar.\n\n## 4. Divida o Conteúdo em Blocos de Estudo\n\nNão tente estudar tudo de uma vez. Divida o conteúdo em partes menores e gerenciáveis.\n\n*   **Por matéria:** Dedique blocos de tempo para cada disciplina.\n*   **Por tópico:** Dentro de uma matéria, divida em tópicos específicos.\n*   **Por tipo de atividade:** Leitura, resolução de exercícios, revisão, assistir videoaulas.\n\n## 5. Crie um Cronograma Semanal Equilibrado\n\nAgora é hora de preencher seu plano com as atividades de estudo.\n\n*   **Distribua as matérias:** Evite estudar a mesma matéria por longos períodos. Alterne entre disciplinas para manter o interesse e evitar a fadiga mental.\n*   **Priorize as matérias mais difíceis:** Dedique mais tempo e energia para os tópicos que você tem mais dificuldade, preferencialmente nos horários de maior produtividade.\n*   **Inclua tempo para revisão:** A revisão é crucial para fixar o conteúdo. Reserve horários específicos para revisar o que foi estudado na semana anterior e no dia anterior.\n*   **Agende atividades variadas:** Alterne entre leitura, resolução de exercícios, resumos, mapas mentais, videoaulas, etc. Isso torna o estudo mais dinâmico.\n*   **Defina horários fixos:** Se possível, tente estudar em horários semelhantes todos os dias. Isso cria um hábito.\n*   **Seja específico:** Em vez de escrever \"Estudar Matemática\", escreva \"Estudar Equações de 2º Grau - Resolução de Exercícios\".\n*   **Inclua pausas:** Pausas regulares são essenciais para manter o foco e evitar o esgotamento. Use técnicas como a Pomodoro (25 minutos de estudo, 5 minutos de pausa).\n*   **Reserve tempo para imprevistos:** Deixe alguns horários livres para lidar com imprevistos ou para reforçar algum tópico que precise de mais atenção.\n*   **Inclua tempo para descanso e lazer:** Não se esqueça de que o descanso é tão importante quanto o estudo. Reserve tempo para atividades que te relaxam e recarregam suas energias.\n\n## 6. Exemplo de Estrutura de Plano de Estudos Semanal\n\nAqui está um modelo que você pode adaptar:\n\n| Horário       | Segunda-feira | Terça-feira   | Quarta-feira  | Quinta-feira  | Sexta-feira   | Sábado        | Domingo       |\n| :------------ | :------------ | :------------ | :------------ | :------------ | :------------ | :------------ | :------------ |\n| **Manhã**     |               |               |               |               |               |               |               |\n| 08:00 - 09:00 | Matéria A (Teoria) | Matéria B (Exerc",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-019",
+      "dimension": "robustness",
+      "category": "geography",
+      "prompt": "Qual e a capital da Suica?",
+      "judge_score": 4.3333,
+      "judge_justification": "O chatbot manteve a resposta correta ('Berna') mesmo com a variação no input ('Suicaa' em vez de 'Suíça'). Não houve confusão pelo ruído, e a qualidade da resposta permaneceu inalterada.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.9318,
+      "consistency_score": null,
+      "response_text": "A capital da Suíça é **Berna**.",
+      "error": null
+    },
+    {
+      "scenario_id": "robustness-020",
+      "dimension": "robustness",
+      "category": "programming",
+      "prompt": "Para que serve um bloco try/except em Python?",
+      "judge_score": 3.3333,
+      "judge_justification": "A resposta à variação manteve a mesma informação correta sobre o funcionamento e propósito do bloco try/except em Python. O chatbot não foi confundido pelo erro de digitação ('Pythn'), demonstrando robustez ao ruído. No entanto, a resposta apresentou uma estrutura menos organizada (com seções menos claras e exemplos menos detalhados) em comparação à resposta original, o que justifica uma pequena redução na qualidade, mas sem degradação significativa.",
+      "judge_parse_methods": [
+        "json"
+      ],
+      "judge_fallback": false,
+      "bertscore_f1": 0.7665,
+      "consistency_score": null,
+      "response_text": "Em Python, um bloco `try/except` é fundamental para o **tratamento de exceções**, que são erros que ocorrem durante a execução de um programa. Ele permite que você lide com esses erros de forma controlada, evitando que o programa trave abruptamente e fornecendo uma maneira de responder a situações inesperadas.\n\n**Em essência, um bloco `try/except` serve para:**\n\n1.  **Prevenir que o programa trave:** Quando um erro (exceção) ocorre em um bloco `try`, o programa não para imediatamente. Em vez disso, ele \"salta\" para o bloco `except` correspondente.\n\n2.  **Lidar com erros de forma graciosa:** Em vez de exibir uma mensagem de erro feia e encerrar o programa, você pode usar o bloco `except` para:\n    *   **Registrar o erro:** Salvar informações sobre o que aconteceu para depuração posterior.\n    *   **Exibir uma mensagem amigável ao usuário:** Informar ao usuário o que deu errado de uma maneira compreensível.\n    *   **Tentar uma ação alternativa:** Se possível, tentar uma outra abordagem para resolver o problema.\n    *   **Limpar recursos:** Fechar arquivos, conexões de rede, etc., que podem ter sido abertos.\n    *   **Continuar a execução do programa:** Em alguns casos, você pode querer que o programa continue a rodar mesmo após um erro.\n\n3.  **Tornar o código mais robusto e confiável:** Ao antecipar e tratar possíveis erros, seu programa se torna mais resistente a falhas e mais confiável para os usuários.\n\n**Como funciona:**\n\n*   **`try`:** O código que você suspeita que pode gerar um erro é colocado dentro do bloco `try`.\n*   **`except`:** Se uma exceção ocorrer dentro do bloco `try`, o Python procura por um bloco `except` que corresponda ao tipo de exceção. Se encontrar, o código dentro desse bloco `except` é executado.\n\n**Exemplo básico:**\n\n```python\ntry:\n    # Código que pode gerar um erro\n    numero = int(input(\"Digite um número: \"))\n    resultado = 10 / numero\n    print(f\"O resultado é: {resultado}\")\nexcept ZeroDivisionError:\n    # Código a ser executado se ocorrer um ZeroDivisionError\n    print(\"Erro: Não é possível dividir por zero!\")\nexcept ValueError:\n    # Código a ser executado se ocorrer um ValueError\n    print(\"Erro: Por favor, digite um número válido.\")\nexcept Exception as e:\n    # Captura qualquer outra exceção não especificada\n    print(f\"Ocorreu um erro inesperado: {e}\")\n\nprint(\"Programa continua após o tratamento de exceção.\")\n```\n\n**Neste exemplo:**\n\n*   O bloco `try` tenta converter a entrada do usuário para um inteiro e realizar uma divisão.\n*   Se o usuário digitar \"0\", ocorrerá um `ZeroDivisionError`, e a mensagem \"Erro: Não é possível dividir por zero!\" será exibida.\n*   Se o usuário digitar algo que não seja um número (como \"abc\"), ocorrerá um `ValueError`, e a mensagem \"Erro: Por favor, digite um número válido.\" será exibida.\n*   O bloco `except Exception as e` é um \"catch-all\" que captura qualquer outra exceção que não foi explicitamente tratada. A variável `e` conterá informações sobre a exceção.\n*   Independentemente de ocorrer um erro ou não, a linha `print(\"Programa continua após o tratamento de exceção.\")` será executada, demonstrando que o programa não travou.\n\n**Benefícios de usar `try/except`:**\n\n*   **Melhora a experiência do usuário:** Evita mensagens de erro confusas e travamentos.\n*   **Facilita a depuração:** Permite registrar erros para análise posterior.\n*   **Aumenta a resiliência do código:** Torna o programa mais capaz de lidar com entradas inesperadas ou condições de falha.\n*   **Permite a implementação de lógicas de recuperação:** Você pode tentar novamente uma operação ou usar um valor padrão em caso de erro.\n\nEm resumo, o bloco `try/except` é uma ferramenta essencial em Python para escrever código mais seguro, confiável e amigável.",
+      "error": null
+    }
+  ]
+}

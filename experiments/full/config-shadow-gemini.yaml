@@ -1,0 +1,46 @@
+# ============================================================
+# llm-eval — Shadow run do Gemini (juiz: Mistral)
+# ============================================================
+# Issue #50 — Run paralela para medir concordância judge × judge.
+#
+# Roda o mesmo chatbot (Gemini) nos mesmos cenários, mas usando
+# Mistral como juiz em vez do próprio Gemini. Comparada à run
+# principal (config-gemini.yaml) via scripts/concordance.py para
+# Spearman ρ e Cohen κ ponderado, conforme decisão metodológica
+# do PILOT_ANALYSIS §5.1:
+#   κ > 0.8 → ranking Gemini>Mistral validado, self-bias pequeno
+#   κ < 0.6 → ranking deve ser descartado no Cap. 5 do TCC
+# ============================================================
+
+provider:
+  type: gemini
+  api_key: "${GEMINI_API_KEY}"
+  model: gemini-2.5-flash-lite
+  temperature: 0.0
+  max_tokens: 1024
+  seed: 42
+
+judge:
+  enabled: true
+  provider:
+    type: mistral
+    api_key: "${MISTRAL_API_KEY}"
+    model: mistral-small-2503
+    temperature: 0.0
+    max_tokens: 2048
+    seed: 42
+
+dimensions:
+  - factual
+  - consistency
+  - robustness
+
+scenarios_path: ./experiments/full/scenarios
+
+repetitions: 3
+
+output_dir: ./experiments/full/results/shadow-gemini
+
+output_format:
+  - json
+  - markdown

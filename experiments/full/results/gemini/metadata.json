@@ -1,0 +1,42 @@
+{
+  "issue": "#50",
+  "generated_at": "2026-05-27T01:12:50.311247+00:00",
+  "run": {
+    "started_at": "2026-05-26T23:28:53.072740Z",
+    "finished_at": "2026-05-26T23:50:37.002098Z",
+    "config_file": "experiments/full/config-gemini.yaml",
+    "run_result_file": "experiments/full/results/gemini/run_result.json"
+  },
+  "chatbot": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "temperature": 0.0,
+    "seed": 42
+  },
+  "judge": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "temperature": 0.0,
+    "seed": 42
+  },
+  "scenarios": {
+    "path": "experiments/full/scenarios",
+    "repetitions": 3,
+    "hash": {
+      "combined": "bd43d71d6fbc0836d57a1f62839fd58891238e16a856b0cddbc160536b08f4ab",
+      "files": {
+        "consistency.json": "c22c103ad9f8faba00dccbadd215852eab85bd0cbbb127fbae76cb87f78a1702",
+        "factual.json": "444421b202c70f7e2a0f7aafbe8acf18c15d05ee91d47e0ec4b7ef9ae7916dec",
+        "robustness.json": "e1218fbc1417c8988376e559fe389522c3b2e1610e6286d2fc233e405b720cab"
+      }
+    }
+  },
+  "framework": {
+    "git_commit": "f723d589d46a948fe7e88cd92b311c0a579c73a8",
+    "llm_eval_version": "0.1.0",
+    "bert_score_version": "0.3.13",
+    "google_genai_version": "0.8.6",
+    "mistralai_version": "2.4.2",
+    "pydantic_version": "2.13.3"
+  }
+}

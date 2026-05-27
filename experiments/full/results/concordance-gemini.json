@@ -1,0 +1,27 @@
+{
+  "main_run": "experiments/full/results/gemini/run_result.json",
+  "shadow_run": "experiments/full/results/shadow-gemini/run_result.json",
+  "n_scenarios_common": 75,
+  "overall": {
+    "spearman_rho": 0.8895044557747256,
+    "cohen_kappa_quadratic": 0.7088683189011645,
+    "interpretation": "ranking aceitável com caveat"
+  },
+  "by_dimension": {
+    "factual": {
+      "n": 35,
+      "spearman_rho": 1.0000000000000002,
+      "cohen_kappa_quadratic": 1.0
+    },
+    "consistency": {
+      "n": 20,
+      "spearman_rho": NaN,
+      "cohen_kappa_quadratic": NaN
+    },
+    "robustness": {
+      "n": 20,
+      "spearman_rho": 0.670365584497351,
+      "cohen_kappa_quadratic": 0.5390070921985816
+    }
+  }
+}
