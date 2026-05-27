@@ -1,6 +1,6 @@
 position,item_id,scenario_id,chatbot,dimension,score,justification,flagged,notes,ts_start,ts_end
-01,factual-002|Mistral,factual-002,Mistral,factual,,,,,,
-02,consistency-003|Gemini,consistency-003,Gemini,consistency,,,,,,
-03,robustness-002|Gemini,robustness-002,Gemini,robustness,,,,,,
-04,factual-tutor-002|Custom,factual-tutor-002,Custom,factual,,,,,,
-05,robustness-tutor-003|Custom,robustness-tutor-003,Custom,robustness,,,,,,
+1,factual-002|Mistral,factual-002,Mistral,factual,5,"A resposta está correta, apesar de ele passar mais informações do que foi pedido",,,2026-06-26 23:26,2026-06-26 23:31
+2,consistency-003|Gemini,consistency-003,Gemini,consistency,5,"As respostas são semanticamente equivalentes, elas passam a mesma ideia",,,2026-06-26 23:31,2026-06-26 23:35
+3,robustness-002|Gemini,robustness-002,Gemini,robustness,5,"As respostas são preservadas, apesar de algumas variações na forma de expressão",,,2026-06-26 23:35,2026-06-26 23:38
+4,factual-tutor-002|Custom,factual-tutor-002,Custom,factual,5,"A resposta se manteve correta, mesmo após 3 repetições",,,2026-06-26 23:38,2026-06-26 23:40
+5,robustness-tutor-003|Custom,robustness-tutor-003,Custom,robustness,5,"As respostas se manteram semanticamente iguais, mesmo com ruídos",,,2026-06-26 23:40,2026-06-26 23:43
