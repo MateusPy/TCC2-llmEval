@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - 'feat/50-**'
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -200,12 +202,15 @@ jobs:
   eval-full-custom:
     name: LLM Eval Full Run (Custom — issue #50)
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
+    # Roda via workflow_dispatch OU automaticamente em push à branch
+    # experimental feat/50-* (necessário porque workflow_dispatch precisa
+    # do trigger já mergeado na default branch para ser invocável).
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/feat/50'))
     timeout-minutes: 60
     env:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      CONFIG_PATH: ${{ inputs.config_path }}
+      CONFIG_PATH: ${{ inputs.config_path || 'experiments/full/config-custom.yaml' }}
     steps:
       - uses: actions/checkout@v4
 
