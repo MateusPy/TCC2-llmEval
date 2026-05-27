@@ -1,0 +1,6 @@
+position,item_id,scenario_id,chatbot,dimension,score,justification,flagged,notes,ts_start,ts_end
+01,factual-002|Mistral,factual-002,Mistral,factual,,,,,,
+02,consistency-003|Gemini,consistency-003,Gemini,consistency,,,,,,
+03,robustness-002|Gemini,robustness-002,Gemini,robustness,,,,,,
+04,factual-tutor-002|Custom,factual-tutor-002,Custom,factual,,,,,,
+05,robustness-tutor-003|Custom,robustness-tutor-003,Custom,robustness,,,,,,
