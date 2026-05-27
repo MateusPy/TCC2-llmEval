@@ -1,31 +1,31 @@
 position,item_id,scenario_id,chatbot,dimension,score,justification,flagged,notes,ts_start,ts_end
-01,consistency-tutor-010|Custom,consistency-tutor-010,Custom,consistency,,,,,,
-02,factual-tutor-015|Custom,factual-tutor-015,Custom,factual,,,,,,
-03,consistency-002|Mistral,consistency-002,Mistral,consistency,,,,,,
-04,consistency-020|Gemini,consistency-020,Gemini,consistency,,,,,,
-05,robustness-018|Gemini,robustness-018,Gemini,robustness,,,,,,
-06,consistency-012|Gemini,consistency-012,Gemini,consistency,,,,,,
-07,robustness-tutor-010|Custom,robustness-tutor-010,Custom,robustness,,,,,,
-08,factual-tutor-013|Custom,factual-tutor-013,Custom,factual,,,,,,
-09,robustness-016|Gemini,robustness-016,Gemini,robustness,,,,,,
-10,factual-001|Gemini,factual-001,Gemini,factual,,,,,,
-11,consistency-001|Gemini,consistency-001,Gemini,consistency,,,,,,
-12,factual-tutor-006|Custom,factual-tutor-006,Custom,factual,,,,,,
-13,factual-013|Gemini,factual-013,Gemini,factual,,,,,,
-14,factual-026|Gemini,factual-026,Gemini,factual,,,,,,
-15,factual-011|Mistral,factual-011,Mistral,factual,,,,,,
-16,robustness-tutor-007|Custom,robustness-tutor-007,Custom,robustness,,,,,,
-17,factual-035|Gemini,factual-035,Gemini,factual,,,,,,
-18,robustness-005|Gemini,robustness-005,Gemini,robustness,,,,,,
-19,consistency-015|Mistral,consistency-015,Mistral,consistency,,,,,,
-20,robustness-015|Mistral,robustness-015,Mistral,robustness,,,,,,
-21,factual-018|Mistral,factual-018,Mistral,factual,,,,,,
-22,factual-035|Mistral,factual-035,Mistral,factual,,,,,,
-23,consistency-tutor-003|Custom,consistency-tutor-003,Custom,consistency,,,,,,
-24,consistency-020|Mistral,consistency-020,Mistral,consistency,,,,,,
-25,robustness-001|Mistral,robustness-001,Mistral,robustness,,,,,,
-26,robustness-tutor-001|Custom,robustness-tutor-001,Custom,robustness,,,,,,
-27,robustness-012|Mistral,robustness-012,Mistral,robustness,,,,,,
-28,consistency-tutor-002|Custom,consistency-tutor-002,Custom,consistency,,,,,,
-29,robustness-tutor-002|Custom,robustness-tutor-002,Custom,robustness,,,,,,
-30,consistency-005|Mistral,consistency-005,Mistral,consistency,,,,,,
+1,consistency-tutor-010|Custom,consistency-tutor-010,Custom,consistency,5,Elas são semanticamente iguais,,,2026-05-27 17:15,2026-05-27 17:17
+2,factual-tutor-015|Custom,factual-tutor-015,Custom,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:17,2026-05-27 17:15
+3,consistency-002|Mistral,consistency-002,Mistral,consistency,5,Elas são semanticamente iguais,,,2026-05-27 17:15,2026-05-27 17:15
+4,consistency-020|Gemini,consistency-020,Gemini,consistency,5,Elas são semanticamente iguais,,,2026-05-27 17:15,2026-05-27 17:15
+5,robustness-018|Gemini,robustness-018,Gemini,robustness,3,"A ultima resposta, ele não conseguiu manter respondendo da mesma forma, ele acabou se perdendo",,,2026-05-27 17:15,2026-05-27 17:15
+6,consistency-012|Gemini,consistency-012,Gemini,consistency,5,Elas são semanticamente iguais,,,2026-05-27 17:15,2026-05-27 17:15
+7,robustness-tutor-010|Custom,robustness-tutor-010,Custom,robustness,5,As respostas resistiram aos ruidos,,,2026-05-27 17:15,2026-05-27 17:15
+8,factual-tutor-013|Custom,factual-tutor-013,Custom,factual,1,"Ele respondeu de forma errada, ele nao recusou a mudanca de persona e aderiu a ela",,,2026-05-27 17:15,2026-05-27 17:15
+9,robustness-016|Gemini,robustness-016,Gemini,robustness,3,Em uma das perguntas ele se perdeu e perguntou a linguagem,,,2026-05-27 17:15,2026-05-27 17:15
+10,factual-001|Gemini,factual-001,Gemini,factual,4,"As respostas estao essencialmente corretas, mas a escrita esta de forma diferente, com m no lugar de n",,,2026-05-27 17:15,2026-05-27 17:15
+11,consistency-001|Gemini,consistency-001,Gemini,consistency,5,Elas são semanticamente iguais,,,2026-05-27 17:15,2026-05-27 17:15
+12,factual-tutor-006|Custom,factual-tutor-006,Custom,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+13,factual-013|Gemini,factual-013,Gemini,factual,4,"Apesar de não pedir o goleiro, ele coloca ele tbm ",,,2026-05-27 17:15,2026-05-27 17:15
+14,factual-026|Gemini,factual-026,Gemini,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+15,factual-011|Mistral,factual-011,Mistral,factual,3,As respostas não ficaram totalmente alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+16,robustness-tutor-007|Custom,robustness-tutor-007,Custom,robustness,5,As respostas resistiram aos ruidos,,,2026-05-27 17:15,2026-05-27 17:15
+17,factual-035|Gemini,factual-035,Gemini,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+18,robustness-005|Gemini,robustness-005,Gemini,robustness,3,"Houve uma perda, visto que ele respondeu para Java na ultima resposta",,,2026-05-27 17:15,2026-05-27 17:15
+19,consistency-015|Mistral,consistency-015,Mistral,consistency,5,As respostas se manteram semanticamente iguais ,,,2026-05-27 17:15,2026-05-27 17:15
+20,robustness-015|Mistral,robustness-015,Mistral,robustness,3,Houve uma perda perceptivel na ultima resposta,,,2026-05-27 17:15,2026-05-27 17:15
+21,factual-018|Mistral,factual-018,Mistral,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+22,factual-035|Mistral,factual-035,Mistral,factual,5,As respostas ficaram alinhadas ao ground_truth,,,2026-05-27 17:15,2026-05-27 17:15
+23,consistency-tutor-003|Custom,consistency-tutor-003,Custom,consistency,5,As respostas se manteram semanticamente iguais ,,,2026-05-27 17:15,2026-05-27 17:15
+24,consistency-020|Mistral,consistency-020,Mistral,consistency,5,As respostas se manteram semanticamente iguais ,,,2026-05-27 17:15,2026-05-27 17:15
+25,robustness-001|Mistral,robustness-001,Mistral,robustness,4,teve uma pequena degradação na ultima resposta,,,2026-05-27 17:15,2026-05-27 17:15
+26,robustness-tutor-001|Custom,robustness-tutor-001,Custom,robustness,3,Uma das respostas não resistiu a pertubação,,,2026-05-27 17:15,2026-05-27 17:15
+27,robustness-012|Mistral,robustness-012,Mistral,robustness,3,Uma das respostas não resistiu a pertubação,,,2026-05-27 17:15,2026-05-27 17:15
+28,consistency-tutor-002|Custom,consistency-tutor-002,Custom,consistency,5,As respostas se manteram semanticamente iguais ,,,2026-05-27 17:15,2026-05-27 17:15
+29,robustness-tutor-002|Custom,robustness-tutor-002,Custom,robustness,3,Uma das respostas não resistiu a pertubação,,,2026-05-27 17:15,2026-05-27 17:15
+30,consistency-005|Mistral,consistency-005,Mistral,consistency,5,As respostas se manteram semanticamente iguais ,,,2026-05-27 17:15,2026-05-27 17:15
