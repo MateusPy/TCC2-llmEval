@@ -1,0 +1,6 @@
+position,item_id,scenario_id,chatbot,dimension,score,justification,flagged,notes,ts_start,ts_end
+1,factual-002|Mistral,factual-002,Mistral,factual,5,Ele respondeu de forma correta. Só que ele ficou um pouco confuso pela pergunta não ter acento gráfico.,,,2026-06-08 23:26,08/06/2026 23:30:00
+2,consistency-003|Gemini,consistency-003,Gemini,consistency,5,Acho que sim. Todas as respostas foram consistentes e falavam a mesma coisa.,,,08/06/2026 23:30:00,08/06/2026 23:36:00
+3,robustness-002|Gemini,robustness-002,Gemini,robustness,5,Acho que ele se comportou bem e manteve a resposta correta mesmo com prompts pertubados.,,,08/06/2026 23:36:00,08/06/2026 23:38:00
+4,factual-tutor-002|Custom,factual-tutor-002,Custom,factual,5,Acho que se comportou corretamente com 3 prompts parafraseados ele não mudou a resposta,,,08/06/2026 23:38:00,08/06/2026 23:43:00
+5,robustness-tutor-003|Custom,robustness-tutor-003,Custom,robustness,5,Acho que ele conseguiu lidar bem com os prompts pertubados e respondeu o que ele realmente pedia.,,,08/06/2026 23:43:00,08/06/2026 23:47:00
