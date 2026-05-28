@@ -32,6 +32,9 @@ experiments/human-validation/
 ├── DISCUSSION_NOTES.md             ← ata da sessão de discussão (Δ ≥ 2)
 ├── discussion_resolutions.json     ← entrada do consolidate.py para Δ ≥ 2
 ├── annotations_consolidated.csv    ← saída final do consolidate.py
+├── HIGH_DISAGREEMENTS.md           ← análise qualitativa (#52, top-5 |judge−humano|)
+├── concordance_results.json        ← métricas κ/Pearson/MAE (saída do concordance.py)
+├── figures/                        ← scatter, matriz de confusão, distribuição de erros
 ├── calibration/                    ← rodada zero (5 cenários compartilhados)
 │   ├── README.md
 │   ├── CALIBRATION_NOTES.md
@@ -50,7 +53,8 @@ experiments/human-validation/
     ├── select_sample.py            ← reproduz sample.json (seed=42)
     ├── build_annotation_sheets.py  ← regera items/ + CSVs dos anotadores
     ├── build_calibration_sheets.py ← regera items/ + CSVs da calibração
-    └── consolidate.py              ← mescla A1+A2+resolutions em consolidated.csv
+    ├── consolidate.py              ← mescla A1+A2+resolutions em consolidated.csv
+    └── concordance.py              ← κ/Pearson/MAE judge × humano (#52)
 ```
 
 ## Pré-registro
@@ -112,3 +116,77 @@ Se o cenário parece ambíguo, mal formulado, ou se a rubrica não cobre
 bem o caso, **marque `flagged = true`** e descreva em `notes`. Isso é
 sinal qualitativo importante para o Cap. 5 do TCC — não tente forçar
 uma nota "boa".
+
+## Resultados de concordância (issue #52)
+
+Gerado por `scripts/concordance.py` (juiz = Gemini main; n=30; bootstrap
+n=1000, seed=42 — reproduzível byte-a-byte).
+
+### Métricas globais
+
+| Métrica                       | Point  | IC95% bootstrap        |
+|-------------------------------|--------|------------------------|
+| κ A1×A2 (quadrático)          | +0.419 | [+0.085, +0.791]       |
+| κ judge×humano (quadrático)   | +0.717 | [+0.438, +0.852]       |
+| Pearson r judge×humano        | +0.790 | [+0.583, +0.911]       |
+| Spearman ρ judge×humano       | +0.739 | [+0.485, +0.911]       |
+| MAE judge×humano              | 0.381  | [0.228, 0.556]         |
+
+### Por dimensão (n=10 cada)
+
+| dim         | κ A1×A2 | κ j×h  | r j×h  | ρ j×h  | MAE   | A1 distinct | A2 distinct |
+|-------------|---------|--------|--------|--------|-------|-------------|-------------|
+| factual     | +0.323  | +0.924 | +0.985 | +0.916 | 0.117 | 4           | 3           |
+| consistency | 0.000   | −0.154 | −0.167 | −0.167 | 0.250 | **1**       | 2           |
+| robustness  | +0.053  | +0.304 | +0.346 | +0.413 | 0.775 | 3           | 4           |
+
+### Análise de sensibilidade
+
+Substituindo `consensus_mean` por `consensus_after_discussion` nos 4 itens revisados:
+
+| Métrica          | Primary | Sensibilidade | Δ      |
+|------------------|---------|---------------|--------|
+| κ judge×humano   | +0.717  | **+0.766**    | +0.049 |
+| Pearson r        | +0.790  | **+0.810**    | +0.020 |
+| Spearman ρ       | +0.739  | +0.682        | −0.057 |
+| MAE              | 0.381   | 0.442         | +0.061 |
+
+A discussão dos Δ≥2 **aumentou** κ e Pearson e **reduziu** Spearman e
+aumentou MAE — comportamento esperado: a discussão polarizou notas
+(jogou consenso pra 1 ou 5 onde havia ambiguidade), aumentando
+concordância linear/categórica com o juiz mas degradando a ordenação
+nos casos discutidos (que ficaram nas pontas, criando empates).
+
+### Divergências `|judge − consenso| ≥ 2`
+
+**0 itens** atingem o threshold estrito da issue #52 — a máxima divergência
+observada é |Δ|=1.50. Para cumprir a AC "inspeção qualitativa de pelo
+menos 5 casos", selecionamos os 5 itens com maior |Δ|. Análise completa
+em [`HIGH_DISAGREEMENTS.md`](HIGH_DISAGREEMENTS.md), incluindo:
+
+- Padrão **P1**: juiz subestima falhas de escopo em chatbot restrito
+- Padrão **P2**: juiz é mais granular em consistency que humanos
+- Padrão **P3**: em robustness, juiz e humanos divergem em unidade de avaliação
+- Padrão **P4**: `consensus_mean` pode mascarar concordância latente
+- **Caveat metodológico** sobre κ em consistency e robustness (próximo bloco)
+
+### Caveat — κ baixo em consistency e robustness
+
+Os κs baixos nessas duas dimensões têm causas **diferentes** e não devem
+ser lidos como falha do juiz:
+
+- **consistency:** A1 deu nota **5 em todos os 10 itens** (n_distinct=1).
+  Com uma das séries com variância zero, κ é matematicamente forçado a
+  ~0 (e Pearson/Spearman a NaN se a outra também for constante). MAE=0.250
+  é a métrica informativa aqui — confirma forte acordo absoluto.
+
+- **robustness:** A1 e A2 leram robustness com critérios efetivamente
+  diferentes — κ A1×A2 = +0.053 indica concordância intra-anotadores
+  praticamente aleatória, apesar da calibração. Implicação metodológica
+  forte: a baixa concordância judge×humano em robustness reflete pelo
+  menos parcialmente a baixa concordância **entre humanos**, não só
+  ruído do juiz. Detalhado em `HIGH_DISAGREEMENTS.md`.
+
+Em factual, ambos κs (A1×A2 = +0.323 e judge×humano = +0.924) e
+correlações estão em níveis interpretáveis — a base sólida da
+validação.
