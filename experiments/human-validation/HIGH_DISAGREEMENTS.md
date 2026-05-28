@@ -100,17 +100,56 @@ Esse é exatamente o item que **a análise de sensibilidade** captura: com `cons
 
 **(P4) `consensus_mean` pode mascarar concordância latente.** Caso #3 — `consensus_mean = 3.5` sugere desacordo, mas `consensus_after_discussion = 2` mostra que humanos e juiz concordam. A análise de sensibilidade já capta isso (κ sobe de +0.717 para +0.766). Para o Cap. 5: reportar ambos.
 
-## Caveat metodológico — instabilidade do κ em consistency
+## Caveats metodológicos por dimensão
 
-`κ judge×humano` por dimensão dá:
-- factual: **+0.924** (excelente)
-- robustness: **+0.304** (fair)
-- consistency: **−0.154** (negativo)
+Os κs baixos em duas das três dimensões **não** devem ser lidos da mesma
+forma — eles têm causas diferentes:
 
-O κ negativo em consistency **não significa** que o juiz é pior que aleatório nessa dimensão — significa que a variância das notas é quase nula (todos os 10 itens têm A1+A2 ≈ 5 e juiz ≈ 4 ou 5). κ com pesos quadráticos é instável quando as marginais colapsam num único valor.
+### Consistency: κ ≈ 0 é mecânico (variância zero em A1)
 
-Métricas mais informativas para essa dimensão na amostra atual:
-- MAE consistency = **0.250** (baixíssimo, coerente com forte acordo na maioria)
-- Pearson r = −0.167 (idem, instável por baixa variância)
+| | A1 | A2 | judge_rounded |
+|---|---|---|---|
+| n_distinct | **1** | 2 | 2 |
+| distribuição | 10× 5 | 9× 5, 1× 4 | 8× 5, 2× 4 |
 
-Recomendação para o Cap. 5: reportar κ overall + factual + robustness; reportar consistency só com MAE + nota de instabilidade do κ. Para um próximo trabalho, amostrar mais casos onde A1 e A2 dão 3-4 em consistency (negociáveis) — esses dariam variância suficiente pra κ ser interpretável.
+A1 deu nota 5 nos 10 itens de consistency. Com uma série constante:
+- κ A1×A2 = exatamente **0.000** (não há variabilidade pra explicar acordo acima do acaso)
+- κ judge×humano = −0.154 (juiz dá 4 em 2 casos onde consenso é 5 → discordância mínima, mas com a base quase constante, vira κ negativo)
+- Pearson e Spearman = −0.167 (sinal espúrio por variância quase zero em ambas as séries)
+
+**Interpretação correta:** os números **não** dizem que o juiz erra em consistency. MAE = **0.250** (excelente) confirma que humanos e juiz quase sempre concordam absolutamente nessa dimensão. κ e r aqui são não informativos.
+
+Origem: na amostra do #51, consistency foi dominada por casos onde os 3 chatbots se saíram bem (judge_main ≥ 4.5 em 9 dos 10 — ver tabela do issue #51 §2). Para um próximo trabalho, amostrar deliberadamente casos onde humanos hesitam entre 3 e 4 em consistency — esses dariam variância suficiente pra κ ser interpretável.
+
+### Robustness: κ A1×A2 ≈ 0 é um achado sobre o protocolo, não o juiz
+
+Diferente de consistency, em robustness as três séries têm variância:
+
+| | A1 | A2 | judge_rounded |
+|---|---|---|---|
+| n_distinct | 3 | 4 | 4 |
+| distribuição | 7× 3, 1× 4, 2× 5 | 2× 2, 2× 3, 3× 4, 3× 5 | 1× 2, 3× 3, 3× 4, 3× 5 |
+
+κ A1×A2 robustness = **+0.053** (≈ aleatório). Ou seja, **A1 e A2 leram robustness com critérios efetivamente diferentes**, apesar da rodada zero de calibração ter consolidado uma decisão metodológica explícita ("avaliar por cenário agregado, não por variante").
+
+Olhando o padrão:
+- A1 ficou ancorado em "3" pra qualquer cenário com 1 falha entre as variantes (7 dos 10 itens são 3)
+- A2 distribuiu mais (notas 2, 3, 4, 5) — premiou agregação quando 2 de 3 variantes funcionaram, penalizou mais quando a falha era severa
+
+A discussão dos Δ≥2 (ver `DISCUSSION_NOTES.md`) capturou alguns desses casos — 3 dos 4 itens discutidos eram de robustness. Mas com n=10 por dimensão, mesmo 3 discussões não chegam a "estabilizar" o κ A1×A2.
+
+**Implicação para o Cap. 5:** o κ judge×humano = +0.304 em robustness é o produto **conjunto** de duas fontes de divergência:
+1. Variabilidade real entre o juiz Gemini e a média humana (legítima — padrões P1 e P3 acima)
+2. **Inconsistência entre A1 e A2** sobre o que conta como "robustez preservada" no agregado
+
+Não dá pra dizer que o juiz "concorda mal com humanos em robustness" quando os próprios humanos concordam pouco entre si. O número correto a reportar no Cap. 5 é **par**: κ A1×A2 + κ judge×humano lado a lado, dimensão a dimensão. Isso evita atribuir ao juiz ruído que é da rubrica humana.
+
+**Implicação para um próximo trabalho:** a rubrica de robustness em §4.3 do `docs/protocolo-validacao-humana.md` precisa de exemplos calibrados — em particular, definir explicitamente como agregar "1 variante falha + 2 funcionam" numa nota única. A rodada zero não cobriu esse cenário (todos os 5 cenários de calibração foram 5/5 entre A1 e A2).
+
+### Factual: a única dimensão sem caveat
+
+| | A1 | A2 | judge_rounded |
+|---|---|---|---|
+| n_distinct | 4 | 3 | 4 |
+
+κ A1×A2 = **+0.323** (fair), κ judge×humano = **+0.924** (excelente), r=+0.985, MAE=0.117. Em factual, anotadores e juiz convergem fortemente. É a base sólida da validação do juiz nessa amostra.

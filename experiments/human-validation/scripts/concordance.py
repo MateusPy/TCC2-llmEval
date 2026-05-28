@@ -93,6 +93,29 @@ def pearson_r(xs: list[float], ys: list[float]) -> float:
     return num / (dx * dy)
 
 
+def _fractional_rank(values: list[float]) -> list[float]:
+    """Rank com média em empates (compatível com Spearman padrão)."""
+    sorted_pairs = sorted(enumerate(values), key=lambda p: p[1])
+    ranks = [0.0] * len(values)
+    i = 0
+    while i < len(sorted_pairs):
+        j = i
+        while j + 1 < len(sorted_pairs) and sorted_pairs[j + 1][1] == sorted_pairs[i][1]:
+            j += 1
+        avg_rank = (i + j) / 2.0 + 1.0
+        for k in range(i, j + 1):
+            ranks[sorted_pairs[k][0]] = avg_rank
+        i = j + 1
+    return ranks
+
+
+def spearman_rho(xs: list[float], ys: list[float]) -> float:
+    """Spearman ρ via Pearson sobre ranks fracionários."""
+    if len(xs) < 2:
+        return float("nan")
+    return pearson_r(_fractional_rank(xs), _fractional_rank(ys))
+
+
 def mae(xs: list[float], ys: list[float]) -> float:
     if not xs:
         return float("nan")
@@ -216,32 +239,42 @@ def compute_block(
             }
         )
 
-    # Cohen κ A1 × A2 (escala discreta)
-    kappa_a1a2 = cohen_kappa_quadratic(a1_scores, a2_scores)
-    kappa_a1a2_ci = bootstrap_ci(cohen_kappa_quadratic, a1_scores, a2_scores)
-
-    # Cohen κ judge × consenso (escala discreta — usa rounded)
-    kappa_jh = cohen_kappa_quadratic(judge_rounded, consensus_rounded)
-    kappa_jh_ci = bootstrap_ci(cohen_kappa_quadratic, judge_rounded, consensus_rounded)
-
-    # Pearson e MAE (contínuos)
-    r_jh = pearson_r(judge_means, consensus_means)
-    mae_jh = mae(judge_means, consensus_means)
+    def with_ci(fn, xs, ys):
+        return {
+            "point": fn(xs, ys),
+            "ci95_bootstrap": list(bootstrap_ci(fn, xs, ys)),
+        }
 
     return {
         "n": len(per_item),
-        "kappa_A1_A2": {
-            "point": kappa_a1a2,
-            "ci95_bootstrap": list(kappa_a1a2_ci),
+        # κ A1 × A2 (concordância intra-anotadores, escala discreta)
+        "kappa_A1_A2": with_ci(cohen_kappa_quadratic, a1_scores, a2_scores),
+        # κ judge × consenso humano (escala discreta — usa rounded)
+        "kappa_judge_human": with_ci(cohen_kappa_quadratic, judge_rounded, consensus_rounded),
+        # Pearson r judge × consenso (contínuo)
+        "pearson_judge_human": with_ci(pearson_r, judge_means, consensus_means),
+        # Spearman ρ judge × consenso (robusto a não-linearidade; mesma família do κ ordinal)
+        "spearman_judge_human": with_ci(spearman_rho, judge_means, consensus_means),
+        # MAE judge × consenso (contínuo)
+        "mae_judge_human": with_ci(mae, judge_means, consensus_means),
+        # Distribuições — explicam mecânicamente por que κ pode ser instável
+        "distribution": {
+            "score_A1": _hist(a1_scores),
+            "score_A2": _hist(a2_scores),
+            "judge_rounded": _hist(judge_rounded),
+            "consensus_rounded": _hist(consensus_rounded),
+            "n_distinct_A1": len(set(a1_scores)),
+            "n_distinct_A2": len(set(a2_scores)),
+            "n_distinct_judge_rounded": len(set(judge_rounded)),
+            "n_distinct_consensus_rounded": len(set(consensus_rounded)),
         },
-        "kappa_judge_human": {
-            "point": kappa_jh,
-            "ci95_bootstrap": list(kappa_jh_ci),
-        },
-        "pearson_judge_human": r_jh,
-        "mae_judge_human": mae_jh,
         "per_item": per_item,
     }
+
+
+def _hist(values: list[int]) -> dict[int, int]:
+    """Contagem de cada valor (1-5) — incluindo zeros para clareza."""
+    return {k: sum(1 for v in values if v == k) for k in range(1, 6)}
 
 
 def compute_by_dimension(
@@ -407,29 +440,40 @@ def main() -> None:
 
     OUT_JSON.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
+    def _fmt(m):
+        return f"{m['point']:+.3f}  IC95% [{m['ci95_bootstrap'][0]:+.3f}, {m['ci95_bootstrap'][1]:+.3f}]"
+
     # resumo no stdout
-    print("=" * 72)
+    print("=" * 78)
     print(f"Juiz: Gemini main  |  n=30 itens  |  bootstrap n={BOOTSTRAP_N} seed={BOOTSTRAP_SEED}")
-    print("-" * 72)
+    print("-" * 78)
     o = primary
-    print(
-        f"κ A1×A2          = {o['kappa_A1_A2']['point']:+.3f}  "
-        f"IC95% [{o['kappa_A1_A2']['ci95_bootstrap'][0]:+.3f}, {o['kappa_A1_A2']['ci95_bootstrap'][1]:+.3f}]"
-    )
-    print(
-        f"κ judge×humano   = {o['kappa_judge_human']['point']:+.3f}  "
-        f"IC95% [{o['kappa_judge_human']['ci95_bootstrap'][0]:+.3f}, {o['kappa_judge_human']['ci95_bootstrap'][1]:+.3f}]"
-    )
-    print(f"Pearson r        = {o['pearson_judge_human']:+.3f}")
-    print(f"MAE              = {o['mae_judge_human']:.3f}")
-    print("-" * 72)
-    print("Por dimensão (judge × humano, primary):")
+    print(f"κ A1×A2          = {_fmt(o['kappa_A1_A2'])}")
+    print(f"κ judge×humano   = {_fmt(o['kappa_judge_human'])}")
+    print(f"Pearson r        = {_fmt(o['pearson_judge_human'])}")
+    print(f"Spearman ρ       = {_fmt(o['spearman_judge_human'])}")
+    print(f"MAE              = {_fmt(o['mae_judge_human'])}")
+    print("-" * 78)
+    print("Por dimensão (point estimate):")
+    print(f"  {'dim':11s}  {'n':>3s}  {'κ A1×A2':>9s}  {'κ j×h':>9s}  {'r j×h':>9s}  {'ρ j×h':>9s}  {'MAE':>6s}")
     for dim, d in primary_by_dim.items():
         print(
-            f"  {dim:11s}: n={d['n']:2d}  κ={d['kappa_judge_human']['point']:+.3f}  "  # type: ignore[index]
-            f"r={d['pearson_judge_human']:+.3f}  MAE={d['mae_judge_human']:.3f}"
+            f"  {dim:11s}  {d['n']:>3d}  "  # type: ignore[index]
+            f"{d['kappa_A1_A2']['point']:>+9.3f}  "
+            f"{d['kappa_judge_human']['point']:>+9.3f}  "
+            f"{d['pearson_judge_human']['point']:>+9.3f}  "
+            f"{d['spearman_judge_human']['point']:>+9.3f}  "
+            f"{d['mae_judge_human']['point']:>6.3f}"
         )
-    print("-" * 72)
+    print("-" * 78)
+    print("Distribuição de notas (point por dim — útil para interpretar κ baixo):")
+    for dim, d in primary_by_dim.items():
+        dist = d["distribution"]  # type: ignore[index]
+        print(
+            f"  {dim:11s}  A1 distinct={dist['n_distinct_A1']}  A2 distinct={dist['n_distinct_A2']}  "  # type: ignore[index]
+            f"judge distinct={dist['n_distinct_judge_rounded']}"
+        )
+    print("-" * 78)
     print(
         f"High disagreements (|judge − consenso| ≥ {HIGH_DISAGREEMENT_THRESHOLD}): {len(strict)}  "
         f"|  top-{len(relaxed)} para análise qualitativa:"
@@ -440,15 +484,14 @@ def main() -> None:
             f"  {h['item_id']:<42} judge={h['judge_mean']:.2f}  cons={h['consensus_mean']:.2f}  "  # type: ignore[index]
             f"|Δ|={h['abs_error_judge_vs_consensus']:.2f}{marker}"
         )
-    print("-" * 72)
+    print("-" * 78)
     print("Sensibilidade (consensus_after_discussion onde definido):")
     s = sensitivity
-    print(
-        f"  κ judge×humano = {s['kappa_judge_human']['point']:+.3f}  "  # type: ignore[index]
-        f"IC95% [{s['kappa_judge_human']['ci95_bootstrap'][0]:+.3f}, {s['kappa_judge_human']['ci95_bootstrap'][1]:+.3f}]  "
-        f"r={s['pearson_judge_human']:+.3f}  MAE={s['mae_judge_human']:.3f}"
-    )
-    print("=" * 72)
+    print(f"  κ judge×humano = {_fmt(s['kappa_judge_human'])}")  # type: ignore[index]
+    print(f"  Pearson r      = {_fmt(s['pearson_judge_human'])}")
+    print(f"  Spearman ρ     = {_fmt(s['spearman_judge_human'])}")
+    print(f"  MAE            = {_fmt(s['mae_judge_human'])}")
+    print("=" * 78)
     print(f"Resultados completos: {OUT_JSON}")
     print(f"Figuras: {len(figures)} em {FIG_DIR}/")
 
