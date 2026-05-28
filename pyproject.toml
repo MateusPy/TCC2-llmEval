@@ -28,6 +28,9 @@ dev = [
     "mypy>=1.10.0",
     "types-PyYAML>=6.0.0",
 ]
+analysis = [
+    "matplotlib>=3.8.0",
+]
 
 [project.scripts]
 llm-eval = "llm_eval.cli:main"
