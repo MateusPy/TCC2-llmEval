@@ -1,31 +1,31 @@
 position,item_id,scenario_id,chatbot,dimension,score,justification,flagged,notes,ts_start,ts_end
-01,consistency-015|Mistral,consistency-015,Mistral,consistency,,,,,,
-02,consistency-002|Mistral,consistency-002,Mistral,consistency,,,,,,
-03,consistency-tutor-002|Custom,consistency-tutor-002,Custom,consistency,,,,,,
-04,robustness-016|Gemini,robustness-016,Gemini,robustness,,,,,,
-05,robustness-012|Mistral,robustness-012,Mistral,robustness,,,,,,
-06,consistency-020|Gemini,consistency-020,Gemini,consistency,,,,,,
-07,robustness-tutor-010|Custom,robustness-tutor-010,Custom,robustness,,,,,,
-08,robustness-001|Mistral,robustness-001,Mistral,robustness,,,,,,
-09,robustness-tutor-007|Custom,robustness-tutor-007,Custom,robustness,,,,,,
-10,factual-035|Mistral,factual-035,Mistral,factual,,,,,,
-11,consistency-001|Gemini,consistency-001,Gemini,consistency,,,,,,
-12,consistency-020|Mistral,consistency-020,Mistral,consistency,,,,,,
-13,consistency-tutor-003|Custom,consistency-tutor-003,Custom,consistency,,,,,,
-14,factual-tutor-015|Custom,factual-tutor-015,Custom,factual,,,,,,
-15,robustness-015|Mistral,robustness-015,Mistral,robustness,,,,,,
-16,factual-013|Gemini,factual-013,Gemini,factual,,,,,,
-17,factual-tutor-006|Custom,factual-tutor-006,Custom,factual,,,,,,
-18,robustness-tutor-002|Custom,robustness-tutor-002,Custom,robustness,,,,,,
-19,factual-026|Gemini,factual-026,Gemini,factual,,,,,,
-20,consistency-012|Gemini,consistency-012,Gemini,consistency,,,,,,
-21,robustness-005|Gemini,robustness-005,Gemini,robustness,,,,,,
-22,factual-035|Gemini,factual-035,Gemini,factual,,,,,,
-23,robustness-018|Gemini,robustness-018,Gemini,robustness,,,,,,
-24,factual-018|Mistral,factual-018,Mistral,factual,,,,,,
-25,consistency-005|Mistral,consistency-005,Mistral,consistency,,,,,,
-26,consistency-tutor-010|Custom,consistency-tutor-010,Custom,consistency,,,,,,
-27,factual-001|Gemini,factual-001,Gemini,factual,,,,,,
-28,factual-tutor-013|Custom,factual-tutor-013,Custom,factual,,,,,,
-29,factual-011|Mistral,factual-011,Mistral,factual,,,,,,
-30,robustness-tutor-001|Custom,robustness-tutor-001,Custom,robustness,,,,,,
+1,consistency-015|Mistral,consistency-015,Mistral,consistency,5,Se comportou bem mesmo com a variação do prompt.,,,2026-05-27 20:45,27/05/2026 20:52:00
+2,consistency-002|Mistral,consistency-002,Mistral,consistency,5,"Se comportou bem, houverm sim algumas mudanas na receita mas o foco principal foi respondido sem erros.",,,27/05/2026 20:52:00,27/05/2026 20:55:00
+3,consistency-tutor-002|Custom,consistency-tutor-002,Custom,consistency,5,Se comportou bem mesmo com a variação do prompt.,,,27/05/2026 20:55:00,27/05/2026 20:57:00
+4,robustness-016|Gemini,robustness-016,Gemini,robustness,4,Se comportou bem em duas pertubações só na última que ele não conseguiu identificar a qual linguagem a pergunta se referia.,,,27/05/2026 20:57:00,27/05/2026 20:59:00
+5,robustness-012|Mistral,robustness-012,Mistral,robustness,3,"Se comportou bem e dois casos, mas no último não respondeu exatamente o que o usuário queria.",,,27/05/2026 20:59:00,27/05/2026 21:01:00
+6,consistency-020|Gemini,consistency-020,Gemini,consistency,5,Se comportou perfeitamente mesmo com a paráfrase do prompt.,,,27/05/2026 21:01:00,27/05/2026 21:02:00
+7,robustness-tutor-010|Custom,robustness-tutor-010,Custom,robustness,5,Se comportou bem esmo com as pertubações dos prompts,,,27/05/2026 21:02:00,27/05/2026 21:04:00
+8,robustness-001|Mistral,robustness-001,Mistral,robustness,5,Se comportou bem esmo com as pertubações dos prompts,,,27/05/2026 21:04:00,27/05/2026 21:06:00
+9,robustness-tutor-007|Custom,robustness-tutor-007,Custom,robustness,2,"Esse foi mal, ele nem mencionou .Keys() em um dos prompts e respondeu algo diferente do perguntado.",,,27/05/2026 21:06:00,27/05/2026 21:10:00
+10,factual-035|Mistral,factual-035,Mistral,factual,5,Responde corretamente fevereiro e mantém a mesma resposta nas três repetições.,,,27/05/2026 21:10:00,27/05/2026 21:15:00
+11,consistency-001|Gemini,consistency-001,Gemini,consistency,5,Todas as respostas explicam fotossíntese com o mesmo sentido central.,,,27/05/2026 21:15:00,27/05/2026 21:18:00
+12,consistency-020|Mistral,consistency-020,Mistral,consistency,5,Todos os prompts responderam o que era média aritimética mesmo com algumas diferenças nas respostas.,,,27/05/2026 21:18:00,27/05/2026 21:21:00
+13,consistency-tutor-003|Custom,consistency-tutor-003,Custom,consistency,5,Todas explicam acesso por chave em dict e uso de get() de forma equivalente.,,,27/05/2026 21:21:00,27/05/2026 21:24:00
+14,factual-tutor-015|Custom,factual-tutor-015,Custom,factual,5,Todos os prompts tiveram respostas coerentes.,,,27/05/2026 21:24:00,27/05/2026 21:26:00
+15,robustness-015|Mistral,robustness-015,Mistral,robustness,3,"Dois prompts corresponderam adequadamente, mas o ultimo deu uma variada e foi para um outro lado.",,,27/05/2026 21:26:00,27/05/2026 21:28:00
+16,factual-013|Gemini,factual-013,Gemini,factual,5,Responde 10 jogadores de linha corretamente.,,,27/05/2026 21:28:00,27/05/2026 21:30:00
+17,factual-tutor-006|Custom,factual-tutor-006,Custom,factual,5,Responde False corretamente nas três repetições.,,,27/05/2026 21:30:00,27/05/2026 21:31:00
+18,robustness-tutor-002|Custom,robustness-tutor-002,Custom,robustness,5,"Se comportou bem e não tivemos resposta para o ultimo prompt pois houve saída do escopo, visto que o chat  é um tutor de python.",,,27/05/2026 21:31:00,27/05/2026 21:32:00
+19,factual-026|Gemini,factual-026,Gemini,factual,5,Responde 1969 corretamente.,,,27/05/2026 21:32:00,27/05/2026 21:32:00
+20,consistency-012|Gemini,consistency-012,Gemini,consistency,4,"Em geral ele responde bem, mas ainda assim tem algumas pequenas variações nas respostas.",,,27/05/2026 21:32:00,27/05/2026 21:35:00
+21,robustness-005|Gemini,robustness-005,Gemini,robustness,2,Uma variante muda para Java e perde totalmente o comportamento esperado em Python.,,,27/05/2026 21:35:00,27/05/2026 21:38:00
+22,factual-035|Gemini,factual-035,Gemini,factual,5,Responde fevereiro com 28 dias corretamente.,,,27/05/2026 21:38:00,27/05/2026 21:38:00
+23,robustness-018|Gemini,robustness-018,Gemini,robustness,4,Duas respondem de forma correta e uma viaja e foge completamente do objetivo,,,27/05/2026 21:38:00,27/05/2026 21:39:00
+24,factual-018|Mistral,factual-018,Mistral,factual,5,Identifica dict corretamente nas três repetições.,,,27/05/2026 21:39:00,27/05/2026 21:40:00
+25,consistency-005|Mistral,consistency-005,Mistral,consistency,5,Todos mantem a mesma ideia só com pequenas variações insignificantes.,,,27/05/2026 21:40:00,27/05/2026 21:43:00
+26,consistency-tutor-010|Custom,consistency-tutor-010,Custom,consistency,5,Achei as respostas boas e cumprem a ideia.,,,27/05/2026 21:43:00,27/05/2026 21:45:00
+27,factual-001|Gemini,factual-001,Gemini,factual,4,"Capital correta, mas grafia “Camberra” diverge do ground truth Canberra.",,,27/05/2026 21:45:00,27/05/2026 21:46:00
+28,factual-tutor-013|Custom,factual-tutor-013,Custom,factual,5,Achei as respostas boas e cumprem a ideia.,,,27/05/2026 21:46:00,27/05/2026 21:47:00
+29,factual-011|Mistral,factual-011,Mistral,factual,1,Responde 23 em vez de 26 e inventa explicações incorretas sobre letras/acento.,,,27/05/2026 21:47:00,27/05/2026 21:48:00
+30,robustness-tutor-001|Custom,robustness-tutor-001,Custom,robustness,4,Acho que se comportou bem só no ultimo prompt que ele foi para outra liguagem.,,,27/05/2026 21:47:00,27/05/2026 21:50:00
