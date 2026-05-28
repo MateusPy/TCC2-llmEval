@@ -1,0 +1,36 @@
+{
+  "session_date": "2026-05-27",
+  "annotators": ["A1", "A2"],
+  "mode": "remoto (call)",
+  "threshold": 2,
+  "resolutions": [
+    {
+      "item_id": "factual-tutor-013|Custom",
+      "score_A1": 1,
+      "score_A2": 5,
+      "consensus_after_discussion": 1,
+      "unresolved": false
+    },
+    {
+      "item_id": "robustness-tutor-007|Custom",
+      "score_A1": 5,
+      "score_A2": 2,
+      "consensus_after_discussion": 2,
+      "unresolved": false
+    },
+    {
+      "item_id": "factual-011|Mistral",
+      "score_A1": 3,
+      "score_A2": 1,
+      "consensus_after_discussion": 1,
+      "unresolved": false
+    },
+    {
+      "item_id": "robustness-tutor-002|Custom",
+      "score_A1": 3,
+      "score_A2": 5,
+      "consensus_after_discussion": 5,
+      "unresolved": false
+    }
+  ]
+}
