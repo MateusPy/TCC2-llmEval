@@ -347,8 +347,15 @@ def generate_figures(items_overall: list[dict[str, object]]) -> list[Path]:
     for i in range(5):
         for j in range(5):
             if mat[i][j] > 0:
-                ax.text(j, i, str(mat[i][j]), ha="center", va="center",
-                        color="white" if mat[i][j] >= 6 else "black", fontsize=11)
+                ax.text(
+                    j,
+                    i,
+                    str(mat[i][j]),
+                    ha="center",
+                    va="center",
+                    color="white" if mat[i][j] >= 6 else "black",
+                    fontsize=11,
+                )
     fig.colorbar(im, ax=ax, label="contagem")
     p = FIG_DIR / "confusion_matrix.png"
     fig.tight_layout()
@@ -366,7 +373,9 @@ def generate_figures(items_overall: list[dict[str, object]]) -> list[Path]:
             if it["dimension"] == dim
         ]
         if errs:
-            ax.hist(errs, bins=bins, alpha=0.6, label=f"{dim} (n={len(errs)})", color=dim_color[dim])
+            ax.hist(
+                errs, bins=bins, alpha=0.6, label=f"{dim} (n={len(errs)})", color=dim_color[dim]
+            )
     ax.axvline(0, color="black", linestyle="--", alpha=0.5)
     ax.set_xlabel("Erro (judge − consenso humano)")
     ax.set_ylabel("Itens")
@@ -402,7 +411,11 @@ def main() -> None:
         primary["per_item"],  # type: ignore[arg-type]
         key=lambda x: -float(x["abs_error_judge_vs_consensus"]),  # type: ignore[arg-type]
     )
-    strict = [pi for pi in per_item_sorted if pi["abs_error_judge_vs_consensus"] >= HIGH_DISAGREEMENT_THRESHOLD]
+    strict = [
+        pi
+        for pi in per_item_sorted
+        if pi["abs_error_judge_vs_consensus"] >= HIGH_DISAGREEMENT_THRESHOLD
+    ]
     relaxed = per_item_sorted[: max(QUALITATIVE_TOP_N, len(strict))]
 
     # análise de sensibilidade
@@ -455,7 +468,9 @@ def main() -> None:
     print(f"MAE              = {_fmt(o['mae_judge_human'])}")
     print("-" * 78)
     print("Por dimensão (point estimate):")
-    print(f"  {'dim':11s}  {'n':>3s}  {'κ A1×A2':>9s}  {'κ j×h':>9s}  {'r j×h':>9s}  {'ρ j×h':>9s}  {'MAE':>6s}")
+    print(
+        f"  {'dim':11s}  {'n':>3s}  {'κ A1×A2':>9s}  {'κ j×h':>9s}  {'r j×h':>9s}  {'ρ j×h':>9s}  {'MAE':>6s}"
+    )
     for dim, d in primary_by_dim.items():
         print(
             f"  {dim:11s}  {d['n']:>3d}  "  # type: ignore[index]
@@ -479,7 +494,9 @@ def main() -> None:
         f"|  top-{len(relaxed)} para análise qualitativa:"
     )
     for h in relaxed:
-        marker = "  ≥ strict" if h["abs_error_judge_vs_consensus"] >= HIGH_DISAGREEMENT_THRESHOLD else ""  # type: ignore[index]
+        marker = (
+            "  ≥ strict" if h["abs_error_judge_vs_consensus"] >= HIGH_DISAGREEMENT_THRESHOLD else ""
+        )  # type: ignore[index]
         print(
             f"  {h['item_id']:<42} judge={h['judge_mean']:.2f}  cons={h['consensus_mean']:.2f}  "  # type: ignore[index]
             f"|Δ|={h['abs_error_judge_vs_consensus']:.2f}{marker}"
