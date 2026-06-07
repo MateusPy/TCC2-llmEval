@@ -5,7 +5,7 @@ banco completo. Complementa [`RUN_NOTES.md`](RUN_NOTES.md) (operação +
 números) e alimenta a §5 do TCC (Análise comparativa) e a §10
 (Limitações).
 
-**Executor:** Johnny
+**Executor:** A1
 **Data:** 2026-05-26 / 2026-05-27 (UTC)
 **Branch:** `feat/50-full-run-3-chatbots`
 **Commit base:** `f723d58`

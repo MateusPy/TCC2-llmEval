@@ -1,21 +1,20 @@
-# Anotador A1 — Johnny
+# Anotador A1
 
 Sua coleta de 30 itens da amostra da issue #51. **Cego e independente** —
-você NÃO vê a nota do juiz nem a nota do Mateus enquanto anota.
+você NÃO vê a nota do juiz nem a nota do A2 enquanto anota.
 
 ## Pré-requisitos
 
 - [ ] Você fez a [rodada zero (`../calibration/`)](../calibration/README.md).
-- [ ] Você e o Mateus se reuniram pra alinhar a rubrica e registraram
+- [ ] Você e o A2 se reuniram pra alinhar a rubrica e registraram
       qualquer decisão que tomaram lá.
-- [ ] Profa. Elaine ciente do procedimento (issue #51 §3.4).
 
 ## Como anotar
 
 1. Abra `annotations_A1.csv` no editor que preferir (Excel, LibreOffice,
    Google Sheets, ou direto num editor de texto). A planilha tem 30 linhas
    na ordem `01, 02, ..., 30` — essa é **a sua ordem** (randomizada com
-   seed=11; a do Mateus é diferente).
+   seed=11; a do A2 é diferente).
 2. Comece pelo item 01: abra `items/01-<algo>.md`.
 3. **Antes de ler**, anote `ts_start` no CSV (timestamp livre, ex.: `2026-06-08 14:23`).
 4. Leia o `.md` inteiro — prompt, ground_truth (se factual), respostas,
@@ -42,7 +41,7 @@ você NÃO vê a nota do juiz nem a nota do Mateus enquanto anota.
 ## Quando terminar
 
 1. Salve o CSV (e faça backup se quiser).
-2. Avise o Mateus.
+2. Avise o A2.
 3. **Aguarde ele terminar** antes de qualquer comparação.
 4. Quando os dois terminarem, rodem o `consolidate.py` (script a ser
    criado quando vocês começarem) que faz o merge A1+A2, identifica

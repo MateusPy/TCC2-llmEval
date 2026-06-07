@@ -705,7 +705,7 @@ ruff check .
 Este projeto foi desenvolvido como parte do Trabalho de Conclusão de Curso intitulado **"Avaliação Sistemática da Confiabilidade de Chatbots baseados LLMs: Um Processo Reprodutível de Verificação da Qualidade"**, no curso de Engenharia de Software da Universidade de Brasília (UnB).
 
 **Autores:** Mateus Orlando Medeiros Ribeiro e Johnny Da Ponte Lopes
-**Orientadora:** Profa. Dra. Elaine Venson
+**Orientador:** Profa. Dra. Elaine Venson
 
 ---
 

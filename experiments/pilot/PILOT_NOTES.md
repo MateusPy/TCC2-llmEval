@@ -5,7 +5,7 @@ issue #49. Documento alimenta as decisões do **full run** (#50) e o Cap. 5.1
 (Setup experimental) do TCC.
 
 **Data de execução:** 2026-05-26
-**Executor:** Johnny (sessão Claude Code)
+**Executor:** A1
 **Commit do repo:** `957a330` (main, após merge da #60)
 **Branch:** `feat/49-pilot-three-chatbots`
 
@@ -178,14 +178,6 @@ seu próprio domínio:
       (issue follow-up) e estender `CustomProvider` ou demo-chatbot para
       surfaceabilizar tokens do Groq. Sem isso, o custo do full run será
       subestimado.
-
----
-
-## 8. Sign-off
-
-- [ ] Johnny revisou
-- [ ] Mateus revisou
-- [ ] Profa. Elaine ciente
 
 ---
 
