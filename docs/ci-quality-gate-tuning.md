@@ -1,6 +1,6 @@
 # Quality Gate em CI — guia de calibração
 
-Este guia documenta **todos os parâmetros que controlam quando e como o gate do `llm-eval` falha**, ordenados do mais grosso (decide se o gate roda) ao mais fino (decide o status da execução). Use como referência ao adaptar o template de [`examples/demo-chatbot/`](../examples/demo-chatbot/) pro seu chatbot.
+Este guia documenta **todos os parâmetros que controlam quando e como o gate do `llm-eval` falha**, ordenados do mais grosso (decide se o gate roda) ao mais fino (decide o status da execução). Use como referência ao adaptar o template de [`examples/demo-chatbot/`](https://github.com/MateusPy/TCC2-llmEval/tree/main/examples/demo-chatbot) pro seu chatbot.
 
 > **TL;DR.** Os três botões que você vai mexer 99% do tempo são:
 >
@@ -87,7 +87,7 @@ env:
   EVAL_THRESHOLD: "3.0"
 ```
 
-Variável de ambiente lida por [`scripts/check_gate.py`](../examples/demo-chatbot/scripts/check_gate.py). O parser itera `summary.by_dimension.*.mean` e falha se **qualquer** dimensão estiver abaixo.
+Variável de ambiente lida por [`scripts/check_gate.py`](https://github.com/MateusPy/TCC2-llmEval/blob/main/examples/demo-chatbot/scripts/check_gate.py). O parser itera `summary.by_dimension.*.mean` e falha se **qualquer** dimensão estiver abaixo.
 
 **Como calibrar (regra do plano original):**
 
@@ -173,7 +173,7 @@ Total: ~95 prompts. Abaixo disso, um único cenário ambíguo move a média dema
 
 ### Cenários: a parte mais cara do gate
 
-Um cenário ambíguo é pior que cenário nenhum — ele gera **falso negativo** (chatbot acerta, gate marca como erro). Veja `factual-tutor-015` no [SMOKE_TEST_ANALYSIS](../examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md) pra um exemplo concreto.
+Um cenário ambíguo é pior que cenário nenhum — ele gera **falso negativo** (chatbot acerta, gate marca como erro). Veja `factual-tutor-015` no [SMOKE_TEST_ANALYSIS](https://github.com/MateusPy/TCC2-llmEval/blob/main/examples/demo-chatbot/SMOKE_TEST_ANALYSIS.md) pra um exemplo concreto.
 
 Os 4 critérios da §4.5 de [`metodologia-cenarios.md`](metodologia-cenarios.md):
 

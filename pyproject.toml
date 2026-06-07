@@ -31,6 +31,16 @@ dev = [
 analysis = [
     "matplotlib>=3.8.0",
 ]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/MateusPy/TCC2-llmEval"
+Documentation = "https://mateuspy.github.io/TCC2-llmEval/"
+Repository = "https://github.com/MateusPy/TCC2-llmEval"
+Issues = "https://github.com/MateusPy/TCC2-llmEval/issues"
 
 [project.scripts]
 llm-eval = "llm_eval.cli:main"

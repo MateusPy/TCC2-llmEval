@@ -1,0 +1,62 @@
+site_name: llm-eval
+site_description: Framework open-source para avaliação de confiabilidade de chatbots baseados em LLMs
+site_url: https://mateuspy.github.io/TCC2-llmEval/
+site_author: Mateus Orlando Medeiros Ribeiro, Johnny Da Ponte Lopes
+
+repo_url: https://github.com/MateusPy/TCC2-llmEval
+repo_name: MateusPy/TCC2-llmEval
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: pt-BR
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o modo claro
+
+plugins:
+  - search:
+      lang: pt
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+# Documento interno de auditoria — não faz parte do site público.
+exclude_docs: |
+  auditoria-dados-sensiveis.md
+
+nav:
+  - Início: index.md
+  - Metodologia dos cenários: metodologia-cenarios.md
+  - Validação humana: protocolo-validacao-humana.md
+  - Quality gate em CI: ci-quality-gate-tuning.md
