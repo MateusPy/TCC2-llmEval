@@ -1,0 +1,124 @@
+site_name: llm-eval
+site_description: Framework open-source para avaliação de confiabilidade de chatbots baseados em LLMs
+site_url: https://mateuspy.github.io/TCC2-llmEval/
+site_author: Mateus Orlando Medeiros Ribeiro, Johnny Da Ponte Lopes
+
+repo_url: https://github.com/MateusPy/TCC2-llmEval
+repo_name: MateusPy/TCC2-llmEval
+edit_uri: edit/main/docs/
+copyright: Distribuído sob a licença MIT — UnB · Engenharia de Software
+
+theme:
+  name: material
+  language: pt-BR
+  icon:
+    logo: material/shield-search
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+    - announce.dismiss
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o modo claro
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MateusPy/TCC2-llmEval
+      name: Repositório no GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/llm-eval/
+      name: Pacote no PyPI
+
+plugins:
+  - search:
+      lang:
+        - pt
+        - en
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: pt
+          default: true
+          name: Português
+          build: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            Início: Home
+            Guias: Guides
+            Metodologia dos cenários: Scenario methodology
+            Validação humana: Human validation
+            Quality gate em CI: Quality gate in CI
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Documento interno de auditoria — não faz parte do site público.
+exclude_docs: |
+  auditoria-dados-sensiveis.md
+
+nav:
+  - Início: index.md
+  - Guias:
+      - Metodologia dos cenários: metodologia-cenarios.md
+      - Validação humana: protocolo-validacao-humana.md
+      - Quality gate em CI: ci-quality-gate-tuning.md

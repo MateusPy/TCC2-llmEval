@@ -3,9 +3,12 @@
 **Framework open-source para avaliação sistemática da confiabilidade de chatbots baseados em LLMs.**
 
 [![CI](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/ci.yml/badge.svg)](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/ci.yml)
+[![Docs](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/docs.yml/badge.svg)](https://mateuspy.github.io/TCC2-llmEval/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow.svg)]()
+
+📚 **Documentação:** <https://mateuspy.github.io/TCC2-llmEval/>
 
 ---
 
