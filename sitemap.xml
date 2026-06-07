@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/metodologia-cenarios/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/metodologia-cenarios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/metodologia-cenarios/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/protocolo-validacao-humana/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/protocolo-validacao-humana/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/metodologia-cenarios/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/metodologia-cenarios/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/metodologia-cenarios/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/</loc>
+        <lastmod>2026-06-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/protocolo-validacao-humana/"/>
+    </url>
+</urlset>
