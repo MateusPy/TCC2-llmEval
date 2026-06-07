@@ -1,42 +1,146 @@
-# llm-eval
+---
+hide:
+  - navigation
+  - toc
+---
 
-**Framework open-source para avaliação sistemática da confiabilidade de chatbots
-baseados em LLMs.**
+<div class="hero" markdown>
+<span class="hero__eyebrow">LLM-as-a-Judge · BERTScore · Reprodutível</span>
 
-O `llm-eval` é um pacote Python que avalia a confiabilidade de qualquer chatbot
-baseado em LLM de forma automatizada e reprodutível. Ele envia cenários de teste
-ao chatbot, coleta as respostas, avalia usando a estratégia
-**LLM-as-a-Judge** combinada com métricas computacionais como **BERTScore**, e
-gera relatórios estruturados.
+# Avalie a confiabilidade do seu chatbot LLM
 
-## Dimensões avaliadas
+<p class="hero__subtitle">
+Framework open-source em Python para medir <strong>precisão factual</strong>,
+<strong>consistência semântica</strong> e <strong>robustez</strong> de qualquer
+chatbot baseado em LLM — de forma automatizada, comparável e reprodutível.
+</p>
 
-| Dimensão | O que avalia | Como avalia |
-|---|---|---|
-| **Precisão factual** | O chatbot responde corretamente? | Compara respostas com ground truth verificável |
-| **Consistência semântica** | O chatbot dá a mesma resposta para a mesma pergunta feita de formas diferentes? | Envia reformulações e compara respostas entre si |
-| **Robustez** | O chatbot mantém a qualidade diante de ruído, typos e inputs adversariais? | Envia variações com erros e compara com a resposta original |
+<div class="hero__actions" markdown>
+[Começar agora :octicons-arrow-right-24:](metodologia-cenarios.md){ .md-button .md-button--primary }
+[Ver no GitHub](https://github.com/MateusPy/TCC2-llmEval){ .md-button }
+</div>
+</div>
 
-## Instalação
+<p class="landing-tagline" markdown>
+Envie cenários de teste, deixe um **modelo-juiz** avaliar as respostas com apoio
+de métricas computacionais e receba **relatórios estruturados** — pronto para
+rodar como _quality gate_ na sua pipeline de CI.
+</p>
 
-```bash
-pip install llm-eval
-```
+## Três dimensões de confiabilidade
 
-## Como navegar
+<div class="grid cards" markdown>
 
-- **[Metodologia dos cenários](metodologia-cenarios.md)** — como o banco de
-  cenários foi construído e como apontar um banco próprio.
-- **[Validação humana](protocolo-validacao-humana.md)** — protocolo de
-  concordância humano × juiz e os templates de anotação.
-- **[Quality gate em CI](ci-quality-gate-tuning.md)** — como calibrar o gate
-  que barra regressões de qualidade na pipeline.
+-   :material-target-variant:{ .lg .middle } &nbsp;__Precisão factual__
+
+    ---
+
+    O chatbot responde corretamente? As respostas são comparadas com um
+    **ground truth verificável**, com cenários-armadilha para flagrar
+    alucinação.
+
+    [:octicons-arrow-right-24: Banco de cenários](metodologia-cenarios.md)
+
+-   :material-vector-link:{ .lg .middle } &nbsp;__Consistência semântica__
+
+    ---
+
+    A mesma pergunta, feita de formas diferentes, recebe a mesma resposta? O
+    framework envia **reformulações** e compara as saídas entre si.
+
+    [:octicons-arrow-right-24: Como avaliamos](metodologia-cenarios.md)
+
+-   :material-shield-check:{ .lg .middle } &nbsp;__Robustez__
+
+    ---
+
+    A qualidade se mantém diante de **ruído, typos e inputs adversariais**? As
+    variantes são comparadas com a resposta original.
+
+    [:octicons-arrow-right-24: Validação humana](protocolo-validacao-humana.md)
+
+</div>
+
+## Comece em 2 minutos
+
+=== "Instalar"
+
+    ```bash
+    pip install llm-eval
+    ```
+
+=== "Configurar (`config.yaml`)"
+
+    ```yaml
+    provider:
+      type: gemini
+      model: gemini-2.0-flash
+      api_key: ${GEMINI_API_KEY}
+    judge:
+      model: gemini-2.0-flash
+    dimensions: [factual, consistency, robustness]
+    output_dir: results/
+    ```
+
+=== "Rodar"
+
+    ```bash
+    export GEMINI_API_KEY=...      # sua chave por variável de ambiente
+    llm-eval run --config config.yaml
+    # → results/report.md  +  results/report.json
+    ```
+
+!!! tip "Pronto para CI"
+    O mesmo comando vira um **quality gate** que barra regressões de qualidade
+    em cada pull request. Veja o guia de
+    [calibração do gate](ci-quality-gate-tuning.md).
+
+## Por onde seguir
+
+<div class="grid cards" markdown>
+
+-   :material-flask-outline:{ .lg .middle } &nbsp;__Metodologia dos cenários__
+
+    ---
+
+    Como o banco foi construído e como apontar um banco próprio via
+    `scenarios_path`.
+
+    [:octicons-arrow-right-24: Abrir](metodologia-cenarios.md)
+
+-   :material-account-check-outline:{ .lg .middle } &nbsp;__Validação humana__
+
+    ---
+
+    Protocolo de concordância humano × juiz e os templates de anotação.
+
+    [:octicons-arrow-right-24: Abrir](protocolo-validacao-humana.md)
+
+-   :material-pipe:{ .lg .middle } &nbsp;__Quality gate em CI__
+
+    ---
+
+    Calibre quando e como o gate falha na sua pipeline.
+
+    [:octicons-arrow-right-24: Abrir](ci-quality-gate-tuning.md)
+
+-   :material-github:{ .lg .middle } &nbsp;__Código & issues__
+
+    ---
+
+    Contribua, abra issues ou explore o código-fonte no GitHub.
+
+    [:octicons-arrow-right-24: Repositório](https://github.com/MateusPy/TCC2-llmEval)
+
+</div>
 
 !!! note "Documentação em evolução"
-    Esta é a estrutura inicial do site. As páginas de guia rápido,
-    configuração, providers e avaliação serão adicionadas em seguida
-    (issue [#71](https://github.com/MateusPy/TCC2-llmEval/issues/71)).
+    Esta é a primeira versão do site. Guia rápido, referência de configuração,
+    providers e detalhes de avaliação chegam em seguida
+    ([issue #71](https://github.com/MateusPy/TCC2-llmEval/issues/71)).
 
-O projeto nasceu como parte de um Trabalho de Conclusão de Curso em Engenharia
-de Software na Universidade de Brasília (UnB). Código-fonte e issues em
-[github.com/MateusPy/TCC2-llmEval](https://github.com/MateusPy/TCC2-llmEval).
+---
+
+O `llm-eval` nasceu como Trabalho de Conclusão de Curso em Engenharia de Software
+na **Universidade de Brasília (UnB)**, preenchendo uma lacuna prática: aplicar,
+de forma sistemática e acessível, métricas e critérios de avaliação de LLMs.
