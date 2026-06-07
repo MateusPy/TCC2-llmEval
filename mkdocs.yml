@@ -63,7 +63,28 @@ extra:
 
 plugins:
   - search:
-      lang: pt
+      lang:
+        - pt
+        - en
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: pt
+          default: true
+          name: Português
+          build: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            Início: Home
+            Guias: Guides
+            Metodologia dos cenários: Scenario methodology
+            Validação humana: Human validation
+            Quality gate em CI: Quality gate in CI
 
 markdown_extensions:
   - admonition
