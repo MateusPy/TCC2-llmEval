@@ -1,6 +1,6 @@
 # Ata da Rodada Zero (Calibração)
 
-**Anotadores:** Johnny (A1), Mateus (A2)
+**Anotadores:** A1, A2
 **Procedimento:** anotação cega independente dos 5 cenários da calibração,
 seguida de revisão conjunta dos resultados.
 

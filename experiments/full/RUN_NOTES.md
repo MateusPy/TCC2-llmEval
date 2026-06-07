@@ -4,7 +4,7 @@ Notas de execução das 3 runs principais + 2 shadow do full run da #50.
 Alimenta o Cap. 5 do TCC.
 
 **Data de execução:** 2026-05-26 / 2026-05-27 (UTC)
-**Executor:** Johnny
+**Executor:** A1
 **Branch:** `feat/50-full-run-3-chatbots`
 **Commit base:** `f723d58` (após blockers do PILOT_ANALYSIS §7 endereçados)
 
@@ -260,13 +260,5 @@ e `ministral-3b-2512` ficou muito abaixo do que a issue assumiu.
 - [x] Custom artifact disponível por 90 dias no GitHub Actions
       (retention-days configurado no workflow eval-full-custom).
 - [ ] Cópia local fora do repo: passo manual do executor (não é
-      responsabilidade do agente). Caminho sugerido: clone do branch
+      responsabilidade do pipeline). Caminho sugerido: clone do branch
       em `~/backups/tcc-llmeval-50-fullrun-2026-05-26/`.
-
----
-
-## 10. Sign-off
-
-- [ ] Johnny revisou
-- [ ] Mateus revisou
-- [ ] Profa. Elaine ciente

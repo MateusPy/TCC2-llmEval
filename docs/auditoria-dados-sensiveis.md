@@ -68,15 +68,34 @@ ponto abaixo foi conferido nesses artefatos:
   ocorrências de `Bearer` no repositório são placeholders em docs
   (`Bearer ${CUSTOM_API_KEY}`) e fixtures de teste (`Bearer tok`, `Bearer abc`).
 
+## Dados pessoais nos notes (anonimização)
+
+Além dos artefatos de resultado, os documentos de processo (notes de execução e
+material da validação humana) foram revisados quanto a **identificação de
+pessoas**. Decisão tomada antes do release público:
+
+- ✅ **Anotadores anonimizados** — nomes próprios dos dois anotadores humanos
+  foram substituídos por `A1` / `A2` em todos os notes e READMEs de
+  `experiments/` e na coluna "Validado por" de `docs/metodologia-cenarios.md`.
+- ✅ **Sign-offs internos removidos** — blocos de revisão com nomes
+  (`RUN_NOTES`, `PILOT_NOTES`, READMEs de anotador) foram retirados; eram
+  artefatos de controle interno sem valor no repo público.
+- ✅ **Marcadores de pendência neutralizados** — `TBD/<nome>` → `TBD`.
+- ⚖️ **Créditos de autoria mantidos** — autores (LICENSE, README, `pyproject`)
+  e orientadora (README) permanecem, por serem créditos acadêmicos formais, não
+  dados sensíveis.
+
 ## Remediação
 
-Não aplicável — nada foi encontrado na árvore nem no histórico, logo não houve
+Nenhum **segredo** foi encontrado na árvore ou no histórico — não houve
 necessidade de rotacionar chaves, reescrever histórico (`git filter-repo`/BFG)
-ou forçar push.
+ou forçar push. A única ação foi a **anonimização de nomes** nos notes descrita
+acima (dado pessoal, não credencial).
 
 ## Conclusão
 
 Varredura de histórico concluída sem segredos verificados; scan ativo no CI;
-artefatos commitados conferidos manualmente. **Repositório apto para tornar-se
-público.** Recomendação permanente: manter o job de scan no CI e nunca remover o
-`fetch-depth: 0`.
+artefatos commitados conferidos manualmente; nomes de pessoas nos notes
+anonimizados (mantidos apenas os créditos de autoria). **Repositório apto para
+tornar-se público.** Recomendação permanente: manter o job de scan no CI e nunca
+remover o `fetch-depth: 0`.

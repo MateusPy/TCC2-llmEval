@@ -1,6 +1,6 @@
 # Validação humana do LLM-as-a-Judge (issue #51)
 
-Tudo o que vocês (Johnny + Mateus) precisam para anotar os 30 cenários
+Tudo o que vocês (A1 + A2) precisam para anotar os 30 cenários
 selecionados pelo plano da [issue #51](https://github.com/MateusPy/TCC2-llmEval/issues/51).
 
 ## Fluxo
@@ -11,7 +11,7 @@ selecionados pelo plano da [issue #51](https://github.com/MateusPy/TCC2-llmEval/
    ↓ se reúnem (Discord/Zoom, ~30 min) pra alinhar interpretação da rubrica
    ↓ ajustes na rubrica se necessário
 2. Anotação principal — 30 cenários, cego e independente
-   ↓ Johnny abre `annotator_1/`, Mateus abre `annotator_2/`
+   ↓ A1 abre `annotator_1/`, A2 abre `annotator_2/`
    ↓ cada um no seu ritmo, em casa
    ↓ ninguém vê a nota do juiz nem a nota do outro
 3. Consolidação
@@ -41,11 +41,11 @@ experiments/human-validation/
 │   ├── calibration_A1.csv
 │   ├── calibration_A2.csv
 │   └── items/                      ← .md por cenário (legível, sem nota do juiz)
-├── annotator_1/                    ← Johnny
+├── annotator_1/                    ← A1
 │   ├── README.md
 │   ├── annotations_A1.csv
 │   └── items/                      ← 30 .md em ordem randomizada (seed=11)
-├── annotator_2/                    ← Mateus
+├── annotator_2/                    ← A2
 │   ├── README.md
 │   ├── annotations_A2.csv
 │   └── items/                      ← 30 .md em ordem randomizada (seed=22)
@@ -100,10 +100,10 @@ substitui `consensus_mean` na métrica principal). Detalhes em
 
 Anotadores registraram `ts_start` / `ts_end` na própria linha do CSV.
 
-- **A2 (Mateus):** registro granular item-a-item. Sessão de ~65 min para
+- **A2:** registro granular item-a-item. Sessão de ~65 min para
   os 30 itens → **~2,2 min/item** (mediana ~2 min, faixa 0–7 min, item
   inicial mais longo por ramp-up).
-- **A1 (Johnny):** timestamps capturados como bloco único (~17:15 em
+- **A1:** timestamps capturados como bloco único (~17:15 em
   quase todos), sem granularidade por item. Sessão estimada em ~1,5h
   para os 30 → **~3 min/item** estimado.
 

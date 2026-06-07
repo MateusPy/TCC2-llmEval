@@ -2,7 +2,7 @@
 
 **Data:** 2026-05-27
 **Modo:** remoto (call)
-**Anotadores presentes:** Johnny (A1), Mateus (A2)
+**Anotadores presentes:** A1, A2
 **Itens elegíveis pela regra do protocolo (Δ ≥ 2):** 4 de 30
 **Itens marcados `unresolved` ao final:** 0
 

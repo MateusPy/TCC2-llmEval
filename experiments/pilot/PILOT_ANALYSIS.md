@@ -4,7 +4,7 @@ Análise dos três runs do piloto executados em sequência em 2026-05-26. Docume
 complementa [`PILOT_NOTES.md`](PILOT_NOTES.md) (notas de operação) e alimenta a
 §5.1 do TCC (Setup experimental) e a §10 (Limitações).
 
-**Executor:** Johnny (sessão Claude Code)
+**Executor:** A1
 **Data:** 2026-05-26
 **Branch:** `feat/49-pilot-three-chatbots`
 **Commit base:** `957a330`
