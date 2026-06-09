@@ -3,11 +3,22 @@ name = "llm-eval"
 version = "0.1.0"
 description = "Framework open-source para avaliação de confiabilidade de chatbots baseados em LLMs"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.11"
 authors = [
     {name = "Mateus Orlando Medeiros Ribeiro"},
     {name = "Johnny Da Ponte Lopes"},
+]
+keywords = ["llm", "chatbot", "evaluation", "reliability", "llm-as-a-judge", "bertscore", "nlp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
     "google-generativeai>=0.8.0",
@@ -42,12 +53,13 @@ Homepage = "https://github.com/MateusPy/TCC2-llmEval"
 Documentation = "https://mateuspy.github.io/TCC2-llmEval/"
 Repository = "https://github.com/MateusPy/TCC2-llmEval"
 Issues = "https://github.com/MateusPy/TCC2-llmEval/issues"
+Changelog = "https://github.com/MateusPy/TCC2-llmEval/blob/main/CHANGELOG.md"
 
 [project.scripts]
 llm-eval = "llm_eval.cli:main"
 
 [build-system]
-requires = ["setuptools>=68.0", "wheel"]
+requires = ["setuptools>=77.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
