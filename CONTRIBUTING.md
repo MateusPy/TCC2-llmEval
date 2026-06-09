@@ -176,8 +176,14 @@ Para introduzir uma dimensão de avaliação além de `factual`, `consistency` e
 ## Cortando uma release
 
 A publicação no PyPI é **automatizada**: ao dar push de uma tag `v*`, o workflow
-`.github/workflows/release.yml` faz o build, publica no TestPyPI, valida a instalação,
+`.github/workflows/release.yml` faz o build, valida a instalação do wheel recém-gerado,
 publica no PyPI e anexa os artefatos (`*.whl` / `*.tar.gz`) à GitHub Release.
+
+> **Por que não há etapa de TestPyPI:** o nome `llm-eval` já está registrado no
+> TestPyPI por um projeto de terceiros, então não dá para publicar lá. No lugar do
+> smoke via TestPyPI, o workflow instala o **próprio wheel recém-buildado** (do
+> artifact, sem índice) e roda a CLI + carga dos bancos antes de publicar — mesma
+> garantia de "testar antes do publish real", já que o PyPI é imutável.
 
 ### Passos para cortar a versão `X.Y.Z`
 
@@ -194,24 +200,24 @@ publica no PyPI e anexa os artefatos (`*.whl` / `*.tar.gz`) à GitHub Release.
    ```
 
 5. Acompanhar o workflow **Release** em Actions. A ordem dos jobs é
-   `build → publish-testpypi → smoke-testpypi → publish-pypi → github-release`.
+   `build → smoke → publish-pypi → github-release`.
 
 ### Configuração necessária (uma vez)
 
 O publish usa **Trusted Publishing (OIDC)** — sem token estático no repositório.
-Para funcionar, configure o _trusted publisher_ em cada índice:
+Para funcionar, configure o _trusted publisher_ no PyPI:
 
 - **PyPI**: <https://pypi.org/manage/account/publishing/> → adicionar publisher apontando para
   o repositório `MateusPy/TCC2-llmEval`, workflow `release.yml`, environment `pypi`.
-- **TestPyPI**: <https://test.pypi.org/manage/account/publishing/> → idem, environment `testpypi`.
+  Como o projeto ainda não foi publicado, use o formulário de **pending publisher**
+  (a primeira execução cria e reivindica o nome `llm-eval`).
 
-Os _environments_ `pypi` e `testpypi` são criados automaticamente pelo GitHub na primeira
-execução; opcionalmente adicione regras de proteção (revisores obrigatórios) em
+O _environment_ `pypi` é criado automaticamente pelo GitHub na primeira execução;
+opcionalmente adicione regras de proteção (revisores obrigatórios) em
 **Settings → Environments**.
 
-> **Fallback por token:** caso o OIDC não seja viável, crie os secrets `PYPI_API_TOKEN`
-> e `TEST_PYPI_API_TOKEN` e descomente as linhas `password:` correspondentes em
-> `release.yml`.
+> **Fallback por token:** caso o OIDC não seja viável, crie o secret `PYPI_API_TOKEN`
+> e descomente as linhas `password:` correspondentes em `release.yml`.
 
 ---
 

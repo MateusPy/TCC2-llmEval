@@ -1,7 +1,12 @@
 name: Release
 
 # Dispara ao publicar uma tag de versão (ex.: v0.1.0).
-# Fluxo: build -> TestPyPI -> smoke do TestPyPI -> PyPI -> GitHub Release.
+# Fluxo: build -> smoke do wheel -> PyPI -> GitHub Release.
+#
+# Nota: não publicamos no TestPyPI porque o nome `llm-eval` já está registrado
+# lá por um projeto de terceiros. Em vez do smoke via TestPyPI, instalamos o
+# próprio wheel recém-buildado (do artifact, sem índice) antes de publicar —
+# mesma garantia de "testar antes do publish real", já que o PyPI é imutável.
 on:
   push:
     tags:
@@ -42,13 +47,10 @@ jobs:
           path: dist/
           if-no-files-found: error
 
-  publish-testpypi:
-    name: Publicar no TestPyPI
+  smoke:
+    name: Smoke install do wheel
     needs: build
     runs-on: ubuntu-latest
-    environment: testpypi
-    permissions:
-      id-token: write          # OIDC / Trusted Publishing
     steps:
       - name: Download dist
         uses: actions/download-artifact@v4
@@ -56,39 +58,15 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Publicar no TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          # OIDC é usado automaticamente (sem password). Fallback por token:
-          # password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-
-  smoke-testpypi:
-    name: Smoke install do TestPyPI
-    needs: publish-testpypi
-    runs-on: ubuntu-latest
-    steps:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Instalar do TestPyPI e rodar smoke
+      - name: Instalar o wheel recém-buildado e rodar smoke
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          echo "Instalando llm-eval==${VERSION} do TestPyPI..."
-          # Deps ficam no PyPI normal; só o llm-eval vem do TestPyPI.
-          # Retry porque o índice do TestPyPI leva alguns segundos para propagar.
-          for i in $(seq 1 10); do
-            if pip install \
-                --index-url https://test.pypi.org/simple/ \
-                --extra-index-url https://pypi.org/simple/ \
-                "llm-eval==${VERSION}"; then
-              break
-            fi
-            echo "Tentativa ${i} falhou; aguardando o índice propagar..."
-            sleep 15
-          done
+          # Instala o artefato exato que será publicado (não de um índice).
+          pip install dist/*.whl
           llm-eval --version
           llm-eval --help
           # Confirma que os bancos JSON embutidos vieram no wheel.
@@ -97,7 +75,7 @@ jobs:
 
   publish-pypi:
     name: Publicar no PyPI
-    needs: smoke-testpypi
+    needs: smoke
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
