@@ -10,6 +10,26 @@ Este guia documenta **todos os parâmetros que controlam quando e como o gate do
 
 ---
 
+## Como o gate aparece na pipeline
+
+O quality gate roda como um job a mais no GitHub Actions. Quando os scores por
+dimensão ficam acima do `EVAL_THRESHOLD`, o job passa (✅); se qualquer dimensão cai
+abaixo, o job falha e marca o PR como reprovado (❌) — junto do log mostrando qual
+dimensão puxou a média pra baixo.
+
+**Exemplo real:** este é o job `eval-gate` rodando na nossa própria CI —
+[ver a *action run* completa](https://github.com/MateusPy/TCC2-llmEval/actions/runs/26485055692/job/77990903419).
+
+<!-- SCREENSHOTS: inserir prints da execução aqui (ver docs/assets/quality-gate/). -->
+
+!!! note "Prints da execução"
+    As capturas de tela da execução (job na lista de checks do PR e o log do gate
+    com os scores por dimensão) são adicionadas nesta seção. Enquanto isso, a
+    [*action run* de exemplo](https://github.com/MateusPy/TCC2-llmEval/actions/runs/26485055692/job/77990903419)
+    mostra exatamente como o gate se comporta na pipeline.
+
+---
+
 ## Mapa dos botões
 
 | Camada | Parâmetro | Onde mora | Pra que serve |

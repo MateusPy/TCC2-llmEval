@@ -16,7 +16,7 @@ chatbot baseado em LLM — de forma automatizada, comparável e reprodutível.
 </p>
 
 <div class="hero__actions" markdown>
-[Começar agora :octicons-arrow-right-24:](metodologia-cenarios.md){ .md-button .md-button--primary }
+[Começar agora :octicons-arrow-right-24:](quickstart.md){ .md-button .md-button--primary }
 [Ver no GitHub](https://github.com/MateusPy/TCC2-llmEval){ .md-button }
 </div>
 </div>
@@ -77,7 +77,10 @@ rodar como _quality gate_ na sua pipeline de CI.
       model: gemini-2.0-flash
       api_key: ${GEMINI_API_KEY}
     judge:
-      model: gemini-2.0-flash
+      provider:
+        type: gemini
+        model: gemini-2.0-flash
+        api_key: ${GEMINI_API_KEY}
     dimensions: [factual, consistency, robustness]
     output_dir: results/
     ```
@@ -99,22 +102,37 @@ rodar como _quality gate_ na sua pipeline de CI.
 
 <div class="grid cards" markdown>
 
--   :material-flask-outline:{ .lg .middle } &nbsp;__Metodologia dos cenários__
+-   :material-rocket-launch-outline:{ .lg .middle } &nbsp;__Guia rápido__
 
     ---
 
-    Como o banco foi construído e como apontar um banco próprio via
-    `scenarios_path`.
+    Do zero a um relatório de confiabilidade em três passos.
 
-    [:octicons-arrow-right-24: Abrir](metodologia-cenarios.md)
+    [:octicons-arrow-right-24: Abrir](quickstart.md)
 
--   :material-account-check-outline:{ .lg .middle } &nbsp;__Validação humana__
+-   :material-tune:{ .lg .middle } &nbsp;__Configuração__
 
     ---
 
-    Protocolo de concordância humano × juiz e os templates de anotação.
+    Referência completa do `config.yaml`: provider, juiz, dimensões e saída.
 
-    [:octicons-arrow-right-24: Abrir](protocolo-validacao-humana.md)
+    [:octicons-arrow-right-24: Abrir](configuracao.md)
+
+-   :material-connection:{ .lg .middle } &nbsp;__Providers__
+
+    ---
+
+    Gemini, Mistral e o provider HTTP genérico para qualquer endpoint.
+
+    [:octicons-arrow-right-24: Abrir](providers.md)
+
+-   :material-scale-balance:{ .lg .middle } &nbsp;__Avaliação__
+
+    ---
+
+    LLM-as-a-Judge (rubrica 1–5) e métricas computacionais como o BERTScore.
+
+    [:octicons-arrow-right-24: Abrir](avaliacao.md)
 
 -   :material-pipe:{ .lg .middle } &nbsp;__Quality gate em CI__
 
@@ -124,20 +142,15 @@ rodar como _quality gate_ na sua pipeline de CI.
 
     [:octicons-arrow-right-24: Abrir](ci-quality-gate-tuning.md)
 
--   :material-github:{ .lg .middle } &nbsp;__Código & issues__
+-   :material-account-check-outline:{ .lg .middle } &nbsp;__Validação humana__
 
     ---
 
-    Contribua, abra issues ou explore o código-fonte no GitHub.
+    Protocolo de concordância humano × juiz e os templates de anotação.
 
-    [:octicons-arrow-right-24: Repositório](https://github.com/MateusPy/TCC2-llmEval)
+    [:octicons-arrow-right-24: Abrir](protocolo-validacao-humana.md)
 
 </div>
-
-!!! note "Documentação em evolução"
-    Esta é a primeira versão do site. Guia rápido, referência de configuração,
-    providers e detalhes de avaliação chegam em seguida
-    ([issue #71](https://github.com/MateusPy/TCC2-llmEval/issues/71)).
 
 ---
 
