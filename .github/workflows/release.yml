@@ -1,12 +1,10 @@
 name: Release
 
 # Dispara ao publicar uma tag de versão (ex.: v0.1.0).
-# Fluxo: build -> smoke do wheel -> PyPI -> GitHub Release.
+# Fluxo: build -> TestPyPI -> smoke do TestPyPI -> PyPI -> GitHub Release.
 #
-# Nota: não publicamos no TestPyPI porque o nome `llm-eval` já está registrado
-# lá por um projeto de terceiros. Em vez do smoke via TestPyPI, instalamos o
-# próprio wheel recém-buildado (do artifact, sem índice) antes de publicar —
-# mesma garantia de "testar antes do publish real", já que o PyPI é imutável.
+# O pacote é distribuído como `llm-eval-unb` (o nome `llm-eval` estava ocupado
+# nos índices). O import segue `llm_eval` e o comando de CLI segue `llm-eval`.
 on:
   push:
     tags:
@@ -47,10 +45,13 @@ jobs:
           path: dist/
           if-no-files-found: error
 
-  smoke:
-    name: Smoke install do wheel
+  publish-testpypi:
+    name: Publicar no TestPyPI
     needs: build
     runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write          # OIDC / Trusted Publishing
     steps:
       - name: Download dist
         uses: actions/download-artifact@v4
@@ -58,15 +59,39 @@ jobs:
           name: dist
           path: dist/
 
+      - name: Publicar no TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          # OIDC é usado automaticamente (sem password). Fallback por token:
+          # password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+  smoke-testpypi:
+    name: Smoke install do TestPyPI
+    needs: publish-testpypi
+    runs-on: ubuntu-latest
+    steps:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Instalar o wheel recém-buildado e rodar smoke
+      - name: Instalar do TestPyPI e rodar smoke
         run: |
-          # Instala o artefato exato que será publicado (não de um índice).
-          pip install dist/*.whl
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "Instalando llm-eval-unb==${VERSION} do TestPyPI..."
+          # Deps ficam no PyPI normal; só o llm-eval-unb vem do TestPyPI.
+          # Retry porque o índice do TestPyPI leva alguns segundos para propagar.
+          for i in $(seq 1 10); do
+            if pip install \
+                --index-url https://test.pypi.org/simple/ \
+                --extra-index-url https://pypi.org/simple/ \
+                "llm-eval-unb==${VERSION}"; then
+              break
+            fi
+            echo "Tentativa ${i} falhou; aguardando o índice propagar..."
+            sleep 15
+          done
           llm-eval --version
           llm-eval --help
           # Confirma que os bancos JSON embutidos vieram no wheel.
@@ -75,7 +100,7 @@ jobs:
 
   publish-pypi:
     name: Publicar no PyPI
-    needs: smoke
+    needs: smoke-testpypi
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
@@ -112,6 +137,6 @@ jobs:
           files: dist/*
           generate_release_notes: true
           body: |
-            Publicado no PyPI: https://pypi.org/project/llm-eval/${{ github.ref_name }}/
+            Publicado no PyPI: https://pypi.org/project/llm-eval-unb/${{ github.ref_name }}/
 
             Veja o [CHANGELOG](https://github.com/MateusPy/TCC2-llmEval/blob/main/CHANGELOG.md) para os detalhes desta versão.

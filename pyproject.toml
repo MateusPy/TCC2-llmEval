@@ -1,5 +1,5 @@
 [project]
-name = "llm-eval"
+name = "llm-eval-unb"
 version = "0.1.0"
 description = "Framework open-source para avaliação de confiabilidade de chatbots baseados em LLMs"
 readme = "README.md"

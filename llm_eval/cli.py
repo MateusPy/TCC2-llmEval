@@ -91,7 +91,7 @@ def _resolve_validation_api_key(provider_name: str, explicit_api_key: str | None
 
 
 @click.group()
-@click.version_option()
+@click.version_option(package_name="llm-eval-unb")
 @click.option("--verbose", "-v", is_flag=True, help="Habilita logs em nível INFO.")
 def main(verbose: bool) -> None:
     """llm-eval: Framework para avaliação de confiabilidade de chatbots baseados em LLMs."""
