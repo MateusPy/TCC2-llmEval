@@ -12,6 +12,7 @@ Obrigado pelo interesse em contribuir! Este documento explica como configurar o 
 - [Workflow de contribuição](#workflow-de-contribuição)
 - [Adicionando um novo provider](#adicionando-um-novo-provider)
 - [Adicionando uma nova dimensão](#adicionando-uma-nova-dimensão)
+- [Cortando uma release](#cortando-uma-release)
 - [Reportando bugs e sugerindo features](#reportando-bugs-e-sugerindo-features)
 
 ---
@@ -169,6 +170,52 @@ Para introduzir uma dimensão de avaliação além de `factual`, `consistency` e
 4. Atualizar `Runner` (`llm_eval/runner.py`) caso seja necessário um pipeline distinto para a dimensão.
 5. Documentar no `README.md` e adicionar exemplos de cenários no banco.
 6. Adicionar testes em `tests/test_loader.py`, `tests/test_judge.py` e `tests/test_runner.py`.
+
+---
+
+## Cortando uma release
+
+A publicação no PyPI é **automatizada**: ao dar push de uma tag `v*`, o workflow
+`.github/workflows/release.yml` faz o build, publica no TestPyPI, valida a instalação,
+publica no PyPI e anexa os artefatos (`*.whl` / `*.tar.gz`) à GitHub Release.
+
+> O pacote é distribuído como **`llm-eval-unb`** (o nome `llm-eval` estava ocupado
+> nos índices). O import segue `llm_eval` e o comando de CLI segue `llm-eval`.
+
+### Passos para cortar a versão `X.Y.Z`
+
+1. **Bump da versão** em `pyproject.toml` (`version = "X.Y.Z"`), seguindo [SemVer](https://semver.org/lang/pt-BR/).
+2. **Atualizar o `CHANGELOG.md`**: mover os itens de `[Não lançado]` para uma nova seção
+   `[X.Y.Z] - AAAA-MM-DD` e atualizar os links de comparação no rodapé.
+3. Abrir o PR com esses dois ajustes, revisar e mergear na `main`.
+4. **Criar e empurrar a tag** a partir da `main` atualizada:
+
+   ```bash
+   git checkout main && git pull
+   git tag vX.Y.Z
+   git push origin vX.Y.Z
+   ```
+
+5. Acompanhar o workflow **Release** em Actions. A ordem dos jobs é
+   `build → publish-testpypi → smoke-testpypi → publish-pypi → github-release`.
+
+### Configuração necessária (uma vez)
+
+O publish usa **Trusted Publishing (OIDC)** — sem token estático no repositório.
+Para funcionar, configure o _trusted publisher_ em cada índice, apontando para
+o repositório `MateusPy/TCC2-llmEval`, workflow `release.yml`:
+
+- **PyPI**: <https://pypi.org/manage/account/publishing/> → publisher para o projeto
+  `llm-eval-unb`, environment `pypi`.
+- **TestPyPI**: <https://test.pypi.org/manage/account/publishing/> → idem, environment `testpypi`.
+
+Os _environments_ `pypi` e `testpypi` são criados automaticamente pelo GitHub na
+primeira execução; opcionalmente adicione regras de proteção (revisores obrigatórios)
+em **Settings → Environments**.
+
+> **Fallback por token:** caso o OIDC não seja viável, crie os secrets `PYPI_API_TOKEN`
+> e `TEST_PYPI_API_TOKEN` e descomente as linhas `password:` correspondentes em
+> `release.yml`.
 
 ---
 

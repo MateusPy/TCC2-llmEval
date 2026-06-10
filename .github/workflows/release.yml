@@ -1,0 +1,142 @@
+name: Release
+
+# Dispara ao publicar uma tag de versão (ex.: v0.1.0).
+# Fluxo: build -> TestPyPI -> smoke do TestPyPI -> PyPI -> GitHub Release.
+#
+# O pacote é distribuído como `llm-eval-unb` (o nome `llm-eval` estava ocupado
+# nos índices). O import segue `llm_eval` e o comando de CLI segue `llm-eval`.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build (sdist + wheel)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build tooling
+        run: pip install build twine
+
+      - name: Build do pacote
+        run: python -m build
+
+      - name: twine check
+        run: twine check dist/*
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  publish-testpypi:
+    name: Publicar no TestPyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write          # OIDC / Trusted Publishing
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publicar no TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          # OIDC é usado automaticamente (sem password). Fallback por token:
+          # password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+  smoke-testpypi:
+    name: Smoke install do TestPyPI
+    needs: publish-testpypi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar do TestPyPI e rodar smoke
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "Instalando llm-eval-unb==${VERSION} do TestPyPI..."
+          # Deps ficam no PyPI normal; só o llm-eval-unb vem do TestPyPI.
+          # Retry porque o índice do TestPyPI leva alguns segundos para propagar.
+          for i in $(seq 1 10); do
+            if pip install \
+                --index-url https://test.pypi.org/simple/ \
+                --extra-index-url https://pypi.org/simple/ \
+                "llm-eval-unb==${VERSION}"; then
+              break
+            fi
+            echo "Tentativa ${i} falhou; aguardando o índice propagar..."
+            sleep 15
+          done
+          llm-eval --version
+          llm-eval --help
+          # Confirma que os bancos JSON embutidos vieram no wheel.
+          python -c "from llm_eval.scenarios.loader import ScenarioLoader; \
+            print('cenarios factual:', len(ScenarioLoader().load('factual').scenarios))"
+
+  publish-pypi:
+    name: Publicar no PyPI
+    needs: smoke-testpypi
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write          # OIDC / Trusted Publishing
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publicar no PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # OIDC é usado automaticamente (sem password). Fallback por token:
+        # with:
+        #   password: ${{ secrets.PYPI_API_TOKEN }}
+
+  github-release:
+    name: GitHub Release (anexar artefatos)
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Criar/atualizar a Release com os artefatos
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            Publicado no PyPI: https://pypi.org/project/llm-eval-unb/${{ github.ref_name }}/
+
+            Veja o [CHANGELOG](https://github.com/MateusPy/TCC2-llmEval/blob/main/CHANGELOG.md) para os detalhes desta versão.
