@@ -2,11 +2,11 @@
 
 **Framework open-source para avaliação sistemática da confiabilidade de chatbots baseados em LLMs.**
 
+[![PyPI](https://img.shields.io/pypi/v/llm-eval-unb.svg)](https://pypi.org/project/llm-eval-unb/)
 [![CI](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/ci.yml/badge.svg)](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/ci.yml)
 [![Docs](https://github.com/MateusPy/TCC2-llmEval/actions/workflows/docs.yml/badge.svg)](https://mateuspy.github.io/TCC2-llmEval/)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python](https://img.shields.io/pypi/pyversions/llm-eval-unb.svg)](https://pypi.org/project/llm-eval-unb/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow.svg)]()
 
 📚 **Documentação completa:** <https://mateuspy.github.io/TCC2-llmEval/>
 
@@ -204,7 +204,7 @@ llm-eval --version
 
 ## Contribuindo
 
-Contribuições são bem-vindas! Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para o guia completo — setup do ambiente, padrões de código, testes e fluxo de PR.
+Contribuições são bem-vindas! Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para o guia completo — setup do ambiente, padrões de código, testes e fluxo de PR. Esperamos que todos sigam o [Código de Conduta](CODE_OF_CONDUCT.md); para reportar vulnerabilidades, veja a [Política de Segurança](SECURITY.md).
 
 Como você não tem permissão de push no repositório principal, comece pelo **fork**:
 

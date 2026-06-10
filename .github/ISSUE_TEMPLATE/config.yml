@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentação
+    url: https://mateuspy.github.io/TCC2-llmEval/
+    about: Guias de instalação, configuração, providers e avaliação.
+  - name: 🔒 Reportar vulnerabilidade de segurança
+    url: https://github.com/MateusPy/TCC2-llmEval/security/advisories/new
+    about: Não abra uma issue pública para falhas de segurança. Use o reporte privado (ver SECURITY.md).
