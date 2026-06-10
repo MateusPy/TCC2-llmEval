@@ -58,7 +58,7 @@ jobs:
 
       # Instala o llm-eval. Em produção use uma versão pinada (ex.: ==0.1.0).
       - name: Instalar llm-eval
-        run: pip install llm-eval
+        run: pip install llm-eval-unb
 
       # Executa a avaliação. A API key vem do secret configurado no repositório.
       - name: Executar avaliação

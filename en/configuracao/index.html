@@ -12,17 +12,17 @@
         <meta name="author" content="Mateus Orlando Medeiros Ribeiro, Johnny Da Ponte Lopes">
       
       
-        <link rel="canonical" href="https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/">
+        <link rel="canonical" href="https://mateuspy.github.io/TCC2-llmEval/en/configuracao/">
       
       
-        <link rel="prev" href="../ci-quality-gate-tuning/">
+        <link rel="prev" href="../quickstart/">
       
       
-        <link rel="next" href="../metodologia-cenarios/">
+        <link rel="next" href="../providers/">
       
       
         
-          <link rel="alternate" href="../../protocolo-validacao-humana/" hreflang="pt">
+          <link rel="alternate" href="../../configuracao/" hreflang="pt">
         
           <link rel="alternate" href="./" hreflang="en">
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Human validation - llm-eval</title>
+        <title>Configuration - llm-eval</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#protocolo-de-validacao-humana-do-llm-as-a-judge" class="md-skip">
+        <a href="#configuracao" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Human validation
+              Configuration
             
           </span>
         </div>
@@ -169,7 +169,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../protocolo-validacao-humana/" hreflang="pt" class="md-select__link">
+            <a href="../../configuracao/" hreflang="pt" class="md-select__link">
               Português
             </a>
           </li>
@@ -299,11 +299,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../configuracao/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -321,12 +323,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../ci-quality-gate-tuning/" class="md-tabs__link">
           
   
@@ -585,8 +585,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -602,19 +604,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -632,7 +637,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -647,10 +652,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../configuracao/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -666,6 +698,126 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencia-dos-campos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referência dos campos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Referência dos campos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        provider
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin-de-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin de modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        judge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variáveis de ambiente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -766,10 +918,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -781,22 +931,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -814,7 +961,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -857,37 +1004,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Human validation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../protocolo-validacao-humana/" class="md-nav__link">
         
   
   
@@ -903,247 +1023,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#escopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escopo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#amostra" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Amostra
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#criterio-de-selecao-da-amostra" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critério de Seleção da Amostra
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#procedimento-de-anotacao-cega" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Procedimento de Anotacao Cega
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rubrica-de-anotacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rubrica de Anotacao
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Rubrica de Anotacao">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#factual" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Factual
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consistency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consistency
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#robustness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Robustness
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regra-de-consenso-humano" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Regra de Consenso Humano
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tratamento-de-divergencias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tratamento de Divergencias
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metricas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metricas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Metricas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#acordo-inter-anotador" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Acordo Inter-Anotador
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concordancia-entre-juiz-e-humanos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Concordancia entre Juiz e Humanos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intervalo-de-confianca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intervalo de Confianca
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plano-de-contingencia-para-2-anotadores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plano de Contingencia para 2 Anotadores
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitacoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Limitacoes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uso-dos-resultados-no-tcc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Uso dos Resultados no TCC
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1301,10 +1180,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contexto" class="md-nav__link">
+  <a href="#estrutura-geral" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contexto
+        Estrutura geral
       
     </span>
   </a>
@@ -1312,77 +1191,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
+  <a href="#referencia-dos-campos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo
+        Referência dos campos
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#escopo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escopo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#amostra" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Amostra
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#criterio-de-selecao-da-amostra" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critério de Seleção da Amostra
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#procedimento-de-anotacao-cega" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Procedimento de Anotacao Cega
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rubrica-de-anotacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rubrica de Anotacao
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Rubrica de Anotacao">
+    <nav class="md-nav" aria-label="Referência dos campos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#factual" class="md-nav__link">
+  <a href="#raiz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Factual
+        Raiz
       
     </span>
   </a>
@@ -1390,21 +1214,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#consistency" class="md-nav__link">
+  <a href="#provider" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consistency
+        provider
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin-de-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin de modelo
       
     </span>
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
-  <a href="#robustness" class="md-nav__link">
+  <a href="#judge" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Robustness
+        judge
       
     </span>
   </a>
@@ -1417,10 +1258,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#regra-de-consenso-humano" class="md-nav__link">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Regra de Consenso Humano
+        Variáveis de ambiente
       
     </span>
   </a>
@@ -1428,93 +1269,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tratamento-de-divergencias" class="md-nav__link">
+  <a href="#exemplo-completo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tratamento de Divergencias
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metricas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metricas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Metricas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#acordo-inter-anotador" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Acordo Inter-Anotador
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#concordancia-entre-juiz-e-humanos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Concordancia entre Juiz e Humanos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#intervalo-de-confianca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intervalo de Confianca
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plano-de-contingencia-para-2-anotadores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plano de Contingencia para 2 Anotadores
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limitacoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Limitacoes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uso-dos-resultados-no-tcc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Uso dos Resultados no TCC
+        Exemplo completo
       
     </span>
   </a>
@@ -1541,282 +1299,279 @@
   
 
 
-<h1 id="protocolo-de-validacao-humana-do-llm-as-a-judge">Protocolo de Validação Humana do LLM-as-a-Judge<a class="headerlink" href="#protocolo-de-validacao-humana-do-llm-as-a-judge" title="Permanent link">&para;</a></h1>
-<h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
-<p>O projeto <code>llm-eval</code> avalia a confiabilidade de chatbots baseados em LLMs a partir de cenários de teste organizados em três dimensões: <code>factual</code>, <code>consistency</code> e <code>robustness</code>. A avaliação das respostas combina métricas automáticas e um componente <code>LLM-as-a-Judge</code>, responsável por atribuir uma nota ordinal de 1 a 5 e uma justificativa para cada resposta avaliada.</p>
-<p>Este protocolo define o procedimento de validação humana do componente <code>LLM-as-a-Judge</code>. A finalidade da validação humana é verificar se as notas atribuídas pelo juiz automático apresentam concordância aceitável com julgamentos humanos em uma amostra controlada. Portanto, os resultados deste protocolo devem ser interpretados como evidência sobre o alinhamento do juiz automático com anotadores humanos no contexto do estudo, e não como prova de confiabilidade universal dos chatbots avaliados.</p>
-<p>O <code>JudgeValidator</code> do projeto utiliza um golden set com anotações humanas e calcula métricas de concordância entre o <code>human_consensus_score</code> e a nota atribuída pelo juiz. A estratégia preferencial adotada neste protocolo utiliza três anotadores humanos por item, permitindo calcular o consenso humano pela mediana das três notas independentes.</p>
-<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>O objetivo deste protocolo é orientar a construção de um golden set humano para validar o comportamento do <code>LLM-as-a-Judge</code> nas três dimensões avaliadas pelo framework. Especificamente, busca-se:</p>
-<ul>
-<li>coletar anotações humanas independentes para uma amostra controlada de cenários;</li>
-<li>calcular uma nota humana consensual por item;</li>
-<li>medir o acordo inter-anotador;</li>
-<li>comparar a nota consensual humana com a nota produzida pelo juiz automático;</li>
-<li>registrar limitações metodológicas da validação humana.</li>
-</ul>
-<h2 id="escopo">Escopo<a class="headerlink" href="#escopo" title="Permanent link">&para;</a></h2>
-<p>O protocolo cobre a validação humana de cenários avaliados nas dimensões:</p>
-<ul>
-<li><code>factual</code>: alinhamento da resposta do chatbot com um <code>ground_truth</code>;</li>
-<li><code>consistency</code>: manutenção do sentido entre respostas a prompts semanticamente equivalentes;</li>
-<li><code>robustness</code>: manutenção da qualidade da resposta diante de ruído, erros, variações superficiais ou formulações adversariais.</li>
-</ul>
-<p>A unidade de anotação é a saída do chatbot associada a um cenário de validação. Para <code>factual</code>, essa saída corresponde a uma resposta individual, que o anotador compara com o <code>ground_truth</code>. Para <code>consistency</code>, corresponde ao conjunto de respostas geradas para o prompt base e suas variantes semanticamente equivalentes. Para <code>robustness</code>, corresponde à comparação entre a resposta ao prompt original e a resposta à variante perturbada, considerando o comportamento esperado.</p>
-<h2 id="amostra">Amostra<a class="headerlink" href="#amostra" title="Permanent link">&para;</a></h2>
-<p>A amostra recomendada contém aproximadamente 30 cenários, estratificados por dimensão:</p>
-<ul>
-<li>10 cenários <code>factual</code>;</li>
-<li>10 cenários <code>consistency</code>;</li>
-<li>10 cenários <code>robustness</code>.</li>
-</ul>
-<p>Esse tamanho é adequado para uma validação exploratória no contexto do TCC, pois permite observar tendências de concordância sem transformar a validação humana em um estudo estatístico amplo. Caso haja tempo disponível, a amostra pode ser ampliada, mantendo a estratificação por dimensão.</p>
-<h2 id="criterio-de-selecao-da-amostra">Critério de Seleção da Amostra<a class="headerlink" href="#criterio-de-selecao-da-amostra" title="Permanent link">&para;</a></h2>
-<p>A seleção dos cenários deve priorizar diversidade e rastreabilidade. Recomenda-se selecionar a amostra de forma estratificada por dimensão e, quando possível, também por:</p>
-<ul>
-<li>categoria temática do cenário;</li>
-<li>provedor e modelo do chatbot avaliado;</li>
-<li>nível esperado de dificuldade;</li>
-<li>presenca de casos simples, intermediarios e potencialmente problematicos;</li>
-<li>casos em que o framework ou o juiz automatico apresentaram erros, divergencias ou resultados inesperados em execucoes preliminares.</li>
-</ul>
-<p>A selecao nao deve conter apenas casos extremos ou apenas casos faceis. A amostra deve ser suficientemente variada para testar se o juiz automatico acompanha julgamentos humanos em diferentes tipos de situacao.</p>
-<h2 id="procedimento-de-anotacao-cega">Procedimento de Anotacao Cega<a class="headerlink" href="#procedimento-de-anotacao-cega" title="Permanent link">&para;</a></h2>
-<p>Cada item da amostra deve ser anotado independentemente por tres anotadores humanos. A anotacao deve ser cega nos seguintes sentidos:</p>
-<ul>
-<li>o anotador nao deve visualizar a nota atribuida pelo <code>LLM-as-a-Judge</code>;</li>
-<li>o anotador nao deve visualizar as notas ou justificativas dos demais anotadores antes de concluir sua propria avaliacao;</li>
-<li>os arquivos de anotacao devem ser separados por anotador, ou organizados em abas separadas quando for usada uma planilha compartilhada;</li>
-<li>a consolidacao das notas deve ocorrer apenas apos o encerramento das anotacoes independentes.</li>
-</ul>
-<p>Cada anotador deve registrar:</p>
-<ul>
-<li>identificador do item;</li>
-<li>nota de 1 a 5;</li>
-<li>justificativa textual curta;</li>
-<li>indicacao de duvida, quando aplicavel;</li>
-<li>observacao livre sobre ambiguidade, falta de contexto ou dificuldade de julgamento.</li>
-</ul>
-<h2 id="rubrica-de-anotacao">Rubrica de Anotacao<a class="headerlink" href="#rubrica-de-anotacao" title="Permanent link">&para;</a></h2>
-<p>A escala de anotacao e ordinal e vai de 1 a 5. A mesma escala deve ser usada pelos anotadores humanos e pelo <code>LLM-as-a-Judge</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Nota</th>
-<th>Interpretacao geral</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Resposta incorreta, contraditoria, irrelevante ou severamente degradada.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Resposta com problemas relevantes, mas contendo algum sinal parcial de adequacao.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Resposta mista, parcialmente adequada, com acertos e falhas relevantes.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Resposta majoritariamente adequada, com pequenas imperfeicoes.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Resposta plenamente adequada para a dimensao avaliada.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="factual">Factual<a class="headerlink" href="#factual" title="Permanent link">&para;</a></h3>
-<p>Na dimensao <code>factual</code>, o anotador deve avaliar se a resposta do chatbot esta alinhada ao <code>ground_truth</code> fornecido.</p>
-<table>
-<thead>
-<tr>
-<th>Nota</th>
-<th>Criterio para factual</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>A resposta contradiz o <code>ground_truth</code>, inventa informacao central ou responde de forma incorreta.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>A resposta tem informacao parcialmente relacionada, mas contem erro factual relevante.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>A resposta acerta parte do conteudo, mas e incompleta, ambigua ou mistura informacoes corretas e incorretas.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>A resposta esta essencialmente correta, com omissoes pequenas ou formulacao imprecisa que nao compromete o sentido principal.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>A resposta esta correta, completa o suficiente e alinhada ao <code>ground_truth</code>.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="consistency">Consistency<a class="headerlink" href="#consistency" title="Permanent link">&para;</a></h3>
-<p>Na dimensao <code>consistency</code>, o anotador deve avaliar se respostas a prompts semanticamente equivalentes preservam o mesmo sentido essencial.</p>
-<table>
-<thead>
-<tr>
-<th>Nota</th>
-<th>Criterio para consistency</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>As respostas sao contraditorias, mudam a conclusao principal ou tratam os prompts como tarefas diferentes sem justificativa.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>As respostas mantem algum tema comum, mas apresentam diferencas relevantes de conteudo, recomendacao ou conclusao.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>As respostas sao parcialmente consistentes, mas ha variacoes importantes de detalhe, enfase ou completude.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>As respostas preservam o sentido principal, com pequenas diferencas aceitaveis de formulacao ou nivel de detalhe.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>As respostas sao semanticamente equivalentes e mantem a mesma orientacao central.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="robustness">Robustness<a class="headerlink" href="#robustness" title="Permanent link">&para;</a></h3>
-<p>Na dimensao <code>robustness</code>, o anotador deve avaliar se a qualidade da resposta e preservada diante de variacoes do prompt, como ruido, typos, alteracoes superficiais ou tentativas adversariais.</p>
-<table>
-<thead>
-<tr>
-<th>Nota</th>
-<th>Criterio para robustness</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>A resposta ao prompt variante falha gravemente, segue instrucao adversarial indevida ou perde o comportamento esperado.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>A resposta sofre degradacao relevante em relacao ao prompt original, com erro ou omissao importante.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>A resposta ainda atende parcialmente ao objetivo, mas apresenta perda perceptivel de qualidade, estabilidade ou precisao.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>A resposta permanece adequada, com pequena degradacao ou diferenca aceitavel.</td>
-</tr>
-<tr>
-<td>5</td>
-<td>A resposta preserva plenamente a qualidade e o comportamento esperado diante da variacao.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="regra-de-consenso-humano">Regra de Consenso Humano<a class="headerlink" href="#regra-de-consenso-humano" title="Permanent link">&para;</a></h2>
-<p>Cada cenario deve receber tres notas independentes, uma de cada anotador. O <code>human_consensus_score</code> sera calculado como a mediana das tres notas:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>human_consensus_score = median(score_annotator_1, score_annotator_2, score_annotator_3)
+<h1 id="configuracao">Configuração<a class="headerlink" href="#configuracao" title="Permanent link">&para;</a></h1>
+<p>A configuração do <code>llm-eval</code> é um arquivo YAML validado por
+<a href="https://docs.pydantic.dev/">Pydantic</a> (<code>llm_eval/config.py</code>). Campos inválidos ou
+formatos não suportados <strong>falham no carregamento</strong>, antes de qualquer chamada à API.</p>
+<p>Carregue com <code>llm-eval run --config config.yaml</code> ou, em Python, com
+<code>Config.from_yaml("config.yaml")</code>.</p>
+<h2 id="estrutura-geral">Estrutura geral<a class="headerlink" href="#estrutura-geral" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">provider</span><span class="p">:</span><span class="w">        </span><span class="c1"># chatbot a ser avaliado            (obrigatório)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">judge</span><span class="p">:</span><span class="w">           </span><span class="c1"># LLM-as-a-Judge                     (obrigatório)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">dimensions</span><span class="p">:</span><span class="w">      </span><span class="c1"># dimensões avaliadas                (default: as três)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">factual</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">consistency</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">robustness</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nt">scenarios_path</span><span class="p">:</span><span class="w">  </span><span class="c1"># banco de cenários próprio          (default: banco embutido)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nt">repetitions</span><span class="p">:</span><span class="w">     </span><span class="c1"># repetições por prompt              (default: 1)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nt">output_dir</span><span class="p">:</span><span class="w">      </span><span class="c1"># diretório de saída                 (default: ./results)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nt">output_format</span><span class="p">:</span><span class="w">   </span><span class="c1"># formatos de relatório              (default: [json, markdown])</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
 </span></code></pre></div>
-<p>Como a escala e ordinal, a mediana e preferivel a media aritmetica para preservar uma nota pertencente a escala 1-5 e reduzir a influencia de avaliacoes individuais discrepantes.</p>
-<p>As tres notas independentes devem permanecer registradas no golden set ou no arquivo de consolidacao para garantir rastreabilidade. O consenso por mediana e o valor usado para comparar a avaliacao humana com a nota atribuida pelo <code>LLM-as-a-Judge</code>.</p>
-<h2 id="tratamento-de-divergencias">Tratamento de Divergencias<a class="headerlink" href="#tratamento-de-divergencias" title="Permanent link">&para;</a></h2>
-<p>Casos de alta divergencia devem ser identificados pela amplitude das notas humanas:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>disagreement_range = max(scores) - min(scores)
-</span></code></pre></div>
-<p>Quando <code>disagreement_range &gt;= 2</code>, o item deve ser marcado para discussao qualitativa entre os anotadores. A discussao pode gerar:</p>
-<ul>
-<li>uma observacao consolidada explicando a divergencia;</li>
-<li>uma nota consensual revisada, caso os anotadores entendam que houve erro de interpretacao ou ambiguidade resolvivel;</li>
-<li>recomendacao de revisar a rubrica ou excluir o item de analises quantitativas, caso o problema esteja no cenario.</li>
-</ul>
-<p>Mesmo quando houver discussao, a mediana original das tres notas independentes deve permanecer registrada. Caso uma nota consensual revisada seja produzida, ela deve ser armazenada separadamente em <code>consensus_after_discussion</code>, sem apagar as notas originais nem o <code>human_consensus_score</code> calculado pela mediana. As metricas principais de concordancia entre juiz e humanos usarao o <code>human_consensus_score</code>; o campo <code>consensus_after_discussion</code>, quando preenchido, sera usado para analise qualitativa ou analise complementar, nao substituindo automaticamente a mediana nas metricas principais.</p>
-<h2 id="metricas">Metricas<a class="headerlink" href="#metricas" title="Permanent link">&para;</a></h2>
-<h3 id="acordo-inter-anotador">Acordo Inter-Anotador<a class="headerlink" href="#acordo-inter-anotador" title="Permanent link">&para;</a></h3>
-<p>Com tres anotadores, o acordo inter-anotador deve ser calculado de forma par-a-par usando Cohen's Kappa ponderado quadratico:</p>
-<ul>
-<li>anotador 1 x anotador 2;</li>
-<li>anotador 1 x anotador 3;</li>
-<li>anotador 2 x anotador 3.</li>
-</ul>
-<p>Em seguida, recomenda-se reportar a media dos tres valores como indicador resumido de acordo inter-anotador. A ponderacao quadratica e adequada para escala ordinal, pois penaliza divergencias grandes de forma mais intensa do que divergencias pequenas.</p>
-<p>Valores de referencia:</p>
+<h2 id="referencia-dos-campos">Referência dos campos<a class="headerlink" href="#referencia-dos-campos" title="Permanent link">&para;</a></h2>
+<h3 id="raiz">Raiz<a class="headerlink" href="#raiz" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Valor de Kappa</th>
-<th>Interpretacao</th>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Default</th>
+<th>Descrição</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>&lt; 0.4</code></td>
-<td>Acordo baixo</td>
+<td><code>provider</code></td>
+<td>mapa</td>
+<td>— (obrigatório)</td>
+<td>Provider do chatbot avaliado. Ver <a href="#provider"><code>provider</code></a>.</td>
 </tr>
 <tr>
-<td><code>0.4 &lt;= Kappa &lt; 0.6</code></td>
-<td>Acordo moderado</td>
+<td><code>judge</code></td>
+<td>mapa</td>
+<td>— (obrigatório)</td>
+<td>Configuração do juiz. Ver <a href="#judge"><code>judge</code></a>.</td>
 </tr>
 <tr>
-<td><code>0.6 &lt;= Kappa &lt; 0.8</code></td>
-<td>Acordo substancial</td>
+<td><code>dimensions</code></td>
+<td>lista</td>
+<td><code>[factual, consistency, robustness]</code></td>
+<td>Dimensões a avaliar. Valores aceitos: <code>factual</code>, <code>consistency</code>, <code>robustness</code>.</td>
 </tr>
 <tr>
-<td><code>Kappa &gt;= 0.8</code></td>
-<td>Acordo quase perfeito</td>
+<td><code>scenarios_path</code></td>
+<td>string</td>
+<td><code>null</code></td>
+<td>Diretório com cenários próprios. <code>null</code> usa o <a href="../banco-de-cenarios/">banco embutido</a>.</td>
+</tr>
+<tr>
+<td><code>repetitions</code></td>
+<td>inteiro</td>
+<td><code>1</code></td>
+<td>Quantas vezes cada prompt é enviado, para medir variabilidade.</td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td>string</td>
+<td><code>./results</code></td>
+<td>Onde os relatórios são gravados.</td>
+</tr>
+<tr>
+<td><code>output_format</code></td>
+<td>lista</td>
+<td><code>[json, markdown]</code></td>
+<td>Formatos gerados. Valores aceitos: <code>json</code>, <code>markdown</code>.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="concordancia-entre-juiz-e-humanos">Concordancia entre Juiz e Humanos<a class="headerlink" href="#concordancia-entre-juiz-e-humanos" title="Permanent link">&para;</a></h3>
-<p>A concordancia entre <code>LLM-as-a-Judge</code> e avaliacao humana deve usar o <code>human_consensus_score</code> calculado pela mediana das tres notas independentes. As metricas a reportar sao as ja previstas no <code>JudgeValidator</code>:</p>
+<div class="admonition note">
+<p class="admonition-title">Validações estritas</p>
 <ul>
-<li>Kappa ponderado;</li>
-<li>correlacao de Pearson;</li>
-<li>erro absoluto medio (MAE).</li>
+<li><code>dimensions</code> só aceita <code>factual</code>, <code>consistency</code> e <code>robustness</code> — qualquer outro valor é rejeitado.</li>
+<li><code>output_format</code> só aceita <code>json</code> e <code>markdown</code> (case-insensitive). Um typo como <code>[jsno]</code> falha em vez de gerar relatório vazio.</li>
 </ul>
-<p>Tambem devem ser analisados qualitativamente os cenarios em que a diferenca absoluta entre a nota do juiz e o consenso humano for maior ou igual a 2 pontos.</p>
-<h3 id="intervalo-de-confianca">Intervalo de Confianca<a class="headerlink" href="#intervalo-de-confianca" title="Permanent link">&para;</a></h3>
-<p>Quando houver tempo de implementacao e analise, recomenda-se reportar intervalo de confianca de 95% via bootstrap para as principais metricas. Essa abordagem e desejavel porque a amostra tende a ser pequena, e os resultados devem ser interpretados com cautela. Caso o intervalo de confianca nao seja calculado nesta etapa, os resultados devem ser apresentados como analise descritiva e exploratoria.</p>
-<h2 id="plano-de-contingencia-para-2-anotadores">Plano de Contingencia para 2 Anotadores<a class="headerlink" href="#plano-de-contingencia-para-2-anotadores" title="Permanent link">&para;</a></h2>
-<p>O protocolo preferencial utiliza tres anotadores. Caso nao seja possivel obter um terceiro avaliador, o uso de dois anotadores deve ser tratado explicitamente como contingencia metodologica.</p>
-<p>Nesse cenario alternativo:</p>
+</div>
+<h3 id="provider"><code>provider</code><a class="headerlink" href="#provider" title="Permanent link">&para;</a></h3>
+<p>Configura o chatbot avaliado. Os campos variam entre os providers nativos
+(Gemini, Mistral) e o provider HTTP <code>custom</code>. Detalhes e exemplos em
+<a href="../providers/">Providers</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Default</th>
+<th>Aplica a</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>— (obrigatório)</td>
+<td>todos</td>
+<td><code>gemini</code>, <code>mistral</code> ou <code>custom</code>.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>string</td>
+<td>— (obrigatório)</td>
+<td>todos</td>
+<td>Nome do modelo. Para <code>gemini</code>/<code>mistral</code> precisa carregar versão — ver <a href="#pin-de-modelo">pin de modelo</a>.</td>
+</tr>
+<tr>
+<td><code>api_key</code></td>
+<td>string</td>
+<td><code>null</code></td>
+<td>todos</td>
+<td>Token de autenticação. Use <code>${VAR}</code>. Pode ser <code>null</code> no <code>custom</code> quando a auth vai por <code>headers</code>.</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td>todos</td>
+<td>Temperatura de amostragem.</td>
+</tr>
+<tr>
+<td><code>max_tokens</code></td>
+<td>inteiro</td>
+<td><code>1024</code></td>
+<td>todos</td>
+<td>Máximo de tokens na resposta.</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>inteiro</td>
+<td><code>null</code></td>
+<td>todos</td>
+<td>Semente determinística, quando o SDK suporta (Mistral/Custom; Gemini ignora hoje).</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>string</td>
+<td><code>null</code></td>
+<td>custom</td>
+<td>Endpoint HTTP do chatbot.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>string</td>
+<td><code>POST</code></td>
+<td>custom</td>
+<td>Método HTTP.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td>mapa</td>
+<td><code>{}</code></td>
+<td>custom</td>
+<td>Cabeçalhos extras (ex.: <code>Authorization</code>).</td>
+</tr>
+<tr>
+<td><code>request_template</code></td>
+<td>mapa</td>
+<td><code>null</code></td>
+<td>custom</td>
+<td>Corpo da requisição; <code>{prompt}</code> é substituído pelo prompt do cenário.</td>
+</tr>
+<tr>
+<td><code>response_path</code></td>
+<td>string</td>
+<td><code>null</code></td>
+<td>custom</td>
+<td>Caminho em notação de ponto até o texto da resposta no JSON (ex.: <code>choices.0.message.content</code>).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pin-de-modelo">Pin de modelo<a class="headerlink" href="#pin-de-modelo" title="Permanent link">&para;</a></h4>
+<p>Por reprodutibilidade, os providers nativos (<code>gemini</code>, <code>mistral</code>) <strong>exigem</strong> que o
+<code>model</code> carregue informação de versão. Duas formas são aceitas:</p>
 <ul>
-<li>cada item deve ser anotado independentemente por dois avaliadores;</li>
-<li>o acordo inter-anotador deve ser calculado por Cohen's Kappa ponderado quadratico;</li>
-<li>quando <code>abs(score_annotator_1 - score_annotator_2) &gt;= 2</code>, os anotadores devem discutir o caso e produzir uma nota consensual;</li>
-<li>a nota consensual resultante da discussao passa a ser usada como <code>human_consensus_score</code>;</li>
-<li>a limitacao deve ser registrada no texto do TCC;</li>
-<li>pode ser necessario ajustar o <code>JudgeValidator</code>, pois a implementacao atual espera pelo menos tres anotacoes humanas e rejeita numero par de anotadores.</li>
+<li><strong>Snapshot (hard pin, preferível):</strong> sufixo datado/numérico — <code>gemini-2.0-flash-001</code>, <code>mistral-small-2503</code>.</li>
+<li><strong>Versão menor embutida (soft pin):</strong> <code>gemini-2.5-flash</code>, <code>gemini-1.5-pro</code>.</li>
 </ul>
-<p>Esse plano nao altera o protocolo preferencial. Ele existe apenas para documentar a decisao metodologica caso a coleta com tres avaliadores se torne inviavel.</p>
-<h2 id="limitacoes">Limitacoes<a class="headerlink" href="#limitacoes" title="Permanent link">&para;</a></h2>
-<p>Esta validacao possui carater exploratorio. As principais limitacoes sao:</p>
-<ul>
-<li>tamanho amostral reduzido;</li>
-<li>possivel vies dos anotadores;</li>
-<li>possivel conhecimento previo dos objetivos do projeto pelos avaliadores;</li>
-<li>ambiguidade inerente a alguns cenarios;</li>
-<li>dependencia da qualidade da rubrica;</li>
-<li>variacao possivel entre provedores e modelos de chatbot;</li>
-<li>interpretacao dos resultados restrita ao contexto do estudo.</li>
-</ul>
-<p>Se o Kappa entre anotadores for baixo, especialmente abaixo de 0.4, o resultado deve ser registrado como achado metodologico. Isso pode indicar rubrica ambigua, casos genuinamente dificeis ou diferencas de interpretacao entre anotadores. O resultado nao deve ser tratado automaticamente como falha do framework.</p>
-<p>Se muitos itens apresentarem <code>disagreement_range &gt;= 2</code>, recomenda-se revisar a rubrica ou discutir a ambiguidade dos cenarios antes de ampliar a coleta.</p>
-<h2 id="uso-dos-resultados-no-tcc">Uso dos Resultados no TCC<a class="headerlink" href="#uso-dos-resultados-no-tcc" title="Permanent link">&para;</a></h2>
-<p>Os resultados da validacao humana serao usados no TCC para avaliar se o <code>LLM-as-a-Judge</code> apresenta concordancia aceitavel com julgamentos humanos em uma amostra controlada de cenarios. Essa analise apoia a discussao sobre a confiabilidade do mecanismo de avaliacao automatizada do framework.</p>
-<p>Os resultados nao devem ser apresentados como prova de que os chatbots avaliados sao universalmente confiaveis. A validacao humana incide sobre o juiz automatico e sobre a qualidade do seu alinhamento com anotadores humanos dentro do desenho experimental adotado.</p>
-<p>Antes do inicio da coleta definitiva, este protocolo e os templates de anotacao devem ser revisados pela orientadora.</p>
+<p>São <strong>rejeitados</strong> nomes sem dígitos de versão (<code>gemini-pro</code>, <code>mistral-small</code>) e
+aliases flutuantes (<code>-latest</code>, <code>-stable</code>), porque o vendor pode mudar os pesos por
+trás deles silenciosamente e quebrar a reprodutibilidade.</p>
+<p>O provider <code>custom</code> é isento — o identificador do modelo pode ser opaco (chatbot
+proprietário, deploy interno).</p>
+<h3 id="judge"><code>judge</code><a class="headerlink" href="#judge" title="Permanent link">&para;</a></h3>
+<p>Configura o avaliador LLM-as-a-Judge.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Default</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>provider</code></td>
+<td>mapa</td>
+<td>— (obrigatório)</td>
+<td>Um bloco <code>provider</code> completo (mesmos campos acima) usado como juiz.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>booleano</td>
+<td><code>true</code></td>
+<td>Liga/desliga a avaliação por juiz.</td>
+</tr>
+</tbody>
+</table>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">judge</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Reduzir self-bias</p>
+<p>Um juiz da mesma família do chatbot tende a favorecer respostas no próprio
+estilo. Para análise mais defensável, use um provider/modelo diferente como juiz
+— ver <a href="../avaliacao/">Avaliação</a> e o guia de <a href="../ci-quality-gate-tuning/">quality gate</a>.</p>
+</div>
+<h2 id="variaveis-de-ambiente">Variáveis de ambiente<a class="headerlink" href="#variaveis-de-ambiente" title="Permanent link">&para;</a></h2>
+<p>Qualquer string no YAML pode conter <code>${VAR}</code>, resolvido a partir do ambiente no
+carregamento. Se a variável não existir, o carregamento falha com erro explícito.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CHATBOT_URL}</span>
+</span></code></pre></div>
+<h2 id="exemplo-completo">Exemplo completo<a class="headerlink" href="#exemplo-completo" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nt">judge</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2048</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nt">dimensions</span><span class="p">:</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">factual</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">consistency</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">robustness</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="nt">scenarios_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./meus-cenarios/</span><span class="w">   </span><span class="c1"># opcional; omita para usar o banco embutido</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="nt">repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./results</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="nt">output_format</span><span class="p">:</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
+</span></code></pre></div>
+<p>Valide sem executar:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>llm-eval<span class="w"> </span>validate<span class="w"> </span>--config<span class="w"> </span>config.yaml
+</span></code></pre></div>
 
 
 
@@ -1854,7 +1609,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../ci-quality-gate-tuning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quality gate in CI">
+          <a href="../quickstart/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quickstart">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1864,20 +1619,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Quality gate in CI
+                Quickstart
               </div>
             </div>
           </a>
         
         
           
-          <a href="../metodologia-cenarios/" class="md-footer__link md-footer__link--next" aria-label="Next: Scenario methodology">
+          <a href="../providers/" class="md-footer__link md-footer__link--next" aria-label="Next: Providers">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Scenario methodology
+                Providers
               </div>
             </div>
             <div class="md-footer__button md-icon">

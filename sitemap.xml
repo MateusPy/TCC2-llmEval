@@ -8,11 +8,46 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/"/>
     </url>
     <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/avaliacao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/avaliacao/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/avaliacao/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/banco-de-cenarios/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/banco-de-cenarios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/banco-de-cenarios/"/>
+    </url>
+    <url>
         <loc>https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/</loc>
         <lastmod>2026-06-10</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/configuracao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/configuracao/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/configuracao/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/contribuindo/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/contribuindo/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/contribuindo/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/instalacao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/instalacao/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/instalacao/"/>
     </url>
     <url>
         <loc>https://mateuspy.github.io/TCC2-llmEval/metodologia-cenarios/</loc>
@@ -29,6 +64,20 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/"/>
     </url>
     <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/providers/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/providers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/providers/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/quickstart/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/quickstart/"/>
+    </url>
+    <url>
         <loc>https://mateuspy.github.io/TCC2-llmEval/en/</loc>
         <lastmod>2026-06-10</lastmod>
         <changefreq>daily</changefreq>
@@ -36,11 +85,46 @@
         <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/"/>
     </url>
     <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/avaliacao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/avaliacao/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/avaliacao/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/banco-de-cenarios/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/banco-de-cenarios/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/banco-de-cenarios/"/>
+    </url>
+    <url>
         <loc>https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/</loc>
         <lastmod>2026-06-10</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/ci-quality-gate-tuning/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/ci-quality-gate-tuning/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/configuracao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/configuracao/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/configuracao/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/contribuindo/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/contribuindo/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/contribuindo/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/instalacao/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/instalacao/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/instalacao/"/>
     </url>
     <url>
         <loc>https://mateuspy.github.io/TCC2-llmEval/en/metodologia-cenarios/</loc>
@@ -55,5 +139,19 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/protocolo-validacao-humana/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/protocolo-validacao-humana/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/providers/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/providers/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/providers/"/>
+    </url>
+    <url>
+        <loc>https://mateuspy.github.io/TCC2-llmEval/en/quickstart/</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://mateuspy.github.io/TCC2-llmEval/en/quickstart/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://mateuspy.github.io/TCC2-llmEval/quickstart/"/>
     </url>
 </urlset>

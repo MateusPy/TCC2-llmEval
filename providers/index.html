@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="pt" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,17 +12,19 @@
         <meta name="author" content="Mateus Orlando Medeiros Ribeiro, Johnny Da Ponte Lopes">
       
       
-        <link rel="canonical" href="https://mateuspy.github.io/TCC2-llmEval/en/">
+        <link rel="canonical" href="https://mateuspy.github.io/TCC2-llmEval/providers/">
       
       
+        <link rel="prev" href="../configuracao/">
       
-        <link rel="next" href="instalacao/">
+      
+        <link rel="next" href="../banco-de-cenarios/">
       
       
         
-          <link rel="alternate" href="/TCC2-llmEval/" hreflang="pt">
+          <link rel="alternate" href="./" hreflang="pt">
         
-          <link rel="alternate" href="/TCC2-llmEval/en/" hreflang="en">
+          <link rel="alternate" href="../en/providers/" hreflang="en">
         
       
       
@@ -31,7 +33,7 @@
     
     
       
-        <title>Home - llm-eval</title>
+        <title>Providers - llm-eval</title>
       
     
     
@@ -84,8 +86,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#measure-the-reliability-of-your-llm-chatbot" class="md-skip">
-          Skip to content
+        <a href="#providers" class="md-skip">
+          Ir para o conteúdo
         </a>
       
     </div>
@@ -99,8 +101,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="./" title="llm-eval" class="md-header__button md-logo" aria-label="llm-eval" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="llm-eval" class="md-header__button md-logo" aria-label="llm-eval" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Providers
             
           </span>
         </div>
@@ -160,20 +162,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="Selecione o idioma">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="/TCC2-llmEval/" hreflang="pt" class="md-select__link">
+            <a href="./" hreflang="pt" class="md-select__link">
               Português
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="/TCC2-llmEval/en/" hreflang="en" class="md-select__link">
+            <a href="../en/providers/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -194,21 +196,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Pesquisar">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -221,7 +223,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando a pesquisa
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -233,7 +235,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/MateusPy/TCC2-llmEval" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/MateusPy/TCC2-llmEval" title="Ir ao repositório" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -248,7 +250,7 @@
   
     
       
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -256,17 +258,15 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
     
   
-  Home
+  Início
 
       </a>
     </li>
@@ -281,13 +281,37 @@
     
     
       <li class="md-tabs__item">
-        <a href="instalacao/" class="md-tabs__link">
+        <a href="../instalacao/" class="md-tabs__link">
           
   
   
     
   
-  Getting started
+  Começando
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../configuracao/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Referência
 
         </a>
       </li>
@@ -303,13 +327,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="configuracao/" class="md-tabs__link">
+        <a href="../ci-quality-gate-tuning/" class="md-tabs__link">
           
   
   
     
   
-  Reference
+  Operação
 
         </a>
       </li>
@@ -325,35 +349,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="ci-quality-gate-tuning/" class="md-tabs__link">
+        <a href="../metodologia-cenarios/" class="md-tabs__link">
           
   
   
     
   
-  Operations
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="metodologia-cenarios/" class="md-tabs__link">
-          
-  
-  
-    
-  
-  Methodology
+  Metodologia
 
         </a>
       </li>
@@ -367,13 +369,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="contribuindo/" class="md-tabs__link">
+      <a href="../contribuindo/" class="md-tabs__link">
         
   
   
     
   
-  Contributing
+  Contribuindo
 
       </a>
     </li>
@@ -397,9 +399,7 @@
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -408,9 +408,9 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="./" title="llm-eval" class="md-nav__button md-logo" aria-label="llm-eval" data-md-component="logo">
+    <a href=".." title="llm-eval" class="md-nav__button md-logo" aria-label="llm-eval" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
@@ -420,7 +420,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/MateusPy/TCC2-llmEval" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/MateusPy/TCC2-llmEval" title="Ir ao repositório" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -437,44 +437,17 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    Início
   
 
     
@@ -483,59 +456,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#three-dimensions-of-reliability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Three dimensions of reliability
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-started-in-2-minutes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get started in 2 minutes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#where-to-go-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where to go next
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -576,7 +496,7 @@
   <span class="md-ellipsis">
     
   
-    Getting started
+    Começando
   
 
     
@@ -592,7 +512,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting started
+    Começando
   
 
           </label>
@@ -605,14 +525,14 @@
   
   
     <li class="md-nav__item">
-      <a href="instalacao/" class="md-nav__link">
+      <a href="../instalacao/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Installation
+    Instalação
   
 
     
@@ -633,14 +553,14 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Quickstart
+    Guia rápido
   
 
     
@@ -665,8 +585,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -682,26 +604,29 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Reference
+    Referência
   
 
     
@@ -712,12 +637,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Reference
+    Referência
   
 
           </label>
@@ -730,14 +655,14 @@
   
   
     <li class="md-nav__item">
-      <a href="configuracao/" class="md-nav__link">
+      <a href="../configuracao/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration
+    Configuração
   
 
     
@@ -755,10 +680,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="providers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -774,6 +726,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#google-gemini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Gemini
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mistral-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistral AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-qualquer-endpoint-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom (qualquer endpoint HTTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-comuns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos comuns
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -786,14 +802,14 @@
   
   
     <li class="md-nav__item">
-      <a href="banco-de-cenarios/" class="md-nav__link">
+      <a href="../banco-de-cenarios/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Scenario bank
+    Banco de cenários
   
 
     
@@ -814,14 +830,14 @@
   
   
     <li class="md-nav__item">
-      <a href="avaliacao/" class="md-nav__link">
+      <a href="../avaliacao/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Evaluation
+    Avaliação
   
 
     
@@ -878,7 +894,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Operação
   
 
     
@@ -894,7 +910,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Operação
   
 
           </label>
@@ -907,14 +923,14 @@
   
   
     <li class="md-nav__item">
-      <a href="ci-quality-gate-tuning/" class="md-nav__link">
+      <a href="../ci-quality-gate-tuning/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Quality gate in CI
+    Quality gate em CI
   
 
     
@@ -935,14 +951,14 @@
   
   
     <li class="md-nav__item">
-      <a href="protocolo-validacao-humana/" class="md-nav__link">
+      <a href="../protocolo-validacao-humana/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Human validation
+    Validação humana
   
 
     
@@ -997,7 +1013,7 @@
   <span class="md-ellipsis">
     
   
-    Methodology
+    Metodologia
   
 
     
@@ -1013,7 +1029,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Methodology
+    Metodologia
   
 
           </label>
@@ -1026,14 +1042,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metodologia-cenarios/" class="md-nav__link">
+      <a href="../metodologia-cenarios/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Scenario methodology
+    Metodologia dos cenários
   
 
     
@@ -1061,14 +1077,14 @@
   
   
     <li class="md-nav__item">
-      <a href="contribuindo/" class="md-nav__link">
+      <a href="../contribuindo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contribuindo
   
 
     
@@ -1089,14 +1105,12 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
   
   
   
@@ -1105,15 +1119,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#three-dimensions-of-reliability" class="md-nav__link">
+  <a href="#google-gemini" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Three dimensions of reliability
+        Google Gemini
       
     </span>
   </a>
@@ -1121,10 +1135,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-started-in-2-minutes" class="md-nav__link">
+  <a href="#mistral-ai" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Get started in 2 minutes
+        Mistral AI
       
     </span>
   </a>
@@ -1132,10 +1146,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-to-go-next" class="md-nav__link">
+  <a href="#custom-qualquer-endpoint-http" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where to go next
+        Custom (qualquer endpoint HTTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campos-comuns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos comuns
       
     </span>
   </a>
@@ -1156,134 +1181,108 @@
               <article class="md-content__inner md-typeset">
                 
                   
-  
-
 
 
   
   
 
 
-<div class="hero">
-<p><span class="hero__eyebrow">LLM-as-a-Judge · BERTScore · Reproducible</span></p>
-<h1 id="measure-the-reliability-of-your-llm-chatbot">Measure the reliability of your LLM chatbot<a class="headerlink" href="#measure-the-reliability-of-your-llm-chatbot" title="Permanent link">&para;</a></h1>
-<p class="hero__subtitle">
-Open-source Python framework to assess the <strong>factual accuracy</strong>,
-<strong>semantic consistency</strong> and <strong>robustness</strong> of any
-LLM-based chatbot — in an automated, comparable and reproducible way.
-</p>
-<div class="hero__actions">
-<p><a class="md-button md-button--primary" href="metodologia-cenarios/">Get started <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span></a>
-<a class="md-button" href="https://github.com/MateusPy/TCC2-llmEval">View on GitHub</a></p>
-</div>
-</div>
-<p class="landing-tagline">
-Send test scenarios, let a <strong>judge model</strong> grade the answers with the help of
-computational metrics, and get <strong>structured reports</strong> — ready to run as a
-<strong>quality gate</strong> in your CI pipeline.
-</p>
-<h2 id="three-dimensions-of-reliability">Three dimensions of reliability<a class="headerlink" href="#three-dimensions-of-reliability" title="Permanent link">&para;</a></h2>
-<div class="grid cards">
-<ul>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.08 11.04h-2V4h-7.03V2h-2.01v2H4v7.04H2v2.01h2v7.03h7.04v2h2.01v-2h7.03v-7.03h2zm-4.01 7.03h-5.02v-2.01h-2.01v2.01H6v-5.02h2.03v-2.01H6V6h5.04v2.03h2.01V6h5.02v5.04h-2.01v2.01h2.01zm-5.02-6.02a1 1 0 0 1-1 1c-.55 0-1.01-.45-1.01-1s.46-1.01 1.01-1.01 1 .46 1 1.01"/></svg></span> &nbsp;<strong>Factual accuracy</strong></p>
-<hr />
-<p>Does the chatbot answer correctly? Responses are compared against a
-<strong>verifiable ground truth</strong>, with trap scenarios to surface hallucination.</p>
-<p><a href="metodologia-cenarios/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Scenario bank</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 1c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h11c1.11 0 2-.89 2-2v-3h-2v3H3V3h11v2h2V3c0-1.11-.89-2-2-2M9 7c-1.11 0-2 .89-2 2v3h2V9h11v11H9v-2H7v2c0 1.11.89 2 2 2h11c1.11 0 2-.89 2-2V9c0-1.11-.89-2-2-2z"/></svg></span> &nbsp;<strong>Semantic consistency</strong></p>
-<hr />
-<p>Does the same question, asked in different ways, get the same answer? The
-framework sends <strong>rephrasings</strong> and compares the outputs with each other.</p>
-<p><a href="metodologia-cenarios/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> How we evaluate</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></span> &nbsp;<strong>Robustness</strong></p>
-<hr />
-<p>Does quality hold up against <strong>noise, typos and adversarial inputs</strong>? The
-variants are compared against the original answer.</p>
-<p><a href="protocolo-validacao-humana/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Human validation</a></p>
-</li>
-</ul>
-</div>
-<h2 id="get-started-in-2-minutes">Get started in 2 minutes<a class="headerlink" href="#get-started-in-2-minutes" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install</label><label for="__tabbed_1_2">Configure (<code>config.yaml</code>)</label><label for="__tabbed_1_3">Run</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>llm-eval-unb
+<h1 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">&para;</a></h1>
+<p>Um <em>provider</em> é o adaptador que conecta o <code>llm-eval</code> ao chatbot avaliado. O
+framework traz três tipos: dois nativos (<strong>Gemini</strong> e <strong>Mistral</strong>) e um <strong>HTTP
+genérico</strong> (<code>custom</code>) para qualquer endpoint REST. O mesmo bloco <code>provider</code> também é
+usado para configurar o <a href="../avaliacao/">juiz</a>.</p>
+<h2 id="google-gemini">Google Gemini<a class="headerlink" href="#google-gemini" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
+<p>Requer <code>google-generativeai</code> (instalado com o pacote). O <code>model</code> precisa carregar
+versão — <code>gemini-2.0-flash</code> e <code>gemini-2.5-flash</code> são aceitos; <code>gemini-pro</code> e
+<code>gemini-flash-latest</code> são rejeitados (ver <a href="../configuracao/#pin-de-modelo">pin de modelo</a>).</p>
+<h2 id="mistral-ai">Mistral AI<a class="headerlink" href="#mistral-ai" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">provider</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">judge</span><span class="p">:</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-2.0-flash</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">factual</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">consistency</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">robustness</span><span class="p p-Indicator">]</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">results/</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mistral</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${MISTRAL_API_KEY}</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mistral-small-2503</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">max_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...<span class="w">      </span><span class="c1"># your key via environment variable</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>llm-eval<span class="w"> </span>run<span class="w"> </span>--config<span class="w"> </span>config.yaml
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># → results/report.md  +  results/report.json</span>
+<p>Requer <code>mistralai</code> (instalado com o pacote). Use um snapshot datado como
+<code>mistral-small-2503</code> — aliases como <code>mistral-small-latest</code> são <strong>rejeitados</strong> por
+não fixarem os pesos do modelo.</p>
+<h2 id="custom-qualquer-endpoint-http">Custom (qualquer endpoint HTTP)<a class="headerlink" href="#custom-qualquer-endpoint-http" title="Permanent link">&para;</a></h2>
+<p>Para avaliar qualquer chatbot com uma API REST — incluindo um deploy interno ou
+proprietário:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">provider</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://meu-chatbot.com/api/chat</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meu-chatbot-v1</span><span class="w">            </span><span class="c1"># identificador livre — só para rastreabilidade</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POST</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">headers</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer ${CUSTOM_API_KEY}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">request_template</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">messages</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{prompt}&quot;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nt">response_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">choices.0.message.content</span>
 </span></code></pre></div>
-</div>
-</div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">CI-ready</p>
-<p>The same command becomes a <strong>quality gate</strong> that blocks quality
-regressions on every pull request. See the
-<a href="ci-quality-gate-tuning/">gate calibration guide</a>.</p>
-</div>
-<h2 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">&para;</a></h2>
-<div class="grid cards">
+<p>Como funciona:</p>
 <ul>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1c0-.21-.07-.41-.18-.57L13 8.35V4h-2v4.35L5.18 18.43c-.11.16-.18.36-.18.57m1 3a3 3 0 0 1-3-3c0-.6.18-1.16.5-1.63L9 7.81V6a1 1 0 0 1-1-1V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1v1.81l5.5 9.56c.32.47.5 1.03.5 1.63a3 3 0 0 1-3 3zm7-6 1.34-1.34L16.27 18H7.73l2.66-4.61zm-.5-4a.5.5 0 0 1 .5.5.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5.5.5 0 0 1 .5-.5"/></svg></span> &nbsp;<strong>Scenario methodology</strong></p>
-<hr />
-<p>How the bank was built and how to point to your own bank via
-<code>scenarios_path</code>.</p>
-<p><a href="metodologia-cenarios/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.1 12.5 1.4 1.41-6.53 6.59L12.5 17l1.4-1.41 2.07 2.08zM11 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m0 7c.68 0 1.5.09 2.41.26l-1.67 1.67-.74-.03c-2.97 0-6.1 1.46-6.1 2.1v1.1h6.2L13 20H3v-3c0-2.66 5.33-4 8-4"/></svg></span> &nbsp;<strong>Human validation</strong></p>
-<hr />
-<p>Human × judge agreement protocol and the annotation templates.</p>
-<p><a href="protocolo-validacao-humana/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 14h-2v2h-6v-3h2v-2h-2V6a2 2 0 0 0-2-2H4V2H2v8h2V8h6v3H8v2h2v5a2 2 0 0 0 2 2h8v2h2"/></svg></span> &nbsp;<strong>Quality gate in CI</strong></p>
-<hr />
-<p>Calibrate when and how the gate fails in your pipeline.</p>
-<p><a href="ci-quality-gate-tuning/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Open</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></span> &nbsp;<strong>Code &amp; issues</strong></p>
-<hr />
-<p>Contribute, open issues or explore the source code on GitHub.</p>
-<p><a href="https://github.com/MateusPy/TCC2-llmEval"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Repository</a></p>
-</li>
+<li><strong><code>{prompt}</code></strong> dentro de <code>request_template</code> é substituído pelo prompt de cada
+  cenário antes de enviar a requisição.</li>
+<li><strong><code>response_path</code></strong> indica onde, no JSON de resposta, está o texto a avaliar. Usa
+  notação de ponto com índices numéricos — <code>choices.0.message.content</code> lê
+  <code>resposta["choices"][0]["message"]["content"]</code>.</li>
+<li>A autenticação pode ir em <code>headers</code> (como acima) em vez de <code>api_key</code>, que então
+  pode ficar ausente.</li>
 </ul>
+<p>O provider <code>custom</code> é <strong>isento da exigência de pin de modelo</strong>: você controla o
+endpoint e o identificador do modelo pode ser opaco.</p>
+<div class="admonition tip">
+<p class="admonition-title">Avaliando um chatbot local em CI</p>
+<p>No quality gate, o provider <code>custom</code> aponta para o chatbot subido localmente na
+própria pipeline (ex.: <code>http://localhost:8000/...</code>). Veja o exemplo vivo em
+<a href="https://github.com/MateusPy/TCC2-llmEval/tree/main/examples/demo-chatbot"><code>examples/demo-chatbot/</code></a>
+e o guia de <a href="../ci-quality-gate-tuning/">quality gate em CI</a>.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Documentation in progress</p>
-<p>This is the first version of the site. Quickstart, configuration reference,
-providers and evaluation details are coming next
-(<a href="https://github.com/MateusPy/TCC2-llmEval/issues/71">issue #71</a>).</p>
-</div>
-<hr />
-<p><code>llm-eval</code> started as an undergraduate thesis (TCC) in Software Engineering at
-the <strong>University of Brasília (UnB)</strong>, filling a practical gap: applying LLM
-evaluation metrics and criteria in a systematic, accessible way.</p>
-<blockquote>
-<p>The guide pages below are currently available in Portuguese; English
-translations are on the way.</p>
-</blockquote>
+<h2 id="campos-comuns">Campos comuns<a class="headerlink" href="#campos-comuns" title="Permanent link">&para;</a></h2>
+<p>Todos os providers aceitam <code>temperature</code>, <code>max_tokens</code> e <code>seed</code>. A referência
+completa de cada campo está em <a href="../configuracao/#provider">Configuração → <code>provider</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>SDK / mecanismo</th>
+<th><code>api_key</code></th>
+<th>Pin de modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gemini</code></td>
+<td><code>google-generativeai</code></td>
+<td>obrigatória</td>
+<td>exigido</td>
+</tr>
+<tr>
+<td><code>mistral</code></td>
+<td><code>mistralai</code></td>
+<td>obrigatória</td>
+<td>exigido</td>
+</tr>
+<tr>
+<td><code>custom</code></td>
+<td>HTTP via <code>httpx</code></td>
+<td>opcional (ou via <code>headers</code>)</td>
+<td>isento</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1291,13 +1290,8 @@ translations are on the way.</p>
 
 
 
-  
-  
 
 
-
-
-  
 
 
 
@@ -1314,7 +1308,7 @@ translations are on the way.</p>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  Voltar ao topo
 </button>
         
       </main>
@@ -1323,19 +1317,33 @@ translations are on the way.</p>
   
     
       
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+          
+          <a href="../configuracao/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Configuração">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Configuração
+              </div>
+            </div>
+          </a>
         
         
           
-          <a href="instalacao/" class="md-footer__link md-footer__link--next" aria-label="Next: Installation">
+          <a href="../banco-de-cenarios/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Banco de cenários">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Next
+                Próximo
               </span>
               <div class="md-ellipsis">
-                Installation
+                Banco de cenários
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1397,7 +1405,7 @@ translations are on the way.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "announce.dismiss"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "announce.dismiss"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
