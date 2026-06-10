@@ -2,6 +2,8 @@
 
 Obrigado pelo interesse em contribuir! Este documento explica como configurar o ambiente, rodar a suíte de testes, seguir os padrões de código e abrir uma boa pull request. Se algo aqui estiver desatualizado ou ambíguo, abra uma issue.
 
+Ao participar, você concorda em seguir nosso [Código de Conduta](CODE_OF_CONDUCT.md). Para reportar vulnerabilidades de segurança, veja o [SECURITY.md](SECURITY.md).
+
 ---
 
 ## Sumário

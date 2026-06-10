@@ -1,0 +1,38 @@
+name: ✨ Feature request
+description: Sugira uma melhoria ou nova funcionalidade
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Descreva o problema que a feature resolve antes da solução proposta — isso ajuda a alinhar o escopo.
+  - type: textarea
+    id: problema
+    attributes:
+      label: Problema / motivação
+      description: Qual necessidade ou dor essa feature endereça?
+      placeholder: Hoje não é possível avaliar a dimensão X porque...
+    validations:
+      required: true
+  - type: textarea
+    id: solucao
+    attributes:
+      label: Solução proposta
+      description: O que você gostaria que acontecesse?
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas
+      description: Outras abordagens que você avaliou, se houver.
+    validations:
+      required: false
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto adicional
+      description: Exemplos de uso, referências, links ou prints.
+    validations:
+      required: false

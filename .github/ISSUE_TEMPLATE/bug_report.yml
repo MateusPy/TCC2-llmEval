@@ -1,0 +1,58 @@
+name: 🐛 Bug report
+description: Relate um comportamento incorreto do llm-eval
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar! Preencha os campos abaixo para ajudar a reproduzir e corrigir o problema.
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição
+      description: O que aconteceu? O que você esperava que acontecesse?
+      placeholder: Ao rodar `llm-eval run`, o relatório sai vazio em vez de...
+    validations:
+      required: true
+  - type: textarea
+    id: reproducao
+    attributes:
+      label: Passos para reproduzir
+      description: Sequência mínima para reproduzir o comportamento.
+      placeholder: |
+        1. Config usada (`config.yaml`, sem chaves/segredos)
+        2. Comando executado
+        3. Saída/erro observado
+    validations:
+      required: true
+  - type: input
+    id: versao
+    attributes:
+      label: Versão do llm-eval
+      description: Saída de `pip show llm-eval-unb` (campo Version).
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Versão do Python
+      placeholder: "3.11"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Sistema operacional
+      placeholder: "Ubuntu 24.04 / macOS 14 / Windows 11"
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / traceback
+      description: Cole o traceback ou logs relevantes (rode com `-v` para mais detalhe). **Remova chaves de API e dados sensíveis.**
+      render: shell
+    validations:
+      required: false
