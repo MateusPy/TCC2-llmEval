@@ -31,8 +31,10 @@ O projeto nasceu como parte de um Trabalho de Conclusão de Curso em Engenharia 
 ## Instalação
 
 ```bash
-pip install llm-eval
+pip install llm-eval-unb
 ```
+
+> O pacote é distribuído como **`llm-eval-unb`** (o nome `llm-eval` já estava ocupado no PyPI). O import segue `import llm_eval` e o comando segue `llm-eval`.
 
 Requer **Python 3.11+**. Guia completo (extras de dev, chaves por variável de ambiente): [Instalação](https://mateuspy.github.io/TCC2-llmEval/instalacao/).
 

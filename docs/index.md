@@ -66,7 +66,7 @@ rodar como _quality gate_ na sua pipeline de CI.
 === "Instalar"
 
     ```bash
-    pip install llm-eval
+    pip install llm-eval-unb
     ```
 
 === "Configurar (`config.yaml`)"

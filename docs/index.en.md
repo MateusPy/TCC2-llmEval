@@ -65,7 +65,7 @@ computational metrics, and get **structured reports** — ready to run as a
 === "Install"
 
     ```bash
-    pip install llm-eval
+    pip install llm-eval-unb
     ```
 
 === "Configure (`config.yaml`)"

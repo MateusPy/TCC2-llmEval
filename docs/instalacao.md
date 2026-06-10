@@ -10,8 +10,13 @@
 ## Instalar via pip
 
 ```bash
-pip install llm-eval
+pip install llm-eval-unb
 ```
+
+!!! note "Nome de instalação × import × comando"
+    O pacote é distribuído como **`llm-eval-unb`** no PyPI (o nome `llm-eval` já
+    estava ocupado). Depois de instalado, o **import** é `import llm_eval` e o
+    **comando** é `llm-eval` — como `pip install scikit-learn` → `import sklearn`.
 
 Isso instala a biblioteca e o comando de linha de comando `llm-eval`. Confirme:
 

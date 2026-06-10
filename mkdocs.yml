@@ -58,7 +58,7 @@ extra:
       link: https://github.com/MateusPy/TCC2-llmEval
       name: Repositório no GitHub
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/llm-eval/
+      link: https://pypi.org/project/llm-eval-unb/
       name: Pacote no PyPI
 
 plugins:
