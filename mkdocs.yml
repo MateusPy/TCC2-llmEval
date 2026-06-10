@@ -58,7 +58,7 @@ extra:
       link: https://github.com/MateusPy/TCC2-llmEval
       name: Repositório no GitHub
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/llm-eval/
+      link: https://pypi.org/project/llm-eval-unb/
       name: Pacote no PyPI
 
 plugins:
@@ -81,10 +81,19 @@ plugins:
           build: true
           nav_translations:
             Início: Home
-            Guias: Guides
-            Metodologia dos cenários: Scenario methodology
-            Validação humana: Human validation
+            Começando: Getting started
+            Instalação: Installation
+            Guia rápido: Quickstart
+            Referência: Reference
+            Configuração: Configuration
+            Banco de cenários: Scenario bank
+            Avaliação: Evaluation
+            Operação: Operations
             Quality gate em CI: Quality gate in CI
+            Validação humana: Human validation
+            Metodologia: Methodology
+            Metodologia dos cenários: Scenario methodology
+            Contribuindo: Contributing
 
 markdown_extensions:
   - admonition
@@ -118,7 +127,17 @@ exclude_docs: |
 
 nav:
   - Início: index.md
-  - Guias:
-      - Metodologia dos cenários: metodologia-cenarios.md
-      - Validação humana: protocolo-validacao-humana.md
+  - Começando:
+      - Instalação: instalacao.md
+      - Guia rápido: quickstart.md
+  - Referência:
+      - Configuração: configuracao.md
+      - Providers: providers.md
+      - Banco de cenários: banco-de-cenarios.md
+      - Avaliação: avaliacao.md
+  - Operação:
       - Quality gate em CI: ci-quality-gate-tuning.md
+      - Validação humana: protocolo-validacao-humana.md
+  - Metodologia:
+      - Metodologia dos cenários: metodologia-cenarios.md
+  - Contribuindo: contribuindo.md

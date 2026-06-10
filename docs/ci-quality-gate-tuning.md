@@ -10,6 +10,35 @@ Este guia documenta **todos os parâmetros que controlam quando e como o gate do
 
 ---
 
+## Como o gate aparece na pipeline
+
+O quality gate roda como um job a mais no GitHub Actions. Os prints abaixo são de uma
+execução real na nossa própria CI — [ver a *action run* completa](https://github.com/MateusPy/TCC2-llmEval/actions/runs/26485055692/job/77990903419).
+
+### 1. O gate só roda quando vale a pena
+
+Antes de gastar qualquer chamada de API, o job `changes` usa o `dorny/paths-filter`
+para decidir se a mudança toca o chatbot, o framework ou o workflow. Se não toca, o
+gate é pulado — um PR só de docs não queima quota.
+
+![Job "Detect changed paths": o filtro avalia os arquivos alterados, marca eval = true porque ci.yml, judge.py e scenarios/factual.json foram modificados, e define a saída como ["eval"].](assets/quality-gate/detect-changed-paths.png)
+
+No exemplo, o filtro casou `ci.yml`, `judge.py` e `scenarios/factual.json` →
+`Filter eval = true` → o gate prossegue.
+
+### 2. O resultado do gate
+
+Quando todas as dimensões ficam acima do `EVAL_THRESHOLD`, o job passa (✅) e imprime
+o score por dimensão; se qualquer uma cai abaixo, o passo falha (❌) e marca o PR como
+reprovado, apontando qual dimensão puxou a média pra baixo.
+
+![Job "LLM Eval Quality Gate": o passo "Check quality gate" mostra threshold = 3.0 e as médias por dimensão — factual 4.73, consistency 4.60, robustness 3.37, todas OK — terminando em GATE PASSED.](assets/quality-gate/gate-result.png)
+
+Aqui as três dimensões passaram (`factual` 4.73, `consistency` 4.60, `robustness`
+3.37, todas acima de 3.0) → **GATE PASSED**.
+
+---
+
 ## Mapa dos botões
 
 | Camada | Parâmetro | Onde mora | Pra que serve |
